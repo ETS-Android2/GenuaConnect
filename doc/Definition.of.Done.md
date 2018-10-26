@@ -4,9 +4,9 @@
 - [ ] Die Testabdeckung beträgt mindestens 75 %.
 - [ ] Der Entwurf wurde aktualisiert.
 - [ ] Der Code ist kommentiert.
-- [ ] *TODO zusätzliches Kriterium 1/[EDIT .gitlab/merge_reqeust_templates/General.md](/.gitlab/merge_request_templates/General.md)*
-- [ ] *TODO zusätzliches Kriterium 2/[EDIT .gitlab/merge_reqeust_templates/General.md](/.gitlab/merge_request_templates/General.md)*
-- [ ] *TODO zusätzliches Kriterium 3/[EDIT .gitlab/merge_reqeust_templates/General.md](/.gitlab/merge_request_templates/General.md)*
+- [ ] Die benögte Arbeitszeit der Entwickler wurde eingetragen.
+- [ ] Das Feature oder Inkrement wurde von mindestens einem Teammitglied gereviewt.
+- [ ] Code wurde erfolgreich commited.
 
 ## Merge Request Template
 
