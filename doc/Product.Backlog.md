@@ -168,7 +168,7 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 	- In den "Einstellungen gibt es ein Menü für die Hintergrundfarbe.
 
-	- Standartmäßig ist die Farbe RAL 7004 als Hintergrundfarbe eingestellt und Schwarz als Text 		eingestellet.
+	- Standartmäßig ist die Farbe RAL 4007 als Hintergrundfarbe eingestellt und Schwarz als Text eingestellet.
 
 	- Es gibt noch die Option den Text auf schwarz einzustellen.
 
