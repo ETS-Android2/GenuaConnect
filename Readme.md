@@ -1,4 +1,4 @@
-# App-Name
+# Genua Connect
 
 ![Screenshot of CyanogenMod 12 / 12.1 homescreen by Florian838, CC BY-SA 3.0](doc/images/app-screenshot.png)  
 Screenshot of CyanogenMod 12 / 12.1 homescreen by Florian838, CC BY-SA 3.0

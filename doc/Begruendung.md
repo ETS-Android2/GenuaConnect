@@ -2,10 +2,7 @@
 
 In diesem Dokument werden die Begründungen für **nicht bearbeitete oder ignorierte Hauptbefunde und kritische Befunde** aufgelistet:
 
-## Begründung 1 (Befund X)
+## Begründung 1 (Befund 14)
 
-Den Befund X haben wir ignoriert, weil *TODO*.
-
-## Begründung 2 (Befund Y)
-
-Den Befund Y haben nicht bearbeitet, weil *TODO*.
+Den Befund 14 haben wir ignoriert, weil nicht genau definiert ist was falsch ist.
+Unserer Meinung ist klar und deutlich getrennt was ein Schema ist und was Abfragen sind.
