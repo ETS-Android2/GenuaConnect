@@ -60,13 +60,13 @@ Der Admin muss sich im Rechenzentrum mit dem bereitgestellten WLAN verbinden. Di
 
 ### Feature 4 *Multiscan*
 
-> Als Admin möchte ich, dass ich den QR-Code für das Wlan und die Geräteverbindung in verschiedenen Screens einscannen kann.
+> Als Admin möchte ich, dass ich den QR-Code für das Wlan und die Geräteverbindung nacheinander einscannen kann.
 
 - Aufwandsschätzung: L
 
 - Akzeptanztest:
 
-	- Man kann in einem Screen den QR-Code für das WIFI scannen, dessen Infos dann in dem Screen gezeigt werden und im anderen den QR-Code scannen für das Rechenzentrum.
+	- Man kann in einem Screen den QR-Code für das WIFI scannen, dessen Infos dann in dem Screen gezeigt werden und im selben Screen ohne Unterbrechung den QR-Code für mehrere Geräte des Rechenzentrum nacheinander scannen.
 
 ## Epic 2: Verwaltung von Abfragen
 
@@ -76,7 +76,7 @@ Beschreibung:
 
 Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragenschema gepackt werden, damit Abfragen gleichen Typs effizienter getätigt werden können.
 
-###Feature 1 *Abfragenschema erstellen*
+### Feature 1 *Abfragenschema erstellen*
 
 >Als Admin möchte ich Abfragenschemata erstellen können, um gleiche Abfragen schneller tätigen zu können.
 
@@ -128,15 +128,7 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 	- Die App muss beim ersten Start nach der Berechtigung für die Kamera fragen.
 
-	- Unten Links gibt es den Button "Multiscan".
-
-		- Im Multiscan Modus ändert sich der Button zu "Multiscan beenden".
-
-		- Den Button "QR-Code Scannen" gibt es für beide Screens jeweils.
-
-	- Unten Rechts gibt es den Button für "Flashlight".
-
-		- Im Multiscan-Modus ist der Button für "Flashlight" nur einmal verfügbar unten Links.
+	- Oben Rechts gibt es den Button für "Flashlight".
 
 	- In der unteren Hälfte gibt es den Button "QR Code Scannen".
 
@@ -148,15 +140,15 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 - Akzeptanztest:
 
-	- Man kann in den Einstellungen ein Menü Sprachauswahl auswählen.
+	- Man kann im Menü ein Menüpunkt Optionen auswählen.
 
-	- Der Button Sprachauswahl ist in den "Einstellungen".
+	- Der Button Sprachauswahl ist in den "Optionen".
 
 	- Es sollten die Sprachen Deutsch und Englisch auswählbar sein.
 
 	- Bei Auswahl der Sprache sollte die Richtige Sprache angezeigt werden.
 
-	- Es sollten zur erleichterung nur die Beiden jeweiligen Flaggen angezeigt werden im Button 		(DE/EN).
+	- Es sollten zur Erleichterung nur die Beiden jeweiligen Flaggen angezeigt werden im Button 		(DE/EN).
 
 ### Feature 3 *Hintergrundfarbe*
 
@@ -180,7 +172,7 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 - Akzeptanztest:
 
-	- Der Button für "Einstellungen" ist oben Links beim "Start der App".
+	- Der Button für "Menü" ist oben Links beim "Start der App".
 
-	- IM "Menü" gibt es den Button Für "Sprachmenü", "Abfragen" und "Benutzeroberfläche".
+	- Im "Menü" gibt es den Button Für "Optionen", "verbundene Geräte", "WLAN-Verbindung", "Abfragenmenü" und "Hilfe".
 
