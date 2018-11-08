@@ -76,7 +76,7 @@ Beschreibung:
 
 Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragenschema gepackt werden, damit Abfragen gleichen Typs effizienter getätigt werden können.
 
-###Feature 1 *Abfragenschema erstellen*
+### Feature 1 *Abfragenschema erstellen*
 
 >Als Admin möchte ich Abfragenschemata erstellen können, um gleiche Abfragen schneller tätigen zu können.
 
