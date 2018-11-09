@@ -10,8 +10,6 @@
 
 ![komponentendiagramm](images/Komponentendiagramm.png)
 
-*Gubaer at the German language Wikipedia [GFDL](http://www.gnu.org/copyleft/fdl.html) or [CC-BY-SA-3.0](http://creativecommons.org/licenses/by-sa/3.0/), via Wikimedia Commons.*
-
 **TODO:** Komponentendiagramm der eigenen und externen Komponenten der App erstellen.
 
 ## Komponente 1
@@ -30,22 +28,46 @@
 
 ![klassendiagramm](images/Klassendiagramm.png)
 
-*Gubaer at the German language Wikipedia [GFDL](http://www.gnu.org/copyleft/fdl.html) or [CC-BY-SA-3.0](http://creativecommons.org/licenses/by-sa/3.0/), via Wikimedia Commons*
-
-**TODO:** Klassendiagramm der Aufteilung der eigenen Komponenten in Klassen darstellen.
-
+*Klassendiagramm 1.0*
 ## Beschreibung der wichtigen Klassenhierarchie 1
+Die wichtigsten Klassen sind Startbildschrim, Scan, Menü, Optionen, AbragenMenü, AbfragenSchema, GeräteListe und die Geräte.
 
-**TODO:** Die wichtigen Klassen und ihre Hierarchie beschreiben.
+- Im *Startbildschrim* findet sich die *Scan* Klasse und das *Menü*. 
+- Im *Menü* ist die *Optionen* Klasse, das *AbfrageMenü* und die *GeräteListe* vorzufinden.
+- Im *AbfrageMenü* findet man die *AbfragenSchema* Klasse vor.
+- In der *GeräteList* befindet sich die *Geräte* Klasse.
 
-## Beschreibung der wichtigen Klasse 2
+Die Klassen werden in das *Model-View-Controller* 
+Prinzip eingefügt.
 
-## Beschreibung der wichtigen Klasse 3
+## 1° Startbildschirm
+Im Startbildschirm ist der QR-Code Scanner, sofort geöffnet. Zudem ist das Menü auswählbar.
+
+## 2° Scan
+Durch die *Scan* Klasse kann man das Blitzlicht aktivieren. Außerdem ist es möglich einen QR-Code zu scannen (WLAN/GERÄT).
+
+## 3° Menü
+Über die *Menü* Klasse sind die Untermenüs *AbfragenMenü*, *GeräteListe*, *Optionen* auswählbar. Auch kann man sich hier manuell in eine WLAN-Netz anmelden oder Hilfe erhalten.
+
+## 4° AbfragenMenü
+Von hieraus ist die *AbfragenSchema* Klasse auswählbar. Hier können Abfragemasken hinzugefügt, bearbeitet oder gelöscht werden.
+
+## 5 AbfragenSchema
+Über die OID Strings entscheidet die Klasse welche Informationen des Geräts abgerufen werden.
+
+## 6° GeräteListe
+Hier kann man die eingescannte Geräte einsehen und auf die *Geräte* Klasse zugreifen.
+
+## 7° Geräte
+Diese Klasse dient dazu den Zustand der Geräte zu erhalten.
+
+## 8° Optionen
+Hier sind verschiedene Einstellungen möglich wie z.B. die Farb - & Sprachauswahl.
 
 # GUI-Skizze
 
-![GUI-Skizze von Jan-Peter Ostberg, CC-BY-SA 4.0](sketches/GUI-Skizze.png)
+![GUI-Skizze von Arton Kastrati](sketches/Skizze.start.png)
+![GUI-Skizze von Arton Kastrati](sketches/Skizze.popup.png)
+![GUI-Skizze von Arton Kastrati](sketches/Skizze.menu.png)
 
-GUI-Skizze von Jan-Peter Ostberg, CC-BY-SA 4.0
-
-**TODO:** Eigene möglichst handschriftliche GUI-Skizzen erstellen und beschreiben.
+GUI-Skizze von Arton Kastrati, Baran Demir, Samuel Gigliotti
