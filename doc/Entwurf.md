@@ -1,24 +1,38 @@
 # Einführung
 
-*Dieser Entwurf legt die prinzipielle Lösungsstruktur fest und enthält alles, was man benötigt, um einem Außenstehenden den prinzipiellen Aufbau der App erklären zu können.* (**keep it simple**)
+Dieser Entwurf legt die prinzipielle Lösungsstruktur fest und enthält alles, was man benötigt, um einem Außenstehenden den prinzipiellen Aufbau der App erklären zu können. Hier wird das Gesamtsystem in überschaubare Einheiten gegliedert und diese können potenziell in zukünftigen Projekten wiederverwendet werden.
 
-**TODO:** Beschreibung des grundlegenden Aufbaus.
+Es wird versucht das Model-View-Controller Prinzip als Vorbild für den Aufbau umzusetzen.
 
-**TODO:** Verweis auf Standards wie zum Beispiel verwendete Entwurfsmuster o.ä.
+Es wurden folgende Entwurfsmuster genutzt:
+- Singelton: Eine Instanz für bestimmte Klassen.
+- Observer: Ein Subjekt wird von Beobachtern abboniert und benachrichtigt bei Änderung die Beobachter.
 
 # Komponentendiagramm
 
 ![komponentendiagramm](images/Komponentendiagramm.png)
 
-**TODO:** Komponentendiagramm der eigenen und externen Komponenten der App erstellen.
+*Komponentendiagramm 1.0*
 
-## Komponente 1
 
-**TODO:** Beschreibung der Komponente inklusive seiner verwendeten und bereitgestellten Schnittstellen
+## Komponente 1: Controller
+Der Controller ist die Komponente, die die Benutzereingaben auswertet und die Komponenten aktiviert oder benachrichtigt, die für die Ausführung der gewünschten Aktivität benötigt werden. Dafür werden Schnittstellen zu fast allen anderen Komponenten benötigt.
 
-## Komponente 2
+## Komponente 2: Abfrageneinstellungen
+Diese Komponente ist dafür zuständig, Abfrageschemata zu verwalten. Dazu gehören neue Abfrageschemata zu erstellen, zu löschen und zu bearbeiten. Diese können dann verwendert werden, um bei Geräteverbindung nur bestimmte Daten zu erhalten.
 
-**TODO:** Beschreibung der Komponente inklusive seiner verwendeten und bereitgestellten Schnittstellen
+## Komponente 3: Scanner
+Diese Komponente ist dafür zuständig, mit Hilfe der Handykamera QR-Codes von WLAN oder Geräten im Rechenzentrum zu lesen und die entschlüsselten Daten weiterzuleiten. Diese Komponente ist essentiell um Verbindungen herzustellen und neue Geräte zu vebinden.
+
+## Komponente 4: SNMP-Manager:
+Der SNMP-Manager ist dafür zuständig, über SNMP die Abfragen von den verbundenen Geräten zu starten und periodisch die Daten zu aktualisieren. Die zurückgegebenen Daten werden über eine Schnittstelle an die temporäre Datenbank geleitet.
+
+## Komponente 5: temporäre Datenbank
+Diese Komponente ist dazu da, die in der aktuellen Sitzung erstellten Verbindungen zu speichern und bei bestimmten Abfragen weiterzuleiten. Die Datenbank hat Schnittstellen zum SNMP-Manager und zur Oberfläche.
+
+## Komponente 6: Oberfläche
+Diese Komponente bietet die Schnittstelle zum Benutzer. Sie versucht für den Benutzer die Daten und Informationen aus der Datenbank übersichtlich darzustellen und Benutzereingaben an den Controller weiter zu geben.
+
 
 ## Externe Komponente 1
 
