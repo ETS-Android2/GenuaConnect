@@ -32,7 +32,7 @@ public class ExampleInstrumentedTest {
 
         MainActivity activity = rule.getActivity();
 
-        TextView tvHello = (TextView) activity.findViewById(R.id.tvHello);
+        TextView tvHello = (TextView) activity.findViewById(R.id.mImageView);
         assertThat(tvHello,notNullValue());
         assertThat(tvHello, instanceOf(TextView.class));
         assertEquals("TextView text compare", "Hello World!", tvHello.getText().toString());
