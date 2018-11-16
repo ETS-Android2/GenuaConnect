@@ -74,7 +74,7 @@ Der Admin muss sich im Rechenzentrum mit dem bereitgestellten WLAN verbinden. Di
 
 Beschreibung:
 
-Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragenschema gepackt werden, damit Abfragen gleichen Typs effizienter getätigt werden können.
+Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske gepackt werden, damit Abfragen gleichen Typs effizienter getätigt werden können. Eine Abfragemaske kann vorher defeniert werden. Dies sind eine bestimmte Menge von Abfragen, die immer gleichzeitig getätigt werden. Eine einzelne Abfrage ist die versuchte Ermittlung von Informationen.
 
 ### Feature 1 *Abfragenschema erstellen*
 
