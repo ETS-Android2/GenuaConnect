@@ -2,7 +2,7 @@
 
 ## Epic 1: QR-Code scannen
 
-> Als Admin möchte ich das Produkt nutzen um einen QR-Code scannen zu können.
+> Als Admin möchte ich das Produkt nutzen um einen QR-Code scannen zu können, um eine Verbindung mit demn WLAN oder einem Gerät herzustellen.
 
 Beschreibung:
 
@@ -27,7 +27,9 @@ Der Admin muss sich im Rechenzentrum mit dem bereitgestellten WLAN verbinden. Di
 
     - Beim Wechsel in das gesicherte WLAN wird der Betrieb der Anwendung wieder im ursprünglichen Zustand aufgenommen.
 
-    - falls WlAN-Netz nicht verschlüsselt ist, dann wird keine Verbindung hergestellt und es wird dem Nutzer eine Fehlermeldung mittig im Screen angezeigt.
+	- Die Netzwerkparameter des WLANs (IPv4-, IPv6-Adresse, Netzmaske, DNS-Server-IP, Gateway-IP) inkl. DHCP-Zuweisung werden dargestellt.
+
+    - falls WLAN-Netz nicht verschlüsselt ist, dann wird keine Verbindung hergestellt und es wird dem Nutzer eine Fehlermeldung angezeigt und es werden keine Daten übertragen.
 
 ### Feature 2 *Geräteverbindung herstellen*
 
@@ -60,7 +62,7 @@ Der Admin muss sich im Rechenzentrum mit dem bereitgestellten WLAN verbinden. Di
 
 ### Feature 4 *Multiscan*
 
-> Als Admin möchte ich, dass ich den QR-Code für das Wlan und die Geräteverbindung nacheinander einscannen kann.
+> Als Admin möchte ich, dass ich den QR-Code für das WLAN und die Geräteverbindung nacheinander einscannen kann und mehrere Geräte nacheinander einscannen kann und diese mir im nachhinein anzeigen lassen kann.
 
 - Aufwandsschätzung: L
 
@@ -70,7 +72,7 @@ Der Admin muss sich im Rechenzentrum mit dem bereitgestellten WLAN verbinden. Di
 
 ## Epic 2: Verwaltung von Abfragen
 
-> Als Admin möchte ich bestimmte Abfragen kategorisiert und übersichtlich verwalten und benutzen können.
+> Als Admin möchte ich bestimmte Abfragen kategorisiert und übersichtlich verwalten und benutzen können, um die App benuztzerfreundlicher zu machen.
 
 Beschreibung:
 
@@ -80,7 +82,7 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 >Als Admin möchte ich Abfragenschemata erstellen können, um gleiche Abfragen schneller tätigen zu können.
 
-- Aufwandsschätzung: S
+- Aufwandsschätzung: M	
 
 - Akzeptanztest:
 
@@ -94,7 +96,7 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 ### Feature 2 *Abfragenmenü*
 
-> Als Admin möchte ich, dass ich die Art der Abfrage (Welche Hardware Kategorie) auswählen kann.
+> Als Admin möchte ich, dass ich die Art der Abfrage (Welche Hardware Kategorie) auswählen können, um die App nutzerfreundlicher zu machen.
 
 - Aufwandsschätzung: M
 
@@ -110,7 +112,7 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 ## Epic 3: Oberfläche
 
-> Als Admin will ich eine gut strukturierte Oberfläche haben, die auch einfach und intuitiv zu bedienen ist.
+> Als Admin will ich eine gut strukturierte Oberfläche haben, die auch einfach und intuitiv zu bedienen ist, um die Nutzung der App zu vereinfachen.
 
 Beschreibung:
 
@@ -118,7 +120,7 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 ### Feature 1 *Start der App*
 
-> Als Admin will ich, dass bei Start der App direkt die Kamera für die Scanfunktion an ist.
+> Als Admin will ich, dass bei Start der App direkt die Kamera für die Scanfunktion an ist, um direkt die Hauptfunktion nutzen zu können.
 
 - Aufwandsschätzung: L
 
