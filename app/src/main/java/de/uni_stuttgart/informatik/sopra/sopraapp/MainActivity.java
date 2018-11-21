@@ -12,11 +12,18 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity {
 
+    IntentIntegrator intentIntegrator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new IntentIntegrator(this).initiateScan();
+
+        intentIntegrator = new IntentIntegrator(this);
+        intentIntegrator.setBeepEnabled(false);
+        intentIntegrator.setOrientationLocked(false);
+        intentIntegrator.setCaptureActivity(RotatingCaptureActivity.class);
+        intentIntegrator.initiateScan();
     }
 
     // Get the results:
@@ -28,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-                new IntentIntegrator(this).initiateScan();
+                intentIntegrator.initiateScan();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
