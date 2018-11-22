@@ -12,18 +12,22 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Intent that can start the scan of qr codes
     IntentIntegrator intentIntegrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = new Intent(this, RotatingCaptureActivity.class);
+        startActivity(intent);
 
-        intentIntegrator = new IntentIntegrator(this);
-        intentIntegrator.setBeepEnabled(false);
-        intentIntegrator.setOrientationLocked(false);
-        intentIntegrator.setCaptureActivity(RotatingCaptureActivity.class);
-        intentIntegrator.initiateScan();
+        //initialising the IntentIntegrator and setting a few options
+        //intentIntegrator = new IntentIntegrator(this);
+        //intentIntegrator.setBeepEnabled(false);
+        //intentIntegrator.setOrientationLocked(false);
+        //intentIntegrator.setCaptureActivity(RotatingCaptureActivity.class);
+        //intentIntegrator.initiateScan();
     }
 
     // Get the results:
@@ -35,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-                intentIntegrator.initiateScan();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
