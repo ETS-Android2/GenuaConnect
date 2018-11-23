@@ -63,7 +63,7 @@ public class SimpleSnmpClient {
         target.setAddress(targetAdress);
         target.setRetries(2);
         target.setTimeout(1500);
-        target.setVersion(SnmpConstants.version2c);
+        target.setVersion(SnmpConstants.version3);
         return target;
     }
 
@@ -107,6 +107,11 @@ public class SimpleSnmpClient {
         }
     }
 
+    /**
+     * Gets the PDU.
+     * @param oids Array of the OIDs.
+     * @return Returns the getted PDU.
+     */
     private PDU getPDU (OID oids[]) {
         PDU pdu = new PDU();
         for (OID oid : oids) {
@@ -116,6 +121,11 @@ public class SimpleSnmpClient {
         return pdu;
     }
 
+    /**
+     * Lists the informations of the OIDs as a table.
+     * @param oids Array of OIDs.
+     * @return Returns the List.
+     */
     public List<List<String>> getTableAsStrings(OID[] oids) {
         TableUtils utils = new TableUtils(snmp, new DefaultPDUFactory());
         List<TableEvent> events = utils.getTable(getTarget(), oids, null, null);
