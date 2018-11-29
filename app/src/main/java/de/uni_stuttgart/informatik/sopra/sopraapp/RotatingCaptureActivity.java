@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -22,8 +23,8 @@ import java.util.List;
 public class RotatingCaptureActivity extends Activity
         implements DecoratedBarcodeView.TorchListener {
 
-    DecoratedBarcodeView barcodeView;
-    Button flashBtn;
+    private DecoratedBarcodeView barcodeView;
+    private Button flashBtn;
     private CaptureManager capture;
 
     @Override
@@ -33,7 +34,7 @@ public class RotatingCaptureActivity extends Activity
 
         Log.d("RotatingCaptureActivity", "onCreate started");
 
-
+        flashBtn = (Button) findViewById(R.id.flashButton);
         barcodeView = (DecoratedBarcodeView) findViewById(R.id.barcode_scanner);
         barcodeView.setTorchListener(this);
         Collection<BarcodeFormat> formats = Arrays.asList(BarcodeFormat.QR_CODE);
@@ -63,9 +64,14 @@ public class RotatingCaptureActivity extends Activity
             }
         });
 
+    }
 
-
-
+    public void switchFlashlight(View view) {
+        if ("Turn On".equals(flashBtn.getText())) {
+            barcodeView.setTorchOn();
+        } else {
+            barcodeView.setTorchOff();
+        }
     }
 
     @Override
@@ -99,11 +105,11 @@ public class RotatingCaptureActivity extends Activity
 
     @Override
     public void onTorchOn() {
-
+        flashBtn.setText("Turn Off");
     }
 
     @Override
     public void onTorchOff() {
-
+        flashBtn.setText("Turn On");
     }
 }

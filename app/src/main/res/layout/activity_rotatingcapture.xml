@@ -10,6 +10,19 @@
         android:id="@+id/barcode_scanner"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
     </com.journeyapps.barcodescanner.DecoratedBarcodeView>
+
+    <Button
+        android:id="@+id/flashButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="71dp"
+        android:layout_marginEnd="55dp"
+        android:background="@drawable/flash_button_background"
+        android:text="Turn On"
+        android:onClick="switchFlashlight"/>
 
 </RelativeLayout>
