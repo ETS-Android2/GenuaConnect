@@ -26,7 +26,6 @@ public class RotatingCaptureActivity extends Activity
     Button flashBtn;
     private CaptureManager capture;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +53,7 @@ public class RotatingCaptureActivity extends Activity
                 } else {
                     Log.d("MainActivity", "Scanned");
                     Toast.makeText(getApplicationContext(), "Scanned: " + result.getText(), Toast.LENGTH_LONG).show();
+
                 }
             }
 
