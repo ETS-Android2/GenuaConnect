@@ -26,6 +26,7 @@ public class RotatingCaptureActivity extends Activity
     private DecoratedBarcodeView barcodeView;
     private Button flashBtn;
     private CaptureManager capture;
+    String lastText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +52,11 @@ public class RotatingCaptureActivity extends Activity
                 if(result == null) {
                     Log.d("MainActivity", "Cancelled scan");
                     Toast.makeText(getParent(), "Cancelled", Toast.LENGTH_LONG).show();
-                } else {
-                    Log.d("MainActivity", "Scanned");
+                } else if(!result.getText().equals(lastText)){
                     Toast.makeText(getApplicationContext(), "Scanned: " + result.getText(), Toast.LENGTH_LONG).show();
-
+                    lastText = result.getText();
+                }else if(result != null){
+                    Log.d("MainActivity", "Scanned " + result.getText() + "\n\t Last Text was "+ lastText);
                 }
             }
 
@@ -75,6 +77,12 @@ public class RotatingCaptureActivity extends Activity
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        lastText = null;
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         capture.onResume();
@@ -84,6 +92,7 @@ public class RotatingCaptureActivity extends Activity
     protected void onPause() {
         super.onPause();
         capture.onPause();
+        lastText = null;
     }
 
     @Override

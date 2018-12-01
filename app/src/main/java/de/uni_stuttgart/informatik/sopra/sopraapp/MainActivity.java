@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     //Intent that can start the scan of qr codes
     IntentIntegrator intentIntegrator;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,20 +31,5 @@ public class MainActivity extends AppCompatActivity {
          intentIntegrator.initiateScan();
     }
 
-    // Get the results:
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if (result != null) {
-            if (result.getContents() == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-                intentIntegrator.initiateScan();
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
 
-    }
 }
