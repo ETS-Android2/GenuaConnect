@@ -63,7 +63,7 @@ public class SimpleSnmpClient {
         target.setAddress(targetAdress);
         target.setRetries(2);
         target.setTimeout(1500);
-        target.setVersion(SnmpConstants.version3);
+        target.setVersion(SnmpConstants.version2c);
         return target;
     }
 

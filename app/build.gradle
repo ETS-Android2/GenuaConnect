@@ -28,6 +28,8 @@ android {
             }
         }
     }
+    compileOptions {
+    }
 }
 
 repositories {
@@ -49,6 +51,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    api group: 'org.snmp4j', name: 'snmp4j', version: '3.0.5'
-    api group: 'org.snmp4j', name: 'snmp4j-agent', version: '3.0.3'
+    api 'org.snmp4j:snmp4j:3.0.5'
+    api 'org.snmp4j:snmp4j-agent:3.0.3'
 }
