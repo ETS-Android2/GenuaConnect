@@ -68,7 +68,6 @@ public class RotatingCaptureActivity extends Activity
 
             }
         });
-
     }
 
     public void switchFlashlight(View view) {
