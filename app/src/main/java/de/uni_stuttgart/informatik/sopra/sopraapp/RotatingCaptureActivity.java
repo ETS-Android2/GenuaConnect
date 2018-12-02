@@ -53,10 +53,8 @@ public class RotatingCaptureActivity extends Activity
                     Log.d("MainActivity", "Cancelled scan");
                     Toast.makeText(getParent(), "Cancelled", Toast.LENGTH_LONG).show();
                 } else if(!result.getText().equals(lastText)){
-                    Toast.makeText(getApplicationContext(), "Scanned: " + result.getText(), Toast.LENGTH_LONG).show();
+                    reactToQrString(result.getText());
                     lastText = result.getText();
-                }else if(result != null){
-                    Log.d("MainActivity", "Scanned " + result.getText() + "\n\t Last Text was "+ lastText);
                 }
             }
 
@@ -68,6 +66,19 @@ public class RotatingCaptureActivity extends Activity
 
     }
 
+    /**
+     * the reaction to a correct qr-code.
+     * testing if its a WIFI of device QR-Code
+     * @param resultText the correct QR-Code
+     */
+    private void reactToQrString(String resultText) {
+        new WifiConnect().tryConnect(resultText,this);
+    }
+
+    /**
+     * switching the Flashlight
+     * @param view
+     */
     public void switchFlashlight(View view) {
         if ("Turn On".equals(flashBtn.getText())) {
             barcodeView.setTorchOn();
