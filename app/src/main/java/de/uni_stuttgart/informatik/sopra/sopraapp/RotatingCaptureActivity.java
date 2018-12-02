@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
@@ -16,8 +15,6 @@ import com.journeyapps.barcodescanner.BarcodeResult;
 import com.journeyapps.barcodescanner.CaptureManager;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.journeyapps.barcodescanner.DefaultDecoderFactory;
-
-import org.snmp4j.smi.OID;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,8 +35,8 @@ public class RotatingCaptureActivity extends Activity
 
         Log.d("RotatingCaptureActivity", "onCreate started");
 
-        flashBtn = (Button) findViewById(R.id.flashButton);
-        barcodeView = (DecoratedBarcodeView) findViewById(R.id.barcode_scanner);
+        flashBtn = findViewById(R.id.flashButton);
+        barcodeView =  findViewById(R.id.barcode_scanner);
         barcodeView.setTorchListener(this);
         Collection<BarcodeFormat> formats = Arrays.asList(BarcodeFormat.QR_CODE);
         barcodeView.getBarcodeView().setDecoderFactory(new DefaultDecoderFactory(formats));

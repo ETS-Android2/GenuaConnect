@@ -1,13 +1,10 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp;
 
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 
 public class MainActivity extends AppCompatActivity {
