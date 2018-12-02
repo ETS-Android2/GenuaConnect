@@ -35,8 +35,8 @@ public class RotatingCaptureActivity extends Activity
 
         Log.d("RotatingCaptureActivity", "onCreate started");
 
-        flashBtn = (Button) findViewById(R.id.flashButton);
-        barcodeView = (DecoratedBarcodeView) findViewById(R.id.barcode_scanner);
+        flashBtn = findViewById(R.id.flashButton);
+        barcodeView =  findViewById(R.id.barcode_scanner);
         barcodeView.setTorchListener(this);
         Collection<BarcodeFormat> formats = Arrays.asList(BarcodeFormat.QR_CODE);
         barcodeView.getBarcodeView().setDecoderFactory(new DefaultDecoderFactory(formats));
@@ -63,7 +63,6 @@ public class RotatingCaptureActivity extends Activity
 
             }
         });
-
     }
 
     /**
