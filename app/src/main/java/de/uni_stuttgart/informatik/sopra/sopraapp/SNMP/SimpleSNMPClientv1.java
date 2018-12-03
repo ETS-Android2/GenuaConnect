@@ -1,7 +1,6 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
 import org.snmp4j.CommunityTarget;
-import org.snmp4j.PDU;
 import org.snmp4j.PDUv1;
 import org.snmp4j.Snmp;
 import org.snmp4j.Target;

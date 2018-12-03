@@ -1,9 +1,6 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
-import org.snmp4j.CommunityTarget;
-import org.snmp4j.PDU;
 import org.snmp4j.ScopedPDU;
-import org.snmp4j.SecureTarget;
 import org.snmp4j.Snmp;
 import org.snmp4j.Target;
 import org.snmp4j.TransportMapping;
