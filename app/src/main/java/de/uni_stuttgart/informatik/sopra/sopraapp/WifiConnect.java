@@ -3,6 +3,7 @@ package de.uni_stuttgart.informatik.sopra.sopraapp;
 import android.content.Context;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.util.Log;
 import android.widget.Toast;
 
 public class WifiConnect {
@@ -26,6 +27,7 @@ public class WifiConnect {
             Toast.makeText(context, "not a WIFI QR-Code", Toast.LENGTH_SHORT).show();
             return;
         }
+        Log.d("WIFI Params setted", "\nauthentification: "+ authentification + "\nssid: "+ssid+ "\npass: "+ password);
 
         //enable WIFI
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
@@ -38,6 +40,7 @@ public class WifiConnect {
         conf.SSID = "\"" + ssid + "\"";   // Please note the quotes. String should contain ssid in quotes
 
         //switching between the different authentification and if there is a security
+
         switch (authentification){
             case "WEP":
                 conf.wepKeys[0] = "\"" + password + "\"";
@@ -46,6 +49,9 @@ public class WifiConnect {
                 conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);
                 break;
             case "WPA":
+                conf.preSharedKey = "\""+ password +"\"";
+                break;
+            case "WPA2 ":
                 conf.preSharedKey = "\""+ password +"\"";
                 break;
             default:
@@ -59,7 +65,7 @@ public class WifiConnect {
         wifiManager.disconnect();
         wifiManager.enableNetwork(conf.networkId, true);
         if(wifiManager.reconnect()){
-            Toast.makeText(context, "Connected to WIFI " +wifiManager.getConnectionInfo().getSSID(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Verbindung mit " +ssid + "wird hergestellt.", Toast.LENGTH_SHORT).show();
         }
 
     }
