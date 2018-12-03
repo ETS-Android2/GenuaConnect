@@ -26,9 +26,10 @@ public class SimpleSnmpClient {
     private String address;
     private Snmp snmp;
 
-    public SimpleSnmpClient(String address) {
+    public SimpleSnmpClient(String qrCode) {
         super();
-        this.address = address;
+        ApplianceQrDecode decode = new ApplianceQrDecode(qrCode);
+        this.address = decode.getAddress();
         try {
             start();
         } catch (IOException e) {
@@ -63,7 +64,7 @@ public class SimpleSnmpClient {
         target.setAddress(targetAdress);
         target.setRetries(2);
         target.setTimeout(1500);
-        target.setVersion(SnmpConstants.version2c);
+        target.setVersion(SnmpConstants.version3);
         return target;
     }
 
