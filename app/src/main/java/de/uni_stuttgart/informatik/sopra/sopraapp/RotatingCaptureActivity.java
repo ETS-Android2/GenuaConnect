@@ -16,12 +16,11 @@ import com.journeyapps.barcodescanner.CaptureManager;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.journeyapps.barcodescanner.DefaultDecoderFactory;
 
-import org.snmp4j.smi.OID;
-
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+
+import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv2c;
 
 public class RotatingCaptureActivity extends Activity
         implements DecoratedBarcodeView.TorchListener {
@@ -75,7 +74,7 @@ public class RotatingCaptureActivity extends Activity
      */
     private void reactToQrString(String resultText) {
         new WifiConnect().tryConnect(resultText,this);
-        SimpleSnmpClient client = new SimpleSnmpClient(resultText);
+        SimpleSNMPClientv2c client = new SimpleSNMPClientv2c(resultText);
     }
 
     /**

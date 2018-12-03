@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp;
+package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
 import org.snmp4j.CommunityTarget;
 import org.snmp4j.PDU;
@@ -20,7 +20,7 @@ import java.util.Vector;
  * SNMP client to monitor servers and devices.
  * Inspired by https://www.youtube.com/watch?v=Nw18dAnWn2U.
  */
-public class SNMPClient {
+public class SNMPClientTest {
 
     //snmp variable
     private Snmp snmpClient = null;
@@ -31,7 +31,7 @@ public class SNMPClient {
     //consists of the snmp information
     private CommunityTarget communityTarget = null;
 
-    public SNMPClient(String stringHost, int port, String stringCommunity, int version, int timeOut, int retry) throws Exception {
+    public SNMPClientTest(String stringHost, int port, String stringCommunity, int version, int timeOut, int retry) throws Exception {
         //new transportMapping
         this.transportMapping = new DefaultUdpTransportMapping();
 
