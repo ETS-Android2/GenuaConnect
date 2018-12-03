@@ -1,6 +1,5 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
-import org.snmp4j.SecureTarget;
 import org.snmp4j.Target;
 import org.snmp4j.UserTarget;
 import org.snmp4j.mp.SnmpConstants;

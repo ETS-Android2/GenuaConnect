@@ -12,14 +12,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8e63fd5-9d42-4dd6-8276-bbbb492b2bb6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3AuthNoPriv.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3NoAuth.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/RotatingCaptureActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/RotatingCaptureActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMPClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPClientTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SimpleSnmpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv2c.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3AuthNoPriv.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3AuthNoPriv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv1.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv2c.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv2c.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -81,8 +77,8 @@
       <file leaf-file-name="SimpleSNMPClientv2c.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv2c.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="124" column="5" lean-forward="true" selection-start-line="112" selection-start-column="4" selection-end-line="124" selection-end-column="5" />
+            <state relative-caret-position="238">
+              <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,12 +89,10 @@
       <file leaf-file-name="SimpleSNMPClientv3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="75" column="10" lean-forward="true" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
+            <state relative-caret-position="-37">
+              <caret line="77" column="29" lean-forward="true" selection-start-line="77" selection-start-column="29" selection-end-line="77" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2102#2248#0" expanded="true" />
-                <element signature="e#2247#2248#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,8 +101,8 @@
       <file leaf-file-name="SNMPv3NoAuth.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3NoAuth.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="5" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="26" selection-end-column="5" />
+            <state relative-caret-position="391">
+              <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#152#153#0" expanded="true" />
@@ -121,8 +115,8 @@
       <file leaf-file-name="SNMPv3AuthNoPriv.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3AuthNoPriv.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
+            <state relative-caret-position="408">
+              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#160#161#0" expanded="true" />
@@ -135,8 +129,8 @@
       <file leaf-file-name="SimpleSNMPClientv1.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="152" column="5" lean-forward="true" selection-start-line="128" selection-start-column="4" selection-end-line="152" selection-end-column="5" />
+            <state relative-caret-position="578">
+              <caret line="75" column="6" lean-forward="true" selection-start-line="75" selection-start-column="6" selection-end-line="75" selection-end-column="6" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -2499,15 +2493,15 @@
         <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPClientTest.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPClientInterface.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPClientAbstract.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3NoAuth.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3AuthNoPriv.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv2c.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv1.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3NoAuth.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3AuthNoPriv.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-15" />
     <option name="width" value="1948" />
     <option name="height" value="2075" />
@@ -32908,10 +32902,25 @@
       <option name="presentableId" value="Default" />
       <updated>1542368815363</updated>
     </task>
+    <task id="LOCAL-00001" summary="Alle SNMP Versionen implementiert">
+      <created>1543857446903</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1543857446903</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Update SNMP">
+      <created>1543857606660</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1543857606661</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="0" width="779" height="830" extended-state="0" />
+    <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -32928,7 +32937,7 @@
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" />
       <window_info id="Designer" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3231623" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15627097" />
       <window_info anchor="bottom" id="Build" weight="0.32859176" />
       <window_info anchor="right" id="Gradle" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -33029,7 +33038,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added a first SNMPClient" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a first SNMPClient" />
+    <MESSAGE value="Alle SNMP Versionen implementiert" />
+    <MESSAGE value="Update SNMP" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update SNMP" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiConnect.java">
@@ -33313,42 +33324,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv2c.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="124" column="5" lean-forward="true" selection-start-line="112" selection-start-column="4" selection-end-line="124" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="152" column="5" lean-forward="true" selection-start-line="128" selection-start-column="4" selection-end-line="152" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3NoAuth.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="5" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="26" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#152#153#0" expanded="true" />
-            <element signature="e#181#182#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3AuthNoPriv.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
+        <state relative-caret-position="408">
+          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#160#161#0" expanded="true" />
@@ -33357,14 +33336,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3NoAuth.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="75" column="10" lean-forward="true" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
+        <state relative-caret-position="391">
+          <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2102#2248#0" expanded="true" />
-            <element signature="e#2247#2248#0" expanded="true" />
+            <element signature="e#152#153#0" expanded="true" />
+            <element signature="e#181#182#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="75" column="6" lean-forward="true" selection-start-line="75" selection-start-column="6" selection-end-line="75" selection-end-column="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv2c.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-37">
+          <caret line="77" column="29" lean-forward="true" selection-start-line="77" selection-start-column="29" selection-end-line="77" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

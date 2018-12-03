@@ -64,7 +64,7 @@ public class SimpleSNMPClientv2c {
         CommunityTarget target = new CommunityTarget();
         target.setCommunity(new OctetString("public"));
         target.setAddress(targetAdress);
-        target.setRetries(2);
+        target.setRetries(3);
         target.setTimeout(1500);
         target.setVersion(SnmpConstants.version2c);
         return target;
