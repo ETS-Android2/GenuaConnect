@@ -16,6 +16,9 @@ import com.journeyapps.barcodescanner.CaptureManager;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.journeyapps.barcodescanner.DefaultDecoderFactory;
 
+import org.snmp4j.smi.OID;
+
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -73,8 +76,16 @@ public class RotatingCaptureActivity extends Activity
      * @param resultText the correct QR-Code
      */
     private void reactToQrString(String resultText) {
-        new WifiConnect().tryConnect(resultText,this);
-        SimpleSNMPClientv2c client = new SimpleSNMPClientv2c(resultText);
+        String applieanceRegEx = "\\{\n\"user\": \".*\",\n\"pw\": \".*\",\n\"enc\": \".*\",\n\"naddr\": \\{\n\"IPv4\": \".*\",\n\"IPv6\": \".*\"\n\\}\n\\}";
+        Log.d("Reacting To QR-Code","QR-String = "+ resultText);
+        if(resultText.contains("WIFI")) {
+            Log.d("Reacting To QR-Code", "detected a WIFI QR-String");
+            new WifiConnect().tryConnect(resultText, this);
+        }else if(resultText.matches(applieanceRegEx)){
+            Log.d("Reacting To QR-Code", "detected a Appliance QR-String");
+            SimpleSNMPClientv2c client = new SimpleSNMPClientv2c(resultText);
+            Toast.makeText(this, "Gerät hinzugefügt", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
