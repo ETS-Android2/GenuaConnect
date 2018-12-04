@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 
 import org.snmp4j.ScopedPDU;
@@ -61,9 +62,15 @@ public class SimpleSNMPClientv3 implements Serializable {
      */
     private void start() throws IOException {
 
-        TransportMapping transportMapping = new DefaultUdpTransportMapping();
-        snmp = new Snmp(transportMapping);
+        final TransportMapping transportMapping = new DefaultUdpTransportMapping();
+        AsyncTask<TransportMapping, Object, Snmp> task = new AsyncTask<TransportMapping, Object, Snmp>() {
+            @Override
+            protected Snmp doInBackground(TransportMapping... transportMappings) {
+                return new Snmp(transportMappings[0]);
+            }
+        };
         transportMapping.listen();
+        task.execute(transportMapping);
     }
 
 

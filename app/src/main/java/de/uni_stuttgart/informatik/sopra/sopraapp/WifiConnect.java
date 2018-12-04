@@ -27,10 +27,11 @@ public class WifiConnect {
             Toast.makeText(context, "not a WIFI QR-Code", Toast.LENGTH_SHORT).show();
             return;
         }
-        Log.d("WIFI Params setted", "\nauthentification: "+ authentification + "\nssid: "+ssid+ "\npass: "+ password);
+        Log.d("WIFI Params setted", context.getClass()+ "\nauthentification: "+ authentification + "\nssid: "+ssid+ "\npass: "+ password);
 
         //enable WIFI
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+
         if (!wifi.isWifiEnabled()) {
             Toast.makeText(context.getApplicationContext(), "wifi is disabled..making it enabled", Toast.LENGTH_LONG).show();
             wifi.setWifiEnabled(true);
@@ -39,8 +40,8 @@ public class WifiConnect {
         WifiConfiguration conf = new WifiConfiguration();
         conf.SSID = "\"" + ssid + "\"";   // Please note the quotes. String should contain ssid in quotes
 
-        //switching between the different authentification and if there is a security
 
+        //switching between the different authentification and if there is a security
         switch (authentification){
             case "WEP":
                 conf.wepKeys[0] = "\"" + password + "\"";
@@ -65,12 +66,14 @@ public class WifiConnect {
         wifiManager.disconnect();
         wifiManager.enableNetwork(conf.networkId, true);
         if(wifiManager.reconnect()){
-            Toast.makeText(context, "Verbindung mit " +ssid + "wird hergestellt.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Trying to connect to  " +ssid + ".", Toast.LENGTH_SHORT).show();
         }
 
     }
 
     /**
+     * extracting ssid, authentification and password from a qrString for WIFI
+     * and setting them to the local variables
      *
      * @param qrString String that was scanned
      * @return true if qrString represented a correct WIFI QR Code

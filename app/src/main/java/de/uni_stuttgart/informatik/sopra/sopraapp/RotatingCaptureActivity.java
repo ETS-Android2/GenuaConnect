@@ -48,6 +48,7 @@ public class RotatingCaptureActivity extends Activity
 
         capture = new CaptureManager(this, barcodeView);
         capture.initializeFromIntent(getIntent(), savedInstanceState);
+        final Activity activity = this;
 
         barcodeView.decodeContinuous(new BarcodeCallback() {
             @Override
@@ -59,7 +60,7 @@ public class RotatingCaptureActivity extends Activity
                     Toast.makeText(getParent(), "Cancelled", Toast.LENGTH_LONG).show();
                 } else if (!result.getText().equals(lastText)) {
                     lastText = result.getText();
-                    new ReactionController(getParent(), result.getText());
+                    new ReactionController(activity, result.getText());
                 }
             }
 
@@ -138,9 +139,9 @@ public class RotatingCaptureActivity extends Activity
                     new ReactionController(getParent(), lastText);
                     Log.d("PermissionsGranted", "Permissions wurden gegeben");
                 } else {
-                    Toast toast = Toast.makeText(this, "No permission to use camera.", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(this, "No permission to use internet.", Toast.LENGTH_LONG);
                     toast.show();
-                    Log.d("PermissionsNotGranted", "No permission to show GPS location");
+                    Log.d("PermissionsNotGranted", "No permission to use internet");
                 }
         }
     }

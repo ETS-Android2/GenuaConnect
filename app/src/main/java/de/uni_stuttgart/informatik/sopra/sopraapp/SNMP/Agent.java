@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp;
+package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
 import org.snmp4j.TransportMapping;
 import org.snmp4j.agent.BaseAgent;
