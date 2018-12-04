@@ -51,7 +51,7 @@ public class WifiConnect {
             case "WPA":
                 conf.preSharedKey = "\""+ password +"\"";
                 break;
-            case "WPA2 ":
+            case "WPA2":
                 conf.preSharedKey = "\""+ password +"\"";
                 break;
             default:

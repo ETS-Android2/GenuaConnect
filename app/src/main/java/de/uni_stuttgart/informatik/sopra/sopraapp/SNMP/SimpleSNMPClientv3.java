@@ -1,5 +1,11 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+
 import org.snmp4j.ScopedPDU;
 import org.snmp4j.Snmp;
 import org.snmp4j.Target;
@@ -30,9 +36,11 @@ public class SimpleSNMPClientv3 implements Serializable {
 
     protected String address;
     private Snmp snmp;
+    private Activity activity;
 
-    public SimpleSNMPClientv3(String qrCode) {
+    public SimpleSNMPClientv3(String qrCode, Activity context) {
         super();
+        this.activity =context;
         ApplianceQrDecode decode = new ApplianceQrDecode(qrCode);
         this.address = decode.getAddress();
         try {
@@ -52,10 +60,13 @@ public class SimpleSNMPClientv3 implements Serializable {
      * @throws IOException
      */
     private void start() throws IOException {
+
         TransportMapping transportMapping = new DefaultUdpTransportMapping();
         snmp = new Snmp(transportMapping);
         transportMapping.listen();
     }
+
+
 
     /**
      * Returns a target, which contains the information about to where and how the data should be fetched.

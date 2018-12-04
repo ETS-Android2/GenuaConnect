@@ -1,7 +1,9 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp;
 
 import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -39,7 +41,7 @@ public class RotatingCaptureActivity extends Activity
         Log.d("RotatingCaptureActivity", "onCreate started");
 
         flashBtn = findViewById(R.id.flashButton);
-        barcodeView =  findViewById(R.id.barcode_scanner);
+        barcodeView = findViewById(R.id.barcode_scanner);
         barcodeView.setTorchListener(this);
         Collection<BarcodeFormat> formats = Arrays.asList(BarcodeFormat.QR_CODE);
         barcodeView.getBarcodeView().setDecoderFactory(new DefaultDecoderFactory(formats));
@@ -52,12 +54,12 @@ public class RotatingCaptureActivity extends Activity
             public void barcodeResult(BarcodeResult result) {
                 Log.d("MainActivity", "Starting result handling");
 
-                if(result == null) {
+                if (result == null) {
                     Log.d("MainActivity", "Cancelled scan");
                     Toast.makeText(getParent(), "Cancelled", Toast.LENGTH_LONG).show();
-                } else if(!result.getText().equals(lastText)){
-                    reactToQrString(result.getText());
+                } else if (!result.getText().equals(lastText)) {
                     lastText = result.getText();
+                    new ReactionController(getParent(), result.getText());
                 }
             }
 
@@ -68,26 +70,10 @@ public class RotatingCaptureActivity extends Activity
         });
     }
 
-    /**
-     * the reaction to a correct qr-code.
-     * testing if its a WIFI of device QR-Code
-     * @param resultText the correct QR-Code
-     */
-    private void reactToQrString(String resultText) {
-        String applieanceRegEx = "\\{\n\"user\": \".*\",\n\"pw\": \".*\",\n\"enc\": \".*\",\n\"naddr\": \\{\n\"IPv4\": \".*\",\n\"IPv6\": \".*\"\n\\}\n\\}";
-        Log.d("Reacting To QR-Code","QR-String = "+ resultText);
-        if(resultText.contains("WIFI")) {
-            Log.d("Reacting To QR-Code", "detected a WIFI QR-String");
-            new WifiConnect().tryConnect(resultText, this);
-        }else if(resultText.matches(applieanceRegEx)){
-            Log.d("Reacting To QR-Code", "detected a Appliance QR-String");
-            SimpleSNMPClientv3 client = new SimpleSNMPClientv3(resultText);
-            Toast.makeText(this, "Gerät hinzugefügt", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     /**
      * switching the Flashlight
+     *
      * @param view
      */
     public void switchFlashlight(View view) {
@@ -142,5 +128,20 @@ public class RotatingCaptureActivity extends Activity
     @Override
     public void onTorchOff() {
         flashBtn.setText("Turn On");
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 2:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    new ReactionController(getParent(), lastText);
+                    Log.d("PermissionsGranted", "Permissions wurden gegeben");
+                } else {
+                    Toast toast = Toast.makeText(this, "No permission to use camera.", Toast.LENGTH_LONG);
+                    toast.show();
+                    Log.d("PermissionsNotGranted", "No permission to show GPS location");
+                }
+        }
     }
 }
