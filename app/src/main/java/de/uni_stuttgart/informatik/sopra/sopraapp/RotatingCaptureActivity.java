@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.List;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv2c;
+import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
 
 public class RotatingCaptureActivity extends Activity
         implements DecoratedBarcodeView.TorchListener {
@@ -83,7 +84,7 @@ public class RotatingCaptureActivity extends Activity
             new WifiConnect().tryConnect(resultText, this);
         }else if(resultText.matches(applieanceRegEx)){
             Log.d("Reacting To QR-Code", "detected a Appliance QR-String");
-            SimpleSNMPClientv2c client = new SimpleSNMPClientv2c(resultText);
+            SimpleSNMPClientv3 client = new SimpleSNMPClientv3(resultText);
             Toast.makeText(this, "Gerät hinzugefügt", Toast.LENGTH_SHORT).show();
         }
     }
