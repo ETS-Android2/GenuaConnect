@@ -1,11 +1,9 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
-import android.content.pm.PackageManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v4.app.ActivityCompat;
 
 import org.snmp4j.ScopedPDU;
 import org.snmp4j.Snmp;
@@ -28,8 +26,14 @@ import org.snmp4j.util.TableUtils;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.AccessibleObject;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicIntegerArray;
+import java.util.concurrent.atomic.AtomicReference;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
 
@@ -41,7 +45,7 @@ public class SimpleSNMPClientv3 implements Serializable {
 
     public SimpleSNMPClientv3(String qrCode, Activity context) {
         super();
-        this.activity =context;
+        this.activity = context;
         ApplianceQrDecode decode = new ApplianceQrDecode(qrCode);
         this.address = decode.getAddress();
         try {
@@ -60,20 +64,38 @@ public class SimpleSNMPClientv3 implements Serializable {
      *
      * @throws IOException
      */
-    private void start() throws IOException {
+    private static void start() throws IOException {
 
-        final TransportMapping transportMapping = new DefaultUdpTransportMapping();
-        AsyncTask<TransportMapping, Object, Snmp> task = new AsyncTask<TransportMapping, Object, Snmp>() {
+        final AsyncTask<TransportMapping, Object, Snmp> task = new AsyncTask<TransportMapping, Object, Snmp>() {
+
+            TransportMapping transportMapping;
             @Override
             protected Snmp doInBackground(TransportMapping... transportMappings) {
                 return new Snmp(transportMappings[0]);
             }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                try {
+                    transportMapping = new DefaultUdpTransportMapping();
+                } catch (SocketException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            protected void onPostExecute(Snmp snmp) {
+                super.onPostExecute(snmp);
+                try {
+                    transportMapping.listen();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         };
-        transportMapping.listen();
-        task.execute(transportMapping);
+        //task.execute(transportMapping);
     }
-
-
 
     /**
      * Returns a target, which contains the information about to where and how the data should be fetched.
@@ -81,9 +103,9 @@ public class SimpleSNMPClientv3 implements Serializable {
      * @return Returns the given target.
      */
     protected Target getTarget() {
-        Address targetAdress = GenericAddress.parse(address);
+        Address targetAddress = GenericAddress.parse(address);
         UserTarget target = new UserTarget();
-        target.setAddress(targetAdress);
+        target.setAddress(targetAddress);
         target.setRetries(3);
         target.setTimeout(500);
         target.setVersion(SnmpConstants.version3);
@@ -126,7 +148,7 @@ public class SimpleSNMPClientv3 implements Serializable {
 
     public void getAsString(OID oids, ResponseEvent listener) {
         try {
-            snmp.send(getPDU(new OID[]{oids}), getTarget(),null, (ResponseListener) listener);
+            snmp.send(getPDU(new OID[]{oids}), getTarget(), null, (ResponseListener) listener);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -134,10 +156,11 @@ public class SimpleSNMPClientv3 implements Serializable {
 
     /**
      * Gets the PDU.
+     *
      * @param oids Array of the OIDs.
      * @return Returns the getted PDU.
      */
-    private ScopedPDU getPDU (OID oids[]) {
+    private ScopedPDU getPDU(OID oids[]) {
         ScopedPDU pdu = new ScopedPDU();
         for (OID oid : oids) {
             pdu.add(new VariableBinding(oid));
@@ -148,6 +171,7 @@ public class SimpleSNMPClientv3 implements Serializable {
 
     /**
      * Lists the informations of the OIDs as a table.
+     *
      * @param oids Array of OIDs.
      * @return Returns the List.
      */

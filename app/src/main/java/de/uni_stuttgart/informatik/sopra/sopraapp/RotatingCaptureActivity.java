@@ -22,9 +22,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv2c;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
-
 public class RotatingCaptureActivity extends Activity
         implements DecoratedBarcodeView.TorchListener {
 
