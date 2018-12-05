@@ -2,8 +2,24 @@
 
 ![Screenshot of CyanogenMod 12 / 12.1 homescreen by Florian838, CC BY-SA 3.0](doc/images/app-screenshot.png)  
 Screenshot of CyanogenMod 12 / 12.1 homescreen by Florian838, CC BY-SA 3.0
+![Screenshot of Genua Connect / in app view by Arton Kastrati](doc/images/InAppScreenshot1.png)
 
-**TODO:** Kurze Beschreibung der App inklusive der Beschreibung des Problems, welches durch die App gelöst wird. Hier wäre auch ein Screenshot oder Logo zu platzieren.
+Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+![Screenshot of Genua Connect / in app view by Arton Kastrati](doc/images/InAppScreenshot2.png)
+
+Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+
+
+Administratoren (Admins) müssen operative Tätigkeiten an Rechnern/Firewalls in den Rechenzentren tätigen (Updates, Abstürze untersuchen, Hardware-Defekte).
+Bei solchen Arbeiten ist nebem dem Finden der richtigen Hardware der Zustand der Appliance wichtig: 
+Wurden für die Wartungsarbeiten bespielsweise die produktiven IP-Adressen an das High Availability (HA)-Pendant im anderen Rechenzentrum-Abschnitt abgegeben?
+Oftmals sind Wartungsfenster zeitlich sehr kurz bemessen oder zu Zeiten, bei denen eine zügige Bearbeitung erforderlich ist.
+Ein App, die den Status der Maschine ermittelt und anzeigt ist eine erhebliche Erleichterung für die Durchführung und Kontrolle von Wartungsarbeiten.
+
+Genua diese Problematiken löst die Application *Genua Connect*. Sie ermöglicht es dem Nutzer, mittels einem QR-Code, sich mit dem Intranet zu verbinden. Ändert sich das Passwort
+so erhält der Nutzer eine Benachrichtigung und wird geben den QR-Code erneut zu scannen.
+Ist die Verbindung sicher und es verbleibt genügend Zeit bis zur nächsten Passwort aktualisierung des Intranets, so kann der Nutzer sich zu einem Gerät begeben und mittels dem inbegriffenen
+QR-Code scanner, über vordefinierte Abfragemasken, sich die gewünschten Informationen anzeigen zu lassen.
 
 ## Features
 
@@ -32,7 +48,11 @@ Die Entwicklungsgeschichte befindet sich in [CHANGELOG.md](CHANGELOG.md).
 
 ## Verwendete Bibliotheken
 
-**TODO:** Verwendete Bibliotheken auflisten
+implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+
+api 'org.snmp4j:snmp4j:3.0.5'
+
+api 'org.snmp4j:snmp4j-agent:3.0.3'
 
 ## Lizenz
 

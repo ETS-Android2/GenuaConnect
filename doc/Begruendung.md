@@ -4,7 +4,7 @@ In diesem Dokument werden die Begründungen für **nicht bearbeitete oder ignori
 
 ## Begründung 1 (Befund 14)
 
-Den Befund 14 haben wir ignoriert, weil nicht genau definiert ist was falsch ist.
+Den Befund 14 wurde korrigiert.
 Unserer Meinung nach ist klar und deutlich getrennt was ein Schema ist und was Abfragen sind.
 
 ## Begründung 2 (Befund 3)
