@@ -7,6 +7,8 @@ import android.view.MenuItem;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         //Intent intent = new Intent(this, RotatingCaptureActivity.class);
         //startActivity(intent);
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //initialising the IntentIntegrator and setting a few options
