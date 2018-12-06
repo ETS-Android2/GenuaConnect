@@ -66,9 +66,9 @@ public class SimpleSNMPClientv3 implements Serializable {
      */
     private static void start() throws IOException {
 
+        final TransportMapping[] transportMapping = new TransportMapping[0];
         final AsyncTask<TransportMapping, Object, Snmp> task = new AsyncTask<TransportMapping, Object, Snmp>() {
 
-            TransportMapping transportMapping;
             @Override
             protected Snmp doInBackground(TransportMapping... transportMappings) {
                 return new Snmp(transportMappings[0]);
@@ -78,7 +78,7 @@ public class SimpleSNMPClientv3 implements Serializable {
             protected void onPreExecute() {
                 super.onPreExecute();
                 try {
-                    transportMapping = new DefaultUdpTransportMapping();
+                    transportMapping[0] = new DefaultUdpTransportMapping();
                 } catch (SocketException e) {
                     e.printStackTrace();
                 }
@@ -88,13 +88,13 @@ public class SimpleSNMPClientv3 implements Serializable {
             protected void onPostExecute(Snmp snmp) {
                 super.onPostExecute(snmp);
                 try {
-                    transportMapping.listen();
+                    transportMapping[0].listen();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         };
-        //task.execute(transportMapping);
+        task.execute(transportMapping[1]);
     }
 
     /**
