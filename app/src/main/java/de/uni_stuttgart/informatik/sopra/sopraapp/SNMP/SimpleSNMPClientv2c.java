@@ -1,5 +1,7 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
+import android.app.Activity;
+
 import org.snmp4j.CommunityTarget;
 import org.snmp4j.PDU;
 import org.snmp4j.Snmp;
@@ -25,10 +27,12 @@ import java.util.List;
 import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
 
 public class SimpleSNMPClientv2c {
+
     private String address;
     private Snmp snmp;
+    private Activity activity;
 
-    public SimpleSNMPClientv2c(String qrCode) {
+    public SimpleSNMPClientv2c(String qrCode, Activity activity) {
         super();
         ApplianceQrDecode decode = new ApplianceQrDecode(qrCode);
         this.address = decode.getAddress();

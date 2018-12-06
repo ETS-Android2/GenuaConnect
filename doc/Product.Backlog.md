@@ -8,9 +8,11 @@ Beschreibung:
 
 Der Admin muss sich im Rechenzentrum mit dem bereitgestellten WLAN verbinden. Dies erledigt er, indem er ein QR-Code scannt. Außerdem kann der Admin mittels QR-Codes an den Geräten im Rechenzentrum Informationen dieser abfragen.
 
-### Feature 1 *WLAN verbindung herstellen*
+### Feature 1 *WLAN Verbindung herstellen*
 
-> Als Admin möchte ich, dass die App in der Lage ist einen QR Code auf einem Wlan Gerät zu scannen und sich mit diesem zu verbinden.
+> Als Admin möchte ich, dass die App in der Lage ist einen QR Code auf einem WLAN Gerät zu scannen und sich mit diesem zu verbinden.
+
+Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sich mit diesem verbinden.
 
 - Aufwandsschätzung: L
 
@@ -33,7 +35,7 @@ Der Admin muss sich im Rechenzentrum mit dem bereitgestellten WLAN verbinden. Di
 
 ### Feature 2 *Geräteverbindung herstellen*
 
-> Als Admin möchte ich, dass die App in der Lage ist, mir die vordefinierten Informationen  anzuzeigen, indem ich einen QR-Scode scanne.
+> Als Admin möchte ich, dass die App in der Lage ist, mir die vordefinierten Informationen  anzuzeigen, indem ich einen QR-Code scanne.
 
 - Aufwandsschätzung: L
 
@@ -42,7 +44,7 @@ Der Admin muss sich im Rechenzentrum mit dem bereitgestellten WLAN verbinden. Di
 
     - QR-Codes können gescannt werden.
 
-    - Informationen werden abgerufen und direkt danach für paar sekunden angezeigt im Bildschirm (Mit der Option direkt die Infos wegzuklicken) und dann im Abfragenmenü gespeichert.
+    - Informationen werden abgerufen und direkt danach für paar Sekunden angezeigt im Bildschirm (Mit der Option direkt die Infos wegzuklicken) und dann im Abfragenmenü gespeichert.
 
     - Standard-Abfragen (1.3.6.1.2.1.1) werden vom überwachenden Gerät abgefragt und vom bedienenden Smartphone angezeigt.
 
@@ -80,7 +82,7 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 ### Feature 1 *Abfragenschema erstellen*
 
->Als Admin möchte ich Abfragenschemata erstellen können, um gleiche Abfragen schneller tätigen zu können.
+> Als Admin möchte ich Abfragenschemata erstellen können, um gleiche Abfragen schneller tätigen zu können.
 
 - Aufwandsschätzung: M	
 
@@ -102,9 +104,9 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 - Akzeptanztest:
 
-	- Die Informationen, die man durch die Abfragen erhalten hat, werden in Menüs abgespeichert, bei denen man einzelne Kategorien als Untermenüs auswöhlen kann (Art der Hardware)
+	- Die Informationen, die man durch die Abfragen erhalten hat, werden in Menüs abgespeichert, bei denen man einzelne Kategorien als Untermenüs auswählen kann (Art der Hardware)
 
-	- Die einzelnen Hardwareinfos werden in den zugehörigen Menüpunkten angezeigt.
+	- Die einzelnen Hardwareinformationen werden in den zugehörigen Menüpunkten angezeigt.
 
 	- Es gibt ein Menüpunkt zur Anzeige von Wlan Informationen.
 
@@ -132,11 +134,11 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 	- Oben Rechts gibt es den Button für "Flashlight".
 
-	- In der unteren Hälfte gibt es den Button "QR Code Scannen".
+	- In der unteren Hälfte gibt es den Button "QR-Code Scannen".
 
 ### Feature 2 *Sprachmenü*
 
-> Als Admin möchte ich, dass ich in einem seperaten Menü die Sprache ändern kann.
+> Als Admin möchte ich, dass ich in einem separaten Menü die Sprache ändern kann.
 
 - Aufwandschätzung: S
 

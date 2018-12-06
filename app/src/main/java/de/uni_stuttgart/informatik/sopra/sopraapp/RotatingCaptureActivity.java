@@ -22,6 +22,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv2c;
+import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
 
 public class RotatingCaptureActivity extends Activity
         implements DecoratedBarcodeView.TorchListener {
@@ -138,9 +140,9 @@ public class RotatingCaptureActivity extends Activity
                     new ReactionController(getParent(), lastText);
                     Log.d("PermissionsGranted", "Permissions wurden gegeben");
                 } else {
-                    Toast toast = Toast.makeText(this, "No permission to use camera.", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(this, "No permission to use internet.", Toast.LENGTH_LONG);
                     toast.show();
-                    Log.d("PermissionsNotGranted", "No permission to show GPS location");
+                    Log.d("PermissionsNotGranted", "No permission to use internet");
                 }
         }
     }

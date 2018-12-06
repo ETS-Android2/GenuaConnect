@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="RotatingCaptureActivity">
 
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
@@ -22,7 +21,7 @@
         android:layout_marginTop="71dp"
         android:layout_marginEnd="55dp"
         android:background="@drawable/flash_button_background"
-        android:text="Turn On"
+        android:text="@string/turn_on"
         android:onClick="switchFlashlight"/>
 
 </RelativeLayout>
