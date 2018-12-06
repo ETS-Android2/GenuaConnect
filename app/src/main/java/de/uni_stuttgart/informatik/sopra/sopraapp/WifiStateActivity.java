@@ -34,8 +34,7 @@ public class WifiStateActivity extends AppCompatActivity {
         ArrayList<String> entrys = new ArrayList<>();
         int ip = dhcpInfo.ipAddress;
         String ipString = String.format("%d.%d.%d.%d", (ip & 0xff), (ip >> 8 & 0xff), (ip >> 16 & 0xff), (ip >> 24 & 0xff));
-        entrys.add("WifiIp: " + ipString);
-        entrys.add("Mac : " + wifiInfo.getMacAddress());
+        entrys.add("Wifi Ip: " + ipString);
 
 
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, entrys);
