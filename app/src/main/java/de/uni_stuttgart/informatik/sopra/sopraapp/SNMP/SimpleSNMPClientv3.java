@@ -81,6 +81,8 @@ public class SimpleSNMPClientv3 {
                     transportMapping = new DefaultUdpTransportMapping();
                 } catch (SocketException e) {
                     e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
                 Log.d("onPre", "funktioniert");
             }

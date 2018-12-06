@@ -1,9 +1,11 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 
 import org.snmp4j.CommunityTarget;
 import org.snmp4j.PDU;
+import org.snmp4j.SNMP4JSettings;
 import org.snmp4j.Snmp;
 import org.snmp4j.Target;
 import org.snmp4j.TransportMapping;
@@ -41,6 +43,8 @@ public class SimpleSNMPClientv2c {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        SNMP4JSettings.setAllowSNMPv2InV1(true);
     }
 
     public void stop() throws IOException {
@@ -53,9 +57,25 @@ public class SimpleSNMPClientv2c {
      * @throws IOException
      */
     private void start() throws IOException {
-        TransportMapping transportMapping = new DefaultUdpTransportMapping();
-        snmp = new Snmp(transportMapping);
-        transportMapping.listen();
+        final TransportMapping transportMapping = new DefaultUdpTransportMapping();
+        AsyncTask<TransportMapping, Void, Snmp > task =new AsyncTask<TransportMapping, Void, Snmp>() {
+            @Override
+            protected Snmp doInBackground(TransportMapping[] transportMappings) {
+                snmp = new Snmp(transportMapping);
+                return snmp;
+            }
+
+
+            @Override
+            protected void onPostExecute(Snmp o) {
+                try {
+                    transportMapping.listen();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        task.execute(transportMapping);
     }
 
     /**
@@ -68,7 +88,7 @@ public class SimpleSNMPClientv2c {
         CommunityTarget target = new CommunityTarget();
         target.setCommunity(new OctetString("public"));
         target.setAddress(targetAdress);
-        target.setRetries(3);
+        target.setRetries(2);
         target.setTimeout(1500);
         target.setVersion(SnmpConstants.version2c);
         return target;

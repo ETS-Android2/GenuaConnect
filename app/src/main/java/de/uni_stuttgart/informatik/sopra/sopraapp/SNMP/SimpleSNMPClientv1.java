@@ -1,13 +1,18 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
+import org.snmp4j.AbstractTarget;
 import org.snmp4j.CommunityTarget;
+import org.snmp4j.PDU;
 import org.snmp4j.PDUv1;
+import org.snmp4j.SNMP4JSettings;
 import org.snmp4j.Snmp;
 import org.snmp4j.Target;
 import org.snmp4j.TransportMapping;
 import org.snmp4j.event.ResponseEvent;
 import org.snmp4j.event.ResponseListener;
+import org.snmp4j.mp.MPv1;
 import org.snmp4j.mp.SnmpConstants;
+import org.snmp4j.security.SecurityLevel;
 import org.snmp4j.smi.Address;
 import org.snmp4j.smi.GenericAddress;
 import org.snmp4j.smi.OID;
@@ -19,6 +24,7 @@ import org.snmp4j.util.TableEvent;
 import org.snmp4j.util.TableUtils;
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,16 +34,23 @@ public class SimpleSNMPClientv1 {
 
     private String address;
     private Snmp snmp;
+    private TransportMapping transportMapping;
 
     public SimpleSNMPClientv1(String qrCode) {
-        super();
+        snmp = new Snmp();
         ApplianceQrDecode decode = new ApplianceQrDecode(qrCode);
         this.address = decode.getAddress();
         try {
-            start();
+            transportMapping = new DefaultUdpTransportMapping();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        SNMP4JSettings.setAllowSNMPv2InV1(true);
+        SNMP4JSettings.setSnmp4jStatistics(SNMP4JSettings.Snmp4jStatistics.extended);
+
+        getTarget();
+
+        snmp.getMessageDispatcher().addMessageProcessingModel(new MPv1());
     }
 
     public void stop() throws IOException {
@@ -45,28 +58,18 @@ public class SimpleSNMPClientv1 {
     }
 
     /**
-     * Starts the SNMP Interface.
-     *
-     * @throws IOException
-     */
-    private void start() throws IOException {
-        TransportMapping transportMapping = new DefaultUdpTransportMapping();
-        snmp = new Snmp(transportMapping);
-        transportMapping.listen();
-    }
-
-    /**
      * Returns a target, which contains the information about to where and how the data should be fetched.
      *
      * @return Returns the given target.
      */
-    private Target getTarget() {
+    private AbstractTarget getTarget() {
         Address targetAdress = GenericAddress.parse(address);
         CommunityTarget target = new CommunityTarget();
         target.setCommunity(new OctetString("public"));
         target.setAddress(targetAdress);
         target.setRetries(3);
         target.setTimeout(1500);
+        target.setSecurityLevel(SecurityLevel.NOAUTH_NOPRIV);
         target.setVersion(SnmpConstants.version1);
         return target;
     }
@@ -79,13 +82,13 @@ public class SimpleSNMPClientv1 {
      * @throws IOException
      */
     public ResponseEvent get(OID oids[]) throws IOException {
-        PDUv1 pdu = new PDUv1();
+        PDU pdu = DefaultPDUFactory.createPDU(1);
         for (OID oid : oids) {
             pdu.add(new VariableBinding(oid));
         }
-        pdu.setType(PDUv1.GET);
+        pdu.setType(PDU.GETNEXT);
         ResponseEvent event = snmp.send(pdu, getTarget(), null);
-        if (event != null) {
+        if (event.getResponse() != null) {
             return event;
         }
         throw new RuntimeException("Zeitüberschreitung für GET");
@@ -105,7 +108,7 @@ public class SimpleSNMPClientv1 {
 
     public void getAsString(OID oids, ResponseEvent listener) {
         try {
-            snmp.send(getPDUv1(new OID[]{oids}), getTarget(),null, (ResponseListener) listener);
+            snmp.send(getPDU(new OID[]{oids}), getTarget(),null, (ResponseListener) listener);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -116,12 +119,12 @@ public class SimpleSNMPClientv1 {
      * @param oids Array of the OIDs.
      * @return Returns the getted PDU.
      */
-    private PDUv1 getPDUv1 (OID oids[]) {
-        PDUv1 pdu = new PDUv1();
+    private PDU getPDU (OID oids[]) {
+        PDU pdu = new PDU();
         for (OID oid : oids) {
             pdu.add(new VariableBinding(oid));
         }
-        pdu.setType(PDUv1.GET);
+        pdu.setType(PDU.GET);
         return pdu;
     }
 
