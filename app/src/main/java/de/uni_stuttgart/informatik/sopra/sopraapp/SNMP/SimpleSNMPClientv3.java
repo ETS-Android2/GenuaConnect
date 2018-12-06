@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Network;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.snmp4j.ScopedPDU;
 import org.snmp4j.Snmp;
@@ -53,10 +54,12 @@ public class SimpleSNMPClientv3 implements Serializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        Log.d("StartAusfuehren", "Ausgefueht");
     }
 
     public void stop() throws IOException {
         snmp.close();
+        Log.d("Stop", "Gestoppt");
     }
 
     /**
@@ -71,6 +74,7 @@ public class SimpleSNMPClientv3 implements Serializable {
 
             @Override
             protected Snmp doInBackground(TransportMapping... transportMappings) {
+                Log.d("doInBackground", "Erfolgreich");
                 return new Snmp(transportMappings[0]);
             }
 
@@ -82,6 +86,7 @@ public class SimpleSNMPClientv3 implements Serializable {
                 } catch (SocketException e) {
                     e.printStackTrace();
                 }
+                Log.d("onPre", "funktioniert");
             }
 
             @Override
@@ -92,9 +97,11 @@ public class SimpleSNMPClientv3 implements Serializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                Log.d("onPost", "funktioniert");
             }
         };
-        task.execute(transportMapping[1]);
+        task.execute(transportMapping[0]);
+        Log.d("taskBegin", "erfolgreich");
     }
 
     /**
@@ -111,6 +118,7 @@ public class SimpleSNMPClientv3 implements Serializable {
         target.setVersion(SnmpConstants.version3);
         target.setSecurityLevel(SecurityLevel.AUTH_PRIV);
         target.setSecurityName(new OctetString("MD5DES"));
+        Log.d("getTarget", "gesettet");
         return target;
     }
 
