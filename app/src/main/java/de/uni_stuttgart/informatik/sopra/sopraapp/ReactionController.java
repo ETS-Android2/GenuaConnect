@@ -22,7 +22,7 @@ public class ReactionController {
         if (qrCode.contains("WIFI")) {
             Log.d("Reacting To QR-Code", "detected a WIFI QR-String");
             new WifiConnect().tryConnect(qrCode, activity);
-        } else if (qrCode.contains("user")) {
+        } else if (!new ApplianceQrDecode(qrCode).getPassword().equals("")) {
             Log.d("Reacting To QR-Code", "detected a Appliance QR-String");
 
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED&& ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
@@ -31,7 +31,7 @@ public class ReactionController {
                 SimpleSNMPClientv3 client = new SimpleSNMPClientv3(qrCode, activity);
                 Toast.makeText(activity, "Gerät hinzugefügt V3", Toast.LENGTH_SHORT).show();
             }
-        } else if (qrCode.contains("public")) {
+        } else {
             Log.d("Reacting to QR-Code V1/V2c", "detected a Appliance QR-String V1/V2c");
 
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {

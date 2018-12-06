@@ -1,8 +1,6 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
 import android.app.Activity;
-import android.net.Network;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -32,13 +30,10 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicIntegerArray;
-import java.util.concurrent.atomic.AtomicReference;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
 
-public class SimpleSNMPClientv3 implements Serializable {
+public class SimpleSNMPClientv3 {
 
     protected String address;
     private Snmp snmp;
@@ -67,22 +62,23 @@ public class SimpleSNMPClientv3 implements Serializable {
      *
      * @throws IOException
      */
-    private static void start() throws IOException {
+    private void start() throws IOException {
 
-        final TransportMapping[] transportMapping = new TransportMapping[0];
-        final AsyncTask<TransportMapping, Object, Snmp> task = new AsyncTask<TransportMapping, Object, Snmp>() {
+        final AsyncTask<Void, Void, Snmp> task = new AsyncTask<Void, Void, Snmp>() {
+
+            TransportMapping transportMapping = new DefaultUdpTransportMapping();
 
             @Override
-            protected Snmp doInBackground(TransportMapping... transportMappings) {
+            protected Snmp doInBackground(Void... voids) {
                 Log.d("doInBackground", "Erfolgreich");
-                return new Snmp(transportMappings[0]);
+                return new Snmp(transportMapping);
             }
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
                 try {
-                    transportMapping[0] = new DefaultUdpTransportMapping();
+                    transportMapping = new DefaultUdpTransportMapping();
                 } catch (SocketException e) {
                     e.printStackTrace();
                 }
@@ -93,14 +89,21 @@ public class SimpleSNMPClientv3 implements Serializable {
             protected void onPostExecute(Snmp snmp) {
                 super.onPostExecute(snmp);
                 try {
-                    transportMapping[0].listen();
+                    transportMapping.listen();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 Log.d("onPost", "funktioniert");
             }
         };
-        task.execute(transportMapping[0]);
+        task.execute();
+        try {
+            snmp = task.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
         Log.d("taskBegin", "erfolgreich");
     }
 
@@ -110,6 +113,7 @@ public class SimpleSNMPClientv3 implements Serializable {
      * @return Returns the given target.
      */
     protected Target getTarget() {
+        System.out.println("batman");
         Address targetAddress = GenericAddress.parse(address);
         UserTarget target = new UserTarget();
         target.setAddress(targetAddress);
@@ -117,7 +121,7 @@ public class SimpleSNMPClientv3 implements Serializable {
         target.setTimeout(500);
         target.setVersion(SnmpConstants.version3);
         target.setSecurityLevel(SecurityLevel.AUTH_PRIV);
-        target.setSecurityName(new OctetString("MD5DES"));
+        target.setSecurityName(new OctetString("batmanuser"));
         Log.d("getTarget", "gesettet");
         return target;
     }
