@@ -1,8 +1,14 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp;
 
 
+import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.Formatter;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 
@@ -11,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Intent that can start the scan of qr codes
     IntentIntegrator intentIntegrator;
+
+    Button btn_WifiInfo;
 
 
     @Override
@@ -26,7 +34,18 @@ public class MainActivity extends AppCompatActivity {
          intentIntegrator.setOrientationLocked(false);
          intentIntegrator.setCaptureActivity(RotatingCaptureActivity.class);
          intentIntegrator.initiateScan();
+
+
     }
 
+    public void wifiInfReact(View view){
+        Intent intent = new Intent(this, WifiStateActivity.class);
+        startActivity(intent);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        btn_WifiInfo = findViewById(R.id.buttonWifInf);
+    }
 }

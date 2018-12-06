@@ -6,6 +6,8 @@ import android.net.wifi.WifiManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class WifiConnect {
 
     /**
@@ -21,19 +23,19 @@ public class WifiConnect {
      * @param qrString
      * @param context
      */
-    public void tryConnect(String qrString, Context context){
+    public ArrayList<WifiConfiguration> tryConnect(String qrString, Context context){
         //setting the WIFI Parameters from the qrString if its in correct Form
         if(!setWifiParamsFrom(qrString)){
             Toast.makeText(context, "not a WIFI QR-Code", Toast.LENGTH_SHORT).show();
-            return;
+            return null;
         }
         Log.d("WIFI Params setted", "\nauthentification: "+ authentification + "\nssid: "+ssid+ "\npass: "+ password);
 
         //enable WIFI
-        WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        if (!wifi.isWifiEnabled()) {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        if (!wifiManager.isWifiEnabled()) {
             Toast.makeText(context.getApplicationContext(), "wifi is disabled..making it enabled", Toast.LENGTH_LONG).show();
-            wifi.setWifiEnabled(true);
+            wifiManager.setWifiEnabled(true);
         }
 
         WifiConfiguration conf = new WifiConfiguration();
@@ -55,18 +57,24 @@ public class WifiConnect {
                 conf.preSharedKey = "\""+ password +"\"";
                 break;
             default:
-                Toast.makeText(context, "not a save WiFi Connect", Toast.LENGTH_SHORT).show();
-                return;
+                Toast.makeText(context, "not a save WiFi Connection", Toast.LENGTH_SHORT).show();
+                return null;
         }
 
-        //connecting to WIFI
-        WifiManager wifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
-        wifiManager.addNetwork(conf);
+        ArrayList<WifiConfiguration> localConfigurations = (ArrayList<WifiConfiguration>) wifiManager.getConfiguredNetworks();
+
         wifiManager.disconnect();
+        for (WifiConfiguration config:localConfigurations) {
+            wifiManager.removeNetwork(config.networkId);
+        }
+        //connecting to WIFI
+        wifiManager.addNetwork(conf);
         wifiManager.enableNetwork(conf.networkId, true);
+        wifiManager.reconnect();
         if(wifiManager.reconnect()){
             Toast.makeText(context, "Verbindung mit " +ssid + "wird hergestellt.", Toast.LENGTH_SHORT).show();
         }
+        return localConfigurations;
 
     }
 
