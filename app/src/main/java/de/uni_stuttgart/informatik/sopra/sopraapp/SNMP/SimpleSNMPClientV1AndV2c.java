@@ -36,7 +36,6 @@ public class SimpleSNMPClientV1AndV2c {
     private Activity activity;
 
     public SimpleSNMPClientV1AndV2c(String qrCode, Activity activity) {
-        super();
         SNMP4JSettings.setAllowSNMPv2InV1(true);
         SNMP4JSettings.setSnmp4jStatistics(SNMP4JSettings.Snmp4jStatistics.extended);
         Log.d("allowSNMPv2InV1", "erfolgreich");
