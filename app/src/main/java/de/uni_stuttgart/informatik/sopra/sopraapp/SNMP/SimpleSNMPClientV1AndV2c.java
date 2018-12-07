@@ -2,6 +2,7 @@ package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.snmp4j.CommunityTarget;
 import org.snmp4j.PDU;
@@ -28,27 +29,30 @@ import java.util.List;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
 
-public class SimpleSNMPClientv2c {
+public class SimpleSNMPClientV1AndV2c {
 
     private String address;
     private Snmp snmp;
     private Activity activity;
 
-    public SimpleSNMPClientv2c(String qrCode, Activity activity) {
+    public SimpleSNMPClientV1AndV2c(String qrCode, Activity activity) {
         super();
+        SNMP4JSettings.setAllowSNMPv2InV1(true);
+        SNMP4JSettings.setSnmp4jStatistics(SNMP4JSettings.Snmp4jStatistics.extended);
+        Log.d("allowSNMPv2InV1", "erfolgreich");
         ApplianceQrDecode decode = new ApplianceQrDecode(qrCode);
         this.address = decode.getAddress();
         try {
             start();
+            Log.d("start()", "start ausgefuehrt");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        SNMP4JSettings.setAllowSNMPv2InV1(true);
     }
 
     public void stop() throws IOException {
         snmp.close();
+        Log.d("SNMP", "Interface for SNMP closed");
     }
 
     /**
@@ -58,13 +62,14 @@ public class SimpleSNMPClientv2c {
      */
     private void start() throws IOException {
         final TransportMapping transportMapping = new DefaultUdpTransportMapping();
+        Log.d("AsyncTask", "asynchroner Nebenthread gestartet");
         AsyncTask<TransportMapping, Void, Snmp > task =new AsyncTask<TransportMapping, Void, Snmp>() {
             @Override
             protected Snmp doInBackground(TransportMapping[] transportMappings) {
                 snmp = new Snmp(transportMapping);
+                Log.d("snmpStart", "initialisiert");
                 return snmp;
             }
-
 
             @Override
             protected void onPostExecute(Snmp o) {
@@ -73,9 +78,13 @@ public class SimpleSNMPClientv2c {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                Log.d("listen", "listen erhalten");
+                isCancelled();
+                Log.d("Thread", "ThreadClosed");
             }
         };
         task.execute(transportMapping);
+        Log.d("task", "taskExecuted");
     }
 
     /**
@@ -91,6 +100,7 @@ public class SimpleSNMPClientv2c {
         target.setRetries(2);
         target.setTimeout(1500);
         target.setVersion(SnmpConstants.version2c);
+        Log.d("getTarget", "getTarget erfolgreich");
         return target;
     }
 
@@ -123,6 +133,7 @@ public class SimpleSNMPClientv2c {
      */
     public String getAsString(OID oid) throws IOException {
         ResponseEvent event = get(new OID[]{oid});
+        Log.d("getAsString ohne listener", "String bekommen");
         return event.getResponse().get(0).getVariable().toString();
     }
 
@@ -132,6 +143,7 @@ public class SimpleSNMPClientv2c {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        Log.d("getAsString mit listener", "String erhalten");
     }
 
     /**
@@ -145,6 +157,7 @@ public class SimpleSNMPClientv2c {
             pdu.add(new VariableBinding(oid));
         }
         pdu.setType(PDU.GET);
+        Log.d("getPDU", "got the PDU");
         return pdu;
     }
 
