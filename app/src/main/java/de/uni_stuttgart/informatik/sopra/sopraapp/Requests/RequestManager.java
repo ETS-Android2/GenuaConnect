@@ -7,15 +7,18 @@ public class RequestManager {
 
     //Singleton Pattern
     private static RequestManager instance;
+
     private RequestManager(){}
+
     public static RequestManager getInstance(){
         if(instance == null){
             instance = new RequestManager();
+
         }
         return instance;
     }
 
-    private ConcurrentHashMap<String, RequestMask> allRequests;
+    private ConcurrentHashMap<String, RequestMask> allRequests = new ConcurrentHashMap<>();
 
     public boolean addNewMask(String name){
         if(allRequests.containsKey(name)){
