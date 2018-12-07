@@ -5,21 +5,17 @@ import org.snmp4j.smi.OID;
 import java.util.ArrayList;
 
 public class RequestMask {
-    private ArrayList<OID> requests;
+    private ArrayList<String> requests;
 
     public RequestMask (){
         requests = new ArrayList<>();
     }
 
-    public void addRequest(OID oid){
+    public void addRequest(String oid){
         requests.add(oid);
     }
 
-    public void addRequest(String oid){
-        requests.add(new OID(oid));
+    public ArrayList<String> getRequests() {
+        return requests;
     }
-
-
-
-
 }

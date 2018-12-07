@@ -12,14 +12,13 @@ import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.util.Objects;
 
+import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestMngActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
     //Intent that can start the scan of qr codes
     IntentIntegrator intentIntegrator;
-
-    Button btn_WifiInfo;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        btn_WifiInfo = findViewById(R.id.buttonWifInf);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -62,5 +61,10 @@ public class MainActivity extends AppCompatActivity {
             intentIntegrator.initiateScan();
     }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void requestManagement(View view) {
+        Intent intent = new Intent(this, RequestMngActivity.class);
+        startActivity(intent);
     }
 }
