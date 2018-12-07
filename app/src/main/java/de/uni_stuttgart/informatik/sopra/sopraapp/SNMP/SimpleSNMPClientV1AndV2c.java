@@ -29,6 +29,10 @@ import java.util.List;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
 
+/**
+ * Inspired by https://blog.jayway.com/2010/05/21/introduction-to-snmp4j
+ * A client for the SNMP management.
+ */
 public class SimpleSNMPClientV1AndV2c {
 
     private String address;
