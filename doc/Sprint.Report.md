@@ -26,7 +26,7 @@ In diesem Sprint wurden die bis zum [Meilenstein 4](https://sopra.informatik.uni
 
 ### *Issues*
 
-- Alle Epics und Features wurden hinzugefügt
+- Alle Epics, Features, Implementable Storys und Tasks wurden hinzugefügt
 
 ### *Sprint Report*
 
