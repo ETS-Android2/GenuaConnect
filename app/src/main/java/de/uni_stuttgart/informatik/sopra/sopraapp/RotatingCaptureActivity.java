@@ -28,7 +28,7 @@ public class RotatingCaptureActivity extends Activity
     private DecoratedBarcodeView barcodeView;
     private Button flashBtn;
     private CaptureManager capture;
-    String lastText;
+    private String lastText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -29,6 +29,10 @@ import java.util.List;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
 
+/**
+ * Inspired by https://blog.jayway.com/2010/05/21/introduction-to-snmp4j
+ * A client for the SNMP management.
+ */
 public class SimpleSNMPClientV1AndV2c {
 
     private String address;
@@ -36,7 +40,6 @@ public class SimpleSNMPClientV1AndV2c {
     private Activity activity;
 
     public SimpleSNMPClientV1AndV2c(String qrCode, Activity activity) {
-        super();
         SNMP4JSettings.setAllowSNMPv2InV1(true);
         SNMP4JSettings.setSnmp4jStatistics(SNMP4JSettings.Snmp4jStatistics.extended);
         Log.d("allowSNMPv2InV1", "erfolgreich");
