@@ -35,6 +35,10 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
 
 public class SimpleSNMPClientv3 {
 
+    /**
+     * Inspired by https://blog.jayway.com/2010/05/21/introduction-to-snmp4j
+     * A client for the SNMP version3 management.
+     */
     protected String address;
     private Snmp snmp;
     private Activity activity;

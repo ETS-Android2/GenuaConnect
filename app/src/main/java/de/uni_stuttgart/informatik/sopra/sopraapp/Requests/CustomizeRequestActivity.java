@@ -32,7 +32,7 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         ArrayList<String> entrys = thisRequest.getRequests();
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, entrys);
 
-        listView = findViewById(R.id.oids_list);
+        //listView = findViewById(R.id.);
         listView.setAdapter(itemsAdapter);
 
     }
