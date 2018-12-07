@@ -10,6 +10,10 @@ import org.snmp4j.smi.Address;
 import org.snmp4j.smi.GenericAddress;
 import org.snmp4j.smi.OctetString;
 
+/**
+ * A client for the SNMP version3 NoAuth management.
+ * Maybe will be done in next sprint.
+ */
 public class SNMPv3NoAuth extends SimpleSNMPClientv3 {
     public SNMPv3NoAuth(String qrCode, Activity activity) {
         super(qrCode, activity);
