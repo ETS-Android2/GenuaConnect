@@ -38,6 +38,7 @@ public class SimpleSNMPClientv3 {
     /**
      * Inspired by https://blog.jayway.com/2010/05/21/introduction-to-snmp4j
      * A client for the SNMP version3 management.
+     * Maybe will be done in next sprint.
      */
     protected String address;
     private Snmp snmp;

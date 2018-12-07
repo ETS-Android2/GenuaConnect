@@ -10,6 +10,10 @@ import org.snmp4j.smi.Address;
 import org.snmp4j.smi.GenericAddress;
 import org.snmp4j.smi.OctetString;
 
+/**
+ * A client for the SNMP version3 AuthNoPriv management.
+ * Maybe will be done in next sprint.
+ */
 public class SNMPv3AuthNoPriv extends SimpleSNMPClientv3 {
     public SNMPv3AuthNoPriv(String qrCode, Activity activity) {
         super(qrCode, activity);

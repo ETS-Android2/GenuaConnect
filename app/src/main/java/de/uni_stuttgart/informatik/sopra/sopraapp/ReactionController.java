@@ -30,7 +30,7 @@ public class ReactionController {
             } else {
                 //V3 maybe TODO in next Sprint.(Right now unused code)
                 SimpleSNMPClientv3 client = new SimpleSNMPClientv3(qrCode, activity);
-                Toast.makeText(activity, "Gerät hinzugefügt V3", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "SNMP version 3 wird noch nicht unterstützt", Toast.LENGTH_SHORT).show();
             }
         } else {
             Log.d("Reacting to QR-Code V1/V2c", "detected a Appliance QR-String V1/V2c");
@@ -39,7 +39,7 @@ public class ReactionController {
                 ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.INTERNET}, 3);
             } else {
                 SimpleSNMPClientV1AndV2c clientv2c = new SimpleSNMPClientV1AndV2c(qrCode, activity);
-                Toast.makeText(activity, "Geraet hinzugefuegtV2", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "SNMP v1 / v2c Gerät erkannt", Toast.LENGTH_SHORT).show();
             }
         }
     }
