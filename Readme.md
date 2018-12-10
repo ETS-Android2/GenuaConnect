@@ -57,8 +57,6 @@ implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
 
 api 'org.snmp4j:snmp4j:3.0.5'
 
-api 'org.snmp4j:snmp4j-agent:3.0.3'
-
 ## Lizenz
 
 **TODO Lizenz nennen**. Genaue Bedingungen der Lizenz können in [LICENSE](LICENSE) nachgelesen werden.
