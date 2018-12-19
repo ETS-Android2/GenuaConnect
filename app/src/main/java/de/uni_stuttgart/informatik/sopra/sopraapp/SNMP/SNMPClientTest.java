@@ -74,6 +74,9 @@ public class SNMPClientTest {
 
                 //get the PDU response
                 PDU pduResult = responseEvent.getResponse();
+                if (pduResult == null) {
+                    return null;
+                }
 
                 //checking if response throws an error
                 if (pduResult.getErrorStatus() == PDU.noError) {
