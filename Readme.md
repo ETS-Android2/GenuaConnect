@@ -1,13 +1,18 @@
 # Genua Connect
 
-![Screenshot of CyanogenMod 12 / 12.1 homescreen by Florian838, CC BY-SA 3.0](doc/images/app-screenshot.png)  
-Screenshot of CyanogenMod 12 / 12.1 homescreen by Florian838, CC BY-SA 3.0
-![Screenshot of Genua Connect / in app view by Arton Kastrati](doc/images/InAppScreenshot1.png)
+
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot4.jpg)
 
 Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
-![Screenshot of Genua Connect / in app view by Arton Kastrati](doc/images/InAppScreenshot2.png)
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot3.jpg)
 
 Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot2.jpg)
+
+Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot1.jpg)
+
+Screenshot of Genua Connect (in use) / in app view by Samuel Gigliotti
 
 
 Administratoren (Admins) müssen operative Tätigkeiten an Rechnern/Firewalls in den Rechenzentren tätigen (Updates, Abstürze untersuchen, Hardware-Defekte).
@@ -51,8 +56,6 @@ Die Entwicklungsgeschichte befindet sich in [CHANGELOG.md](CHANGELOG.md).
 implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
 
 api 'org.snmp4j:snmp4j:3.0.5'
-
-api 'org.snmp4j:snmp4j-agent:3.0.3'
 
 ## Lizenz
 
