@@ -33,6 +33,9 @@ import java.util.concurrent.ExecutionException;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
 
+/**
+ * TODO
+ */
 public class SimpleSNMPClientv3 {
 
     /**
