@@ -42,12 +42,13 @@ public class SimpleSNMPClientV1AndV2c {
     private volatile Snmp snmp;
     private CommunityTarget target;
     private TransportMapping<UdpAddress> transportMapping;
+    private ApplianceQrDecode decode;
 
     public SimpleSNMPClientV1AndV2c(String qrCode, Activity activity) {
         SNMP4JSettings.setAllowSNMPv2InV1(true);
         SNMP4JSettings.setSnmp4jStatistics(SNMP4JSettings.Snmp4jStatistics.extended);
         Log.d("allowSNMPv2InV1", "erfolgreich");
-        ApplianceQrDecode decode = new ApplianceQrDecode(qrCode);
+        decode = new ApplianceQrDecode(qrCode);
         this.address = decode.getAddress();
     }
 
@@ -84,7 +85,6 @@ public class SimpleSNMPClientV1AndV2c {
         if (target != null) {
             return target;
         }
-        // TODO make port changeable
         String addrToUse = address;
         String port = "";
         if (address.lastIndexOf(':') != -1) {
@@ -93,13 +93,28 @@ public class SimpleSNMPClientV1AndV2c {
             port = address.substring(1);
         }
         Log.d("address", "received address: " + addrToUse);
-        Address targetAdress;
-        if (port == "") {
-            Log.d("port", "port null");
-            targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + "161");
-        } else {
-            Log.d("port", "port nicht null");
-            targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + port);
+        Address targetAdress = null;
+        // Da in SoPra "/" benutzt wird fuer die Trennung des Ports.
+        if (decode.getAddress().contains("/")) {
+            Log.d("/ oder : zur Trennung", "'/' erkannt");
+            if (port == "") {
+                Log.d("port", "port null");
+                targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + "161");
+            } else {
+                Log.d("port", "port nicht null");
+                targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + port);
+            }
+            // Fuer Unterstuetzung des internationalen Standards (Ports werden normalerweise mit ":" getrennt),
+            // damit wir des auf dem PC testen Koennen, da wir sonst immer hoch muessen im Info Gebaeude.
+        } else if (decode.getAddress().contains(":")) {
+            Log.d("/ oder : zur Trennung", "':' erkannt");
+            if (port == "") {
+                Log.d("port", "port null");
+                targetAdress = GenericAddress.parse("udp:" + addrToUse + ":" + "161");
+            } else {
+                Log.d("port", "port nicht null");
+                targetAdress = GenericAddress.parse("udp:" + addrToUse + ":" + port);
+            }
         }
         System.out.println(targetAdress);
         target = new CommunityTarget();
@@ -199,7 +214,6 @@ public class SimpleSNMPClientV1AndV2c {
 
 
     /**
-     *
      * @param stringOID
      * @return
      */
