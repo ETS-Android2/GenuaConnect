@@ -5,6 +5,7 @@ import org.snmp4j.smi.OID;
 import java.util.ArrayList;
 
 public class RequestMask {
+    private String name;
     private ArrayList<String> requests;
 
     public RequestMask (){
