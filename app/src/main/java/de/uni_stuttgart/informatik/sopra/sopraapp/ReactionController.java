@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
+import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestMask;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTask;
@@ -16,10 +17,12 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTask;
 public class ReactionController {
     private String qrCode;
     private Activity activity;
+    private RequestMask requestMask;
 
     public ReactionController(Activity activity, String qrCode) {
         this.qrCode = qrCode;
         this.activity = activity;
+        requestMask = new RequestMask();
 
         Log.d("Reacting To QR-Code", "QR-String = " + qrCode);
         if (qrCode.contains("WIFI")) {
@@ -31,8 +34,7 @@ public class ReactionController {
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED&& ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.INTERNET}, 2);
             } else {
-                //V3 maybe TODO in next Sprint.
-                SimpleSNMPClientv3 client = new SimpleSNMPClientv3(qrCode, activity);
+                SimpleSNMPClientv3 client = new SimpleSNMPClientv3(qrCode);
                 Toast.makeText(activity, "SNMP version 3 wird noch nicht unterstützt", Toast.LENGTH_SHORT).show();
             }
         } else {
@@ -41,7 +43,7 @@ public class ReactionController {
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.INTERNET}, 3);
             } else {
-                SimpleSNMPClientV1AndV2c clientv2c = new SimpleSNMPClientV1AndV2c(qrCode, activity);
+                SimpleSNMPClientV1AndV2c clientv2c = new SimpleSNMPClientV1AndV2c(qrCode);
 
                 SnmpTask snmpTask1 = new SnmpTask(clientv2c, activity);
                 Log.d("query snmp", "querying syslocation: 1.3.6.1.2.1.1.6.0");

@@ -44,7 +44,7 @@ public class SimpleSNMPClientV1AndV2c {
     private TransportMapping<UdpAddress> transportMapping;
     private ApplianceQrDecode decode;
 
-    public SimpleSNMPClientV1AndV2c(String qrCode, Activity activity) {
+    public SimpleSNMPClientV1AndV2c(String qrCode) {
         SNMP4JSettings.setAllowSNMPv2InV1(true);
         SNMP4JSettings.setSnmp4jStatistics(SNMP4JSettings.Snmp4jStatistics.extended);
         Log.d("allowSNMPv2InV1", "erfolgreich");
@@ -105,7 +105,7 @@ public class SimpleSNMPClientV1AndV2c {
                 targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + port);
             }
             // Fuer Unterstuetzung des internationalen Standards (Ports werden normalerweise mit ":" getrennt),
-            // damit wir des auf dem PC testen Koennen, da wir sonst immer hoch muessen im Info Gebaeude.
+            // damit wir des auf dem PC oder raspberry pie testen Koennen, da wir sonst immer hoch muessen im Info Gebaeude.
         } else if (decode.getAddress().contains(":")) {
             Log.d("/ oder : zur Trennung", "':' erkannt");
             if (port == "") {
