@@ -28,6 +28,41 @@ QR-Code scanner, über vordefinierte Abfragemasken, sich die gewünschten Inform
 
 ## Features
 
+### Critical Features
+
+#### Verbindung und Abfragenanzeige
+
+- Einlesen der WLAN-Zugangsdaten ist via QR-Code möglich.
+
+- Nach dem Einscannen ist das Smartphone mit dem vorgegebenen WLAN verbunden.
+
+- Bei sich ändernden WLAN-Zugangsdaten (Änderung Passwort, aber Access-Point-Name und MAC gleich) sind keine weiteren Benutzer-Interaktionen (außer QR-Code scannen) nötig.
+
+- Die Netzwerkparameter des WLANs (IPv4-, IPv6-Adresse, Netzmaske, DNS-Server-IP, Gateway-IP) inkl. DHCP-Zuweisung werden dargestellt.
+
+- In unverschlüsselte WLANs bucht sich die App nicht ein, auch nicht im Fehlerfall.
+
+- Beim Wechsel in ein unverschlüsseltes WLAN wird eine Fehlermeldung angezeigt und es werden keine Daten übertragen.
+
+- Beim Wechsel in das gesicherte WLAN wird der Betrieb der Anwendung wieder im ursprünglichen Zustand aufgenommen.
+
+- Einlesen der Geräte-Daten und -Zugangsdaten ist via QR-Code möglich.
+
+- Standard-Abfragen (1.3.6.1.2.1.1) werden vom Gerät abgefragt und angezeigt.
+
+- Gestartete Abfragen werden periodisch erneut abgefragt.
+
+#### Verwalten von Abfragen
+
+- Abfragen können verwaltet (neu angelegt, bearbeitet, angesehen und gelöscht) werden.
+
+- Abfragen enthalten mindestens eine Bezeichnung, eine OID (min. Dot-Notation) den erwarteten Rückgabewert-Typ.
+
+- Abfragen können keiner, einer order mehreren Kategorien (Art der Hardware) zugeordnet werden.
+
+- Abfragen können gestartet werden und das Result angezeigt werden.
+
+### Additional Features
 **TODO:** Hier die Features (Additional Features) aufzählen und evtl. mit einem Screenshot/Gif demonstrieren o. ä.
 
 ## Installation
