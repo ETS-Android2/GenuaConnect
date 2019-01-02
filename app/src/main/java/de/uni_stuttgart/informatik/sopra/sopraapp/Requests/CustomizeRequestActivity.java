@@ -43,17 +43,37 @@ public class CustomizeRequestActivity extends AppCompatActivity {
     }
 
     public void saveOIDs(View view) {
+        SQLiteDatabase database = manager.getWritableDatabase();
+        ContentValues[] newRows = new ContentValues[adapter.getItemCount()];
 
+        for(int pos = adapter.getItemCount()-1; pos>=0; pos--){
+            CustomizeAdapter.ViewHolder element =(CustomizeAdapter.ViewHolder) listView.findViewHolderForLayoutPosition(pos);
+            String oid = element.editText.getText().toString();
+            Log.d("saveOID String", "oid");
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(RequestsContract.COLUMN_OID_REQ, requestId);
+            contentValues.put(RequestsContract.COLUMN_OID_STRING, oid);
+
+            newRows[pos] = contentValues;
+        }
+        database.delete(RequestsContract.OID_TABLE_NAME, RequestsContract.COLUMN_OID_REQ + " = " + requestId, null);
+
+        for (int pos = (newRows.length-1); pos>=0; pos--) {
+            database.insert(RequestsContract.OID_TABLE_NAME, null, newRows[pos]);
+        }
+        database.close();
+        adapter.notifyDataSetChanged();
     }
 
     public void addOID(View view) {
+        saveOIDs(view);
         SQLiteDatabase database = manager.getWritableDatabase();
-
         ContentValues contentValues = new ContentValues();
         contentValues.put(RequestsContract.COLUMN_OID_STRING, "");
         contentValues.put(RequestsContract.COLUMN_OID_REQ, requestId);
         database.insert(RequestsContract.OID_TABLE_NAME, null, contentValues);
-
+        database.close();
         adapter.notifyDataSetChanged();
     }
 }
