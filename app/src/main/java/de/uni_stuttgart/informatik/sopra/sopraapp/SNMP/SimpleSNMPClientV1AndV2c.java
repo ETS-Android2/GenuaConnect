@@ -86,35 +86,27 @@ public class SimpleSNMPClientV1AndV2c {
             return target;
         }
         String addrToUse = address;
-        String port = "";
-        if (address.lastIndexOf(':') != -1) {
-            // strip port out of address
-            addrToUse = address.substring(0, address.lastIndexOf(':'));
-            port = address.substring(1);
-        }
+        String port = null;
         Log.d("address", "received address: " + addrToUse);
         Address targetAdress = null;
-        // Da in SoPra "/" benutzt wird fuer die Trennung des Ports.
         if (decode.getAddress().contains("/")) {
-            Log.d("/ oder : zur Trennung", "'/' erkannt");
-            if (port == "") {
-                Log.d("port", "port null");
-                targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + "161");
-            } else {
-                Log.d("port", "port nicht null");
-                targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + port);
-            }
-            // Fuer Unterstuetzung des internationalen Standards (Ports werden normalerweise mit ":" getrennt),
-            // damit wir des auf dem PC oder raspberry pie testen Koennen, da wir sonst immer hoch muessen im Info Gebaeude.
+            Log.d("port", "port nicht null");
+            Log.d("port '/' oder ':'?", "port '/' erkannt");
+            addrToUse = address.substring(0, address.lastIndexOf('/'));
+            port = address.substring(address.lastIndexOf("/") + 1);
+            Log.d("port", port);
+            targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + port);
         } else if (decode.getAddress().contains(":")) {
-            Log.d("/ oder : zur Trennung", "':' erkannt");
-            if (port == "") {
-                Log.d("port", "port null");
-                targetAdress = GenericAddress.parse("udp:" + addrToUse + ":" + "161");
-            } else {
-                Log.d("port", "port nicht null");
-                targetAdress = GenericAddress.parse("udp:" + addrToUse + ":" + port);
-            }
+            Log.d("port", "port nicht null");
+            Log.d("port '/' oder ':'?", "port ':' erkannt");
+            addrToUse = address.substring(0, address.lastIndexOf(':'));
+            port = address.substring(address.lastIndexOf(":") + 1);
+            Log.d("port", port);
+            targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + port);
+        }
+        if (port == null) {
+            Log.d("port", "port null");
+            targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + "161");
         }
         System.out.println(targetAdress);
         target = new CommunityTarget();

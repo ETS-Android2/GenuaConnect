@@ -14,8 +14,13 @@ import org.snmp4j.UserTarget;
 import org.snmp4j.event.ResponseEvent;
 import org.snmp4j.event.ResponseListener;
 import org.snmp4j.mp.MPv1;
+import org.snmp4j.mp.MPv3;
 import org.snmp4j.mp.SnmpConstants;
 import org.snmp4j.security.SecurityLevel;
+import org.snmp4j.security.SecurityModel;
+import org.snmp4j.security.SecurityModels;
+import org.snmp4j.security.SecurityProtocols;
+import org.snmp4j.security.USM;
 import org.snmp4j.smi.Address;
 import org.snmp4j.smi.GenericAddress;
 import org.snmp4j.smi.OID;
@@ -75,7 +80,10 @@ public class SimpleSNMPClientv3 {
         Log.d("Snmp Connect", "asynchroner Nebenthread gestartet");
 
         snmp = new Snmp(transportMapping);
-        snmp.getMessageDispatcher().addMessageProcessingModel(new MPv1());
+        snmp.getMessageDispatcher().addMessageProcessingModel(new MPv3());
+        USM usm = new USM(SecurityProtocols.getInstance(), new OctetString(snmp.getLocalEngineID()), 0);
+        SecurityModels.getInstance().addSecurityModel(usm);
+        //OctetString authentication = new OctetString(decode.);
         try {
             transportMapping.listen();
         } catch (IOException e) {
@@ -94,41 +102,33 @@ public class SimpleSNMPClientv3 {
             return target;
         }
         String addrToUse = address;
-        String port = "";
-        if (address.lastIndexOf(':') != -1) {
-            // strip port out of address
-            addrToUse = address.substring(0, address.lastIndexOf(':'));
-            port = address.substring(1);
-        }
+        String port = null;
         Log.d("address", "received address: " + addrToUse);
         Address targetAdress = null;
-        // Da in SoPra "/" benutzt wird fuer die Trennung des Ports.
         if (decode.getAddress().contains("/")) {
-            Log.d("/ oder : zur Trennung", "'/' erkannt");
-            if (port == "") {
-                Log.d("port", "port null");
-                targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + "161");
-            } else {
-                Log.d("port", "port nicht null");
-                targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + port);
-            }
-            // Fuer Unterstuetzung des internationalen Standards (Ports werden normalerweise mit ":" getrennt),
-            // damit wir des auf dem PC oder raspberry pie testen Koennen, da wir sonst immer hoch muessen im Info Gebaeude.
+            Log.d("port", "port nicht null");
+            Log.d("port '/' oder ':'?", "port '/' erkannt");
+            addrToUse = address.substring(0, address.lastIndexOf('/'));
+            port = address.substring(address.lastIndexOf("/") + 1);
+            Log.d("port", port);
+            targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + port);
         } else if (decode.getAddress().contains(":")) {
-            Log.d("/ oder : zur Trennung", "':' erkannt");
-            if (port == "") {
-                Log.d("port", "port null");
-                targetAdress = GenericAddress.parse("udp:" + addrToUse + ":" + "161");
-            } else {
-                Log.d("port", "port nicht null");
-                targetAdress = GenericAddress.parse("udp:" + addrToUse + ":" + port);
-            }
+            Log.d("port", "port nicht null");
+            Log.d("port '/' oder ':'?", "port ':' erkannt");
+            addrToUse = address.substring(0, address.lastIndexOf(':'));
+            port = address.substring(address.lastIndexOf(":") + 1);
+            Log.d("port", port);
+            targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + port);
+        }
+        if (port == null) {
+            Log.d("port", "port null");
+            targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + "161");
         }
         System.out.println(targetAdress);
         Address targetAddress = GenericAddress.parse(address);
         target = new UserTarget();
         target.setAddress(targetAddress);
-        //target.setSecurityName();
+        target.setSecurityName(new OctetString(decode.getUsername()));
         target.setRetries(2);
         target.setTimeout(5000);
         target.setVersion(SnmpConstants.version3);

@@ -46,19 +46,17 @@ public class ReactionController {
                 SimpleSNMPClientV1AndV2c clientv2c = new SimpleSNMPClientV1AndV2c(qrCode);
 
                 SnmpTask snmpTask1 = new SnmpTask(clientv2c, activity);
-                Log.d("query snmp", "querying syslocation: 1.3.6.1.2.1.1.6.0");
-                snmpTask1.execute("1.3.6.1.2.1.1.6.0");
+                Log.d("query snmp", "querying syslocation: .1.3.6.1.2.1.1.4.0");
+                snmpTask1.execute(".1.3.6.1.2.1.1.4.0");
 
                 try {
                     String result1 = snmpTask1.get();
                     Log.d("snmptest", "result: " + result1);
                     Toast.makeText(activity, result1, Toast.LENGTH_LONG).show();
                     if (result1 == null) {
-                        Toast.makeText(activity, "SNMP Abfrage hat nicht funktioniert.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(activity, "SNMP Abfrage hat nicht funktioniert. Bitte überprüfen Sie ob die Abfrage richtig ist.", Toast.LENGTH_LONG).show();
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
+                } catch (InterruptedException | ExecutionException e) {
                     e.printStackTrace();
                 }
             }
