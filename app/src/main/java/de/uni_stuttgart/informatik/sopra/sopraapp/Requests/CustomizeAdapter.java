@@ -1,5 +1,6 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
@@ -24,6 +25,24 @@ public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.View
             super(view);
             editText = view.findViewById(R.id.oid_field);
             imageButton = view.findViewById(R.id.delete_btn);
+
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    SQLiteDatabase database = data.getWritableDatabase();
+
+                    Cursor cursor = database.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where " + RequestsContract.COLUMN_OID_REQ + " = " + requestId +
+                            " order by " + RequestsContract.COLUMN_REQ_ID + " desc limit 1 offset " + pos, null);
+
+                    cursor.moveToFirst();
+                    int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
+                    cursor.close();
+
+                    database.delete(RequestsContract.OID_TABLE_NAME, RequestsContract.COLUMN_OID_ID + " = " + id, null);
+                    notifyDataSetChanged();
+                }
+            });
         }
     }
     public CustomizeAdapter(RequestDbHelper requestDbHelper, int id) {
@@ -59,6 +78,8 @@ public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.View
         Cursor cursor = database.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where " + RequestsContract.COLUMN_OID_REQ + " = " + requestId , null);
         return cursor.getCount();
     }
+
+
 
 
 }

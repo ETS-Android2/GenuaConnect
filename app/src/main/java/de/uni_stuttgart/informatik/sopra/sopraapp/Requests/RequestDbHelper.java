@@ -34,7 +34,7 @@ public class RequestDbHelper extends SQLiteOpenHelper {
                 "CREATE TABLE " + RequestsContract.OID_TABLE_NAME + " (" +
                         RequestsContract.COLUMN_OID_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
                         RequestsContract.COLUMN_OID_STRING + " TEXT, " +
-                        RequestsContract.COLUMN_OID_REQ + " Integer);";
+                        RequestsContract.COLUMN_OID_REQ + " INTEGER);";
 
         db.execSQL(SQL_CREATE_REQUESTS);
         db.execSQL(SQL_CREATE_OIDS);
