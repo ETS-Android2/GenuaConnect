@@ -1,9 +1,12 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
 import android.app.Activity;
+import android.net.wifi.WifiConfiguration;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.snmp4j.CommunityTarget;
+import org.snmp4j.PDU;
 import org.snmp4j.ScopedPDU;
 import org.snmp4j.Snmp;
 import org.snmp4j.Target;
@@ -11,12 +14,23 @@ import org.snmp4j.TransportMapping;
 import org.snmp4j.UserTarget;
 import org.snmp4j.event.ResponseEvent;
 import org.snmp4j.event.ResponseListener;
+import org.snmp4j.mp.MPv1;
+import org.snmp4j.mp.MPv3;
 import org.snmp4j.mp.SnmpConstants;
+import org.snmp4j.security.AuthSHA2;
+import org.snmp4j.security.AuthenticationProtocol;
 import org.snmp4j.security.SecurityLevel;
+import org.snmp4j.security.SecurityModel;
+import org.snmp4j.security.SecurityModels;
+import org.snmp4j.security.SecurityProtocols;
+import org.snmp4j.security.USM;
+import org.snmp4j.security.UsmUser;
 import org.snmp4j.smi.Address;
 import org.snmp4j.smi.GenericAddress;
 import org.snmp4j.smi.OID;
 import org.snmp4j.smi.OctetString;
+import org.snmp4j.smi.UdpAddress;
+import org.snmp4j.smi.Variable;
 import org.snmp4j.smi.VariableBinding;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 import org.snmp4j.util.DefaultPDUFactory;
@@ -43,20 +57,15 @@ public class SimpleSNMPClientv3 {
      * A client for the SNMP version3 management.
      * Maybe will be done in next sprint.
      */
-    protected String address;
-    private Snmp snmp;
-    private Activity activity;
+    String address;
+    private volatile Snmp snmp;
+    private UserTarget target;
+    private TransportMapping<UdpAddress> transportMapping;
+    private ApplianceQrDecode decode;
 
-    public SimpleSNMPClientv3(String qrCode, Activity context) {
-        super();
-        this.activity = context;
-        ApplianceQrDecode decode = new ApplianceQrDecode(qrCode);
+    public SimpleSNMPClientv3(String qrCode) {
+        decode = new ApplianceQrDecode(qrCode);
         this.address = decode.getAddress();
-        try {
-            start();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         Log.d("StartAusfuehren", "Ausgefueht");
     }
 
@@ -71,50 +80,16 @@ public class SimpleSNMPClientv3 {
      * @throws IOException
      */
     private void start() throws IOException {
+        transportMapping = new DefaultUdpTransportMapping();
+        Log.d("Snmp Connect", "asynchroner Nebenthread gestartet");
 
-        final AsyncTask<Void, Void, Snmp> task = new AsyncTask<Void, Void, Snmp>() {
-
-            TransportMapping transportMapping = new DefaultUdpTransportMapping();
-
-            @Override
-            protected Snmp doInBackground(Void... voids) {
-                Log.d("doInBackground", "Erfolgreich");
-                return new Snmp(transportMapping);
-            }
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                try {
-                    transportMapping = new DefaultUdpTransportMapping();
-                } catch (SocketException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Log.d("onPre", "funktioniert");
-            }
-
-            @Override
-            protected void onPostExecute(Snmp snmp) {
-                super.onPostExecute(snmp);
-                try {
-                    transportMapping.listen();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Log.d("onPost", "funktioniert");
-            }
-        };
-        task.execute();
+        snmp = new Snmp(transportMapping);
         try {
-            snmp = task.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+            transportMapping.listen();
+        } catch (IOException e) {
+            Log.e("connect", e.getMessage());
         }
-        Log.d("taskBegin", "erfolgreich");
+        Log.d("Snmp Connect", "isListening: " + transportMapping.isListening());
     }
 
     /**
@@ -122,13 +97,73 @@ public class SimpleSNMPClientv3 {
      *
      * @return Returns the given target.
      */
+
+    protected void userInformation() {
+        snmp.getMessageDispatcher().addMessageProcessingModel(new MPv3());
+        USM usm = new USM(SecurityProtocols.getInstance(), new OctetString(snmp.getLocalEngineID()), 0);
+        SecurityModels.getInstance().addSecurityModel(usm);
+        OctetString getAuthPasswort = new OctetString(decode.getPassword());
+        OctetString getAuth = null;
+        OctetString getPrivPasswort = null;
+        OctetString getPriv = null;
+        OID getAuthOID = null;
+        OID getPrivOID = null;
+        if (decode.getEncodeing().contains(":")) {
+            String[] splittetEncodeing = decode.getEncodeing().split(":");
+            for (int i = 0; i < splittetEncodeing.length; i++) {
+                getAuth = new OctetString(splittetEncodeing[0]);
+                getPrivPasswort = new OctetString(splittetEncodeing[1]);
+                getPriv = new OctetString(splittetEncodeing[2]);
+            }
+            if (splittetEncodeing[0].equals("SHA")) {
+                getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
+            } else if (splittetEncodeing[0].contains("SHA2")) {
+                //    getAuthOID = new OID(SnmpConstants.usmHM)
+            } else if (splittetEncodeing[0].equals("MD5")) {
+                getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
+            } else if (splittetEncodeing[0].equals("")) {
+                getAuthOID = new OID(SnmpConstants.usmNoAuthProtocol);
+            }
+            // if (splittetEncodeing[2].equals(""))
+            //OctetString userName = new OctetString(decode.getUsername());
+            //snmp.getUSM().addUser(userName, new UsmUser(userName, getAuthOID, getAuthPasswort, getPrivOID, getPrivPasswort));
+        }
+    }
+
     protected Target getTarget() {
-        System.out.println("batman");
+        if (target != null) {
+            return target;
+        }
+        String addrToUse = address;
+        String port = null;
+        Log.d("address", "received address: " + addrToUse);
+        Address targetAdress = null;
+        if (decode.getAddress().contains("/")) {
+            Log.d("port", "port nicht null");
+            Log.d("port '/' oder ':'?", "port '/' erkannt");
+            addrToUse = address.substring(0, address.lastIndexOf('/'));
+            port = address.substring(address.lastIndexOf("/") + 1);
+            Log.d("port", port);
+            targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + port);
+        } else if (decode.getAddress().contains(":")) {
+            Log.d("port", "port nicht null");
+            Log.d("port '/' oder ':'?", "port ':' erkannt");
+            addrToUse = address.substring(0, address.lastIndexOf(':'));
+            port = address.substring(address.lastIndexOf(":") + 1);
+            Log.d("port", port);
+            targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + port);
+        }
+        if (port == null) {
+            Log.d("port", "port null");
+            targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + "161");
+        }
+        System.out.println(targetAdress);
         Address targetAddress = GenericAddress.parse(address);
-        UserTarget target = new UserTarget();
+        target = new UserTarget();
         target.setAddress(targetAddress);
-        target.setRetries(3);
-        target.setTimeout(500);
+        target.setSecurityName(new OctetString(decode.getUsername()));
+        target.setRetries(2);
+        target.setTimeout(5000);
         target.setVersion(SnmpConstants.version3);
         target.setSecurityLevel(SecurityLevel.AUTH_PRIV);
         target.setSecurityName(new OctetString("batmanuser"));
@@ -149,7 +184,7 @@ public class SimpleSNMPClientv3 {
             pdu.add(new VariableBinding(oid));
         }
         pdu.setType(ScopedPDU.GET);
-        ResponseEvent event = snmp.send(pdu, getTarget(), null);
+        ResponseEvent event = snmp.send(pdu, getTarget(), transportMapping);
         if (event != null) {
             return event;
         }
@@ -164,8 +199,8 @@ public class SimpleSNMPClientv3 {
      * @throws IOException
      */
     public String getAsString(OID oid) throws IOException {
-        ResponseEvent event = get(new OID[]{oid});
-        return event.getResponse().get(0).getVariable().toString();
+        Log.d("getAsString", "String bekommen: " + oid.toDottedString());
+        return sendGet(oid.toString());
     }
 
     public void getAsString(OID oids, ResponseEvent listener) {
@@ -188,6 +223,7 @@ public class SimpleSNMPClientv3 {
             pdu.add(new VariableBinding(oid));
         }
         pdu.setType(ScopedPDU.GET);
+        Log.d("getPDU", "got the PDU");
         return pdu;
     }
 
@@ -212,6 +248,55 @@ public class SimpleSNMPClientv3 {
             }
         }
         return list;
+    }
+
+    /**
+     * @param stringOID
+     * @return
+     */
+    public String sendGet(String stringOID) {
+        ScopedPDU scopedPDU = (ScopedPDU) DefaultPDUFactory.createPDU(1);
+
+        //add OID to PDU
+        scopedPDU.add(new VariableBinding(new OID(stringOID)));
+
+        //setting type when sending request to the SNMP server
+        scopedPDU.setType(ScopedPDU.GETNEXT);
+
+        ResponseEvent responseEvent;
+        try {
+            //sending the request
+            responseEvent = snmp.get(scopedPDU, getTarget());
+
+            if (responseEvent != null) {
+                System.out.println(responseEvent);
+                //get the PDU response
+                ScopedPDU pduResult = (ScopedPDU) responseEvent.getResponse();
+                System.out.println(pduResult);
+                if (pduResult == null) {
+                    return null;
+                }
+
+                for (VariableBinding varBind : pduResult.getVariableBindings()) {
+                    return varBind.toValueString();
+                }
+
+                //checking if response throws an error
+                if (pduResult.getErrorStatus() == ScopedPDU.noError) {
+
+                    //gets the variable when there's no error
+                    Variable variable = pduResult.getVariable(new OID(stringOID));
+
+                    if (variable != null) {
+                        //result
+                        return variable.toString();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static String extractSingleString(ResponseEvent event) {
