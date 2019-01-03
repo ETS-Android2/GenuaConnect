@@ -1,7 +1,10 @@
  package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
 
+import android.arch.lifecycle.AndroidViewModel;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -17,6 +21,7 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 public class CustomizeRequestActivity extends AppCompatActivity {
 
+    private ImageButton renameButton;
 
     private RequestDbHelper manager;
     private RecyclerView listView;
@@ -39,7 +44,19 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         adapter = new CustomizeAdapter(manager, requestId);
         listView.setAdapter(adapter);
 
+        renameButton = new ImageButton(this);
+        //Drawable icon = getDrawable(android.support.fragment.R.drawable.ed);
+        //renameButton.setImageDrawable();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SQLiteDatabase titleGetter = manager.getReadableDatabase();
+        Cursor cursor = titleGetter.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_ID + " = " + requestId, null);
+        cursor.moveToFirst();
+        String request = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
+        setTitle(request);
     }
 
     public void saveOIDs(View view) {
