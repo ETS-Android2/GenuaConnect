@@ -16,8 +16,8 @@ import org.snmp4j.smi.OctetString;
  * TODO
  */
 public class SNMPv3NoAuth extends SimpleSNMPClientv3 {
-    public SNMPv3NoAuth(String qrCode, Activity activity) {
-        super(qrCode, activity);
+    public SNMPv3NoAuth(String qrCode) {
+        super(qrCode);
     }
 
     @Override
@@ -25,8 +25,8 @@ public class SNMPv3NoAuth extends SimpleSNMPClientv3 {
         Address targetAdress = GenericAddress.parse(address);
         UserTarget target = new UserTarget();
         target.setAddress(targetAdress);
-        target.setRetries(3);
-        target.setTimeout(500);
+        target.setRetries(2);
+        target.setTimeout(5000);
         target.setVersion(SnmpConstants.version3);
         target.setSecurityLevel(SecurityLevel.NOAUTH_NOPRIV);
         target.setSecurityName(new OctetString("MD5DES"));
