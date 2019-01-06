@@ -1,5 +1,6 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
+import android.app.Activity;
 import android.util.Log;
 
 import org.snmp4j.CommunityTarget;
@@ -208,7 +209,7 @@ public class SimpleSNMPClientV1AndV2c {
      * @param stringOID
      * @return
      */
-    public String sendGet(String stringOID) {
+    private String sendGet(String stringOID) {
         PDU pdu = DefaultPDUFactory.createPDU(1);
 
         //add OID to PDU

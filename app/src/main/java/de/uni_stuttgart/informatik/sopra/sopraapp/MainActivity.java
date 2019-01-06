@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //back button functions as a button that re-initialises the IntentIntegrator
-        if (id == R.id.home){
+        if (id == android.R.id.home){
             intentIntegrator = new IntentIntegrator(this);
             intentIntegrator.setBeepEnabled(false);
             intentIntegrator.setOrientationLocked(false);

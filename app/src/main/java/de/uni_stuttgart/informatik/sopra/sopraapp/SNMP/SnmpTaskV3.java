@@ -16,15 +16,15 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.RotatingCaptureActivity;
 /**
  * Seperate thread for networking.
  */
-public class SnmpTask extends AsyncTask<String, Void, String> {
+public class SnmpTaskV3 extends AsyncTask<String, Void, String> {
 
     private ProgressDialog progressDialog;
     private static final String TAG = SnmpTask.class.getName();
-    private SimpleSNMPClientV1AndV2c snmpClient;
+    private SimpleSNMPClientv3 snmpClientv3;
     private Context context;
 
-    public SnmpTask(SimpleSNMPClientV1AndV2c snmpClient, Context context) {
-        this.snmpClient = snmpClient;
+    public SnmpTaskV3(SimpleSNMPClientv3 clientv3, Context context) {
+        this.snmpClientv3 = clientv3;
         this.context = context;
     }
 
@@ -52,13 +52,13 @@ public class SnmpTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... oids) {
         try {
-            snmpClient.start();
+            snmpClientv3.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
         Log.d(TAG, "initialisiert");
         try {
-            return snmpClient.getAsString(new OID(oids[0]));
+            return snmpClientv3.getAsString(new OID(oids[0]));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,12 +1,7 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
-import android.app.Activity;
-import android.net.wifi.WifiConfiguration;
-import android.os.AsyncTask;
 import android.util.Log;
 
-import org.snmp4j.CommunityTarget;
-import org.snmp4j.PDU;
 import org.snmp4j.ScopedPDU;
 import org.snmp4j.Snmp;
 import org.snmp4j.Target;
@@ -14,15 +9,12 @@ import org.snmp4j.TransportMapping;
 import org.snmp4j.UserTarget;
 import org.snmp4j.event.ResponseEvent;
 import org.snmp4j.event.ResponseListener;
-import org.snmp4j.mp.MPv1;
 import org.snmp4j.mp.MPv3;
 import org.snmp4j.mp.SnmpConstants;
-import org.snmp4j.security.AuthSHA2;
-import org.snmp4j.security.AuthenticationProtocol;
 import org.snmp4j.security.SecurityLevel;
-import org.snmp4j.security.SecurityModel;
 import org.snmp4j.security.SecurityModels;
 import org.snmp4j.security.SecurityProtocols;
+import org.snmp4j.security.TSM;
 import org.snmp4j.security.USM;
 import org.snmp4j.security.UsmUser;
 import org.snmp4j.smi.Address;
@@ -38,12 +30,8 @@ import org.snmp4j.util.TableEvent;
 import org.snmp4j.util.TableUtils;
 
 import java.io.IOException;
-import java.io.Serializable;
-import java.lang.reflect.AccessibleObject;
-import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
 
@@ -55,9 +43,9 @@ public class SimpleSNMPClientv3 {
     /**
      * Inspired by https://blog.jayway.com/2010/05/21/introduction-to-snmp4j
      * A client for the SNMP version3 management.
-     * Maybe will be done in next sprint.
      */
     String address;
+    private static OctetString localEngineId;
     private volatile Snmp snmp;
     private UserTarget target;
     private TransportMapping<UdpAddress> transportMapping;
@@ -79,11 +67,12 @@ public class SimpleSNMPClientv3 {
      *
      * @throws IOException
      */
-    private void start() throws IOException {
+    protected void start() throws IOException {
         transportMapping = new DefaultUdpTransportMapping();
         Log.d("Snmp Connect", "asynchroner Nebenthread gestartet");
 
         snmp = new Snmp(transportMapping);
+        userInformation();
         try {
             transportMapping.listen();
         } catch (IOException e) {
@@ -115,18 +104,42 @@ public class SimpleSNMPClientv3 {
                 getPrivPasswort = new OctetString(splittetEncodeing[1]);
                 getPriv = new OctetString(splittetEncodeing[2]);
             }
-            if (splittetEncodeing[0].equals("SHA")) {
-                getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
-            } else if (splittetEncodeing[0].contains("SHA2")) {
-                //    getAuthOID = new OID(SnmpConstants.usmHM)
-            } else if (splittetEncodeing[0].equals("MD5")) {
-                getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
-            } else if (splittetEncodeing[0].equals("")) {
-                getAuthOID = new OID(SnmpConstants.usmNoAuthProtocol);
+            switch (splittetEncodeing[0]) {
+                case "SHA":
+                    getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
+                    break;
+                //case "SHA2":
+                    //Toast.makeText(this, "SHA2 wird nicht unterstuetzt", Toast.LENGTH_LONG).show();
+                    //break;
+                case "MD5":
+                    getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
+                    break;
+                case "":
+                    getAuthOID = new OID(SnmpConstants.usmNoAuthProtocol);
+                    break;
             }
-            // if (splittetEncodeing[2].equals(""))
-            //OctetString userName = new OctetString(decode.getUsername());
-            //snmp.getUSM().addUser(userName, new UsmUser(userName, getAuthOID, getAuthPasswort, getPrivOID, getPrivPasswort));
+            switch (splittetEncodeing[2]) {
+                case "DES":
+                    getPrivOID = new OID(SnmpConstants.usmDESPrivProtocol);
+                    break;
+                case "AES-128":
+                    getPrivOID = new OID(SnmpConstants.usmAesCfb128Protocol);
+                    break;
+                case "AES-192":
+                    getPrivOID = new OID(SnmpConstants.oosnmpUsmAesCfb192Protocol);
+                    break;
+                case "AES-256":
+                    getPrivOID = new OID(SnmpConstants.oosnmpUsmAesCfb256Protocol);
+                case "3DES":
+                    getPrivOID = new OID(SnmpConstants.usm3DESEDEPrivProtocol);
+                    break;
+            }
+            OctetString userName = new OctetString(decode.getUsername());
+            snmp.getUSM().addUser(userName, new UsmUser(userName, getAuthOID, getAuthPasswort, getPrivOID, getPrivPasswort));
+            if (localEngineId == null) {
+                localEngineId = new OctetString(MPv3.createLocalEngineID());
+            }
+            SecurityModels.getInstance().addSecurityModel(new TSM(new OctetString(snmp.getLocalEngineID()), false));
         }
     }
 
@@ -166,7 +179,6 @@ public class SimpleSNMPClientv3 {
         target.setTimeout(5000);
         target.setVersion(SnmpConstants.version3);
         target.setSecurityLevel(SecurityLevel.AUTH_PRIV);
-        target.setSecurityName(new OctetString("batmanuser"));
         Log.d("getTarget", "gesettet");
         return target;
     }
