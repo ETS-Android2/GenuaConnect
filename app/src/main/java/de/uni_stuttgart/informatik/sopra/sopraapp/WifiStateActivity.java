@@ -1,30 +1,19 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.net.DhcpInfo;
-import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.math.BigInteger;
-import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
-import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.Formatter;
 
 public class WifiStateActivity extends AppCompatActivity {
     WifiManager mng;

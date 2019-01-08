@@ -50,6 +50,11 @@ public class SimpleSNMPClientv3 {
     private UserTarget target;
     private TransportMapping<UdpAddress> transportMapping;
     private ApplianceQrDecode decode;
+    private OctetString getAuth = null;
+    private OctetString getPrivPasswort = null;
+    private OctetString getPriv = null;
+    private OID getAuthOID = null;
+    private OID getPrivOID = null;
 
     public SimpleSNMPClientv3(String qrCode) {
         decode = new ApplianceQrDecode(qrCode);
@@ -92,11 +97,6 @@ public class SimpleSNMPClientv3 {
         USM usm = new USM(SecurityProtocols.getInstance(), new OctetString(snmp.getLocalEngineID()), 0);
         SecurityModels.getInstance().addSecurityModel(usm);
         OctetString getAuthPasswort = new OctetString(decode.getPassword());
-        OctetString getAuth = null;
-        OctetString getPrivPasswort = null;
-        OctetString getPriv = null;
-        OID getAuthOID = null;
-        OID getPrivOID = null;
         if (decode.getEncodeing().contains(":")) {
             String[] splittetEncodeing = decode.getEncodeing().split(":");
             for (int i = 0; i < splittetEncodeing.length; i++) {
@@ -133,6 +133,8 @@ public class SimpleSNMPClientv3 {
                 case "3DES":
                     getPrivOID = new OID(SnmpConstants.usm3DESEDEPrivProtocol);
                     break;
+                case "":
+                    getPrivOID = new OID(SnmpConstants.usmNoPrivProtocol);
             }
             OctetString userName = new OctetString(decode.getUsername());
             snmp.getUSM().addUser(userName, new UsmUser(userName, getAuthOID, getAuthPasswort, getPrivOID, getPrivPasswort));
@@ -178,7 +180,14 @@ public class SimpleSNMPClientv3 {
         target.setRetries(2);
         target.setTimeout(5000);
         target.setVersion(SnmpConstants.version3);
-        target.setSecurityLevel(SecurityLevel.AUTH_PRIV);
+        if (getAuthOID == SnmpConstants.usmNoAuthProtocol) {
+            target.setSecurityLevel(SecurityLevel.NOAUTH_NOPRIV);
+        } else if (getPrivOID == SnmpConstants.usmNoPrivProtocol && (getAuthOID == SnmpConstants.usmHMACMD5AuthProtocol || getAuthOID ==
+                SnmpConstants.usmHMACSHAAuthProtocol)) {
+            target.setSecurityLevel(SecurityLevel.AUTH_NOPRIV);
+        } else {
+            target.setSecurityLevel(SecurityLevel.AUTH_PRIV);
+        }
         Log.d("getTarget", "gesettet");
         return target;
     }
@@ -273,7 +282,7 @@ public class SimpleSNMPClientv3 {
         scopedPDU.add(new VariableBinding(new OID(stringOID)));
 
         //setting type when sending request to the SNMP server
-        scopedPDU.setType(ScopedPDU.GETNEXT);
+        scopedPDU.setType(ScopedPDU.GETBULK);
 
         ResponseEvent responseEvent;
         try {

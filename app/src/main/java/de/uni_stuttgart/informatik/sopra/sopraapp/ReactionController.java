@@ -15,9 +15,7 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestMask;
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestsContract;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTask;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTaskV3;
 
 public class ReactionController {
     private String qrCode;

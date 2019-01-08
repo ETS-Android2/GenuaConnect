@@ -1,17 +1,13 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.animation.RotateAnimation;
 
 import org.snmp4j.smi.OID;
 
 import java.io.IOException;
-
-import de.uni_stuttgart.informatik.sopra.sopraapp.RotatingCaptureActivity;
 
 /**
  * Seperate thread for networking.

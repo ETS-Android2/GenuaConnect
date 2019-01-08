@@ -1,6 +1,5 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;

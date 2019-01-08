@@ -1,6 +1,5 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
-import android.app.Activity;
 import android.util.Log;
 
 import org.snmp4j.CommunityTarget;

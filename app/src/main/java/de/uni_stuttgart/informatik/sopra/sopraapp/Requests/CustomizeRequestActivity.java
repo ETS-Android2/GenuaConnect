@@ -1,23 +1,17 @@
  package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
 
-import android.arch.lifecycle.AndroidViewModel;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.ListView;
+ import android.content.ContentValues;
+ import android.database.Cursor;
+ import android.database.sqlite.SQLiteDatabase;
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
+ import android.support.v7.widget.LinearLayoutManager;
+ import android.support.v7.widget.RecyclerView;
+ import android.util.Log;
+ import android.view.View;
+ import android.widget.ImageButton;
 
-import java.util.ArrayList;
-
-import de.uni_stuttgart.informatik.sopra.sopraapp.R;
+ import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 public class CustomizeRequestActivity extends AppCompatActivity {
 
