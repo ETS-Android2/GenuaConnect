@@ -33,7 +33,7 @@ public class WifiConnect {
     public void tryConnect(String qrString, Context context) {
         //setting the WIFI Parameters from the qrString if its in correct Form
         if (!setWifiParamsFrom(qrString)) {
-            Toast.makeText(context, "Kein WIFI QR-Code", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.keinWifiQrCodeDeutsch), Toast.LENGTH_SHORT).show();
             return;
         }
         Log.d("WIFI Params setted", context.getClass() + "\nauthentification: " + authentification + "\nssid: " + ssid + "\npass: " + password);
@@ -42,7 +42,7 @@ public class WifiConnect {
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 
         if (!wifi.isWifiEnabled()) {
-            Toast.makeText(context.getApplicationContext(), "WIFI nicht aktiv. WIFI wird aktiviert.", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(R.string.wifiNichtAnTextDeutsch), Toast.LENGTH_LONG).show();
             wifi.setWifiEnabled(true);
         }
 
@@ -65,7 +65,7 @@ public class WifiConnect {
                 conf.preSharedKey = "\"" + password + "\"";
                 break;
             default:
-                Toast.makeText(context, "Keine sichere WIFI Verbindung möglich.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.keineSichereWlanVerbindungTextDeutsch), Toast.LENGTH_SHORT).show();
                 return;
         }
 
@@ -74,31 +74,23 @@ public class WifiConnect {
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         @SuppressLint("MissingPermission") NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (mWifi.isConnected()) {
-            //AlertDialogFragment dialogFragment = new AlertDialogFragment();
-            //dialogFragment.show(activity.getSupportFragmentManager(), AlertDialogFragment.class.getSimpleName());
-            Toast toast = Toast.makeText(context, "Es besteht bereits eine aktive WLAN Verbindung. Falls sie nicht mit dem WLAN Netzwerk '" + ssid +
-                    "' verbunden sind löschen Sie bitte alle Ihre gespeicherten WLAN Netzwerke", Toast.LENGTH_LONG);
-            toast.show();
-        } else {
-            wifiManager.disconnect();
-            wifiManager.enableNetwork(conf.networkId, true);
-            List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
-            //Loescht die WIFI Informationen, da Android sich merkt welche WLAN Netzwerke keine Verbindung haben und verbindet sich nicht
-            //mehr mit diesen. Verbindung ist sonst nur moeglich wenn man sich noch nie verbunden hat mit dem WLAN.
-            for (WifiConfiguration i : list) {
-                wifiManager.removeNetwork(i.networkId);
-            }
-            wifiManager.addNetwork(conf);
-            if (wifiInfo.getNetworkId() == -1) {
-                wifiManager.reconnect();
-                wifiManager.reassociate();
-            } else {
-                wifiManager.reconnect();
-                wifiManager.reassociate();
-            }
-            Toast.makeText(context, "Verbindung zu  " + ssid + " wird aufgebaut.", Toast.LENGTH_SHORT).show();
+        wifiManager.disconnect();
+        wifiManager.enableNetwork(conf.networkId, true);
+        List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+        //Loescht die WIFI Informationen, da Android sich merkt welche WLAN Netzwerke keine Verbindung haben und verbindet sich nicht
+        //mehr mit diesen. Verbindung ist sonst nur moeglich wenn man sich noch nie verbunden hat mit dem WLAN.
+        for (WifiConfiguration i : list) {
+            wifiManager.removeNetwork(i.networkId);
         }
+        wifiManager.addNetwork(conf);
+        if (wifiInfo.getNetworkId() == -1) {
+            wifiManager.reconnect();
+            wifiManager.reassociate();
+        } else {
+            wifiManager.reconnect();
+            wifiManager.reassociate();
+        }
+        Toast.makeText(context, context.getString(R.string.verbindungZuTextDeutsch) + ssid + context.getString(R.string.wirdAufgebautTextDeutsch), Toast.LENGTH_SHORT).show();
     }
 
     /**

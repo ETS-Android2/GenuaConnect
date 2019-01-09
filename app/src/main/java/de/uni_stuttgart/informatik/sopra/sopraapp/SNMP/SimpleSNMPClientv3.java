@@ -103,42 +103,57 @@ public class SimpleSNMPClientv3 {
             }
             switch (getAuth.toString()) {
                 case "SHA":
+                    Log.d("getAuth: ", getAuth.toString());
                     getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
                     break;
                 //case "SHA2":
                 //Toast.makeText(this, "SHA2 wird nicht unterstuetzt", Toast.LENGTH_LONG).show();
                 //break;
                 case "MD5":
+                    Log.d("getAuth: ", getAuth.toString());
                     getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
                     break;
                 case "":
+                    Log.d("getAuth: ", getAuth.toString());
                     getAuthOID = new OID(SnmpConstants.usmNoAuthProtocol);
                     break;
             }
             switch (getPriv.toString()) {
                 case "DES":
+                    Log.d("getPriv: ", getPriv.toString());
                     getPrivOID = new OID(SnmpConstants.usmDESPrivProtocol);
                     break;
                 case "AES-128":
+                    Log.d("getPriv: ", getPriv.toString());
                     getPrivOID = new OID(SnmpConstants.usmAesCfb128Protocol);
                     break;
                 case "AES-192":
+                    Log.d("getPriv: ", getPriv.toString());
                     getPrivOID = new OID(SnmpConstants.oosnmpUsmAesCfb192Protocol);
                     break;
                 case "AES-256":
+                    Log.d("getPriv: ", getPriv.toString());
                     getPrivOID = new OID(SnmpConstants.oosnmpUsmAesCfb256Protocol);
                 case "3DES":
+                    Log.d("getPriv: ", getPriv.toString());
                     getPrivOID = new OID(SnmpConstants.usm3DESEDEPrivProtocol);
                     break;
                 case "":
+                    Log.d("getPriv: ", getPriv.toString());
                     getPrivOID = new OID(SnmpConstants.usmNoPrivProtocol);
             }
             OctetString userName = new OctetString(decode.getUsername());
+            Log.d("userName: ", decode.getUsername());
+            Log.d("getAuthPasswort: ", getAuthPasswort.toString());
+            Log.d("getPrivPasswort: ", getPrivPasswort.toString());
+            Log.d("addUser: ", "Starten");
             snmp.getUSM().addUser(userName, new UsmUser(userName, getAuthOID, getAuthPasswort, getPrivOID, getPrivPasswort));
+            Log.d("addUser: ", "Erfolgreich");
             if (localEngineId == null) {
                 localEngineId = new OctetString(MPv3.createLocalEngineID());
             }
             SecurityModels.getInstance().addSecurityModel(new TSM(new OctetString(snmp.getLocalEngineID()), false));
+            Log.d("SecurityModel: ", "Erfolgreich ausgefuehrt");
         }
     }
 

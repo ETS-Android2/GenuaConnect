@@ -26,12 +26,16 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="59dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="@string/barcodeText"
-        android:textSize="15sp"
-        android:textColor="#FFFF"/>
+        android:layout_marginTop="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:text="@string/barcodeTextDeutsch"
+        android:textColor="#FFFF"
+        android:textSize="15sp" />
 
 </RelativeLayout>

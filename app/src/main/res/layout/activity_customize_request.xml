@@ -35,7 +35,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
-        android:text="@string/speichernButton"
+        android:text="@string/speichernButtonDeutsch"
         android:textAllCaps="true"
         android:onClick="saveOIDs"
         app:layout_constraintBottom_toBottomOf="parent"

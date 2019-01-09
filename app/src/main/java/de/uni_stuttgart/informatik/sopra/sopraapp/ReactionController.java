@@ -9,10 +9,10 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
-import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestMask;
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestsContract;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
@@ -22,10 +22,6 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTaskV3;
 public class ReactionController {
 
     ReactionController(Activity activity, String qrCode) {
-        String qrCode1 = qrCode;
-        Activity activity1 = activity;
-        RequestMask requestMask = new RequestMask();
-
         Log.d("Reacting To QR-Code", "QR-String = " + qrCode);
         if (qrCode.contains("WIFI")) {
             Log.d("Reacting To QR-Code", "detected a WIFI QR-String");
@@ -54,13 +50,18 @@ public class ReactionController {
                         Log.d("snmptest", "result: " + result1);
                         Toast.makeText(activity, result1, Toast.LENGTH_LONG).show();
                         if (result1.equals("")) {
-                            Toast.makeText(activity, "SNMP Abfrage hat nicht funktioniert oder leerer Text als Ergebnis. Bitte überprüfen Sie ob die Abfrage richtig ist.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(activity, activity.getString(R.string.snmpAbfrageNichtfunktioniertTextDeutsch), Toast.LENGTH_LONG).show();
                         }
                     } catch (InterruptedException | ExecutionException e) {
                         e.printStackTrace();
                     }
                 }
                 cursor.close();
+                try {
+                    clientv3.stop();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 //Toast.makeText(activity, "SNMPv3 wird nicht unterstuetzt.", Toast.LENGTH_LONG).show();
             }
         } else {
@@ -87,13 +88,18 @@ public class ReactionController {
                         Log.d("snmptest", "result: " + result1);
                         Toast.makeText(activity, result1, Toast.LENGTH_LONG).show();
                         if (result1.equals("")) {
-                            Toast.makeText(activity, "SNMP Abfrage hat nicht funktioniert. Bitte überprüfen Sie ob die Abfrage richtig ist.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(activity, activity.getString(R.string.snmpAbfrageNichtfunktioniertTextDeutsch), Toast.LENGTH_LONG).show();
                         }
                     } catch (InterruptedException | ExecutionException e) {
                         e.printStackTrace();
                     }
                 }
                 cursor.close();
+                try {
+                    clientv2c.stop();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

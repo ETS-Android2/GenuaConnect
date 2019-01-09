@@ -34,15 +34,16 @@ public class WifiStateActivity extends AppCompatActivity {
         ArrayList<String> entrys = new ArrayList<>();
         int ip = dhcpInfo.ipAddress;
         String ipString = String.format("%d.%d.%d.%d", (ip & 0xff), (ip >> 8 & 0xff), (ip >> 16 & 0xff), (ip >> 24 & 0xff));
-        entrys.add("Wifi IPv4: " + ipString);
+        entrys.add("IPv4: " + ipString);
+        InetAddress inetAddress;
         try {
             int i = 0;
             for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
                 NetworkInterface intf = en.nextElement();
                 for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
-                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    inetAddress = enumIpAddr.nextElement();
                     if (inetAddress instanceof Inet6Address && i == 5) {
-                        entrys.add("Wifi IPv6: " + inetAddress.getHostAddress());
+                        entrys.add("IPv6: " + inetAddress.getHostAddress());
                     }
                     i++;
                 }
