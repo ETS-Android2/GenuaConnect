@@ -63,7 +63,9 @@ QR-Code scanner, über vordefinierte Abfragemasken, sich die gewünschten Inform
 - Abfragen können gestartet werden und das Result angezeigt werden.
 
 ### Additional Features
-**TODO:** Hier die Features (Additional Features) aufzählen und evtl. mit einem Screenshot/Gif demonstrieren o. ä.
+
+- App kann auf das Handylicht zugreifen und dieses aktivieren.
+- Ein Sprachmenü indem man die Sprache einstellen kann.
 
 ## Installation
 
