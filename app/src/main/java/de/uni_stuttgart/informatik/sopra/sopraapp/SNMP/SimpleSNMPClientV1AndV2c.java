@@ -146,7 +146,7 @@ public class SimpleSNMPClientV1AndV2c {
      * @return Returns the response.
      * @throws IOException
      */
-    public String getAsString(OID oid) throws IOException {
+    String getAsString(OID oid) throws IOException {
         Log.d("getAsString", "String bekommen: " + oid.toDottedString());
         return sendGet(oid.toString());
     }

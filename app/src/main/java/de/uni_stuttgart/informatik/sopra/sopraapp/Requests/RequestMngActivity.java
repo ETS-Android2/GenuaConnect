@@ -42,11 +42,11 @@ public class RequestMngActivity extends AppCompatActivity {
     public void addMask(View view) {
         SQLiteDatabase database = manager.getWritableDatabase();
 
-        String name = "abfragemaske";
+        String name = "Abfragemaske";
         if(alreadyExists(name)){
             int count = 0;
             do {
-                name = "abfragemaske " + count;
+                name = "Abfragemaske " + count;
                 count++;
             }while(alreadyExists(name));
         }

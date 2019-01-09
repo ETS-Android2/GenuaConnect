@@ -43,7 +43,6 @@ public class WifiStateActivity extends AppCompatActivity {
                     InetAddress inetAddress = enumIpAddr.nextElement();
                     if (inetAddress instanceof Inet6Address && i == 5) {
                         entrys.add("Wifi IPv6: " + inetAddress.getHostAddress());
-
                     }
                     i++;
                 }
@@ -52,7 +51,6 @@ public class WifiStateActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        int serverAddress = dhcpInfo.serverAddress;
         int dns1 = dhcpInfo.dns1;
         int dns2 = dhcpInfo.dns2;
         int gateway = dhcpInfo.gateway;
@@ -66,8 +64,6 @@ public class WifiStateActivity extends AppCompatActivity {
         entrys.add("DNS2: " + dns2String);
         String gatewayString = String.format("%d.%d.%d.%d", (gateway & 0xff), (gateway >> 8 & 0xff), (gateway >> 16 & 0xff), (gateway >> 24 & 0xff));
         entrys.add("Gateway IP: " + gatewayString);
-        String serverString = String.format("%d.%d.%d.%d", (serverAddress & 0xff), (serverAddress >> 8 & 0xff), (serverAddress >> 16 & 0xff), (serverAddress >> 24 & 0xff));
-        entrys.add("Serveraddresse: "+ serverString);
 
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, entrys);
         ListView listView = findViewById(R.id.content_list);

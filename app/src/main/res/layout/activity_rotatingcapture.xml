@@ -30,7 +30,7 @@
         android:layout_height="59dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Klicken Sie zurück, um zum Menü zu kommen."
+        android:text="@string/barcodeText"
         android:textSize="15sp"
         android:textColor="#FFFF"/>
 

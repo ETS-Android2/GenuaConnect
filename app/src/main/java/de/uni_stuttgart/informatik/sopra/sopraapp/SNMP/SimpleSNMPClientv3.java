@@ -36,15 +36,12 @@ import java.util.List;
 import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
 
 /**
- * TODO
+ * Inspired by https://blog.jayway.com/2010/05/21/introduction-to-snmp4j
+ * A client for the SNMP management.
  */
 public class SimpleSNMPClientv3 {
 
-    /**
-     * Inspired by https://blog.jayway.com/2010/05/21/introduction-to-snmp4j
-     * A client for the SNMP version3 management.
-     */
-    String address;
+    private String address;
     private static OctetString localEngineId;
     private volatile Snmp snmp;
     private UserTarget target;
@@ -92,7 +89,7 @@ public class SimpleSNMPClientv3 {
      * @return Returns the given target.
      */
 
-    protected void userInformation() {
+    private void userInformation() {
         snmp.getMessageDispatcher().addMessageProcessingModel(new MPv3());
         USM usm = new USM(SecurityProtocols.getInstance(), new OctetString(snmp.getLocalEngineID()), 0);
         SecurityModels.getInstance().addSecurityModel(usm);
@@ -104,13 +101,13 @@ public class SimpleSNMPClientv3 {
                 getPrivPasswort = new OctetString(splittetEncodeing[1]);
                 getPriv = new OctetString(splittetEncodeing[2]);
             }
-            switch (splittetEncodeing[0]) {
+            switch (getAuth.toString()) {
                 case "SHA":
                     getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
                     break;
                 //case "SHA2":
-                    //Toast.makeText(this, "SHA2 wird nicht unterstuetzt", Toast.LENGTH_LONG).show();
-                    //break;
+                //Toast.makeText(this, "SHA2 wird nicht unterstuetzt", Toast.LENGTH_LONG).show();
+                //break;
                 case "MD5":
                     getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
                     break;
@@ -118,7 +115,7 @@ public class SimpleSNMPClientv3 {
                     getAuthOID = new OID(SnmpConstants.usmNoAuthProtocol);
                     break;
             }
-            switch (splittetEncodeing[2]) {
+            switch (getPriv.toString()) {
                 case "DES":
                     getPrivOID = new OID(SnmpConstants.usmDESPrivProtocol);
                     break;
@@ -181,11 +178,14 @@ public class SimpleSNMPClientv3 {
         target.setTimeout(5000);
         target.setVersion(SnmpConstants.version3);
         if (getAuthOID == SnmpConstants.usmNoAuthProtocol) {
+            Log.d("Welches SecurityLevel ?", "NOAUTH_NOPRIV erkannt.");
             target.setSecurityLevel(SecurityLevel.NOAUTH_NOPRIV);
         } else if (getPrivOID == SnmpConstants.usmNoPrivProtocol && (getAuthOID == SnmpConstants.usmHMACMD5AuthProtocol || getAuthOID ==
                 SnmpConstants.usmHMACSHAAuthProtocol)) {
+            Log.d("Welches SecurityLevel ?", "AUTH_NOPRIV erkannt.");
             target.setSecurityLevel(SecurityLevel.AUTH_NOPRIV);
         } else {
+            Log.d("Welches SecurityLevel ?", "AUTH_PRIV erkannt.");
             target.setSecurityLevel(SecurityLevel.AUTH_PRIV);
         }
         Log.d("getTarget", "gesettet");
@@ -219,7 +219,7 @@ public class SimpleSNMPClientv3 {
      * @return Returns the response.
      * @throws IOException
      */
-    public String getAsString(OID oid) throws IOException {
+    String getAsString(OID oid) throws IOException {
         Log.d("getAsString", "String bekommen: " + oid.toDottedString());
         return sendGet(oid.toString());
     }
@@ -254,7 +254,7 @@ public class SimpleSNMPClientv3 {
      * @param oids Array of OIDs.
      * @return Returns the List.
      */
-    public List<List<String>> getTableAsStrings(OID[] oids) {
+    private List<List<String>> getTableAsStrings(OID[] oids) {
         TableUtils utils = new TableUtils(snmp, new DefaultPDUFactory());
         List<TableEvent> events = utils.getTable(getTarget(), oids, null, null);
         List<List<String>> list = new ArrayList<List<String>>();
@@ -275,7 +275,7 @@ public class SimpleSNMPClientv3 {
      * @param stringOID
      * @return
      */
-    public String sendGet(String stringOID) {
+    private String sendGet(String stringOID) {
         ScopedPDU scopedPDU = (ScopedPDU) DefaultPDUFactory.createPDU(1);
 
         //add OID to PDU
@@ -320,7 +320,7 @@ public class SimpleSNMPClientv3 {
         return null;
     }
 
-    public static String extractSingleString(ResponseEvent event) {
+    private static String extractSingleString(ResponseEvent event) {
         return event.getResponse().get(0).getVariable().toString();
     }
 }

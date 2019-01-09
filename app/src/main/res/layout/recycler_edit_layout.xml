@@ -9,7 +9,7 @@
         android:id="@+id/oid_field"
         android:layout_width="236dp"
         android:layout_height="match_parent"
-        android:hint="Enter OID here"/>
+        android:hint="@string/oidHint"/>
 
     <ImageButton
         android:id="@+id/delete_btn"

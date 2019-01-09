@@ -18,8 +18,8 @@ import com.journeyapps.barcodescanner.CaptureManager;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.journeyapps.barcodescanner.DefaultDecoderFactory;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class RotatingCaptureActivity extends Activity
@@ -40,7 +40,8 @@ public class RotatingCaptureActivity extends Activity
         flashBtn = findViewById(R.id.flashButton);
         barcodeView = findViewById(R.id.barcode_scanner);
         barcodeView.setTorchListener(this);
-        Collection<BarcodeFormat> formats = Arrays.asList(BarcodeFormat.QR_CODE);
+        Collection<BarcodeFormat> formats;
+        formats = Collections.singletonList(BarcodeFormat.QR_CODE);
         barcodeView.getBarcodeView().setDecoderFactory(new DefaultDecoderFactory(formats));
 
         capture = new CaptureManager(this, barcodeView);
@@ -76,7 +77,7 @@ public class RotatingCaptureActivity extends Activity
      * @param view
      */
     public void switchFlashlight(View view) {
-        if ("Turn On".equals(flashBtn.getText())) {
+        if ("Turn On".contentEquals(flashBtn.getText())) {
             barcodeView.setTorchOn();
         } else {
             barcodeView.setTorchOff();
@@ -121,12 +122,12 @@ public class RotatingCaptureActivity extends Activity
 
     @Override
     public void onTorchOn() {
-        flashBtn.setText("Turn Off");
+        flashBtn.setText(getString(R.string.flashTurnOff));
     }
 
     @Override
     public void onTorchOff() {
-        flashBtn.setText("Turn On");
+        flashBtn.setText(getString(R.string.flashTurnOn));
     }
 
     @Override
