@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="RotatingCaptureActivity">
+    tools:context="de.uni_stuttgart.informatik.sopra.sopraapp.RotatingCaptureActivity">
 
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
         android:id="@+id/barcode_scanner"
@@ -26,12 +26,16 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="59dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Klicken Sie zurück, um zum Menü zu kommen."
-        android:textSize="15sp"
-        android:textColor="#FFFF"/>
+        android:layout_marginTop="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:text="@string/barcodeTextDeutsch"
+        android:textColor="#FFFF"
+        android:textSize="15sp" />
 
 </RelativeLayout>

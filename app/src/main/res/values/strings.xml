@@ -6,5 +6,24 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="turn_on">Turn On</string>
     <string name="OID1">.1.3.6.1.2.1.1.1.0</string>
+    <string name="flashTurnOffDeutsch">Blitzlicht Anschalten</string>
+    <string name="flashTurnOnDeutsch">Blitzlicht Ausschalten</string>
+    <string name="barcodeTextDeutsch">Klicken Sie zurück, um zum Menü zu kommen.</string>
+    <string name="abfragenVerwaltungButtonDeutsch">Abfragenverwaltung</string>
+    <string name="wlan_infosButtonDeutsch">WLAN Infos</string>
+    <string name="speichernButtonDeutsch">Speichern</string>
+    <string name="oidHintDeutsch">OID hier eingeben</string>
+    <string name="statusTextBarcodeDeutsch">Platzieren Sie den QR-Code im markierten Bereich.</string>
+    <string name="abgebrochenTextDeutsch">Abgebrochen</string>
+    <string name="noPermissionsInternetDeutsch">Keine Berechtigung das Internet zu nutzen erteilt.</string>
+    <string name="keinWifiQrCodeDeutsch">Kein WIFI QR-Code</string>
+    <string name="wifiNichtAnTextDeutsch">WIFI nicht aktiv. WIFI wird aktiviert.</string>
+    <string name="wlanVerbindungBereitsAktivDeutsch">Es besteht bereits eine aktive WLAN Verbindung. Falls sie nicht mit dem WLAN Netzwerk \'</string>
+    <string name="verbindungZuTextDeutsch">Verbindung zu</string>
+    <string name="wirdAufgebautTextDeutsch">wird aufgebaut.</string>
+    <string name="loeschenAndereWlanTextDeutsch">\' verbunden sind löschen Sie bitte alle Ihre gespeicherten WLAN Netzwerke</string>
+    <string name="keineSichereWlanVerbindungTextDeutsch">Keine sichere WIFI Verbindung möglich.</string>
+    <string name="snmpAbfrageNichtfunktioniertTextDeutsch">SNMP Abfrage hat nicht funktioniert. Bitte überprüfen Sie ob die Abfrage richtig ist.</string>
+    <string name="standardAbfrageDeutschDeutsch">Standardabfrage</string>
 
 </resources>

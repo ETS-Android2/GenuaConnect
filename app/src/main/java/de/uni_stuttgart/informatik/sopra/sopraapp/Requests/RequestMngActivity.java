@@ -1,68 +1,71 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import java.util.ArrayList;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 public class RequestMngActivity extends AppCompatActivity {
 
-    final Activity activity = this;
-    RequestManager manager;
-    ListView listView;
-    ArrayAdapter<String> itemsAdapter;
+    private final Activity activity = this;
+    private RequestDbHelper manager;
+
+    private RecyclerView listView;
+    private RecyclerView.Adapter itemsAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_mng);
-        manager = RequestManager.getInstance();
-
-        //creating the entries for the Request Masks
-        ArrayList<String> entrys = new ArrayList<>();
-        for (String requestMask : manager.getAllMaks()) {
-            entrys.add(requestMask);
-        }
-
-        itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, entrys);
+        manager = new RequestDbHelper(this);
 
         listView = findViewById(R.id.request_list);
+        listView.setLayoutManager(new LinearLayoutManager(this));
+        itemsAdapter = new OverviewAdapter(manager, this);
         listView.setAdapter(itemsAdapter);
 
-        //
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(activity, CustomizeRequestActivity.class);
-                intent.putExtra("requestItem", itemsAdapter.getItem(position));
-                startActivity(intent);
-            }
-        });
-
+        if(!alreadyExists(getString(R.string.standardAbfrageDeutschDeutsch))) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(RequestsContract.COLUMN_REQ_NAME, getString(R.string.standardAbfrageDeutschDeutsch));
+            manager.getWritableDatabase().insert(RequestsContract.REQ_TABLE_NAME, null, contentValues);
+        }
     }
 
     public void addMask(View view) {
-        if (manager.getAllMaks().contains("new Mask")) {
-            int i = 0;
-            while (manager.getAllMaks().contains("new Mask" + i)) {
-                i++;
-            }
-            manager.addNewMask("new Mask" + i);
-            itemsAdapter.add("newMask" + i);
-        } else {
-            manager.addNewMask("new Mask");
-            itemsAdapter.add("newMask");
-        }
-        listView.setAdapter(itemsAdapter);
+        SQLiteDatabase database = manager.getWritableDatabase();
 
+        String name = "Abfragemaske";
+        if(alreadyExists(name)){
+            int count = 0;
+            do {
+                name = "Abfragemaske " + count;
+                count++;
+            }while(alreadyExists(name));
+        }
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(RequestsContract.COLUMN_REQ_NAME, name);
+
+        database.insert(RequestsContract.REQ_TABLE_NAME, null, contentValues);
+
+        itemsAdapter.notifyDataSetChanged();
+
+    }
+
+    private boolean alreadyExists(String name){
+        SQLiteDatabase myDatabase = manager.getReadableDatabase();
+        Cursor c = myDatabase.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_NAME + " = '" + name+"'", null);
+        int amount = c.getCount();
+        c.close();
+        return amount >0;
     }
 }
