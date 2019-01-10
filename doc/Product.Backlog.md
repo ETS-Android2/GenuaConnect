@@ -80,7 +80,7 @@ Beschreibung:
 
 Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske gepackt werden, damit Abfragen gleichen Typs effizienter getätigt werden können. Eine Abfragemaske kann vorher defeniert werden. Dies sind eine bestimmte Menge von Abfragen, die immer gleichzeitig getätigt werden. Eine einzelne Abfrage ist die versuchte Ermittlung von Informationen.
 
-### Feature 1 *Abfragenschema erstellen*
+### Feature 1 Abfragenschema erstellen
 
 > Als Admin möchte ich Abfragenschemata erstellen können, um gleiche Abfragen schneller tätigen zu können.
 
@@ -95,6 +95,41 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 	- Abfragen können keiner, einer oder mehreren Kategorien (Art der Hardware) zugeordnet werden.
 
 	- Abfragen können gestartet werden und das Result angezeigt werden.
+
+#### Implementable Story 1 Abfragemasken Verwalten
+
+> Als Admin möchte ich Abfragemasken erstellen, löschen, bearbeiten und gestartet können.
+
+- Aufwandsschätzung: [69] Story Points
+
+- Akzeptanztests:
+    - Abfragen enthalten mindestens eine Bezeichnung, eine OID (min. Dot-Notation) den 					erwarteten Rückgabewert-Typ.
+    - Abfragen können verwaltet (neu angelegt, bearbeitet, angesehen und gelöscht) werden.
+
+
+#### Task 1 Abfragemasken erstellen
+
+> Als Nutzer möchte ich Abfragemasken erstellen können, um diese bei bedarf nutzen zu können.
+
+- Aufwandsschätzung:
+
+- Tatsächliche benötigte Zeit:
+
+#### Task 2 Abfragemasken bearbeiten
+
+> Als Nutzer möchte ich Abfragemasken bearbeiten könenn, um bei kleinen Änderung keine komplett neue Abfragemaske erstellen zu müssen.
+
+- Aufwandsschätzung:
+
+- Tatsächliche benötigte Zeit:
+
+#### Task 3 Abfragemasken löschen
+
+> Als Nutzer möchte ich Abfragemasken löschen können, um eine bessere Übersicht beibehalten zu können.
+
+- Aufwandsschätzung:
+
+- Tatsächliche benötigte Zeit:
 
 ### Feature 2 *Abfragenmenü*
 
@@ -111,6 +146,45 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 	- Es gibt ein Menüpunkt zur Anzeige von Wlan Informationen.
 
 	- Es gibt ein Menüpunkt zur Anzeige von Systemzuständen.
+
+#### Implementable Story 1 Abfrageschemata verwalten
+
+> TODO
+
+
+#### Task 1 OIDs bearbeiten
+
+> TODO
+
+
+#### Task 2 OIDs hinzufügen
+
+> TODO
+
+
+#### Task 3 OIDs löschen
+
+> TODO
+
+
+#### Implementable Story 2 Einzlne OIDs verwalten
+
+> TODO
+
+#### Task 1 OIDs bearbeiten
+
+> TODO
+
+
+#### Task 2 OIDs hinzufügen
+
+> TODO
+
+
+#### Task 3 OIDs löschen
+
+> TODO
+
 
 ## Epic 3: Oberfläche
 
