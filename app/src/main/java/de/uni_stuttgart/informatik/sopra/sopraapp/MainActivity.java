@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public void onClickDeviceManager(View view) {
+    }
 
     @Override
     protected void onStart() {

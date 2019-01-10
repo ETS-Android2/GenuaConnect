@@ -78,7 +78,7 @@ public class RotatingCaptureActivity extends Activity
      * @param view
      */
     public void switchFlashlight(View view) {
-        if ("Turn On".contentEquals(flashBtn.getText())) {
+        if (getString(R.string.flashTurnOnDeutsch).contentEquals(flashBtn.getText())) {
             barcodeView.setTorchOn();
         } else {
             barcodeView.setTorchOff();

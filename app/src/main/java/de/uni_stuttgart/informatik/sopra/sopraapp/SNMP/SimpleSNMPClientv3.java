@@ -145,6 +145,7 @@ public class SimpleSNMPClientv3 {
             OctetString userName = new OctetString(decode.getUsername());
             Log.d("userName: ", decode.getUsername());
             Log.d("getAuthPasswort: ", getAuthPasswort.toString());
+            Log.d("priv: ", getPriv.toString());
             Log.d("getPrivPasswort: ", getPrivPasswort.toString());
             Log.d("addUser: ", "Starten");
             snmp.getUSM().addUser(userName, new UsmUser(userName, getAuthOID, getAuthPasswort, getPrivOID, getPrivPasswort));

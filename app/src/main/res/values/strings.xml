@@ -6,8 +6,8 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="turn_on">Turn On</string>
     <string name="OID1">.1.3.6.1.2.1.1.1.0</string>
-    <string name="flashTurnOffDeutsch">Blitzlicht Anschalten</string>
-    <string name="flashTurnOnDeutsch">Blitzlicht Ausschalten</string>
+    <string name="flashTurnOffDeutsch">Blitzlicht Ausshalten</string>
+    <string name="flashTurnOnDeutsch">Blitzlicht Anschalten</string>
     <string name="barcodeTextDeutsch">Klicken Sie zurück, um zum Menü zu kommen.</string>
     <string name="abfragenVerwaltungButtonDeutsch">Abfragenverwaltung</string>
     <string name="wlan_infosButtonDeutsch">WLAN Infos</string>

@@ -12,26 +12,39 @@
         android:id="@+id/buttonWifInf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="76dp"
         android:onClick="wifiInfReact"
         android:text="@string/wlan_infosButtonDeutsch"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/request_management" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <Button
         android:id="@+id/request_management"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="88dp"
         android:layout_marginEnd="148dp"
-        android:layout_marginBottom="1dp"
-        android:text="@string/abfragenVerwaltungButtonDeutsch"
+        android:layout_marginBottom="76dp"
         android:onClick="requestManagement"
-        app:layout_constraintBottom_toTopOf="@+id/buttonWifInf"
+        android:text="@string/abfragenVerwaltungButtonDeutsch"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="107dp"
+        android:text="Geräteverwaltung"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/request_management" />
 </android.support.constraint.ConstraintLayout>
