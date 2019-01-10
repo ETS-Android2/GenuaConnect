@@ -84,11 +84,8 @@ public class SimpleSNMPClientv3 {
     }
 
     /**
-     * Returns a target, which contains the information about to where and how the data should be fetched.
-     *
-     * @return Returns the given target.
+     * Hier werden die Informationen wie authProtocoll, privProtocoll, privPasswort, authPasswort, userName initialisiert.
      */
-
     private void userInformation() {
         snmp.getMessageDispatcher().addMessageProcessingModel(new MPv3());
         USM usm = new USM(SecurityProtocols.getInstance(), new OctetString(snmp.getLocalEngineID()), 0);
@@ -158,6 +155,11 @@ public class SimpleSNMPClientv3 {
         }
     }
 
+    /**
+     * Returns a target, which contains the information about to where and how the data should be fetched.
+     *
+     * @return Returns the given target.
+     */
     protected Target getTarget() {
         if (target != null) {
             return target;
@@ -186,9 +188,9 @@ public class SimpleSNMPClientv3 {
             targetAdress = GenericAddress.parse("udp:" + addrToUse + "/" + "161");
         }
         System.out.println(targetAdress);
-        Address targetAddress = GenericAddress.parse(address);
+        //Address targetAddress = GenericAddress.parse(address);
         target = new UserTarget();
-        target.setAddress(targetAddress);
+        target.setAddress(targetAdress);
         target.setSecurityName(new OctetString(decode.getUsername()));
         target.setRetries(2);
         target.setTimeout(5000);
@@ -292,7 +294,7 @@ public class SimpleSNMPClientv3 {
      * @return
      */
     private String sendGet(String stringOID) {
-        ScopedPDU scopedPDU = (ScopedPDU) DefaultPDUFactory.createPDU(1);
+        ScopedPDU scopedPDU = (ScopedPDU) DefaultPDUFactory.createPDU(3);
 
         //add OID to PDU
         scopedPDU.add(new VariableBinding(new OID(stringOID)));
