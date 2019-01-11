@@ -193,8 +193,8 @@ public class SimpleSNMPClientv3 {
         target = new UserTarget();
         target.setAddress(targetAdress);
         target.setSecurityName(new OctetString(decode.getUsername()));
-        target.setRetries(2);
-        target.setTimeout(5000);
+        target.setRetries(3);
+        target.setTimeout(15000);
         target.setVersion(SnmpConstants.version3);
         if (getAuthOID == SnmpConstants.usmNoAuthProtocol) {
             Log.d("Welches SecurityLevel ?", "NOAUTH_NOPRIV erkannt.");
