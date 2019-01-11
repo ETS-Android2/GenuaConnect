@@ -9,18 +9,14 @@
  import android.support.v7.widget.RecyclerView;
  import android.util.Log;
  import android.view.View;
- import android.widget.ImageButton;
 
  import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 public class CustomizeRequestActivity extends AppCompatActivity {
 
-    private ImageButton renameButton;
-
     private RequestDbHelper manager;
     private RecyclerView listView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
 
     private int requestId;
 
@@ -31,14 +27,14 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         manager = new RequestDbHelper(this);
 
         listView = findViewById(R.id.oids_list);
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(layoutManager);
         requestId = getIntent().getIntExtra("requestId", 0);
         Log.d("CustomizeRequestActivity", "Id : " + requestId);
         adapter = new CustomizeAdapter(manager, requestId);
         listView.setAdapter(adapter);
 
-        renameButton = new ImageButton(this);
+        //ImageButton renameButton = new ImageButton(this);
         //Drawable icon = getDrawable(android.support.fragment.R.drawable.ed);
         //renameButton.setImageDrawable();
     }
@@ -51,6 +47,7 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         cursor.moveToFirst();
         String request = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
         setTitle(request);
+        cursor.close();
     }
 
     public void saveOIDs(View view) {
@@ -59,6 +56,7 @@ public class CustomizeRequestActivity extends AppCompatActivity {
 
         for(int pos = adapter.getItemCount()-1; pos>=0; pos--){
             CustomizeAdapter.ViewHolder element =(CustomizeAdapter.ViewHolder) listView.findViewHolderForLayoutPosition(pos);
+            assert element != null;
             String oid = element.editText.getText().toString();
             Log.d("saveOID String", "oid");
 

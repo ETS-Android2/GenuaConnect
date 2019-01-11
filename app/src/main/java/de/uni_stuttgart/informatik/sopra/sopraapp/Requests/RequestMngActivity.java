@@ -1,6 +1,5 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,12 +13,9 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 public class RequestMngActivity extends AppCompatActivity {
 
-    private final Activity activity = this;
     private RequestDbHelper manager;
 
-    private RecyclerView listView;
     private RecyclerView.Adapter itemsAdapter;
-    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +23,12 @@ public class RequestMngActivity extends AppCompatActivity {
         setContentView(R.layout.activity_request_mng);
         manager = new RequestDbHelper(this);
 
-        listView = findViewById(R.id.request_list);
+        RecyclerView listView = findViewById(R.id.request_list);
         listView.setLayoutManager(new LinearLayoutManager(this));
         itemsAdapter = new OverviewAdapter(manager, this);
         listView.setAdapter(itemsAdapter);
 
-        if(!alreadyExists(getString(R.string.standardAbfrageDeutschDeutsch))) {
+        if (!alreadyExists(getString(R.string.standardAbfrageDeutschDeutsch))) {
             ContentValues contentValues = new ContentValues();
             contentValues.put(RequestsContract.COLUMN_REQ_NAME, getString(R.string.standardAbfrageDeutschDeutsch));
             manager.getWritableDatabase().insert(RequestsContract.REQ_TABLE_NAME, null, contentValues);
@@ -43,12 +39,12 @@ public class RequestMngActivity extends AppCompatActivity {
         SQLiteDatabase database = manager.getWritableDatabase();
 
         String name = "Abfragemaske";
-        if(alreadyExists(name)){
+        if (alreadyExists(name)) {
             int count = 0;
             do {
                 name = "Abfragemaske " + count;
                 count++;
-            }while(alreadyExists(name));
+            } while (alreadyExists(name));
         }
 
         ContentValues contentValues = new ContentValues();
@@ -61,11 +57,11 @@ public class RequestMngActivity extends AppCompatActivity {
 
     }
 
-    private boolean alreadyExists(String name){
+    private boolean alreadyExists(String name) {
         SQLiteDatabase myDatabase = manager.getReadableDatabase();
-        Cursor c = myDatabase.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_NAME + " = '" + name+"'", null);
+        Cursor c = myDatabase.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_NAME + " = '" + name + "'", null);
         int amount = c.getCount();
         c.close();
-        return amount >0;
+        return amount > 0;
     }
 }

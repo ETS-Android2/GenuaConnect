@@ -20,13 +20,13 @@ public class ApplianceQrDecode {
         return applianceInfos.get("IPv4");
     }
 
-    public String getPublicString() {
-        return applianceInfos.get("public");
-    }
+    //public String getPublicString() {
+      //  return applianceInfos.get("public");
+    //}
 
-    public String getAddressV6() {
-        return applianceInfos.get("ipv6");
-    }
+    //public String getAddressV6() {
+      //  return applianceInfos.get("ipv6");
+    //}
 
     public String getUsername() {
         return applianceInfos.get("user");

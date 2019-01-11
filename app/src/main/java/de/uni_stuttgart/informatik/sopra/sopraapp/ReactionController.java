@@ -19,7 +19,7 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTask;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTaskV3;
 
-public class ReactionController {
+class ReactionController {
 
     ReactionController(Activity activity, String qrCode) {
         Log.d("Reacting To QR-Code", "QR-String = " + qrCode);
@@ -41,7 +41,7 @@ public class ReactionController {
 
                 cursor = readable.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where "+ RequestsContract.COLUMN_OID_REQ + " = " + id, null);
                 String result1 = "";
-                while (cursor.moveToNext()) { ;
+                while (cursor.moveToNext()) {
                     SnmpTaskV3 snmpTaskV3 = new SnmpTaskV3(clientv3, activity);
                     Log.d("query snmp", cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_OID_STRING)));
                     snmpTaskV3.execute(cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_OID_STRING)));
@@ -79,7 +79,7 @@ public class ReactionController {
 
                 cursor = readable.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where "+ RequestsContract.COLUMN_OID_REQ + " = " + id, null);
                 String result1 = "";
-                while (cursor.moveToNext()) { ;
+                while (cursor.moveToNext()) {
                     SnmpTask snmpTask1 = new SnmpTask(clientv2c, activity);
                     Log.d("query snmp", cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_OID_STRING)));
                     snmpTask1.execute(cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_OID_STRING)));

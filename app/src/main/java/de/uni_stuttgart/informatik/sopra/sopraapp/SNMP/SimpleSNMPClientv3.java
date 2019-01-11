@@ -107,9 +107,6 @@ public class SimpleSNMPClientv3 {
                     Log.d("getAuth: ", getAuth.toString());
                     getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
                     break;
-                //case "SHA2":
-                //Toast.makeText(this, "SHA2 wird nicht unterstuetzt", Toast.LENGTH_LONG).show();
-                //break;
                 case "MD5":
                     Log.d("getAuth: ", getAuth.toString());
                     getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
