@@ -100,8 +100,9 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
         SQLiteDatabase database = data.getReadableDatabase();
 
         Cursor cursor = database.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME, null);
+        int cursorCount = cursor.getCount();
         cursor.close();
-        return cursor.getCount();
+        return cursorCount;
     }
 
 

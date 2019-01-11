@@ -34,8 +34,7 @@ class WifiConnect {
         Log.d("WIFI Params setted", context.getClass() + "\nauthentification: " + authentification + "\nssid: " + ssid + "\npass: " + password);
 
         //enable WIFI
-        WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-
+        WifiManager wifi = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         if (!wifi.isWifiEnabled()) {
             Toast.makeText(context, context.getString(R.string.wifiNichtAnTextDeutsch), Toast.LENGTH_LONG).show();
             wifi.setWifiEnabled(true);
@@ -65,7 +64,7 @@ class WifiConnect {
         }
 
         //connecting to WIFI
-        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         wifiManager.disconnect();
         wifiManager.enableNetwork(conf.networkId, true);

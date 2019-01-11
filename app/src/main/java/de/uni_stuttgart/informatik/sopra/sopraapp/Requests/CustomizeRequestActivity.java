@@ -30,7 +30,7 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(layoutManager);
         requestId = getIntent().getIntExtra("requestId", 0);
-        Log.d("CustomizeRequestActivity", "Id : " + requestId);
+        Log.d("CustomizeRequestActivit", "Id : " + requestId);
         adapter = new CustomizeAdapter(manager, requestId);
         listView.setAdapter(adapter);
 

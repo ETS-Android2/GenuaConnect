@@ -26,7 +26,7 @@ public class WifiStateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wifi_state);
 
-        mng = (WifiManager) getSystemService(WIFI_SERVICE);
+        mng = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         dhcpInfo = mng.getDhcpInfo();
         wifiInfo = mng.getConnectionInfo();
 

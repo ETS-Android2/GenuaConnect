@@ -76,8 +76,9 @@ public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.View
         SQLiteDatabase database = data.getReadableDatabase();
 
         Cursor cursor = database.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where " + RequestsContract.COLUMN_OID_REQ + " = " + requestId , null);
+        int cursorCount = cursor.getCount();
         cursor.close();
-        return cursor.getCount();
+        return cursorCount;
     }
 
 
