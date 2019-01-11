@@ -90,7 +90,7 @@ public class WifiConnect {
             wifiManager.reconnect();
             wifiManager.reassociate();
         }
-        Toast.makeText(context, context.getString(R.string.verbindungZuTextDeutsch) + ssid + context.getString(R.string.wirdAufgebautTextDeutsch), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, context.getString(R.string.verbindungZuTextDeutsch) + " " + ssid + " " + context.getString(R.string.wirdAufgebautTextDeutsch), Toast.LENGTH_SHORT).show();
     }
 
     /**

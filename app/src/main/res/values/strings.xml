@@ -19,8 +19,8 @@
     <string name="keinWifiQrCodeDeutsch">Kein WIFI QR-Code</string>
     <string name="wifiNichtAnTextDeutsch">WIFI nicht aktiv. WIFI wird aktiviert.</string>
     <string name="wlanVerbindungBereitsAktivDeutsch">Es besteht bereits eine aktive WLAN Verbindung. Falls sie nicht mit dem WLAN Netzwerk \'</string>
-    <string name="verbindungZuTextDeutsch">Verbindung zu</string>
-    <string name="wirdAufgebautTextDeutsch">wird aufgebaut.</string>
+    <string name="verbindungZuTextDeutsch">Verbindung zu </string>
+    <string name="wirdAufgebautTextDeutsch"> wird aufgebaut.</string>
     <string name="loeschenAndereWlanTextDeutsch">\' verbunden sind löschen Sie bitte alle Ihre gespeicherten WLAN Netzwerke</string>
     <string name="keineSichereWlanVerbindungTextDeutsch">Keine sichere WIFI Verbindung möglich.</string>
     <string name="snmpAbfrageNichtfunktioniertTextDeutsch">SNMP Abfrage hat nicht funktioniert. Bitte überprüfen Sie ob die Abfrage richtig ist.</string>
