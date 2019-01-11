@@ -8,7 +8,6 @@ import org.snmp4j.Target;
 import org.snmp4j.TransportMapping;
 import org.snmp4j.UserTarget;
 import org.snmp4j.event.ResponseEvent;
-import org.snmp4j.event.ResponseListener;
 import org.snmp4j.mp.MPv3;
 import org.snmp4j.mp.SnmpConstants;
 import org.snmp4j.security.SecurityLevel;
@@ -26,12 +25,8 @@ import org.snmp4j.smi.Variable;
 import org.snmp4j.smi.VariableBinding;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 import org.snmp4j.util.DefaultPDUFactory;
-import org.snmp4j.util.TableEvent;
-import org.snmp4j.util.TableUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
 
@@ -45,7 +40,6 @@ public class SimpleSNMPClientv3 {
     private static OctetString localEngineId;
     private volatile Snmp snmp;
     private UserTarget target;
-    private TransportMapping<UdpAddress> transportMapping;
     private ApplianceQrDecode decode;
     private OctetString getAuth = null;
     private OctetString getPrivPasswort = null;
@@ -53,12 +47,22 @@ public class SimpleSNMPClientv3 {
     private OID getAuthOID = null;
     private OID getPrivOID = null;
 
+    /**
+     * Konstruktor
+     *
+     * @param qrCode Der QR-Code decoder
+     */
     public SimpleSNMPClientv3(String qrCode) {
         decode = new ApplianceQrDecode(qrCode);
         this.address = decode.getAddress();
         Log.d("StartAusfuehren", "Ausgefueht");
     }
 
+    /**
+     * Stopt die SNMP Instanz
+     *
+     * @throws IOException
+     */
     public void stop() throws IOException {
         snmp.close();
         Log.d("Stop", "Gestoppt");
@@ -70,7 +74,7 @@ public class SimpleSNMPClientv3 {
      * @throws IOException
      */
     protected void start() throws IOException {
-        transportMapping = new DefaultUdpTransportMapping();
+        TransportMapping<UdpAddress> transportMapping = new DefaultUdpTransportMapping();
         Log.d("Snmp Connect", "asynchroner Nebenthread gestartet");
 
         snmp = new Snmp(transportMapping);
@@ -160,7 +164,7 @@ public class SimpleSNMPClientv3 {
      *
      * @return Returns the given target.
      */
-    protected Target getTarget() {
+    private Target getTarget() {
         if (target != null) {
             return target;
         }
@@ -211,26 +215,6 @@ public class SimpleSNMPClientv3 {
     }
 
     /**
-     * Handles multiple OIDs.
-     *
-     * @param oids Array of OIDs.
-     * @return Returns the ResponseEvent.
-     * @throws IOException
-     */
-    public ResponseEvent get(OID oids[]) throws IOException {
-        ScopedPDU pdu = new ScopedPDU();
-        for (OID oid : oids) {
-            pdu.add(new VariableBinding(oid));
-        }
-        pdu.setType(ScopedPDU.GET);
-        ResponseEvent event = snmp.send(pdu, getTarget(), transportMapping);
-        if (event != null) {
-            return event;
-        }
-        throw new RuntimeException("Zeitüberschreitung für GET");
-    }
-
-    /**
      * Returns the response of the OID as a string.
      *
      * @param oid Is the OID.
@@ -242,56 +226,11 @@ public class SimpleSNMPClientv3 {
         return sendGet(oid.toString());
     }
 
-    public void getAsString(OID oids, ResponseEvent listener) {
-        try {
-            snmp.send(getPDU(new OID[]{oids}), getTarget(), null, (ResponseListener) listener);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     /**
-     * Gets the PDU.
+     * Die Getmethode fuer die Abfragen. Auch wird hier der PDU gesettet und geaddet.
      *
-     * @param oids Array of the OIDs.
-     * @return Returns the getted PDU.
-     */
-    private ScopedPDU getPDU(OID oids[]) {
-        ScopedPDU pdu = new ScopedPDU();
-        for (OID oid : oids) {
-            pdu.add(new VariableBinding(oid));
-        }
-        pdu.setType(ScopedPDU.GET);
-        Log.d("getPDU", "got the PDU");
-        return pdu;
-    }
-
-    /**
-     * Lists the informations of the OIDs as a table.
-     *
-     * @param oids Array of OIDs.
-     * @return Returns the List.
-     */
-    private List<List<String>> getTableAsStrings(OID[] oids) {
-        TableUtils utils = new TableUtils(snmp, new DefaultPDUFactory());
-        List<TableEvent> events = utils.getTable(getTarget(), oids, null, null);
-        List<List<String>> list = new ArrayList<List<String>>();
-        for (TableEvent event : events) {
-            if (event.isError()) {
-                throw new RuntimeException(event.getErrorMessage());
-            }
-            List<String> stringsList = new ArrayList<String>();
-            list.add(stringsList);
-            for (VariableBinding variableBinding : event.getColumns()) {
-                stringsList.add(variableBinding.getVariable().toString());
-            }
-        }
-        return list;
-    }
-
-    /**
-     * @param stringOID
-     * @return
+     * @param stringOID Die OID.
+     * @return Returned den OID als String und returned null wenn PDU null ist.
      */
     private String sendGet(String stringOID) {
         ScopedPDU scopedPDU = (ScopedPDU) DefaultPDUFactory.createPDU(3);
@@ -336,9 +275,5 @@ public class SimpleSNMPClientv3 {
             e.printStackTrace();
         }
         return null;
-    }
-
-    private static String extractSingleString(ResponseEvent event) {
-        return event.getResponse().get(0).getVariable().toString();
     }
 }

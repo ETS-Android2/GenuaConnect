@@ -19,6 +19,11 @@ public class SnmpTask extends AsyncTask<String, Void, String> {
     private SimpleSNMPClientV1AndV2c snmpClient;
     private Context context;
 
+    /**
+     * Konstruktor
+     * @param snmpClient Der SNMPv1v2 Manager.
+     * @param context Context der Klasse.
+     */
     public SnmpTask(SimpleSNMPClientV1AndV2c snmpClient, Context context) {
         this.snmpClient = snmpClient;
         this.context = context;
