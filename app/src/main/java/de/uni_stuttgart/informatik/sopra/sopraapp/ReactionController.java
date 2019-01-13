@@ -26,12 +26,11 @@ class ReactionController {
         if (qrCode.contains("WIFI")) {
             Log.d("Reacting To QR-Code", "detected a WIFI QR-String");
             new WifiConnect().tryConnect(qrCode, activity);
-        } else if (!new ApplianceQrDecode(qrCode).getPassword().equals("")) {
-            Log.d("Reacting To QR-Code", "detected a Appliance QR-String");
+        } else if (!new ApplianceQrDecode(qrCode).getUsername().equals("public")) {
+            Log.d("Reacting To QR-Code", "detected a Appliance QR-String V3");
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED&& ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.INTERNET}, 2);
             } else {
-                SimpleSNMPClientv3 clientv3 = new SimpleSNMPClientv3(qrCode);
                 RequestDbHelper dbHelper = new RequestDbHelper(activity);
                 SQLiteDatabase readable = dbHelper.getReadableDatabase();
                 Cursor cursor = readable.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_NAME + " = 'Standardabfrage' ",null);
@@ -39,41 +38,41 @@ class ReactionController {
                 int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
 
                 cursor = readable.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where "+ RequestsContract.COLUMN_OID_REQ + " = " + id, null);
-                if (cursor == null) {
-                    Toast.makeText(activity, "Keine OID's gefunden.", Toast.LENGTH_SHORT).show();
+                Log.d("Cursor.getCount", cursor.getCount()+"");
+                if (cursor.getCount() == 0) {
+                    Toast.makeText(activity, activity.getString(R.string.keine_OIDs_Deutsch), Toast.LENGTH_LONG).show();
                     return;
                 }
+                SimpleSNMPClientv3 clientv3 = new SimpleSNMPClientv3(qrCode);
                 String result1 = "";
                 while (cursor.moveToNext()) {
-                    SnmpTaskV3 snmpTaskV3 = new SnmpTaskV3(clientv3, activity);
+                    SnmpTaskV3 snmpTaskV3 = new SnmpTaskV3(clientv3);
                     Log.d("query snmp", cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_OID_STRING)));
                     snmpTaskV3.execute(cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_OID_STRING)));
                     try {
                         result1 += snmpTaskV3.get() + "\n";
                         Log.d("snmptest", "result: " + result1);
                         Toast.makeText(activity, result1, Toast.LENGTH_LONG).show();
-                        if (result1.equals("")) {
+                        if (result1.isEmpty()) {
                             Toast.makeText(activity, activity.getString(R.string.snmpAbfrageNichtfunktioniertTextDeutsch), Toast.LENGTH_LONG).show();
                         }
                     } catch (InterruptedException | ExecutionException e) {
                         e.printStackTrace();
                     }
-                    try {
-                        clientv3.stop();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                }
+                try {
+                    clientv3.stop();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
                 cursor.close();
-                //Toast.makeText(activity, "SNMPv3 wird nicht unterstuetzt.", Toast.LENGTH_LONG).show();
             }
-        } else {
+        } else if (new ApplianceQrDecode(qrCode).getUsername().equals("public")){
             Log.d("React to QR-Code V1/V2c", "detected a Appliance QR-String V1/V2c");
 
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.INTERNET}, 3);
             } else {
-                SimpleSNMPClientV1AndV2c clientv2c = new SimpleSNMPClientV1AndV2c(qrCode);
                 RequestDbHelper dbHelper = new RequestDbHelper(activity);
                 SQLiteDatabase readable = dbHelper.getReadableDatabase();
                 Cursor cursor = readable.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_NAME + " = 'Standardabfrage' ",null);
@@ -81,6 +80,11 @@ class ReactionController {
                 int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
 
                 cursor = readable.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where "+ RequestsContract.COLUMN_OID_REQ + " = " + id, null);
+                if (cursor.getCount() == 0) {
+                    Toast.makeText(activity, activity.getString(R.string.keine_OIDs_Deutsch), Toast.LENGTH_LONG).show();
+                    return;
+                }
+                SimpleSNMPClientV1AndV2c clientv2c = new SimpleSNMPClientV1AndV2c(qrCode);
                 String result1 = "";
                 while (cursor.moveToNext()) {
                     SnmpTask snmpTask1 = new SnmpTask(clientv2c);
@@ -90,17 +94,17 @@ class ReactionController {
                         result1 += snmpTask1.get() + "\n";
                         Log.d("snmptest", "result: " + result1);
                         Toast.makeText(activity, result1, Toast.LENGTH_LONG).show();
-                        if (result1.equals("")) {
+                        if (result1.isEmpty()) {
                             Toast.makeText(activity, activity.getString(R.string.snmpAbfrageNichtfunktioniertTextDeutsch), Toast.LENGTH_LONG).show();
                         }
                     } catch (InterruptedException | ExecutionException e) {
                         e.printStackTrace();
                     }
-                    try {
-                        clientv2c.stop();
-                    } catch (IOException e) {
-                        Log.e("snmpClose", e.getMessage());
-                    }
+                }
+                try {
+                    clientv2c.stop();
+                } catch (IOException e) {
+                    Log.e("snmpClose", e.getMessage());
                 }
                 cursor.close();
             }

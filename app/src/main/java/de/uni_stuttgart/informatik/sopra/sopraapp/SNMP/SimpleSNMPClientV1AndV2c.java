@@ -37,6 +37,10 @@ public class SimpleSNMPClientV1AndV2c {
     private CommunityTarget target;
     private ApplianceQrDecode decode;
 
+    /**
+     * Konstruktor
+     * @param qrCode Der QR Code decoder.
+     */
     public SimpleSNMPClientV1AndV2c(String qrCode) {
         SNMP4JSettings.setAllowSNMPv2InV1(true);
         SNMP4JSettings.setSnmp4jStatistics(SNMP4JSettings.Snmp4jStatistics.extended);
@@ -45,6 +49,10 @@ public class SimpleSNMPClientV1AndV2c {
         this.address = decode.getAddress();
     }
 
+    /**
+     * Stoppt den SNMP Client.
+     * @throws IOException If a transport mapping cannot be closed successfully
+     */
     public void stop() throws IOException {
         snmp.close();
         Log.d("SNMP", "Interface for SNMP closed");
@@ -53,7 +61,7 @@ public class SimpleSNMPClientV1AndV2c {
     /**
      * Starts the SNMP Interface.
      *
-     * @throws IOException
+     * @throws IOException If an IO operation exception occurs while starting the listener.
      */
     public void start() throws IOException {
         TransportMapping<UdpAddress> transportMapping = new DefaultUdpTransportMapping();
@@ -106,8 +114,8 @@ public class SimpleSNMPClientV1AndV2c {
         target.setCommunity(new OctetString("public"));
         target.setSecurityLevel(SecurityLevel.NOAUTH_NOPRIV);
         target.setAddress(targetAdress);
-        target.setRetries(2);
-        target.setTimeout(5000);
+        target.setRetries(3);
+        target.setTimeout(10000);
         target.setVersion(SnmpConstants.version1);
         Log.d("getTarget", "getTarget erfolgreich");
         return target;
@@ -118,9 +126,8 @@ public class SimpleSNMPClientV1AndV2c {
      *
      * @param oid Is the OID.
      * @return Returns the response.
-     * @throws IOException
      */
-    String getAsString(OID oid) throws IOException {
+    String getAsString(OID oid) {
         Log.d("getAsString", "String bekommen: " + oid.toDottedString());
         return sendGet(oid.toString());
     }
@@ -153,6 +160,7 @@ public class SimpleSNMPClientV1AndV2c {
                 if (pduResult == null) {
                     return null;
                 }
+
 
                 for (VariableBinding varBind : pduResult.getVariableBindings()) {
                     return varBind.toValueString();

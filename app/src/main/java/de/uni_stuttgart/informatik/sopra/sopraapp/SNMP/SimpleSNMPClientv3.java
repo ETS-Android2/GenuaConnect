@@ -61,7 +61,7 @@ public class SimpleSNMPClientv3 {
     /**
      * Stopt die SNMP Instanz
      *
-     * @throws IOException
+     * @throws IOException If a transport mapping cannot be closed successfully
      */
     public void stop() throws IOException {
         snmp.close();
@@ -71,7 +71,7 @@ public class SimpleSNMPClientv3 {
     /**
      * Starts the SNMP Interface.
      *
-     * @throws IOException
+     * @throws IOException If an IO operation exception occurs while starting the listener.
      */
     protected void start() throws IOException {
         TransportMapping<UdpAddress> transportMapping = new DefaultUdpTransportMapping();
@@ -194,7 +194,7 @@ public class SimpleSNMPClientv3 {
         target.setAddress(targetAdress);
         target.setSecurityName(new OctetString(decode.getUsername()));
         target.setRetries(3);
-        target.setTimeout(15000);
+        target.setTimeout(10000);
         target.setVersion(SnmpConstants.version3);
         if (getAuthOID == SnmpConstants.usmNoAuthProtocol) {
             Log.d("Welches SecurityLevel ?", "NOAUTH_NOPRIV erkannt.");

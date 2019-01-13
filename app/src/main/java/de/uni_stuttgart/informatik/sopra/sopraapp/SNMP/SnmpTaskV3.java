@@ -1,6 +1,5 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -19,9 +18,8 @@ public class SnmpTaskV3 extends AsyncTask<String, Void, String> {
     /**
      * Konstruktor
      * @param clientv3 Der SNMPv3 Manager.
-     * @param context Context der Klasse.
      */
-    public SnmpTaskV3(SimpleSNMPClientv3 clientv3, Context context) {
+    public SnmpTaskV3(SimpleSNMPClientv3 clientv3) {
         this.snmpClientv3 = clientv3;
     }
 
