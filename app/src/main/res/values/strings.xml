@@ -25,6 +25,5 @@
     <string name="keineSichereWlanVerbindungTextDeutsch">Keine sichere WIFI Verbindung möglich.</string>
     <string name="snmpAbfrageNichtfunktioniertTextDeutsch">SNMP Abfrage hat nicht funktioniert. Bitte überprüfen Sie ob die Abfrage richtig ist.</string>
     <string name="standardAbfrageDeutschDeutsch">Standardabfrage</string>
-    <string name="keine_OIDs_Deutsch">Keine OID`s verfügbar. Bitte fügen Sie mindestens eine OID hinzu.</string>
 
 </resources>
