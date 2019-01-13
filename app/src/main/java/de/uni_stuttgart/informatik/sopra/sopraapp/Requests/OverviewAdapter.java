@@ -18,11 +18,11 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     private RequestDbHelper data;
     private Activity activity;
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView requestText;
-        public ImageButton imageButton;
+    class ViewHolder extends RecyclerView.ViewHolder{
+        TextView requestText;
+        ImageButton imageButton;
 
-        public ViewHolder(View view){
+        ViewHolder(View view){
             super(view);
             requestText = view.findViewById(R.id.reqText);
             imageButton = view.findViewById(R.id.deleteReq_btn);
@@ -68,11 +68,12 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
         }
     }
 
-    public OverviewAdapter (RequestDbHelper requestDbHelper, Activity activity){
+    OverviewAdapter(RequestDbHelper requestDbHelper, Activity activity){
         this.data = requestDbHelper;
         this.activity = activity;
     }
 
+    @NonNull
     @Override
     public OverviewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout,parent,false);
@@ -99,7 +100,9 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
         SQLiteDatabase database = data.getReadableDatabase();
 
         Cursor cursor = database.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME, null);
-        return cursor.getCount();
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        return cursorCount;
     }
 
 

@@ -9,15 +9,15 @@ import java.util.ArrayList;
 
 public class RequestDbHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 3;
-    public static final String DATABASE_NAME = "Requests.db";
+    private static final int DATABASE_VERSION = 4;
+    private static final String DATABASE_NAME = "Requests.db";
 
     //sql command to destroy request table
-    public static final String SQL_DELETE_REQUESTS =
+    private static final String SQL_DELETE_REQUESTS =
             "DROP TABLE IF EXISTS " + RequestsContract.REQ_TABLE_NAME;
 
     //sql command to destroy oid table
-    public static final String SQL_DELETE_OID =
+    private static final String SQL_DELETE_OID =
             "DROP TABLE IF EXISTS " + RequestsContract.OID_TABLE_NAME;
 
     public RequestDbHelper (Context context) {

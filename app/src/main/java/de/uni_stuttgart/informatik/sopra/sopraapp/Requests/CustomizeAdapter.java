@@ -16,11 +16,11 @@ public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.View
     private RequestDbHelper data;
     private int requestId;
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public EditText editText;
-        public ImageButton imageButton;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        EditText editText;
+        ImageButton imageButton;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             editText = view.findViewById(R.id.oid_field);
             imageButton = view.findViewById(R.id.delete_btn);
@@ -44,11 +44,12 @@ public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.View
             });
         }
     }
-    public CustomizeAdapter(RequestDbHelper requestDbHelper, int id) {
+    CustomizeAdapter(RequestDbHelper requestDbHelper, int id) {
         this.data = requestDbHelper;
         this.requestId = id;
     }
 
+    @NonNull
     @Override
     public CustomizeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_edit_layout, parent, false);
@@ -75,7 +76,9 @@ public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.View
         SQLiteDatabase database = data.getReadableDatabase();
 
         Cursor cursor = database.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where " + RequestsContract.COLUMN_OID_REQ + " = " + requestId , null);
-        return cursor.getCount();
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        return cursorCount;
     }
 
 

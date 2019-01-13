@@ -50,17 +50,65 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
     - Gestartete Abfragen werden periodisch erneut abgefragt.
 
+#### Implementable Story 1 Zugriff auf die Handykamera
+
+> Die App soll die Erlaubnis besitzen, auf die Kamerafunktionen zugreifen zu können. Danach wird beim erstmaligem öffnen gefragt.
+
+- Aufwandsschätzung [] Storypoints
+
+- Akzeptanztest:
+
+#### Task 1 //TODO
+
+#### Implementable Story 2 Geräte QR-Code wird erkannt
+
+> Als Nutzer möchte ich, dass der Scanner erkennt ob es sich um ein Geräte QR-Code handelt.
+
+- Aufwandsschätzung [14] Storypoints
+
+- Akzeptanztest:
+	- Zugriff auf die Handykamera
+	- QR-Codes können gescannt werden
+	- QR-Code wird analysiert
+
+#### Task 1 Kamerazugriff
+
+> Die App soll die Erlaubnis erteilt bekommen, auf die Kamerafunktionen zugreifen zu können. Danach wird beim erstmaligem öffnen gefragt.
+
+#### Task 2 QR-Code Analyse
+
+> Der QR-Code wird eingelesen und dessen Inhalt wird auf die richtige Form geprüft.
+
+
 ### Feature 3 *Blitzlicht*
 
 > Als Admin möchte ich, dass ich bei Bedarf das Handyblitzlicht aktivieren kann, um einen QR-Code auch bei nicht optimalen Lichtverhältnissen scannen zu können.
 
-- Aufwandsschätzung: S
+- Aufwandsschätzung: XS
 
 - Akzeptanztests:
 
 	- Zugriff auf Handy-Blitzlicht.
 
 	- Blitzlicht ist nach Betätigung des Buttons aktiv.
+
+#### Implementable Story 1 Zugriff auf Handyblitzlicht
+
+> TODO
+
+- Aufwandsschätzung [4] Storypoints
+
+- Akzeptanztest:
+	- Zugriff auf das Handyblitzlicht wurde erteilt.
+
+#### Task 1 Button aktiviert das Handyblitzlicht
+
+> Der Nutzer der App kann einen Button bedienen um das Handyblitzlicht zu aktivieren.
+
+- Aufwandsschätzung:
+
+- Tatsächlich benötigte Zeit:
+
 
 ### Feature 4 *Multiscan*
 
@@ -72,7 +120,10 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
 	- Man kann in einem Screen den QR-Code für das WIFI scannen, dessen Infos dann in dem Screen gezeigt werden und im selben Screen ohne Unterbrechung den QR-Code für mehrere Geräte des Rechenzentrum nacheinander scannen.
 
+#### Implementable Story 1 Durchlaufenden scann von 
+
 ## Epic 2: Verwaltung von Abfragen
+
 
 > Als Admin möchte ich bestimmte Abfragen kategorisiert und übersichtlich verwalten und benutzen können, um die App benuztzerfreundlicher zu machen.
 
@@ -80,11 +131,11 @@ Beschreibung:
 
 Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske gepackt werden, damit Abfragen gleichen Typs effizienter getätigt werden können. Eine Abfragemaske kann vorher defeniert werden. Dies sind eine bestimmte Menge von Abfragen, die immer gleichzeitig getätigt werden. Eine einzelne Abfrage ist die versuchte Ermittlung von Informationen.
 
-### Feature 1 Abfragenschema erstellen
+### Feature 1 *Abfragenschema erstellen*
 
 > Als Admin möchte ich Abfragenschemata erstellen können, um gleiche Abfragen schneller tätigen zu können.
 
-- Aufwandsschätzung: M	
+- Aufwandsschätzung: M
 
 - Akzeptanztest:
 

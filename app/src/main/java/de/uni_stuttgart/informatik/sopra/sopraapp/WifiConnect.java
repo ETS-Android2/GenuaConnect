@@ -1,9 +1,6 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -12,25 +9,23 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class WifiConnect {
+class WifiConnect {
 
     /**
      * WIFI Parameters
      */
-    protected String ssid;
+    private String ssid;
     private String authentification;
     private String password;
-    private MainActivity activity;
-    private Toast mToastToShow;
 
     /**
      * connects to WIFI that was coded in a QR-Code
      *
-     * @param qrString
-     * @param context
+     * @param qrString QR String fuer Wifi String
+     * @param context Context der Klasse
      */
 
-    public void tryConnect(String qrString, Context context) {
+    void tryConnect(String qrString, Context context) {
         //setting the WIFI Parameters from the qrString if its in correct Form
         if (!setWifiParamsFrom(qrString)) {
             Toast.makeText(context, context.getString(R.string.keinWifiQrCodeDeutsch), Toast.LENGTH_SHORT).show();
@@ -39,8 +34,7 @@ public class WifiConnect {
         Log.d("WIFI Params setted", context.getClass() + "\nauthentification: " + authentification + "\nssid: " + ssid + "\npass: " + password);
 
         //enable WIFI
-        WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-
+        WifiManager wifi = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         if (!wifi.isWifiEnabled()) {
             Toast.makeText(context, context.getString(R.string.wifiNichtAnTextDeutsch), Toast.LENGTH_LONG).show();
             wifi.setWifiEnabled(true);
@@ -70,10 +64,8 @@ public class WifiConnect {
         }
 
         //connecting to WIFI
-        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        @SuppressLint("MissingPermission") NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         wifiManager.disconnect();
         wifiManager.enableNetwork(conf.networkId, true);
         List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
@@ -90,7 +82,7 @@ public class WifiConnect {
             wifiManager.reconnect();
             wifiManager.reassociate();
         }
-        Toast.makeText(context, context.getString(R.string.verbindungZuTextDeutsch) + ssid + context.getString(R.string.wirdAufgebautTextDeutsch), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, context.getString(R.string.verbindungZuTextDeutsch) + " " + ssid + " " + context.getString(R.string.wirdAufgebautTextDeutsch), Toast.LENGTH_SHORT).show();
     }
 
     /**
