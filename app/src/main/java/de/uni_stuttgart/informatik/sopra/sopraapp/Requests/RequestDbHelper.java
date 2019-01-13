@@ -1,8 +1,11 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 public class RequestDbHelper extends SQLiteOpenHelper {
 
@@ -45,5 +48,34 @@ public class RequestDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_REQUESTS);
         db.execSQL(SQL_DELETE_OID);
         onCreate(db);
+    }
+
+    public ArrayList<String> getAllMasks(){
+        SQLiteDatabase reading = getReadableDatabase();
+        ArrayList<String> masks = new ArrayList<>();
+        Cursor cursor = reading.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME,null);
+        String mask = null;
+        for(int i = 1; i<=cursor.getCount(); i++ ){
+            mask = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
+            masks.add(mask);
+        }
+        return masks;
+    }
+
+    public ArrayList<String> getOIDsFrom(String request){
+        SQLiteDatabase reading = getReadableDatabase();
+
+        Cursor cursor = reading.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_NAME + " = '" + request+"'" ,null);
+        cursor.moveToFirst();
+        int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
+
+        ArrayList<String> oids = new ArrayList<>();
+        cursor = reading.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where "+ RequestsContract.COLUMN_OID_REQ + " = " + id, null);
+        String oid = null;
+        for(int i = 1; i<=cursor.getCount(); i++ ){
+            oid = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
+            oids.add(oid);
+        }
+        return oids;
     }
 }
