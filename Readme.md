@@ -1,16 +1,20 @@
 # Genua Connect
 
-
-![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot4.jpg)
+Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti]
+(doc/images/Appscreenshot4.jpg)
 
 Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
-![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot3.jpg)
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti]
+(doc/images/Appscreenshot3.jpg)
 
 Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
-![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot2.jpg)
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti]
+(doc/images/Appscreenshot2.jpg)
 
 Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
-![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot1.jpg)
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti]
+(doc/images/Appscreenshot1.jpg)
 
 Screenshot of Genua Connect (in use) / in app view by Samuel Gigliotti
 
@@ -69,8 +73,6 @@ QR-Code scanner, über vordefinierte Abfragemasken, sich die gewünschten Inform
 
 ## Installation
 
-**TODO:** Beschreibung der durchzuführenden Schritte um die App zu installieren bzw. zum laufen zu bekommen.
-
 1. Repository klonen: `git clone`
 2. Android Studio Projekt öffnen
 3. Android Studio Projekt bauen
@@ -92,7 +94,7 @@ Die Entwicklungsgeschichte befindet sich in [CHANGELOG.md](CHANGELOG.md).
 
 implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
 
-api 'org.snmp4j:snmp4j:3.0.5'
+api 'org.snmp4j:snmp4j:2.5.0'
 
 ## Lizenz
 
