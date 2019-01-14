@@ -41,9 +41,6 @@ public class SimpleSNMPClientv3 {
     private volatile Snmp snmp;
     private UserTarget target;
     private ApplianceQrDecode decode;
-    private OctetString getAuth = null;
-    private OctetString getPrivPasswort = null;
-    private OctetString getPriv = null;
     private OID getAuthOID = null;
     private OID getPrivOID = null;
 
@@ -97,11 +94,9 @@ public class SimpleSNMPClientv3 {
         OctetString getAuthPasswort = new OctetString(decode.getPassword());
         if (decode.getEncodeing().contains(":")) {
             String[] splittetEncodeing = decode.getEncodeing().split(":");
-            for (int i = 0; i < splittetEncodeing.length; i++) {
-                getAuth = new OctetString(splittetEncodeing[0]);
-                getPrivPasswort = new OctetString(splittetEncodeing[1]);
-                getPriv = new OctetString(splittetEncodeing[2]);
-            }
+            OctetString getAuth = new OctetString(splittetEncodeing[0]);
+            OctetString getPrivPasswort = new OctetString(splittetEncodeing[1]);
+            OctetString getPriv = new OctetString(splittetEncodeing[2]);
             switch (getAuth.toString()) {
                 case "SHA":
                     Log.d("getAuth: ", getAuth.toString());
@@ -216,9 +211,8 @@ public class SimpleSNMPClientv3 {
      *
      * @param oid Is the OID.
      * @return Returns the response.
-     * @throws IOException
      */
-    String getAsString(OID oid) throws IOException {
+    String getAsString(OID oid) {
         Log.d("getAsString", "String bekommen: " + oid.toDottedString());
         return sendGet(oid.toString());
     }

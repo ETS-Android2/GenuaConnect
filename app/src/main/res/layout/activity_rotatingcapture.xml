@@ -21,8 +21,9 @@
         android:layout_marginTop="71dp"
         android:layout_marginEnd="55dp"
         android:background="@drawable/flash_button_background"
-        android:text="@string/flashTurnOnDeutsch"
-        android:onClick="switchFlashlight"/>
+        android:text="@string/flashTurnOn"
+        android:onClick="switchFlashlight"
+        tools:ignore="RelativeOverlap" />
 
     <TextView
         android:id="@+id/textView"
@@ -34,7 +35,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_centerInParent="true"
-        android:text="@string/barcodeTextDeutsch"
+        android:text="@string/barcodeText"
         android:textColor="#FFFF"
         android:textSize="15sp" />
 

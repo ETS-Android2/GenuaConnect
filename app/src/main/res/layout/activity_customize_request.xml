@@ -35,7 +35,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
-        android:text="@string/speichernButtonDeutsch"
+        android:text="@string/speichernButton"
         android:textAllCaps="true"
         android:onClick="saveOIDs"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -64,6 +64,7 @@
         app:layout_constraintTop_toTopOf="@+id/oids_list"
         app:layout_constraintVertical_bias="0.95"
         app:rippleColor="@color/colorPrimary"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:focusable="true" />
 
 </android.support.constraint.ConstraintLayout>

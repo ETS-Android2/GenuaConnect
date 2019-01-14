@@ -54,11 +54,12 @@ public class RequestDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase reading = getReadableDatabase();
         ArrayList<String> masks = new ArrayList<>();
         Cursor cursor = reading.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME,null);
-        String mask = null;
+        String mask;
         for(int i = 1; i<=cursor.getCount(); i++ ){
             mask = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
             masks.add(mask);
         }
+        cursor.close();
         return masks;
     }
 
@@ -71,11 +72,12 @@ public class RequestDbHelper extends SQLiteOpenHelper {
 
         ArrayList<String> oids = new ArrayList<>();
         cursor = reading.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where "+ RequestsContract.COLUMN_OID_REQ + " = " + id, null);
-        String oid = null;
+        String oid;
         for(int i = 1; i<=cursor.getCount(); i++ ){
             oid = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
             oids.add(oid);
         }
+        cursor.close();
         return oids;
     }
 }

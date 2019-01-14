@@ -24,6 +24,7 @@
         android:clickable="true"
         android:onClick="addMask"
         app:rippleColor="@color/colorPrimary"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:focusable="true" />
 
 </RelativeLayout>

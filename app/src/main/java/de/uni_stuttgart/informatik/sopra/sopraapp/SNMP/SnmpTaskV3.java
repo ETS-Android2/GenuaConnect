@@ -17,6 +17,7 @@ public class SnmpTaskV3 extends AsyncTask<String, Void, String> {
 
     /**
      * Konstruktor
+     *
      * @param clientv3 Der SNMPv3 Manager.
      */
     public SnmpTaskV3(SimpleSNMPClientv3 clientv3) {
@@ -40,11 +41,6 @@ public class SnmpTaskV3 extends AsyncTask<String, Void, String> {
             e.printStackTrace();
         }
         Log.d(TAG, "initialisiert");
-        try {
-            return snmpClientv3.getAsString(new OID(oids[0]));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return snmpClientv3.getAsString(new OID(oids[0]));
     }
 }

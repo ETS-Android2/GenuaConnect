@@ -39,6 +39,7 @@ public class SimpleSNMPClientV1AndV2c {
 
     /**
      * Konstruktor
+     *
      * @param qrCode Der QR Code decoder.
      */
     public SimpleSNMPClientV1AndV2c(String qrCode) {
@@ -51,6 +52,7 @@ public class SimpleSNMPClientV1AndV2c {
 
     /**
      * Stoppt den SNMP Client.
+     *
      * @throws IOException If a transport mapping cannot be closed successfully
      */
     public void stop() throws IOException {

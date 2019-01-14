@@ -28,9 +28,9 @@ public class RequestMngActivity extends AppCompatActivity {
         itemsAdapter = new OverviewAdapter(manager, this);
         listView.setAdapter(itemsAdapter);
 
-        if (!alreadyExists(getString(R.string.standardAbfrageDeutschDeutsch))) {
+        if (!alreadyExists(getString(R.string.standardAbfrage))) {
             ContentValues contentValues = new ContentValues();
-            contentValues.put(RequestsContract.COLUMN_REQ_NAME, getString(R.string.standardAbfrageDeutschDeutsch));
+            contentValues.put(RequestsContract.COLUMN_REQ_NAME, getString(R.string.standardAbfrage));
             manager.getWritableDatabase().insert(RequestsContract.REQ_TABLE_NAME, null, contentValues);
         }
     }
