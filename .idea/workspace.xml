@@ -11,20 +11,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc21f97c-be13-490a-b0bb-c6344a7e45b2" name="Default" comment="Ein Paar Hardgecodete Strings in strings xml reingetan wegen dem Sprachmenue.">
+    <list default="true" id="dc21f97c-be13-490a-b0bb-c6344a7e45b2" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Monitoring/SnmpAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/snmp_appl_item.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/AlertDialogFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Monitoring/MonitoringMainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Monitoring/MonitoringMainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/ReactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/ReactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestMngActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestMngActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/RotatingCaptureActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/RotatingCaptureActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestDbHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestDbHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientV1AndV2c.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientV1AndV2c.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiStateActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiStateActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_customize_request.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_customize_request.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_rotatingcapture.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_rotatingcapture.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/recycler_edit_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/recycler_edit_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,21 +43,61 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="SimpleSNMPClientv3.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2609">
-              <caret line="154" column="64" selection-start-line="154" selection-start-column="64" selection-end-line="154" selection-end-column="64" />
+            <state relative-caret-position="17">
+              <caret line="146" column="11" selection-start-line="146" selection-start-column="11" selection-end-line="146" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimpleSNMPClientV1AndV2c.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientV1AndV2c.java">
+      <file leaf-file-name="MonitoringMainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Monitoring/MonitoringMainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="240" column="61" selection-start-line="240" selection-start-column="61" selection-end-line="240" selection-end-column="61" />
+            <state relative-caret-position="170">
+              <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="58">
+              <caret line="49" selection-start-line="49" selection-end-line="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Activity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/app/Activity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="6062" column="16" selection-start-line="6062" selection-start-column="16" selection-end-line="6062" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApplianceManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Monitoring/ApplianceManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="647">
+              <caret line="62" column="64" selection-start-line="62" selection-start-column="64" selection-end-line="62" selection-end-column="64" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#setRequestFor#0;class#ApplianceManager#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SnmpAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Monitoring/SnmpAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="17" column="64" selection-start-line="17" selection-start-column="64" selection-end-line="17" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -68,32 +105,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RequestsContract.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestsContract.java">
-          <provider selected="true" editor-type-id="text-editor">
+      <file leaf-file-name="snmp_appl_item.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/snmp_appl_item.xml">
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RequestMngActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestMngActivity.java">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider editor-type-id="android-manifest">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="36" column="105" selection-start-line="36" selection-start-column="105" selection-end-line="36" selection-end-column="105" />
+            <state relative-caret-position="158">
+              <caret line="43" column="66" selection-start-line="43" selection-start-column="66" selection-end-line="43" selection-end-column="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReactionController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/ReactionController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
               <folding>
-                <element signature="e#1208#1250#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestMask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestMask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -101,49 +144,22 @@
       <file leaf-file-name="RequestDbHelper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestDbHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OverviewAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/OverviewAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomizeRequestActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/CustomizeRequestActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-583">
-              <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomizeAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/CustomizeAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="24" column="57" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+            <state relative-caret-position="89">
+              <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="valueResourceFile" />
+        <option value="Class" />
+        <option value="layoutResourceFile" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -151,15 +167,21 @@
       <find>PDU</find>
       <find>userTarget</find>
       <find>keinWifi</find>
+      <find>tool</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="TestBranch" />
+      </map>
+    </option>
   </component>
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
       <map>
-        <entry key="$PROJECT_DIR$" value="C:\Users\baran\.gradle\wrapper\dists\gradle-4.6-all\bcst21l2brirad8k2ben1letg\gradle-4.6" />
+        <entry key="$PROJECT_DIR$" value="C:\Users\Samuel\.gradle\wrapper\dists\gradle-4.6-all\bcst21l2brirad8k2ben1letg\gradle-4.6" />
       </map>
     </option>
     <option name="myGradleVersions">
@@ -2453,45 +2475,116 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3AuthNoPriv.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestMask.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/AlertDialogFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/CustomizeAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/OverviewAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/CustomizeRequestActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SnmpTask.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SnmpTaskV3.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/CustomizeAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/CustomizeRequestActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestMask.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientV1AndV2c.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/AlertDialogFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_customize_request.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_request_mng.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/recycler_edit_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/ApplianceQrDecode.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-en/values-en.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_rotatingcapture.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/RotatingCaptureActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiStateActivity.java" />
-        <option value="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r/de/uni_stuttgart/informatik/sopra/sopraapp/R.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/ReactionController.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiConnect.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_request_mng.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_customize_request.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/recycler_edit_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestMngActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestsContract.java" />
+        <option value="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r/de/uni_stuttgart/informatik/sopra/sopraapp/R.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiStateActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-de-rDE/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/RotatingCaptureActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiConnect.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientV1AndV2c.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestDbHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/ReactionController.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Monitoring/SnmpAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/snmp_appl_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Monitoring/MonitoringMainActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-15" />
-    <option name="width" value="1950" />
+    <option name="width" value="1700" />
     <option name="height" value="2075" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="sopra-team-23" type="58d84e3e:PackageViewProjectNode" />
+              <item name="app" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="sopra-team-23" type="58d84e3e:PackageViewProjectNode" />
+              <item name="app" type="616d4139:PackageViewModuleNode" />
+              <item name="de.uni_stuttgart.informatik.sopra.sopraapp" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="sopra-team-23" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sopra-team-23" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="sopra-team-23" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sopra-team-23" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="sopra-team-23" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sopra-team-23" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sopra-team-23" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sopra-team-23" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sopra-team-23" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sopra-team-23" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sopra-team-23" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sopra-team-23" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -2502,6 +2595,11 @@
             <path>
               <item name="sopra-team-23" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
+            </path>
+            <path>
+              <item name="sopra-team-23" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
             </path>
             <path>
@@ -2515,14 +2613,7 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="sopraapp" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Requests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sopra-team-23" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="sopraapp" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="SNMP" type="462c0819:PsiDirectoryNode" />
+              <item name="Monitoring" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sopra-team-23" type="1abcf292:AndroidViewProjectNode" />
@@ -2535,20 +2626,11 @@
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
-            <path>
-              <item name="sopra-team-23" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="sopra-team-23" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2556,6 +2638,128 @@
     <property name="device.picker.selection" value="UBV7N18314002935" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/AndroidManifest.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/MainActivity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/ReactionController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestDbHelper.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/RotatingCaptureActivity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientV1AndV2c.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiConnect.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiStateActivity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/res/values/strings.xml</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/res/values-de-rDE/strings.xml</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SnmpTaskV3.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -2694,67 +2898,103 @@
       <option name="project" value="LOCAL" />
       <updated>1546994589607</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Verbesserungen bei WifiConnect">
+      <created>1547229241310</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1547229241310</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Paar kleinere Codefixes">
+      <created>1547247818220</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1547247818221</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="Android Profiler" />
-      <window_info id="Build Variants" side_tool="true" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Logcat" />
-      <window_info id="Capture Tool" />
-      <window_info id="Designer" />
-      <window_info anchor="bottom" id="Build" weight="0.32859176" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" id="Device File Explorer" side_tool="true" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" weight="0.32859176" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info id="Image Layers" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Preview" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32859176" />
-      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Build Variants" order="3" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="right" id="Preview" order="4" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.346831" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.2552817" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Logcat" order="8" weight="0.50880283" />
       <window_info id="Captures" order="2" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24949698" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32859176" />
-      <window_info anchor="right" id="Gradle" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="Designer" order="3" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24939272" />
+      <window_info anchor="bottom" id="Build" order="8" weight="0.5299296" />
+      <window_info anchor="right" id="Gradle" order="4" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Device File Explorer" order="4" side_tool="true" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Build Variants" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16297787" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32859176" />
+      <window_info anchor="bottom" id="Logcat" order="11" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="12" />
+      <window_info anchor="right" id="Palette&#9;" order="9" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="Image Layers" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32859176" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="Device File Explorer" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Build" order="9" weight="0.32859176" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32859176" />
+      <window_info id="Captures" order="2" weight="0.25" />
+      <window_info anchor="right" id="Gradle" order="6" />
+      <window_info anchor="right" id="StringPreview" order="8" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info id="Designer" order="3" />
     </layout>
     <layout-to-restore>
       <window_info anchor="bottom" id="Build" order="0" weight="0.32859176" />
       <window_info id="Designer" order="0" />
-      <window_info anchor="bottom" id="Run" order="9" visible="true" weight="0.32859176" />
       <window_info id="Build Variants" order="1" side_tool="true" />
       <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="9" visible="true" weight="0.32859176" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Android Profiler" order="1" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="2" />
+      <window_info id="Captures" order="7" weight="0.25" />
       <window_info id="Capture Tool" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
       <window_info anchor="right" id="Preview" order="1" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="8" weight="0.32859176" />
       <window_info anchor="right" id="Device File Explorer" order="2" side_tool="true" />
-      <window_info id="Captures" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Logcat" order="4" />
       <window_info anchor="bottom" id="Version Control" order="5" />
+      <window_info anchor="bottom" id="Terminal" order="2" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.24949698" />
       <window_info anchor="bottom" id="Messages" order="6" weight="0.32859176" />
@@ -2764,8 +3004,35 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="8" weight="0.32859176" />
       <window_info anchor="bottom" id="Debug" order="10" weight="0.4" />
     </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -2773,336 +3040,121 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="SNMPv3 so umprogrammiert, dass nur noch eine Klasse notwendig ist fuer alle Securitylevel. Ausserdem wurden in der SNMPv3 KLasse anderweitig Fehler behoben und weitere Verbesserungen implementiert. Zusaetzlich wurden unnoetige Imports aus allen KLassen entfernt." />
     <MESSAGE value="Ein Paar Hardgecodete Strings in strings xml reingetan und kleinere Verbesserungen." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ein Paar Hardgecodete Strings in strings xml reingetan und kleinere Verbesserungen." />
+    <MESSAGE value="Verbesserungen bei WifiConnect" />
+    <MESSAGE value="Paar kleinere Codefixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Paar kleinere Codefixes" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.snmp4j/snmp4j/2.5.0/24c9c6b8e4a89f77c85541f4bc2d2805bf6efe1/snmp4j-2.5.0.jar!/org/snmp4j/security/AuthSHA2.class">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#591#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="34">
+          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.snmp4j/snmp4j/2.5.0/24c9c6b8e4a89f77c85541f4bc2d2805bf6efe1/snmp4j-2.5.0.jar!/org/snmp4j/security/AuthSHA.class">
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/util/Locale.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#0#550#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="285">
+          <caret line="1289" column="16" selection-start-line="1289" selection-start-column="16" selection-end-line="1289" selection-end-column="16" />
         </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/jre/jre/lib/rt.jar!/sun/security/provider/SHA2.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1674">
-          <folding>
-            <element signature="e#0#4972#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.snmp4j/snmp4j/2.5.0/b3d04d8b3579752576ec5e1d1a1e917a478404bb/snmp4j-2.5.0-sources.jar!/org/snmp4j/security/SecurityLevel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-123">
-          <caret line="55" column="26" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3AuthNoPriv.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SNMPv3NoAuth.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.snmp4j/snmp4j/2.5.0/b3d04d8b3579752576ec5e1d1a1e917a478404bb/snmp4j-2.5.0-sources.jar!/org/snmp4j/security/TSM.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_customize_request.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="65" column="8" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="45" />
-          <folding>
-            <element signature="e#1518#1543#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rotating_barcode_scanner.xml">
-      <provider editor-type-id="text-editor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/recycler_view_layout.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13" />
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_wifi_state.xml">
-      <provider editor-type-id="text-editor">
+      <provider editor-type-id="android-designer2">
         <state />
       </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+        </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/recycler_edit_layout.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_request_mng.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
-        </state>
-      </provider>
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-115">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+        <state relative-caret-position="157">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
         </state>
       </provider>
+    </entry>
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" />
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiStateActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="61" column="52" selection-start-line="61" selection-start-column="52" selection-end-line="61" selection-end-column="52" />
+          <folding>
+            <element signature="e#2382#2415#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
+    <entry file="android-dummy://C:/Users/baran/sopra-team-23/app/Translations Editor" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_rotatingcapture.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state />
+        <state relative-caret-position="429">
+          <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-de-rDE/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="35" selection-start-column="35" selection-end-column="35" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/attrs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/recycler_edit_layout.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.snmp4j/snmp4j/2.5.0/b3d04d8b3579752576ec5e1d1a1e917a478404bb/snmp4j-2.5.0-sources.jar!/org/snmp4j/security/nonstandard/PrivAES192With3DESKeyExtension.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
+        <state relative-caret-position="221">
+          <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.snmp4j/snmp4j/2.5.0/b3d04d8b3579752576ec5e1d1a1e917a478404bb/snmp4j-2.5.0-sources.jar!/org/snmp4j/mp/SnmpConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="150" column="65" selection-start-line="150" selection-start-column="65" selection-end-line="150" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/de/uni_stuttgart/informatik/sopra/sopraapp/ExampleInstrumentedTest.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SnmpTaskV3.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.snmp4j/snmp4j/2.5.0/b3d04d8b3579752576ec5e1d1a1e917a478404bb/snmp4j-2.5.0-sources.jar!/org/snmp4j/Snmp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/de/uni_stuttgart/informatik/sopra/sopraapp/SecondTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/test/java/de/uni_stuttgart/informatik/sopra/sopraapp/ExampleUnitTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_rotatingcapture.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiStateActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/RotatingCaptureActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2346">
-          <caret line="142" column="33" lean-forward="true" selection-start-line="142" selection-start-column="33" selection-end-line="142" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1410#1440#0" expanded="true" />
-            <element signature="e#2221#2253#0" expanded="true" />
-            <element signature="e#4454#4495#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r/de/uni_stuttgart/informatik/sopra/sopraapp/R.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="5189" column="2" selection-start-line="5189" selection-start-column="2" selection-end-line="5189" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/AlertDialogFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiConnect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="804">
-          <caret line="93" column="5" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#961#1003#0" expanded="true" />
-            <element signature="e#1394#1437#0" expanded="true" />
-            <element signature="e#2387#2445#0" expanded="true" />
-            <element signature="e#3827#3871#0" expanded="true" />
-            <element signature="e#3881#3926#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/ReactionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="52" column="113" selection-start-line="52" selection-start-column="113" selection-end-line="52" selection-end-column="113" />
-          <folding>
-            <element signature="e#5706#5767#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-212">
-          <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/ApplianceQrDecode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="47" column="8" lean-forward="true" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SnmpTaskV3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SnmpTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2609">
-          <caret line="154" column="64" selection-start-line="154" selection-start-column="64" selection-end-line="154" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientV1AndV2c.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="240" column="61" selection-start-line="240" selection-start-column="61" selection-end-line="240" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestsContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestMngActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="36" column="105" selection-start-line="36" selection-start-column="105" selection-end-line="36" selection-end-column="105" />
-          <folding>
-            <element signature="e#1208#1250#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestMask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestDbHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <caret line="554" column="14" selection-start-line="554" selection-start-column="14" selection-end-line="554" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -3115,22 +3167,206 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/CustomizeRequestActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-583">
-          <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+        <state relative-caret-position="1547">
+          <caret line="102" column="15" selection-start-line="102" selection-start-column="15" selection-end-line="102" selection-end-column="15" />
+          <folding>
+            <element signature="e#2160#2161#0" expanded="true" />
+            <element signature="e#2181#2182#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/CustomizeAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="24" column="57" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
+        <state relative-caret-position="413">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestMngActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+        <state relative-caret-position="1037">
+          <caret line="71" column="44" selection-start-line="71" selection-start-column="44" selection-end-line="71" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestsContract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/ApplianceQrDecode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+          <folding>
+            <element signature="e#932#933#0" expanded="true" />
+            <element signature="e#1014#1015#0" expanded="true" />
+            <element signature="e#1063#1064#0" expanded="true" />
+            <element signature="e#1098#1099#0" expanded="true" />
+            <element signature="e#1145#1146#0" expanded="true" />
+            <element signature="e#1181#1182#0" expanded="true" />
+            <element signature="e#1229#1230#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/RotatingCaptureActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="75" column="32" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/WifiConnect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SnmpTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.snmp4j/snmp4j/2.5.0/b3d04d8b3579752576ec5e1d1a1e917a478404bb/snmp4j-2.5.0-sources.jar!/org/snmp4j/security/UsmUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="72" column="9" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.snmp4j/snmp4j/2.5.0/b3d04d8b3579752576ec5e1d1a1e917a478404bb/snmp4j-2.5.0-sources.jar!/org/snmp4j/CommunityTarget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="35" column="49" lean-forward="true" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_customize_request.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.snmp4j/snmp4j/2.5.0/b3d04d8b3579752576ec5e1d1a1e917a478404bb/snmp4j-2.5.0-sources.jar!/org/snmp4j/AbstractTarget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2189">
+          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientV1AndV2c.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="93" column="10" selection-start-line="93" selection-start-column="10" selection-end-line="93" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Monitoring/ApplianceManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="647">
+          <caret line="62" column="64" selection-start-line="62" selection-start-column="64" selection-end-line="62" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#setRequestFor#0;class#ApplianceManager#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Requests/RequestDbHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/ReactionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/SNMP/SimpleSNMPClientv3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="146" column="11" selection-start-line="146" selection-start-column="11" selection-end-line="146" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/app/Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="6062" column="16" selection-start-line="6062" selection-start-column="16" selection-end-line="6062" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="43" column="66" selection-start-line="43" selection-start-column="66" selection-end-line="43" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Monitoring/MonitoringMainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/uni_stuttgart/informatik/sopra/sopraapp/Monitoring/SnmpAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="17" column="64" selection-start-line="17" selection-start-column="64" selection-end-line="17" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/snmp_appl_item.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
         </state>
       </provider>
     </entry>

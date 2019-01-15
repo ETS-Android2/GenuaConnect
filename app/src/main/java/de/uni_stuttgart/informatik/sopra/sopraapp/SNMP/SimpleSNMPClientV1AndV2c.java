@@ -91,7 +91,7 @@ public class SimpleSNMPClientV1AndV2c {
      *
      * @return Returns the given target.
      */
-    protected Target getTarget() {
+    public Target getTarget() {
         if (target != null) {
             return target;
         }

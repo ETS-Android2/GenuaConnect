@@ -1,7 +1,14 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
@@ -17,6 +24,7 @@ public class MonitoringMainActivity extends AppCompatActivity {
     private ArrayList<String> applianceNames;
 
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +39,7 @@ public class MonitoringMainActivity extends AppCompatActivity {
             appliances.put(client, "Gerät " + count);
         }
 
-        applianceNames = (ArrayList<String>)appliances.values();
-
-
-
+        applianceNames = new ArrayList<>();
+        applianceNames.addAll(appliances.values());
     }
 }

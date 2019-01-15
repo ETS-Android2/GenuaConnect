@@ -63,8 +63,8 @@ public class RequestDbHelper extends SQLiteOpenHelper {
         return masks;
     }
 
-    public static ArrayList<String> getOIDsFrom(SQLiteDatabase reading, String request){
-
+    public ArrayList<String> getOIDsFrom(String request){
+        SQLiteDatabase reading = getReadableDatabase();
         Cursor cursor = reading.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME +
                 " where " + RequestsContract.COLUMN_REQ_NAME + " = '"+ request +"' " ,null);
         cursor.moveToFirst();
