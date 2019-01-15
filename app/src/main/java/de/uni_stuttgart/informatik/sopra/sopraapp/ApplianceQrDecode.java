@@ -17,7 +17,7 @@ public class ApplianceQrDecode {
     public ApplianceQrDecode(String qrCode) {
         applianceInfos = new HashMap<>();
         applianceInfos.put("user", findInJSON(qrCode, "user"));
-        applianceInfos.put("public", findInJSON(qrCode, "public"));
+        applianceInfos.put("target", findInJSON(qrCode, "target"));
         applianceInfos.put("enc", findInJSON(qrCode, "enc"));
         applianceInfos.put("pw", findInJSON(qrCode, "pw"));
         applianceInfos.put("IPv4", findInJSON(qrCode, "IPv4"));
@@ -30,6 +30,10 @@ public class ApplianceQrDecode {
 
     public String getAddressV6() {
       return applianceInfos.get("ipv6");
+    }
+
+    public String getTarget() {
+        return applianceInfos.get("target");
     }
 
     public String getUsername() {

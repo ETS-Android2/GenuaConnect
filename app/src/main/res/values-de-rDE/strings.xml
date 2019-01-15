@@ -20,4 +20,6 @@
     <string name="geraeteverwaltungBtnText">Geräteverwaltung</string>
     <string name="keine_OIDs">Keine OID\'s verfügbar. Bitte fügen Sie mindestens eine OID hinzu.</string>
     <string name="netzmaskeText">"Netmask: "</string>
+    <string name="navy_blue_farbe">Statusbar auf die Farbe navy einstellen.</string>
+    <string name="language_fragment">Sprachmenü</string>
 </resources>

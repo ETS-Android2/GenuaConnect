@@ -1,6 +1,7 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import org.snmp4j.ScopedPDU;
 import org.snmp4j.Target;
@@ -55,7 +56,7 @@ public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
      * Hier werden die Informationen wie authProtocoll, privProtocoll, privPasswort, authPasswort, userName initialisiert.
      */
     @Override
-    protected void userInformation() {
+    protected void userInformation() throws IllegalArgumentException{
         snmp.getMessageDispatcher().addMessageProcessingModel(new MPv3());
         USM usm = new USM(SecurityProtocols.getInstance(), new OctetString(snmp.getLocalEngineID()), 0);
         SecurityModels.getInstance().addSecurityModel(usm);
@@ -79,6 +80,9 @@ public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
                     getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
                     break;
                 default:
+                    if (!getAuth.toString().isEmpty()) {
+                        throw new IllegalArgumentException();
+                    }
                     Log.d("getAuth: ", getAuth.toString());
                     getAuthOID = null;
                     getAuthPasswort = null;
@@ -106,6 +110,9 @@ public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
                         getPrivOID = new OID(SnmpConstants.usm3DESEDEPrivProtocol);
                         break;
                     default:
+                        if (!getPriv.toString().isEmpty()) {
+                            throw new IllegalArgumentException();
+                        }
                         Log.d("getPriv: ", getPriv.toString());
                         getPrivOID = null;
                         getPrivPasswort = null;
