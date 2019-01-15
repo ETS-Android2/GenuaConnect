@@ -12,8 +12,9 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
 
 public class MonitoringMainActivity extends AppCompatActivity {
 
-    ApplianceManager manager;
-    HashMap<SimpleSNMPClientV1AndV2c,String> appliances;
+    private ApplianceManager manager;
+    private HashMap<SimpleSNMPClientV1AndV2c,String> appliances;
+    private ArrayList<String> applianceNames;
 
 
     @Override
@@ -29,6 +30,8 @@ public class MonitoringMainActivity extends AppCompatActivity {
         for (SimpleSNMPClientV1AndV2c client: clients){
             appliances.put(client, "Gerät " + count);
         }
+
+        applianceNames = (ArrayList<String>)appliances.values();
 
 
 
