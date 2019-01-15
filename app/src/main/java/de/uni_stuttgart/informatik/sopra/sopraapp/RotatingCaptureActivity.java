@@ -73,9 +73,9 @@ public class RotatingCaptureActivity extends Activity
 
 
     /**
-     * switching the Flashlight
+     * switching the Flashlight.
      *
-     * @param view
+     * @param view View für onClick.
      */
     public void switchFlashlight(View view) {
         if (getString(R.string.flashTurnOn).contentEquals(flashBtn.getText())) {

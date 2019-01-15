@@ -15,7 +15,8 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTask;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTaskV3;
+
+import static de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper.getOIDsFrom;
 
 /**
  * In dieser Klasse wird definiert, wie auf die QR-Codes reagiert werden soll.
@@ -42,7 +43,7 @@ class ReactionController {
                 ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.INTERNET}, 2);
             } else {
                 RequestDbHelper dbHelper = new RequestDbHelper(activity);
-                ArrayList<String> oiDsFrom = dbHelper.getOIDsFrom("Standardabrafge");
+                ArrayList<String> oiDsFrom = getOIDsFrom(dbHelper.getReadableDatabase(), "Standardabfragen");
                 if (oiDsFrom.size() == 0) {
                     Toast.makeText(activity, activity.getString(R.string.keine_OIDs), Toast.LENGTH_LONG).show();
                     return;
@@ -51,7 +52,7 @@ class ReactionController {
                 String result1 = "";
                 for (String oid :
                         oiDsFrom) {
-                    SnmpTaskV3 snmpTaskV3 = new SnmpTaskV3(clientv3);
+                    SnmpTask snmpTaskV3 = new SnmpTask(clientv3);
                     Log.d("query snmp", oid);
                     snmpTaskV3.execute(oid);
                     try {
@@ -64,6 +65,7 @@ class ReactionController {
                     } catch (InterruptedException | ExecutionException e) {
                         e.printStackTrace();
                     }
+                    snmpTaskV3.cancel(true);
                 }
                 try {
                     clientv3.stop();
@@ -80,7 +82,7 @@ class ReactionController {
                 ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.INTERNET}, 3);
             } else {
                 RequestDbHelper dbHelper = new RequestDbHelper(activity);
-                ArrayList<String> oiDsFrom = dbHelper.getOIDsFrom("Standardabfrgae");
+                ArrayList<String> oiDsFrom = getOIDsFrom(dbHelper.getReadableDatabase(),"Standardabfragen");
                 if (oiDsFrom.size() == 0) {
                     Toast.makeText(activity, activity.getString(R.string.keine_OIDs), Toast.LENGTH_LONG).show();
                     return;
@@ -101,6 +103,7 @@ class ReactionController {
                     } catch (InterruptedException | ExecutionException e) {
                         e.printStackTrace();
                     }
+                    snmpTask1.cancel(true);
                 }
                 try {
                     clientv2c.stop();

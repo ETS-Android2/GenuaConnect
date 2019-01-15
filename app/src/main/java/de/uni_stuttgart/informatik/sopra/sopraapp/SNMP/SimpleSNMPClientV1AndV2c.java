@@ -33,7 +33,7 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
 public class SimpleSNMPClientV1AndV2c {
 
     private String address;
-    private volatile Snmp snmp;
+    volatile Snmp snmp;
     private CommunityTarget target;
     private ApplianceQrDecode decode;
 
@@ -48,6 +48,9 @@ public class SimpleSNMPClientV1AndV2c {
         Log.d("allowSNMPv2InV1", "erfolgreich");
         decode = new ApplianceQrDecode(qrCode);
         this.address = decode.getAddress();
+    }
+
+    SimpleSNMPClientV1AndV2c() {
     }
 
     /**
@@ -65,12 +68,12 @@ public class SimpleSNMPClientV1AndV2c {
      *
      * @throws IOException If an IO operation exception occurs while starting the listener.
      */
-    public void start() throws IOException {
+    protected void start() throws IOException {
         TransportMapping<UdpAddress> transportMapping = new DefaultUdpTransportMapping();
         Log.d("Snmp Connect", "asynchroner Nebenthread gestartet");
 
         snmp = new Snmp(transportMapping);
-        snmp.getMessageDispatcher().addMessageProcessingModel(new MPv1());
+        userInformation();
         try {
             transportMapping.listen();
         } catch (IOException e) {
@@ -79,12 +82,16 @@ public class SimpleSNMPClientV1AndV2c {
         Log.d("Snmp Connect", "isListening: " + transportMapping.isListening());
     }
 
+    protected void userInformation(){
+        snmp.getMessageDispatcher().addMessageProcessingModel(new MPv1());
+    }
+
     /**
      * Returns a target, which contains the information about to where and how the data should be fetched.
      *
      * @return Returns the given target.
      */
-    private Target getTarget() {
+    protected Target getTarget() {
         if (target != null) {
             return target;
         }
@@ -140,7 +147,7 @@ public class SimpleSNMPClientV1AndV2c {
      * @param stringOID Die OID.
      * @return Returned den OID als String und returned null wenn PDU null ist.
      */
-    private String sendGet(String stringOID) {
+    protected String sendGet(String stringOID) {
         PDU pdu = DefaultPDUFactory.createPDU(1);
 
         //add OID to PDU

@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Locale.getDefault();
+        //Locale.setDefault();
         setContentView(R.layout.activity_main);
         //Intent intent = new Intent(this, RotatingCaptureActivity.class);
         //startActivity(intent);
