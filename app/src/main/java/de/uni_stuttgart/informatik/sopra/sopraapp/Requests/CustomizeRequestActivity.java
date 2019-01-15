@@ -9,6 +9,7 @@
  import android.support.v7.widget.RecyclerView;
  import android.util.Log;
  import android.view.View;
+ import android.widget.EditText;
 
  import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
@@ -18,6 +19,8 @@ public class CustomizeRequestActivity extends AppCompatActivity {
     private RecyclerView listView;
     private RecyclerView.Adapter adapter;
 
+    private EditText requestName;
+
     private int requestId;
 
     @Override
@@ -26,6 +29,7 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customize_request);
         manager = new RequestDbHelper(this);
 
+        requestName = findViewById(R.id.et_requestName);
         listView = findViewById(R.id.oids_list);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(layoutManager);
@@ -46,12 +50,19 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         Cursor cursor = titleGetter.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_ID + " = " + requestId, null);
         cursor.moveToFirst();
         String request = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
-        setTitle(request);
+        requestName.setText(request);
         cursor.close();
     }
 
-    public void saveOIDs(View view) {
+    public void save(View view) {
+       save();
+    }
+
+    private void save(){
         SQLiteDatabase database = manager.getWritableDatabase();
+        ContentValues posChangedName = new ContentValues();
+        posChangedName.put(RequestsContract.COLUMN_REQ_NAME, requestName.getText().toString());
+        database.update(RequestsContract.REQ_TABLE_NAME,posChangedName,RequestsContract.COLUMN_REQ_ID +" = "+requestId, null);
         ContentValues[] newRows = new ContentValues[adapter.getItemCount()];
 
         for(int pos = adapter.getItemCount()-1; pos>=0; pos--){
@@ -76,7 +87,7 @@ public class CustomizeRequestActivity extends AppCompatActivity {
     }
 
     public void addOID(View view) {
-        saveOIDs(view);
+        save(view);
         SQLiteDatabase database = manager.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(RequestsContract.COLUMN_OID_STRING, "");
@@ -84,5 +95,11 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         database.insert(RequestsContract.OID_TABLE_NAME, null, contentValues);
         database.close();
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        save();
     }
 }

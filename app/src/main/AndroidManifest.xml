@@ -32,10 +32,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WifiStateActivity"
-            android:label="WIFI/DHCP Informationen"/>
+        <activity
+            android:name=".WifiStateActivity"
+            android:label="WIFI/DHCP Informationen" />
         <activity android:name=".Requests.RequestMngActivity" />
-        <activity android:name=".Requests.CustomizeRequestActivity"></activity>
+        <activity android:name=".Requests.CustomizeRequestActivity" />
+        <activity android:name=".Monitoring.MonitoringMainActivity"></activity>
     </application>
 
 </manifest>

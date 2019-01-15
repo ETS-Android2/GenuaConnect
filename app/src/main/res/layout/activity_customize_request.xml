@@ -9,26 +9,36 @@
     tools:context=".Requests.CustomizeRequestActivity">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp"
+        android:layout_height="51dp"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="0dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:src="@android:drawable/ic_menu_edit"/>
+
+        <EditText
+            android:id="@+id/et_requestName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:textColor="@android:color/background_light"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="0dp" />
     </android.support.v7.widget.Toolbar>
+
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/oids_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Button
         android:id="@+id/btn_save"
@@ -37,7 +47,7 @@
         android:layout_marginBottom="2dp"
         android:text="@string/speichernButtonDeutsch"
         android:textAllCaps="true"
-        android:onClick="saveOIDs"
+        android:onClick="save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -56,14 +66,14 @@
         android:clickable="true"
         android:onClick="addOID"
         android:rotation="90"
-        app:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@color/colorPrimaryDark"
         app:layout_constraintBottom_toTopOf="@+id/btn_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="@+id/oids_list"
         app:layout_constraintTop_toTopOf="@+id/oids_list"
         app:layout_constraintVertical_bias="0.95"
-        app:rippleColor="@color/colorPrimary"
+        app:rippleColor="@color/colorPrimaryDark"
         app:srcCompat="@android:drawable/ic_input_add" />
 
 </android.support.constraint.ConstraintLayout>
