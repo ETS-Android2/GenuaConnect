@@ -39,7 +39,7 @@ public class RotatingCaptureActivity extends Activity
 
         flashBtn = findViewById(R.id.flashButton);
         barcodeView = findViewById(R.id.barcode_scanner);
-        barcodeView.setStatusText(getString(R.string.statusTextBarcodeDeutsch));
+        barcodeView.setStatusText(getString(R.string.statusTextBarcode));
         barcodeView.setTorchListener(this);
         Collection<BarcodeFormat> formats;
         formats = Collections.singletonList(BarcodeFormat.QR_CODE);
@@ -57,7 +57,7 @@ public class RotatingCaptureActivity extends Activity
 
                 if (result == null) {
                     Log.d("MainActivity", "Cancelled scan");
-                    Toast.makeText(getParent(), getString(R.string.abgebrochenTextDeutsch), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getParent(), getString(R.string.abgebrochenText), Toast.LENGTH_LONG).show();
                 } else if (!result.getText().equals(lastText)) {
                     lastText = result.getText();
                     new ReactionController(activity, result.getText());
@@ -73,12 +73,12 @@ public class RotatingCaptureActivity extends Activity
 
 
     /**
-     * switching the Flashlight
+     * switching the Flashlight.
      *
-     * @param view
+     * @param view View für onClick.
      */
     public void switchFlashlight(View view) {
-        if (getString(R.string.flashTurnOnDeutsch).contentEquals(flashBtn.getText())) {
+        if (getString(R.string.flashTurnOn).contentEquals(flashBtn.getText())) {
             barcodeView.setTorchOn();
         } else {
             barcodeView.setTorchOff();
@@ -123,12 +123,12 @@ public class RotatingCaptureActivity extends Activity
 
     @Override
     public void onTorchOn() {
-        flashBtn.setText(getString(R.string.flashTurnOffDeutsch));
+        flashBtn.setText(getString(R.string.flashTurnOff));
     }
 
     @Override
     public void onTorchOff() {
-        flashBtn.setText(getString(R.string.flashTurnOnDeutsch));
+        flashBtn.setText(getString(R.string.flashTurnOn));
     }
 
     @Override
@@ -139,7 +139,7 @@ public class RotatingCaptureActivity extends Activity
                     new ReactionController(getParent(), lastText);
                     Log.d("PermissionsGranted", "Permissions wurden gegeben");
                 } else {
-                    Toast toast = Toast.makeText(this, getString(R.string.noPermissionsInternetDeutsch), Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(this, getString(R.string.noPermissionsInternet), Toast.LENGTH_LONG);
                     toast.show();
                     Log.d("PermissionsNotGranted", "No permission to use internet");
                 }

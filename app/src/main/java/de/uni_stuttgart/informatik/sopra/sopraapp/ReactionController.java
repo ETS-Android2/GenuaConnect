@@ -3,106 +3,113 @@ package de.uni_stuttgart.informatik.sopra.sopraapp;
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
-import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestsContract;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTask;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTaskV3;
 
+import static de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper.getOIDsFrom;
+
+/**
+ * In dieser Klasse wird definiert, wie auf die QR-Codes reagiert werden soll.
+ */
 class ReactionController {
 
+    /**
+     * Konstruktor
+     *
+     * @param activity Der uebergebene activity.
+     * @param qrCode   Ist der QR Code decoder.
+     */
     ReactionController(Activity activity, String qrCode) {
         Log.d("Reacting To QR-Code", "QR-String = " + qrCode);
+        //WIFI QR Code
         if (qrCode.contains("WIFI")) {
             Log.d("Reacting To QR-Code", "detected a WIFI QR-String");
             new WifiConnect().tryConnect(qrCode, activity);
-        } else if (!new ApplianceQrDecode(qrCode).getPassword().equals("")) {
-            Log.d("Reacting To QR-Code", "detected a Appliance QR-String");
-            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED&& ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
+
+            // SNMPv3 QR COde
+        } else if (!new ApplianceQrDecode(qrCode).getUsername().equals("public")) {
+            Log.d("Reacting To QR-Code", "detected a Appliance QR-String V3");
+            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.INTERNET}, 2);
             } else {
-                SimpleSNMPClientv3 clientv3 = new SimpleSNMPClientv3(qrCode);
                 RequestDbHelper dbHelper = new RequestDbHelper(activity);
-                SQLiteDatabase readable = dbHelper.getReadableDatabase();
-                Cursor cursor = readable.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_NAME + " = 'Standardabfrage' ",null);
-                cursor.moveToFirst();
-                int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
-
-                cursor = readable.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where "+ RequestsContract.COLUMN_OID_REQ + " = " + id, null);
-                if (cursor == null) {
-                    Toast.makeText(activity, "Keine OID's gefunden.", Toast.LENGTH_SHORT).show();
+                ArrayList<String> oiDsFrom = getOIDsFrom(dbHelper.getReadableDatabase(), "Standardabfragen");
+                if (oiDsFrom.size() == 0) {
+                    Toast.makeText(activity, activity.getString(R.string.keine_OIDs), Toast.LENGTH_LONG).show();
                     return;
                 }
+                SimpleSNMPClientv3 clientv3 = new SimpleSNMPClientv3(qrCode);
                 String result1 = "";
-                while (cursor.moveToNext()) {
-                    SnmpTaskV3 snmpTaskV3 = new SnmpTaskV3(clientv3, activity);
-                    Log.d("query snmp", cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_OID_STRING)));
-                    snmpTaskV3.execute(cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_OID_STRING)));
+                for (String oid :
+                        oiDsFrom) {
+                    SnmpTask snmpTaskV3 = new SnmpTask(clientv3);
+                    Log.d("query snmp", oid);
+                    snmpTaskV3.execute(oid);
                     try {
                         result1 += snmpTaskV3.get() + "\n";
                         Log.d("snmptest", "result: " + result1);
                         Toast.makeText(activity, result1, Toast.LENGTH_LONG).show();
-                        if (result1.equals("")) {
-                            Toast.makeText(activity, activity.getString(R.string.snmpAbfrageNichtfunktioniertTextDeutsch), Toast.LENGTH_LONG).show();
+                        if (result1.isEmpty()) {
+                            Toast.makeText(activity, activity.getString(R.string.snmpAbfrageNichtfunktioniertText), Toast.LENGTH_LONG).show();
                         }
                     } catch (InterruptedException | ExecutionException e) {
                         e.printStackTrace();
                     }
-                    try {
-                        clientv3.stop();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    snmpTaskV3.cancel(true);
                 }
-                cursor.close();
-                //Toast.makeText(activity, "SNMPv3 wird nicht unterstuetzt.", Toast.LENGTH_LONG).show();
+                try {
+                    clientv3.stop();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-        } else {
+
+            //SNMPv1v2c QR Code.
+        } else if (new ApplianceQrDecode(qrCode).getUsername().equals("public")) {
             Log.d("React to QR-Code V1/V2c", "detected a Appliance QR-String V1/V2c");
 
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.INTERNET}, 3);
             } else {
-                SimpleSNMPClientV1AndV2c clientv2c = new SimpleSNMPClientV1AndV2c(qrCode);
                 RequestDbHelper dbHelper = new RequestDbHelper(activity);
-                SQLiteDatabase readable = dbHelper.getReadableDatabase();
-                Cursor cursor = readable.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_NAME + " = 'Standardabfrage' ",null);
-                cursor.moveToFirst();
-                int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
-
-                cursor = readable.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where "+ RequestsContract.COLUMN_OID_REQ + " = " + id, null);
+                ArrayList<String> oiDsFrom = getOIDsFrom(dbHelper.getReadableDatabase(),"Standardabfragen");
+                if (oiDsFrom.size() == 0) {
+                    Toast.makeText(activity, activity.getString(R.string.keine_OIDs), Toast.LENGTH_LONG).show();
+                    return;
+                }
+                SimpleSNMPClientV1AndV2c clientv2c = new SimpleSNMPClientV1AndV2c(qrCode);
                 String result1 = "";
-                while (cursor.moveToNext()) {
+                for (String oid : oiDsFrom) {
                     SnmpTask snmpTask1 = new SnmpTask(clientv2c);
-                    Log.d("query snmp", cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_OID_STRING)));
-                    snmpTask1.execute(cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_OID_STRING)));
+                    Log.d("query snmp", oid);
+                    snmpTask1.execute(oid);
                     try {
                         result1 += snmpTask1.get() + "\n";
                         Log.d("snmptest", "result: " + result1);
                         Toast.makeText(activity, result1, Toast.LENGTH_LONG).show();
-                        if (result1.equals("")) {
-                            Toast.makeText(activity, activity.getString(R.string.snmpAbfrageNichtfunktioniertTextDeutsch), Toast.LENGTH_LONG).show();
+                        if (result1.isEmpty()) {
+                            Toast.makeText(activity, activity.getString(R.string.snmpAbfrageNichtfunktioniertText), Toast.LENGTH_LONG).show();
                         }
                     } catch (InterruptedException | ExecutionException e) {
                         e.printStackTrace();
                     }
-                    try {
-                        clientv2c.stop();
-                    } catch (IOException e) {
-                        Log.e("snmpClose", e.getMessage());
-                    }
+                    snmpTask1.cancel(true);
                 }
-                cursor.close();
+                try {
+                    clientv2c.stop();
+                } catch (IOException e) {
+                    Log.e("snmpClose", e.getMessage());
+                }
             }
         }
     }

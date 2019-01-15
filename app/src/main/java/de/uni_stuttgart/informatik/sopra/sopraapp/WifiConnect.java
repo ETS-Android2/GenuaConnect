@@ -28,7 +28,7 @@ class WifiConnect {
     void tryConnect(String qrString, Context context) {
         //setting the WIFI Parameters from the qrString if its in correct Form
         if (!setWifiParamsFrom(qrString)) {
-            Toast.makeText(context, context.getString(R.string.keinWifiQrCodeDeutsch), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.keinWifiQrCode), Toast.LENGTH_SHORT).show();
             return;
         }
         Log.d("WIFI Params setted", context.getClass() + "\nauthentification: " + authentification + "\nssid: " + ssid + "\npass: " + password);
@@ -36,7 +36,7 @@ class WifiConnect {
         //enable WIFI
         WifiManager wifi = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         if (!wifi.isWifiEnabled()) {
-            Toast.makeText(context, context.getString(R.string.wifiNichtAnTextDeutsch), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(R.string.wifiNichtAnText), Toast.LENGTH_LONG).show();
             wifi.setWifiEnabled(true);
         }
 
@@ -59,7 +59,7 @@ class WifiConnect {
                 conf.preSharedKey = "\"" + password + "\"";
                 break;
             default:
-                Toast.makeText(context, context.getString(R.string.keineSichereWlanVerbindungTextDeutsch), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.keineSichereWlanVerbindungText), Toast.LENGTH_SHORT).show();
                 return;
         }
 
@@ -69,8 +69,6 @@ class WifiConnect {
         wifiManager.disconnect();
         wifiManager.enableNetwork(conf.networkId, true);
         List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
-        //Loescht die WIFI Informationen, da Android sich merkt welche WLAN Netzwerke keine Verbindung haben und verbindet sich nicht
-        //mehr mit diesen. Verbindung ist sonst nur moeglich wenn man sich noch nie verbunden hat mit dem WLAN.
         for (WifiConfiguration i : list) {
             wifiManager.removeNetwork(i.networkId);
         }
@@ -82,7 +80,7 @@ class WifiConnect {
             wifiManager.reconnect();
             wifiManager.reassociate();
         }
-        Toast.makeText(context, context.getString(R.string.verbindungZuTextDeutsch) + " " + ssid + " " + context.getString(R.string.wirdAufgebautTextDeutsch), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, context.getString(R.string.verbindungZuText) + " " + ssid + " " + context.getString(R.string.wirdAufgebautText), Toast.LENGTH_SHORT).show();
     }
 
     /**

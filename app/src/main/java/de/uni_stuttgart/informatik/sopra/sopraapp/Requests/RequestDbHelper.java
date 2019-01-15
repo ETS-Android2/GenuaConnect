@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class RequestDbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 6;
     private static final String DATABASE_NAME = "Requests.db";
 
     //sql command to destroy request table
@@ -54,28 +54,35 @@ public class RequestDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase reading = getReadableDatabase();
         ArrayList<String> masks = new ArrayList<>();
         Cursor cursor = reading.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME,null);
-        String mask = null;
+        String mask;
         for(int i = 1; i<=cursor.getCount(); i++ ){
             mask = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
             masks.add(mask);
         }
+        cursor.close();
         return masks;
     }
 
-    public ArrayList<String> getOIDsFrom(String request){
-        SQLiteDatabase reading = getReadableDatabase();
+    public static ArrayList<String> getOIDsFrom(SQLiteDatabase reading, String request){
 
-        Cursor cursor = reading.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_NAME + " = '" + request+"'" ,null);
+        Cursor cursor = reading.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME +
+                " where " + RequestsContract.COLUMN_REQ_NAME + " = '"+ request +"' " ,null);
         cursor.moveToFirst();
         int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
+        cursor.close();
 
         ArrayList<String> oids = new ArrayList<>();
-        cursor = reading.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where "+ RequestsContract.COLUMN_OID_REQ + " = " + id, null);
-        String oid = null;
-        for(int i = 1; i<=cursor.getCount(); i++ ){
-            oid = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
+        Cursor cursorOid = reading.rawQuery("select "+RequestsContract.COLUMN_OID_STRING+" from " + RequestsContract.OID_TABLE_NAME +
+                " where "+ RequestsContract.COLUMN_OID_REQ + " = " + id, null);
+        String oid;
+        cursorOid.moveToFirst();
+        int columnIndex = cursorOid.getColumnIndex(RequestsContract.COLUMN_OID_STRING);
+        for(int i = 1; i<=cursorOid.getCount(); i++ ){
+            oid = cursorOid.getString(columnIndex);
             oids.add(oid);
+            cursorOid.moveToNext();
         }
+        cursorOid.close();
         return oids;
     }
 }

@@ -28,8 +28,6 @@
             tools:layout_editor_absoluteY="0dp" />
     </android.support.v7.widget.Toolbar>
 
-
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/oids_list"
         android:layout_width="0dp"
@@ -45,7 +43,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
-        android:text="@string/speichernButtonDeutsch"
+        android:text="@string/speichernButton"
         android:textAllCaps="true"
         android:onClick="save"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,14 +64,15 @@
         android:clickable="true"
         android:onClick="addOID"
         android:rotation="90"
-        app:backgroundTint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/btn_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="@+id/oids_list"
         app:layout_constraintTop_toTopOf="@+id/oids_list"
         app:layout_constraintVertical_bias="0.95"
-        app:rippleColor="@color/colorPrimaryDark"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:rippleColor="@color/colorPrimary"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:focusable="true" />
 
 </android.support.constraint.ConstraintLayout>

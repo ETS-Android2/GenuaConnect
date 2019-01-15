@@ -59,7 +59,7 @@ public class WifiStateActivity extends AppCompatActivity {
         int mask = dhcpInfo.netmask;
 
         @SuppressLint("DefaultLocale") String maskString = String.format("%d.%d.%d.%d", (mask & 0xff), (mask >> 8 & 0xff), (mask >> 16 & 0xff), (mask >> 24 & 0xff));
-        entrys.add("Netzmaske: "+ maskString);
+        entrys.add(getString(R.string.netzmaskeText) + maskString);
         @SuppressLint("DefaultLocale") String dns1String = String.format("%d.%d.%d.%d", (dns1 & 0xff), (dns1 >> 8 & 0xff), (dns1 >> 16 & 0xff), (dns1 >> 24 & 0xff));
         entrys.add("DNS1: " + dns1String);
         @SuppressLint("DefaultLocale") String dns2String = String.format("%d.%d.%d.%d", (dns2 & 0xff), (dns2 >> 8 & 0xff), (dns2 >> 16 & 0xff), (dns2 >> 24 & 0xff));

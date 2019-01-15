@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GenuaConnect</string>
+    <string name="flashTurnOff">Blitzlicht Ausshalten</string>
+    <string name="flashTurnOn">Blitzlicht Anschalten</string>
+    <string name="barcodeText">Klicken Sie die Zurücktaste auf Ihrem Gerät, um zum Menü zu kommen.</string>
+    <string name="abfragenVerwaltungButton">Abfragenverwaltung</string>
+    <string name="speichernButton">Speichern</string>
+    <string name="oidHint">OID hier eingeben</string>
+    <string name="statusTextBarcode">Platzieren Sie den QR-Code im markierten Bereich.</string>
+    <string name="abgebrochenText">Abgebrochen</string>
+    <string name="noPermissionsInternet">Keine Berechtigung das Internet zu nutzen erteilt.</string>
+    <string name="keinWifiQrCode">Kein WIFI QR-Code erkannt.</string>
+    <string name="wifiNichtAnText">WIFI nicht aktiv. WIFI wird aktiviert.</string>
+    <string name="verbindungZuText">Verbindung zu </string>
+    <string name="wirdAufgebautText"> wird aufgebaut.</string>
+    <string name="keineSichereWlanVerbindungText">Keine sichere WIFI Verbindung möglich.</string>
+    <string name="snmpAbfrageNichtfunktioniertText">SNMP Abfrage hat nicht funktioniert. Bitte überprüfen Sie ob die OID\'s richtig sind.</string>
+    <string name="standardAbfrage">Standardabfragen</string>
+    <string name="geraeteverwaltungBtnText">Geräteverwaltung</string>
+    <string name="keine_OIDs">Keine OID\'s verfügbar. Bitte fügen Sie mindestens eine OID hinzu.</string>
+    <string name="netzmaskeText">"Netmask: "</string>
+</resources>
