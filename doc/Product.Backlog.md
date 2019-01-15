@@ -58,7 +58,7 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
 - Akzeptanztest:
 
-#### Task 1 //TODO
+#### Task 1 //TODO google ob teask ohne IS machbar und IS ohne Task machbar//
 
 #### Implementable Story 2 Geräte QR-Code wird erkannt
 
@@ -198,14 +198,14 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 	- Es gibt ein Menüpunkt zur Anzeige von Systemzuständen.
 
-#### Implementable Story 1 Abfrageschemata verwalten
+### Implementable Story 1 Abfragemasken verwalten
 
-> TODO
+> Als Admin möchte ich Abfragemasken bearbeiten, hinzufügen und löschen können, um später Abfragen gebündelt an Geräte stellen zu können.
 
 
 #### Task 1 OIDs bearbeiten
 
-> TODO
+> Man kann OIDs manuell eintippen (min. Dot-Notation).
 
 
 #### Task 2 OIDs hinzufügen
@@ -218,21 +218,21 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 > TODO
 
 
-#### Implementable Story 2 Einzlne OIDs verwalten
+### Implementable Story 2 Einzlne OIDs verwalten
 
 > TODO
 
-#### Task 1 OIDs bearbeiten
-
-> TODO
-
-
-#### Task 2 OIDs hinzufügen
+#### Task 1 OID bearbeiten
 
 > TODO
 
 
-#### Task 3 OIDs löschen
+#### Task 2 OID hinzufügen
+
+> TODO
+
+
+#### Task 3 OID löschen
 
 > TODO
 
@@ -279,21 +279,21 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 	- Es sollten zur Erleichterung nur die Beiden jeweiligen Flaggen angezeigt werden im Button 		(DE/EN).
 
-### Feature 3 *Hintergrundfarbe*
+### Feature 3 *Statusbarfarbe*
 
-> Als Admin möchte ich, dass die Hintergrundfarbe Standardhintergrundfarbe RAL 7004 ist und der Text strandardmäßig weiß ist. Die textfarbe ist änderbar in einem seperaten Menü.
+> Als Admin möchte ich, dass die Toolbarfarbe Standardhintergrundfarbe RAL 4007 ist, um den Nutzer die Möglichkeit zu geben die App zu personalisieren.
 
 - Aufwandsschätzung: XS
 
 - Akzeptanztest:
 
-	- In den "Einstellungen gibt es ein Menü für die Hintergrundfarbe.
+	- In den "Einstellungen" gibt es ein Menü für die Hintergrundfarbe. 
 
-	- Standartmäßig ist die Farbe RAL 4007 als Hintergrundfarbe eingestellt und Schwarz als Text eingestellet.
+	- Standartmäßig ist die Farbe RAL 4007 als Hintergrundfarbe eingestellt weiß als Text eingestellt.
 
-	- Es gibt noch die Option den Text auf schwarz einzustellen.
+	- Es gibt noch die Option die Toolbarfarbe auf navy blue oder grau einzustellen.
 
-### Feture 4 *Menü*
+### Feature 4 *Menü*
 
 > Als Admin möchte ich, dass es ein Menü gibt indem ich die Sprache und die Benutzeroberfläche einstellen kann und auch die Abfragen nochmal ansehen kann.
 
@@ -301,7 +301,7 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 - Akzeptanztest:
 
-	- Der Button für "Menü" ist oben Links beim "Start der App".
+	- Der Button für das "Menü" ist oben Rechts beim "Start der App".
 
 	- Im "Menü" gibt es den Button Für "Optionen", "verbundene Geräte", "WLAN-Verbindung", "Abfragenmenü" und "Hilfe".
 
