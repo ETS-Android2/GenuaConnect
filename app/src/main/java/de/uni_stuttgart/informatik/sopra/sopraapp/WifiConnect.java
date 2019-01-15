@@ -69,8 +69,6 @@ class WifiConnect {
         wifiManager.disconnect();
         wifiManager.enableNetwork(conf.networkId, true);
         List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
-        //Loescht die WIFI Informationen, da Android sich merkt welche WLAN Netzwerke keine Verbindung haben und verbindet sich nicht
-        //mehr mit diesen. Verbindung ist sonst nur moeglich wenn man sich noch nie verbunden hat mit dem WLAN.
         for (WifiConfiguration i : list) {
             wifiManager.removeNetwork(i.networkId);
         }
