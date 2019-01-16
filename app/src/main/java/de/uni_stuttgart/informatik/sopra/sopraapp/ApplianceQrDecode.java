@@ -16,9 +16,12 @@ public class ApplianceQrDecode {
      */
     public ApplianceQrDecode(String qrCode) {
         applianceInfos = new HashMap<>();
+        applianceInfos.put("snmpVersion", findInJSON(qrCode, "snmpVersion"));
         applianceInfos.put("user", findInJSON(qrCode, "user"));
         applianceInfos.put("target", findInJSON(qrCode, "target"));
-        applianceInfos.put("enc", findInJSON(qrCode, "enc"));
+        applianceInfos.put("auth", findInJSON(qrCode, "auth"));
+        applianceInfos.put("priv", findInJSON(qrCode, "priv"));
+        applianceInfos.put("privKey", findInJSON(qrCode, "privKey"));
         applianceInfos.put("pw", findInJSON(qrCode, "pw"));
         applianceInfos.put("IPv4", findInJSON(qrCode, "IPv4"));
         applianceInfos.put("IPv6", findInJSON(qrCode, "IPv6"));
@@ -29,7 +32,23 @@ public class ApplianceQrDecode {
     }
 
     public String getAddressV6() {
-      return applianceInfos.get("ipv6");
+        return applianceInfos.get("IPv6");
+    }
+
+    public String getSnmpVersion() {
+        return applianceInfos.get("snmpVersion");
+    }
+
+    public String getAuthProtocol() {
+        return applianceInfos.get("auth");
+    }
+
+    public String getPrivProtocol() {
+        return applianceInfos.get("priv");
+    }
+
+    public String getPrivKey() {
+        return applianceInfos.get("privKey");
     }
 
     public String getTarget() {
@@ -44,10 +63,6 @@ public class ApplianceQrDecode {
         return applianceInfos.get("pw");
     }
 
-    public String getEncodeing() {
-        return applianceInfos.get("enc");
-    }
-
     /**
      * Findet einen Parameter in der JSON Datei
      *
@@ -56,7 +71,7 @@ public class ApplianceQrDecode {
      * @return Returned den Wert des Parameters.
      */
     private static String findInJSON(String jSonString, String valueOf) {
-        int index = jSonString.indexOf(valueOf);
+        int index = jSonString.lastIndexOf("\""+valueOf+"\"");
         if (index == -1) {
             return null;
         }

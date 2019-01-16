@@ -35,9 +35,6 @@ public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
     private static OctetString localEngineId;
     private UserTarget target;
     private ApplianceQrDecode decode;
-    private OctetString getAuth = null;
-    private OctetString getPrivPasswort = null;
-    private OctetString getPriv = null;
     private OID getAuthOID = null;
     private OID getPrivOID = null;
 
@@ -56,94 +53,80 @@ public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
      * Hier werden die Informationen wie authProtocoll, privProtocoll, privPasswort, authPasswort, userName initialisiert.
      */
     @Override
-    protected void userInformation() throws IllegalArgumentException{
+    protected void userInformation() throws IllegalArgumentException {
         snmp.getMessageDispatcher().addMessageProcessingModel(new MPv3());
         USM usm = new USM(SecurityProtocols.getInstance(), new OctetString(snmp.getLocalEngineID()), 0);
         SecurityModels.getInstance().addSecurityModel(usm);
         OctetString getAuthPasswort = new OctetString(decode.getPassword());
-        if (decode.getEncodeing().contains(":")) {
-            String[] splittetEncodeing = decode.getEncodeing().split(":");
-            getAuth = new OctetString(splittetEncodeing[0]);
-            getPrivPasswort = new OctetString(splittetEncodeing[1]);
-            getPriv = new OctetString(splittetEncodeing[2]);
-        } else if (decode.getEncodeing().equals("SHA")){
-            getAuth = new OctetString("SHA");
-        }
-        if (getAuth != null) {
+        OctetString getAuth = new OctetString(decode.getAuthProtocol());
+        OctetString getPriv = new OctetString(decode.getPrivProtocol());
+        OctetString getPrivPasswort = new OctetString(decode.getPrivKey());
+        if (getAuth.toString().isEmpty()) {
+            getAuthOID = null;
+            getAuthPasswort = null;
+        } else {
             switch (getAuth.toString()) {
                 case "SHA":
-                    Log.d("getAuth: ", getAuth.toString());
                     getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
                     break;
                 case "MD5":
-                    Log.d("getAuth: ", getAuth.toString());
                     getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
                     break;
                 default:
                     if (!getAuth.toString().isEmpty()) {
                         throw new IllegalArgumentException();
                     }
-                    Log.d("getAuth: ", getAuth.toString());
-                    getAuthOID = null;
-                    getAuthPasswort = null;
             }
         }
-            if (getPriv != null) {
-                switch (getPriv.toString()) {
-                    case "DES":
-                        Log.d("getPriv: ", getPriv.toString());
-                        getPrivOID = new OID(SnmpConstants.usmDESPrivProtocol);
-                        break;
-                    case "AES-128":
-                        Log.d("getPriv: ", getPriv.toString());
-                        getPrivOID = new OID(SnmpConstants.usmAesCfb128Protocol);
-                        break;
-                    case "AES-192":
-                        Log.d("getPriv: ", getPriv.toString());
-                        getPrivOID = new OID(SnmpConstants.oosnmpUsmAesCfb192Protocol);
-                        break;
-                    case "AES-256":
-                        Log.d("getPriv: ", getPriv.toString());
-                        getPrivOID = new OID(SnmpConstants.oosnmpUsmAesCfb256Protocol);
-                    case "3DES":
-                        Log.d("getPriv: ", getPriv.toString());
-                        getPrivOID = new OID(SnmpConstants.usm3DESEDEPrivProtocol);
-                        break;
-                    default:
-                        if (!getPriv.toString().isEmpty()) {
-                            throw new IllegalArgumentException();
-                        }
-                        Log.d("getPriv: ", getPriv.toString());
-                        getPrivOID = null;
-                        getPrivPasswort = null;
-                }
+        if (getPriv.toString().isEmpty()) {
+            getPrivOID = null;
+            getPrivPasswort = null;
+        } else {
+            switch (getPriv.toString()) {
+                case "DES":
+                    getPrivOID = new OID(SnmpConstants.usmDESPrivProtocol);
+                    break;
+                case "AES-128":
+                    getPrivOID = new OID(SnmpConstants.usmAesCfb128Protocol);
+                    break;
+                case "AES-192":
+                    getPrivOID = new OID(SnmpConstants.oosnmpUsmAesCfb192Protocol);
+                    break;
+                case "AES-256":
+                    getPrivOID = new OID(SnmpConstants.oosnmpUsmAesCfb256Protocol);
+                case "3DES":
+                    getPrivOID = new OID(SnmpConstants.usm3DESEDEPrivProtocol);
+                    break;
+                default:
+                    if (!getPriv.toString().isEmpty()) {
+                        Log.d("privProtocol", getPriv.toString());
+                        throw new IllegalArgumentException();
+                    }
             }
-            OctetString userName = new OctetString(decode.getUsername());
-            Log.d("userName: ", decode.getUsername());
-            if (getAuthPasswort != null) {
-                Log.d("getAuthPasswort: ", getAuthPasswort.toString());
-            } else {
-                Log.d("getAuthPasswort", "null");
-            }
-            if (getPriv != null) {
-                Log.d("priv: ", getPriv.toString());
-            } else {
-                Log.d("priv", "null");
-            }
-            if (getPrivPasswort != null) {
-                Log.d("getPrivPasswort: ", getPrivPasswort.toString());
-            } else {
-                Log.d("getPrivPasswort", "null");
-            }
-            Log.d("addUser: ", "Starten");
-            snmp.getUSM().addUser(userName, new UsmUser(userName, getAuthOID, getAuthPasswort, getPrivOID, getPrivPasswort));
-            Log.d("addUser: ", "Erfolgreich");
-            if (localEngineId == null) {
-                localEngineId = new OctetString(MPv3.createLocalEngineID());
-            }
-            SecurityModels.getInstance().addSecurityModel(new TSM(new OctetString(snmp.getLocalEngineID()), false));
-            Log.d("SecurityModel: ", "Erfolgreich ausgefuehrt");
         }
+        OctetString userName = new OctetString(decode.getUsername());
+        Log.d("userName: ", decode.getUsername());
+        if (getAuthPasswort != null) {
+            Log.d("getAuthPasswort: ", getAuthPasswort.toString());
+        } else {
+            Log.d("getAuthPasswort", "null");
+        }
+        Log.d("getAuth: ", getAuth.toString());
+        Log.d("priv: ", getPriv.toString());
+        if (getPrivPasswort != null) {
+            Log.d("getPrivPasswort: ", getPrivPasswort.toString());
+        } else {
+            Log.d("getPrivPasswort", "null");
+        }
+        Log.d("addUser: ", "Starten");
+        snmp.getUSM().addUser(userName, new UsmUser(userName, getAuthOID, getAuthPasswort, getPrivOID, getPrivPasswort));
+        Log.d("addUser: ", "Erfolgreich");
+        if (localEngineId == null) {
+            localEngineId = new OctetString(MPv3.createLocalEngineID());
+        }
+        SecurityModels.getInstance().addSecurityModel(new TSM(new OctetString(snmp.getLocalEngineID()), false));
+        Log.d("SecurityModel: ", "Erfolgreich ausgefuehrt");
+    }
 
     /**
      * Returns a target, which contains the information about to where and how the data should be fetched.

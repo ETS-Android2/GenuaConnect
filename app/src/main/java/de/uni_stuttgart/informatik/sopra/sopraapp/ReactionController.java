@@ -37,7 +37,7 @@ class ReactionController {
             new WifiConnect().tryConnect(qrCode, activity);
 
             // SNMPv3 QR COde
-        } else if (!new ApplianceQrDecode(qrCode).getUsername().equals("public")) {
+        } else if (new ApplianceQrDecode(qrCode).getSnmpVersion().equals("3")) {
             Log.d("Reacting To QR-Code", "detected a Appliance QR-String V3");
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.INTERNET}, 2);
@@ -75,7 +75,7 @@ class ReactionController {
             }
 
             //SNMPv1v2c QR Code.
-        } else if (new ApplianceQrDecode(qrCode).getUsername().equals("public")) {
+        } else if (new ApplianceQrDecode(qrCode).getSnmpVersion().equals("1") || new ApplianceQrDecode(qrCode).getSnmpVersion().equals("2c")) {
             Log.d("React to QR-Code V1/V2c", "detected a Appliance QR-String V1/V2c");
 
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
