@@ -134,7 +134,7 @@ public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
      * @return Returns the given target.
      */
     @Override
-    protected Target getTarget() {
+    public Target getTarget() {
         if (target != null) {
             return target;
         }

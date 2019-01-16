@@ -11,6 +11,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.util.Objects;
 
+import de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring.MonitoringMainActivity;
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestMngActivity;
 
 
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickDeviceManager(View view) {
+        Intent intent = new Intent(this, MonitoringMainActivity.class);
+        startActivity(intent);
     }
 
     @Override
