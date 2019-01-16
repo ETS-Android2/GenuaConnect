@@ -3,7 +3,7 @@
     <string name="app_name">GenuaConnect</string>
     <string name="keine_OIDs">No OIDs available. Please add at least one OID to the query management.</string>
     <string name="geraeteverwaltungBtnText">Device Management</string>
-    <string name="standardAbfrage">Defaultquerys</string>
+    <string name="standardAbfrage" translatable="false">Standardabfragen</string>
     <string name="snmpAbfrageNichtfunktioniertText">SNMP query did not work. Please check if the OIDs are correct.</string>
     <string name="keineSichereWlanVerbindungText">No save WIFI connection possible.</string>
     <string name="verbindungZuText">"Connection to "</string>

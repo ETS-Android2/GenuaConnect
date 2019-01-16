@@ -71,7 +71,7 @@ public class ApplianceQrDecode {
      * @return Returned den Wert des Parameters.
      */
     private static String findInJSON(String jSonString, String valueOf) {
-        int index = jSonString.lastIndexOf("\""+valueOf+"\"");
+        int index = jSonString.lastIndexOf("\"" + valueOf + "\"");
         if (index == -1) {
             return null;
         }

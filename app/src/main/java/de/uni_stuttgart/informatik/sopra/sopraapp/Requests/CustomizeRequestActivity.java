@@ -1,18 +1,21 @@
- package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
+package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
 
- import android.content.ContentValues;
- import android.database.Cursor;
- import android.database.sqlite.SQLiteDatabase;
- import android.os.Bundle;
- import android.support.v7.app.AppCompatActivity;
- import android.support.v7.widget.LinearLayoutManager;
- import android.support.v7.widget.RecyclerView;
- import android.util.Log;
- import android.view.View;
- import android.widget.EditText;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
- import de.uni_stuttgart.informatik.sopra.sopraapp.R;
+import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
+/**
+ * Diese Klasse ist für den Aufbau einer Abfragemaske zuständig.
+ */
 public class CustomizeRequestActivity extends AppCompatActivity {
 
     private RequestDbHelper manager;
@@ -54,19 +57,27 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         cursor.close();
     }
 
+    /**
+     * Diese Methode ist für die Speicherfunktion zuständig.
+     *
+     * @param view Die View für die Speicherfunktion.
+     */
     public void save(View view) {
-       save();
+        save();
     }
 
-    private void save(){
+    /**
+     * Diese Methode Speichert das zu speichernde Element in der Datenbank.
+     */
+    private void save() {
         SQLiteDatabase database = manager.getWritableDatabase();
         ContentValues posChangedName = new ContentValues();
         posChangedName.put(RequestsContract.COLUMN_REQ_NAME, requestName.getText().toString());
-        database.update(RequestsContract.REQ_TABLE_NAME,posChangedName,RequestsContract.COLUMN_REQ_ID +" = "+requestId, null);
+        database.update(RequestsContract.REQ_TABLE_NAME, posChangedName, RequestsContract.COLUMN_REQ_ID + " = " + requestId, null);
         ContentValues[] newRows = new ContentValues[adapter.getItemCount()];
 
-        for(int pos = adapter.getItemCount()-1; pos>=0; pos--){
-            CustomizeAdapter.ViewHolder element =(CustomizeAdapter.ViewHolder) listView.findViewHolderForLayoutPosition(pos);
+        for (int pos = adapter.getItemCount() - 1; pos >= 0; pos--) {
+            CustomizeAdapter.ViewHolder element = (CustomizeAdapter.ViewHolder) listView.findViewHolderForLayoutPosition(pos);
             assert element != null;
             String oid = element.editText.getText().toString();
             Log.d("saveOID String", "oid");
@@ -79,13 +90,18 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         }
         database.delete(RequestsContract.OID_TABLE_NAME, RequestsContract.COLUMN_OID_REQ + " = " + requestId, null);
 
-        for (int pos = (newRows.length-1); pos>=0; pos--) {
+        for (int pos = (newRows.length - 1); pos >= 0; pos--) {
             database.insert(RequestsContract.OID_TABLE_NAME, null, newRows[pos]);
         }
         database.close();
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * Mit dieser Funktion kann man OIDs in die Datenbank hinzufügen.
+     *
+     * @param view Die View für das hinzufügen.
+     */
     public void addOID(View view) {
         save(view);
         SQLiteDatabase database = manager.getWritableDatabase();

@@ -22,6 +22,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Diese Klasse ist für den QR-Code Scanner zuständig.
+ */
 public class RotatingCaptureActivity extends Activity
         implements DecoratedBarcodeView.TorchListener {
 

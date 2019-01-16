@@ -1,8 +1,8 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp;
 
+import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
-import android.os.Bundle;
 
 /**
  * @author Baran Demir(3310700)
