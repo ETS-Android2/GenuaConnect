@@ -43,15 +43,15 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
         spinner.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,dbHelper.getAllMasks()));
 
         TextView textView = listItem.findViewById(R.id.appl_name_field);
-        textView.setText("Gerät " + parent);
+        textView.setText("Gerät " + position);
 
         ListView listView = listItem.findViewById(R.id.appl_info_list);
         ArrayList<String> infos = new ArrayList<>();
         infos.add("IPv4-Addresse:\t"+ client.getAddress());
         if(client instanceof SimpleSNMPClientv3){
-            infos.add("Benutzer:\t"+ client.getTarget());
+            infos.add("Benutzer:\t"+ client.getTarget().getSecurityName().toString());
         }else {
-            infos.add("Community Target:\t");
+            infos.add("Community Target:\t" + client.getTarget().getSecurityName().toString());
         }
         listView.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, infos));
 
