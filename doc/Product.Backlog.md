@@ -120,18 +120,16 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
 	- Man kann in einem Screen den QR-Code für das WIFI scannen, dessen Infos dann in dem Screen gezeigt werden und im selben Screen ohne Unterbrechung den QR-Code für mehrere Geräte des Rechenzentrum nacheinander scannen.
 
-#### Implementable Story 1 Durchlaufenden scann von 
+#### Implementable Story 1 Durchlaufenden scann von QR-Codes
 
 ## Epic 2: Verwaltung von Abfragen
 
 
 > Als Admin möchte ich bestimmte Abfragen kategorisiert und übersichtlich verwalten und benutzen können, um die App benuztzerfreundlicher zu machen.
 
-Beschreibung:
-
 Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske gepackt werden, damit Abfragen gleichen Typs effizienter getätigt werden können. Eine Abfragemaske kann vorher defeniert werden. Dies sind eine bestimmte Menge von Abfragen, die immer gleichzeitig getätigt werden. Eine einzelne Abfrage ist die versuchte Ermittlung von Informationen.
 
-### Feature 1 *Abfragenschema erstellen*
+### Feature 1 *Abfragemasken verwalten*
 
 > Als Admin möchte ich Abfragenschemata erstellen können, um gleiche Abfragen schneller tätigen zu können.
 
@@ -147,7 +145,7 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 	- Abfragen können gestartet werden und das Result angezeigt werden.
 
-#### Implementable Story 1 Abfragemasken Verwalten
+#### Implementable Story 1 Inhalt der Abfragemasken bearbeiten
 
 > Als Admin möchte ich Abfragemasken erstellen, löschen, bearbeiten und gestartet können.
 
@@ -158,7 +156,7 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
     - Abfragen können verwaltet (neu angelegt, bearbeitet, angesehen und gelöscht) werden.
 
 
-#### Task 1 Abfragemasken erstellen
+#### Task 1 OIDs bearbeiten
 
 > Als Nutzer möchte ich Abfragemasken erstellen können, um diese bei bedarf nutzen zu können.
 
@@ -166,7 +164,7 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 - Tatsächliche benötigte Zeit:
 
-#### Task 2 Abfragemasken bearbeiten
+#### Task 2 OIDs hinzufügen
 
 > Als Nutzer möchte ich Abfragemasken bearbeiten könenn, um bei kleinen Änderung keine komplett neue Abfragemaske erstellen zu müssen.
 
@@ -174,13 +172,17 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 - Tatsächliche benötigte Zeit:
 
-#### Task 3 Abfragemasken löschen
+#### Task 3 OIDs löschen
 
 > Als Nutzer möchte ich Abfragemasken löschen können, um eine bessere Übersicht beibehalten zu können.
 
 - Aufwandsschätzung:
 
 - Tatsächliche benötigte Zeit:
+
+#### Implementable Story 2 Namen der Abfragemasken bearbeiten
+
+#### Task 1 Namen ändern
 
 ### Feature 2 *Abfragenmenü*
 
@@ -203,17 +205,17 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 > Als Admin möchte ich Abfragemasken bearbeiten, hinzufügen und löschen können, um später Abfragen gebündelt an Geräte stellen zu können.
 
 
-#### Task 1 OIDs bearbeiten
-
-> Man kann OIDs manuell eintippen (min. Dot-Notation).
-
-
-#### Task 2 OIDs hinzufügen
+#### Task 1 Abfragemasken erstellen
 
 > TODO
 
 
-#### Task 3 OIDs löschen
+#### Task 2 Abfragemasken hinzufügen
+
+> TODO
+
+
+#### Task 3 Abfragemasken löschen
 
 > TODO
 
