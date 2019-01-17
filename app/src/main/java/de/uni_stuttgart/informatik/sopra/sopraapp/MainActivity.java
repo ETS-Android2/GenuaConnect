@@ -11,9 +11,12 @@ import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.util.Objects;
 
+import de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring.MonitoringMainActivity;
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestMngActivity;
 
-
+/**
+ * Die Mainmethode wo die 3 Btns gelistet sind.
+ */
 public class MainActivity extends AppCompatActivity {
 
     //Intent that can start the scan of qr codes
@@ -32,19 +35,31 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //initialising the IntentIntegrator and setting a few options
-         intentIntegrator = new IntentIntegrator(this);
-         intentIntegrator.setBeepEnabled(false);
-         intentIntegrator.setOrientationLocked(false);
-         intentIntegrator.setCaptureActivity(RotatingCaptureActivity.class);
-         intentIntegrator.initiateScan();
+        intentIntegrator = new IntentIntegrator(this);
+        intentIntegrator.setBeepEnabled(false);
+        intentIntegrator.setOrientationLocked(false);
+        intentIntegrator.setCaptureActivity(RotatingCaptureActivity.class);
+        intentIntegrator.initiateScan();
     }
 
-    public void wifiInfReact(View view){
+    /**
+     * Die onClick methode für den WIFI Btn.
+     *
+     * @param view Die View für den Intend.
+     */
+    public void wifiInfReact(View view) {
         Intent intent = new Intent(this, WifiStateActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Die onClick Methode für den Gerätemanager Btn.
+     *
+     * @param view Die View für den Intend.
+     */
     public void onClickDeviceManager(View view) {
+        Intent intent = new Intent(this, MonitoringMainActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -57,16 +72,21 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //back button functions as a button that re-initialises the IntentIntegrator
-        if (id == android.R.id.home){
+        if (id == android.R.id.home) {
             intentIntegrator = new IntentIntegrator(this);
             intentIntegrator.setBeepEnabled(false);
             intentIntegrator.setOrientationLocked(false);
             intentIntegrator.setCaptureActivity(RotatingCaptureActivity.class);
             intentIntegrator.initiateScan();
-    }
+        }
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Die onClick Methode für den Abfragenmanager Btn.
+     *
+     * @param view Die View für den Intend.
+     */
     public void requestManagement(View view) {
         Intent intent = new Intent(this, RequestMngActivity.class);
         startActivity(intent);

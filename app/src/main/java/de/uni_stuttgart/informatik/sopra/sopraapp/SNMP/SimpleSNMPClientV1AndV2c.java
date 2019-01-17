@@ -68,7 +68,7 @@ public class SimpleSNMPClientV1AndV2c {
      *
      * @throws IOException If an IO operation exception occurs while starting the listener.
      */
-    protected void start() throws IOException {
+    protected void start() throws IOException, IllegalArgumentException {
         TransportMapping<UdpAddress> transportMapping = new DefaultUdpTransportMapping();
         Log.d("Snmp Connect", "asynchroner Nebenthread gestartet");
 
@@ -82,7 +82,7 @@ public class SimpleSNMPClientV1AndV2c {
         Log.d("Snmp Connect", "isListening: " + transportMapping.isListening());
     }
 
-    protected void userInformation(){
+    protected void userInformation() {
         snmp.getMessageDispatcher().addMessageProcessingModel(new MPv1());
     }
 
@@ -91,7 +91,7 @@ public class SimpleSNMPClientV1AndV2c {
      *
      * @return Returns the given target.
      */
-    protected Target getTarget() {
+    public Target getTarget() {
         if (target != null) {
             return target;
         }
@@ -120,7 +120,7 @@ public class SimpleSNMPClientV1AndV2c {
         }
         System.out.println(targetAdress);
         target = new CommunityTarget();
-        target.setCommunity(new OctetString("public"));
+        target.setCommunity(new OctetString(decode.getTarget()));
         target.setSecurityLevel(SecurityLevel.NOAUTH_NOPRIV);
         target.setAddress(targetAdress);
         target.setRetries(3);

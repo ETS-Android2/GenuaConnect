@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
+/**
+ * Diese Klasse ist für die Activity des Abfragenmanagers zuständig.
+ */
 public class RequestMngActivity extends AppCompatActivity {
 
     private RequestDbHelper manager;
@@ -35,6 +39,11 @@ public class RequestMngActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Durch diese Methode werden Abfragemasken erstellt.
+     *
+     * @param view Die View für die Abfragemasken.
+     */
     public void addMask(View view) {
         SQLiteDatabase database = manager.getWritableDatabase();
 
@@ -57,11 +66,23 @@ public class RequestMngActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Checkt ob eine Abfragemaske schon existiert.
+     *
+     * @param name Name der Abfragemaske.
+     * @return Returnt die Anzahl zurück der schon existierenden Abfragemaske.
+     */
     private boolean alreadyExists(String name) {
         SQLiteDatabase myDatabase = manager.getReadableDatabase();
         Cursor c = myDatabase.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_NAME + " = '" + name + "'", null);
         int amount = c.getCount();
         c.close();
         return amount > 0;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        itemsAdapter.notifyDataSetChanged();
     }
 }
