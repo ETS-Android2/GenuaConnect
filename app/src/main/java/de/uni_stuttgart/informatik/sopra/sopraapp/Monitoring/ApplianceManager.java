@@ -1,7 +1,5 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,12 +14,12 @@ public class ApplianceManager {
 
     private static ApplianceManager ourInstance;
 
-    public static ApplianceManager getInstance(Context context) {
+    public static ApplianceManager getInstance(RequestDbHelper dbHelper) {
         if (ourInstance == null){
             ourInstance = new ApplianceManager();
             ourInstance.clientV1AndV2List = new ArrayList<>();
             ourInstance.requestTable = new HashMap<>();
-            ourInstance.requestDbHelper = new RequestDbHelper(context);
+            ourInstance.requestDbHelper = dbHelper;
         }
         return ourInstance;
     }

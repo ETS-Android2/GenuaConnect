@@ -4,7 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="179dp"
     tools:layout_editor_absoluteY="81dp">
+
+    <TextView
+        android:id="@+id/appl_name_field"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/request_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/request_spinner"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/appl_name_field"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/appl_info_list"
+        android:layout_width="368dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appl_name_field" />
 
 </android.support.constraint.ConstraintLayout>
