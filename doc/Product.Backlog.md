@@ -4,8 +4,6 @@
 
 > Als Admin möchte ich das Produkt nutzen um einen QR-Code scannen zu können, um eine Verbindung mit demn WLAN oder einem Gerät herzustellen.
 
-Beschreibung:
-
 Der Admin muss sich im Rechenzentrum mit dem bereitgestellten WLAN verbinden. Dies erledigt er, indem er ein QR-Code scannt. Außerdem kann der Admin mittels QR-Codes an den Geräten im Rechenzentrum Informationen dieser abfragen.
 
 ### Feature 1 *WLAN Verbindung herstellen*
@@ -52,33 +50,40 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
 #### Implementable Story 1 Zugriff auf die Handykamera
 
-> Die App soll die Erlaubnis besitzen, auf die Kamerafunktionen zugreifen zu können. Danach wird beim erstmaligem öffnen gefragt.
+> Als Nutzer möchte ich, dass die App zugriff auf die Handykamera hat, damit man einen QR-Code scannen kann.
 
-- Aufwandsschätzung [] Storypoints
+
+- Aufwandsschätzung [3] Storypoints
 
 - Akzeptanztest:
-
-#### Task 1 //TODO google ob teask ohne IS machbar und IS ohne Task machbar//
 
 #### Implementable Story 2 Geräte QR-Code wird erkannt
 
 > Als Nutzer möchte ich, dass der Scanner erkennt ob es sich um ein Geräte QR-Code handelt.
 
-- Aufwandsschätzung [14] Storypoints
+- Aufwandsschätzung [46] Storypoints
 
 - Akzeptanztest:
 	- Zugriff auf die Handykamera
 	- QR-Codes können gescannt werden
 	- QR-Code wird analysiert
 
-#### Task 1 Kamerazugriff
+##### Task 1 Kamerazugriff
 
-> Die App soll die Erlaubnis erteilt bekommen, auf die Kamerafunktionen zugreifen zu können. Danach wird beim erstmaligem öffnen gefragt.
+Die App soll die Erlaubnis besitzen, auf die Kamerafunktionen zugreifen zu können. Danach wird beim erstmaligem öffnen gefragt.
 
-#### Task 2 QR-Code Analyse
+- Aufwandsschätzung: 30min
 
-> Der QR-Code wird eingelesen und dessen Inhalt wird auf die richtige Form geprüft.
+- Tatsächlich benötigte Zeit: 25min
 
+
+##### Task 2 QR-Code Analyse
+
+Der QR-Code wird eingelesen und dessen Inhalt wird auf die richtige Form geprüft.
+
+- Aufwandsschätzung: 3h
+
+- Tatsächlich benötigte Zeit: 4h
 
 ### Feature 3 *Blitzlicht*
 
@@ -94,7 +99,7 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
 #### Implementable Story 1 Zugriff auf Handyblitzlicht
 
-> TODO
+> Als Nutzer möchte ich, dass die App auf das Handyblitzlicht zufreifen kann, damit man bei schlechten Lichtverhältnissen das Handylicht einschalten kann, um das Scannen von QR-Codes zu erleichtern.
 
 - Aufwandsschätzung [4] Storypoints
 
@@ -103,11 +108,11 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
 #### Task 1 Button aktiviert das Handyblitzlicht
 
-> Der Nutzer der App kann einen Button bedienen um das Handyblitzlicht zu aktivieren.
+Der Nutzer der App kann einen Button bedienen um das Handyblitzlicht zu aktivieren.
 
-- Aufwandsschätzung:
+- Aufwandsschätzung: 20min
 
-- Tatsächlich benötigte Zeit:
+- Tatsächlich benötigte Zeit: 15min
 
 
 ### Feature 4 *Multiscan*
@@ -121,6 +126,13 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 	- Man kann in einem Screen den QR-Code für das WIFI scannen, dessen Infos dann in dem Screen gezeigt werden und im selben Screen ohne Unterbrechung den QR-Code für mehrere Geräte des Rechenzentrum nacheinander scannen.
 
 #### Implementable Story 1 Durchlaufenden scann von QR-Codes
+
+> Als Nutzer möchte ich ununterbrochen QR-Codes einscannen können, um einen optimalen Arbeitsfluss zu erreichen.
+
+- Aufwandsschätzung [69] Storypoints
+
+- Akzeptanztest:
+	- kein weiterer input wird benötigt um einen weitern QR-Code scannen zu können.
 
 ## Epic 2: Verwaltung von Abfragen
 
@@ -156,33 +168,36 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
     - Abfragen können verwaltet (neu angelegt, bearbeitet, angesehen und gelöscht) werden.
 
 
-#### Task 1 OIDs bearbeiten
+##### Task 1 OIDs bearbeiten
 
-> Als Nutzer möchte ich Abfragemasken erstellen können, um diese bei bedarf nutzen zu können.
+Dot-Notation der OID und die dazugehörigen Bezeichnung kann bearbeitet werden.
 
-- Aufwandsschätzung:
+- Aufwandsschätzung: 1h
 
-- Tatsächliche benötigte Zeit:
+- Tatsächliche benötigte Zeit: 35min
 
-#### Task 2 OIDs hinzufügen
+##### Task 2 OIDs hinzufügen
 
-> Als Nutzer möchte ich Abfragemasken bearbeiten könenn, um bei kleinen Änderung keine komplett neue Abfragemaske erstellen zu müssen.
+Dot-Notation der OID kann hinzugefügt werden.
 
-- Aufwandsschätzung:
+- Aufwandsschätzung: 1h
 
-- Tatsächliche benötigte Zeit:
+- Tatsächliche benötigte Zeit: 20min
 
-#### Task 3 OIDs löschen
+##### Task 3 OIDs löschen
 
 > Als Nutzer möchte ich Abfragemasken löschen können, um eine bessere Übersicht beibehalten zu können.
 
-- Aufwandsschätzung:
+- Aufwandsschätzung: 30min
 
-- Tatsächliche benötigte Zeit:
+- Tatsächliche benötigte Zeit: 15min
 
 #### Implementable Story 2 Namen der Abfragemasken bearbeiten
 
-#### Task 1 Namen ändern
+> Als Admin möchte ich die Namen der Abfragemasken bearbeiten können, um auf einen Blick sehen zu können um welche Abfragemaske es sich handelt.
+
+##### Task 1 Namen ändern
+Der Name kann nach belieben geändert und angepasst werden.
 
 ### Feature 2 *Abfragenmenü*
 
@@ -200,43 +215,47 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 	- Es gibt ein Menüpunkt zur Anzeige von Systemzuständen.
 
-### Implementable Story 1 Abfragemasken verwalten
+#### Implementable Story 1 Abfragemasken verwalten
 
 > Als Admin möchte ich Abfragemasken bearbeiten, hinzufügen und löschen können, um später Abfragen gebündelt an Geräte stellen zu können.
 
+- Aufwandsschätzung [51] Storypoints
+- Akzeptanztest:
+	- 
 
-#### Task 1 Abfragemasken erstellen
+##### Task 1 Abfragemasken erstellen
 
-> TODO
+Abfragemasken können erstellt werden.
 
+##### Task 2 Abfragemasken hinzufügen
 
-#### Task 2 Abfragemasken hinzufügen
-
-> TODO
-
-
-#### Task 3 Abfragemasken löschen
-
-> TODO
+Abfragemasken können hinzugefügt werden.
 
 
-### Implementable Story 2 Einzlne OIDs verwalten
+##### Task 3 Abfragemasken löschen
 
-> TODO
-
-#### Task 1 OID bearbeiten
-
-> TODO
+Abfragemasken können gelölscht werden.
 
 
-#### Task 2 OID hinzufügen
+#### Implementable Story 2 Einzlne OIDs verwalten
+>
 
-> TODO
+- Aufwandsschätzung [] Storypoint
+- Akzeptanztest:
+
+##### Task 1 OID bearbeiten
+
+Einzelne OID kann bearbeitet werden.
 
 
-#### Task 3 OID löschen
+##### Task 2 OID hinzufügen
 
-> TODO
+Eine einzelne OID kann hinzugefügt werden.
+
+
+##### Task 3 OID löschen
+
+Einzelne OID kann gelöscht werden.
 
 
 ## Epic 3: Oberfläche
