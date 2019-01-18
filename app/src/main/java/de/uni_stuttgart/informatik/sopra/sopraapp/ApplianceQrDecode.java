@@ -35,7 +35,7 @@ public class ApplianceQrDecode {
         return applianceInfos.get("IPv6");
     }
 
-    public String getSnmpVersion() {
+    String getSnmpVersion() {
         return applianceInfos.get("snmpVersion");
     }
 
