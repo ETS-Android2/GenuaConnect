@@ -14,10 +14,13 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
 
+/**
+ * Diese Klasse ist für den Device Manager.
+ */
 public class MonitoringMainActivity extends AppCompatActivity {
 
     private ApplianceManager manager;
-    private HashMap<SimpleSNMPClientV1AndV2c,String> appliances;
+    private HashMap<SimpleSNMPClientV1AndV2c, String> appliances;
     private ArrayList<String> applianceNames;
     private RequestDbHelper dbHelper;
     private RecyclerView recyclerView;
@@ -37,7 +40,7 @@ public class MonitoringMainActivity extends AppCompatActivity {
         ArrayList<SimpleSNMPClientV1AndV2c> clients = manager.getClientList();
 
         int count = 0;
-        for (SimpleSNMPClientV1AndV2c client: clients){
+        for (SimpleSNMPClientV1AndV2c client : clients) {
             appliances.put(client, "Gerät " + count);
         }
 

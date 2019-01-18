@@ -12,6 +12,9 @@ import android.widget.ImageButton;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
+/**
+ * Die Adapterklasse für die Customization.
+ */
 public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.ViewHolder> {
     private RequestDbHelper data;
     private int requestId;
@@ -44,6 +47,13 @@ public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.View
             });
         }
     }
+
+    /**
+     * Konstruktor.
+     *
+     * @param requestDbHelper Objekt aus der RequestDbHelper Klasse.
+     * @param id              Die ID der Abfrage.
+     */
     CustomizeAdapter(RequestDbHelper requestDbHelper, int id) {
         this.data = requestDbHelper;
         this.requestId = id;
@@ -75,13 +85,11 @@ public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.View
     public int getItemCount() {
         SQLiteDatabase database = data.getReadableDatabase();
 
-        Cursor cursor = database.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where " + RequestsContract.COLUMN_OID_REQ + " = " + requestId , null);
+        Cursor cursor = database.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where " + RequestsContract.COLUMN_OID_REQ + " = " + requestId, null);
         int cursorCount = cursor.getCount();
         cursor.close();
         return cursorCount;
     }
-
-
 
 
 }

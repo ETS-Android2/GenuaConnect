@@ -58,7 +58,7 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
 - Akzeptanztest:
 
-#### Task 1 //TODO
+#### Task 1 //TODO google ob teask ohne IS machbar und IS ohne Task machbar//
 
 #### Implementable Story 2 Geräte QR-Code wird erkannt
 
@@ -120,18 +120,16 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
 	- Man kann in einem Screen den QR-Code für das WIFI scannen, dessen Infos dann in dem Screen gezeigt werden und im selben Screen ohne Unterbrechung den QR-Code für mehrere Geräte des Rechenzentrum nacheinander scannen.
 
-#### Implementable Story 1 Durchlaufenden scann von 
+#### Implementable Story 1 Durchlaufenden scann von QR-Codes
 
 ## Epic 2: Verwaltung von Abfragen
 
 
 > Als Admin möchte ich bestimmte Abfragen kategorisiert und übersichtlich verwalten und benutzen können, um die App benuztzerfreundlicher zu machen.
 
-Beschreibung:
-
 Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske gepackt werden, damit Abfragen gleichen Typs effizienter getätigt werden können. Eine Abfragemaske kann vorher defeniert werden. Dies sind eine bestimmte Menge von Abfragen, die immer gleichzeitig getätigt werden. Eine einzelne Abfrage ist die versuchte Ermittlung von Informationen.
 
-### Feature 1 *Abfragenschema erstellen*
+### Feature 1 *Abfragemasken verwalten*
 
 > Als Admin möchte ich Abfragenschemata erstellen können, um gleiche Abfragen schneller tätigen zu können.
 
@@ -147,7 +145,7 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 	- Abfragen können gestartet werden und das Result angezeigt werden.
 
-#### Implementable Story 1 Abfragemasken Verwalten
+#### Implementable Story 1 Inhalt der Abfragemasken bearbeiten
 
 > Als Admin möchte ich Abfragemasken erstellen, löschen, bearbeiten und gestartet können.
 
@@ -158,7 +156,7 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
     - Abfragen können verwaltet (neu angelegt, bearbeitet, angesehen und gelöscht) werden.
 
 
-#### Task 1 Abfragemasken erstellen
+#### Task 1 OIDs bearbeiten
 
 > Als Nutzer möchte ich Abfragemasken erstellen können, um diese bei bedarf nutzen zu können.
 
@@ -166,7 +164,7 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 - Tatsächliche benötigte Zeit:
 
-#### Task 2 Abfragemasken bearbeiten
+#### Task 2 OIDs hinzufügen
 
 > Als Nutzer möchte ich Abfragemasken bearbeiten könenn, um bei kleinen Änderung keine komplett neue Abfragemaske erstellen zu müssen.
 
@@ -174,13 +172,17 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 - Tatsächliche benötigte Zeit:
 
-#### Task 3 Abfragemasken löschen
+#### Task 3 OIDs löschen
 
 > Als Nutzer möchte ich Abfragemasken löschen können, um eine bessere Übersicht beibehalten zu können.
 
 - Aufwandsschätzung:
 
 - Tatsächliche benötigte Zeit:
+
+#### Implementable Story 2 Namen der Abfragemasken bearbeiten
+
+#### Task 1 Namen ändern
 
 ### Feature 2 *Abfragenmenü*
 
@@ -198,41 +200,41 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 	- Es gibt ein Menüpunkt zur Anzeige von Systemzuständen.
 
-#### Implementable Story 1 Abfrageschemata verwalten
+### Implementable Story 1 Abfragemasken verwalten
+
+> Als Admin möchte ich Abfragemasken bearbeiten, hinzufügen und löschen können, um später Abfragen gebündelt an Geräte stellen zu können.
+
+
+#### Task 1 Abfragemasken erstellen
 
 > TODO
 
 
-#### Task 1 OIDs bearbeiten
+#### Task 2 Abfragemasken hinzufügen
 
 > TODO
 
 
-#### Task 2 OIDs hinzufügen
+#### Task 3 Abfragemasken löschen
 
 > TODO
 
 
-#### Task 3 OIDs löschen
+### Implementable Story 2 Einzlne OIDs verwalten
+
+> TODO
+
+#### Task 1 OID bearbeiten
 
 > TODO
 
 
-#### Implementable Story 2 Einzlne OIDs verwalten
-
-> TODO
-
-#### Task 1 OIDs bearbeiten
+#### Task 2 OID hinzufügen
 
 > TODO
 
 
-#### Task 2 OIDs hinzufügen
-
-> TODO
-
-
-#### Task 3 OIDs löschen
+#### Task 3 OID löschen
 
 > TODO
 
@@ -279,21 +281,21 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 	- Es sollten zur Erleichterung nur die Beiden jeweiligen Flaggen angezeigt werden im Button 		(DE/EN).
 
-### Feature 3 *Hintergrundfarbe*
+### Feature 3 *Statusbarfarbe*
 
-> Als Admin möchte ich, dass die Hintergrundfarbe Standardhintergrundfarbe RAL 7004 ist und der Text strandardmäßig weiß ist. Die textfarbe ist änderbar in einem seperaten Menü.
+> Als Admin möchte ich, dass die Toolbarfarbe Standardhintergrundfarbe RAL 4007 ist, um den Nutzer die Möglichkeit zu geben die App zu personalisieren.
 
 - Aufwandsschätzung: XS
 
 - Akzeptanztest:
 
-	- In den "Einstellungen gibt es ein Menü für die Hintergrundfarbe.
+	- In den "Einstellungen" gibt es ein Menü für die Hintergrundfarbe. 
 
-	- Standartmäßig ist die Farbe RAL 4007 als Hintergrundfarbe eingestellt und Schwarz als Text eingestellet.
+	- Standartmäßig ist die Farbe RAL 4007 als Hintergrundfarbe eingestellt weiß als Text eingestellt.
 
-	- Es gibt noch die Option den Text auf schwarz einzustellen.
+	- Es gibt noch die Option die Toolbarfarbe auf navy blue oder grau einzustellen.
 
-### Feture 4 *Menü*
+### Feature 4 *Menü*
 
 > Als Admin möchte ich, dass es ein Menü gibt indem ich die Sprache und die Benutzeroberfläche einstellen kann und auch die Abfragen nochmal ansehen kann.
 
@@ -301,7 +303,7 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 - Akzeptanztest:
 
-	- Der Button für "Menü" ist oben Links beim "Start der App".
+	- Der Button für das "Menü" ist oben Rechts beim "Start der App".
 
 	- Im "Menü" gibt es den Button Für "Optionen", "verbundene Geräte", "WLAN-Verbindung", "Abfragenmenü" und "Hilfe".
 

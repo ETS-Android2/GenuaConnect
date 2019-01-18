@@ -16,6 +16,9 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+/**
+ * Durch diese Klasse wird in der Activity die WIFI/DHCP Infos angezeigt.
+ */
 public class WifiStateActivity extends AppCompatActivity {
     WifiManager mng;
     DhcpInfo dhcpInfo;

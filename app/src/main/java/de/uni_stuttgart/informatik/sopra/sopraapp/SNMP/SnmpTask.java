@@ -38,7 +38,7 @@ public class SnmpTask extends AsyncTask<String, Void, String> {
         try {
             snmpClient.start();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("Exception", e.getMessage());
         }
         Log.d(TAG, "initialisiert");
         return snmpClient.getAsString(new OID(oids[0]));

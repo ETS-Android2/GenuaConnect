@@ -14,15 +14,18 @@ import android.widget.TextView;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
-public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHolder>{
+/**
+ * Diese Klasse ist die Adapterklasse für die Oberfläche der Abfragemasken.
+ */
+public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHolder> {
     private RequestDbHelper data;
     private Activity activity;
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView requestText;
         ImageButton imageButton;
 
-        ViewHolder(View view){
+        ViewHolder(View view) {
             super(view);
             requestText = view.findViewById(R.id.reqText);
             imageButton = view.findViewById(R.id.deleteReq_btn);
@@ -68,7 +71,13 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
         }
     }
 
-    OverviewAdapter(RequestDbHelper requestDbHelper, Activity activity){
+    /**
+     * Konstruktor.
+     *
+     * @param requestDbHelper Objekt aus RequestDbHelper.
+     * @param activity        Die übergebene Activity.
+     */
+    OverviewAdapter(RequestDbHelper requestDbHelper, Activity activity) {
         this.data = requestDbHelper;
         this.activity = activity;
     }
@@ -76,7 +85,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     @NonNull
     @Override
     public OverviewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false);
         return new ViewHolder(v);
     }
 
@@ -104,7 +113,6 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
         cursor.close();
         return cursorCount;
     }
-
 
 
 }

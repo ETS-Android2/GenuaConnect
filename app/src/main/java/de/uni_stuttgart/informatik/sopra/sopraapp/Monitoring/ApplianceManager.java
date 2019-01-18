@@ -1,5 +1,7 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,8 +16,14 @@ public class ApplianceManager {
 
     private static ApplianceManager ourInstance;
 
-    public static ApplianceManager getInstance(RequestDbHelper dbHelper) {
-        if (ourInstance == null){
+    /**
+     * Konstruktor
+     *
+     * @param context Context der Klasse.
+     * @return Returned die gebrauchte Instanz aus der Datenbank.
+     */
+    public static ApplianceManager getInstance(Context context) {
+        if (ourInstance == null) {
             ourInstance = new ApplianceManager();
             ourInstance.clientV1AndV2List = new ArrayList<>();
             ourInstance.requestTable = new HashMap<>();
@@ -33,17 +41,31 @@ public class ApplianceManager {
     private HashMap<SimpleSNMPClientV1AndV2c, SnmpTask[]> taskTable;
 
 
+    /**
+     * Die Gettermethode für den SNMP Client.
+     *
+     * @return Returned den Client.
+     */
     public ArrayList<SimpleSNMPClientV1AndV2c> getClientList() {
         return clientV1AndV2List;
     }
 
-
-    public void addClient(SimpleSNMPClientV1AndV2c appliance){
+    /**
+     * Hiermit können clients geaddet werden.
+     *
+     * @param appliance Durch diese Variable werden die Clients geaddet.
+     */
+    public void addClient(SimpleSNMPClientV1AndV2c appliance) {
         clientV1AndV2List.add(appliance);
     }
 
-
-    public void setRequestFor(SimpleSNMPClientV1AndV2c client, String request){
+    /**
+     * Settet die Abfrage aus dem Client.
+     *
+     * @param client  Der SNMP Client.
+     * @param request Die Abfrage.
+     */
+    public void setRequestFor(SimpleSNMPClientV1AndV2c client, String request) {
         requestTable.put(client, request);
     }
 
@@ -52,8 +74,8 @@ public class ApplianceManager {
      * Starts request for all oids in requestmask that was specified for this client
      * @param client client to send the requests
      */
-    public void startRequestFor(SimpleSNMPClientV1AndV2c client){
-        if(taskTable == null){
+    public void startRequestFor(SimpleSNMPClientV1AndV2c client) {
+        if (taskTable == null) {
             taskTable = new HashMap<>();
         }
 

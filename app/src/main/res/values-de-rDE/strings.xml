@@ -16,8 +16,9 @@
     <string name="wirdAufgebautText"> wird aufgebaut.</string>
     <string name="keineSichereWlanVerbindungText">Keine sichere WIFI Verbindung möglich.</string>
     <string name="snmpAbfrageNichtfunktioniertText">SNMP Abfrage hat nicht funktioniert. Bitte überprüfen Sie ob die OID\'s richtig sind.</string>
-    <string name="standardAbfrage">Standardabfragen</string>
     <string name="geraeteverwaltungBtnText">Geräteverwaltung</string>
     <string name="keine_OIDs">Keine OID\'s verfügbar. Bitte fügen Sie mindestens eine OID hinzu.</string>
     <string name="netzmaskeText">"Netmask: "</string>
+    <string name="navy_blue_farbe">Statusbar auf die Farbe navy einstellen.</string>
+    <string name="language_fragment">Sprachmenü</string>
 </resources>
