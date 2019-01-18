@@ -16,15 +16,7 @@ public class ApplianceQrDecode {
      */
     public ApplianceQrDecode(String qrCode) {
         applianceInfos = new HashMap<>();
-        applianceInfos.put("snmpVersion", findInJSON(qrCode, "snmpVersion"));
-        applianceInfos.put("user", findInJSON(qrCode, "user"));
-        applianceInfos.put("target", findInJSON(qrCode, "target"));
-        applianceInfos.put("auth", findInJSON(qrCode, "auth"));
-        applianceInfos.put("priv", findInJSON(qrCode, "priv"));
-        applianceInfos.put("privKey", findInJSON(qrCode, "privKey"));
-        applianceInfos.put("pw", findInJSON(qrCode, "pw"));
-        applianceInfos.put("IPv4", findInJSON(qrCode, "IPv4"));
-        applianceInfos.put("IPv6", findInJSON(qrCode, "IPv6"));
+        fillMap(qrCode);
     }
 
     public String getAddress() {
@@ -63,29 +55,35 @@ public class ApplianceQrDecode {
         return applianceInfos.get("pw");
     }
 
-    /**
-     * Findet einen Parameter in der JSON Datei
-     *
-     * @param jSonString Die JSON Datei als String.
-     * @param valueOf    Der gesuchte Parameter als String.
-     * @return Returned den Wert des Parameters.
-     */
-    private static String findInJSON(String jSonString, String valueOf) {
-        int index = jSonString.lastIndexOf("\"" + valueOf + "\"");
-        if (index == -1) {
-            return null;
-        }
-        for (int i = index; jSonString.charAt(index) != ':'; index++) {
-        }
-        for (int i = index; jSonString.charAt(index) != '"'; index++) {
-        }
-        index++;
-        StringBuilder buildValue = new StringBuilder();
-        for (int i = index; jSonString.charAt(i) != '"'; i++) {
-            buildValue.append(jSonString.charAt(i));
-        }
 
-        return buildValue.toString();
 
+    private  void fillMap(String jSon) {
+        int i = 0;
+        String key = "";
+        String value;
+        while (i < jSon.length()) {
+            char c = jSon.charAt(i);
+            switch (c) {
+                case '"':
+                    i++;
+                    if (key.isEmpty()) {
+                        key = jSon.substring(i, jSon.indexOf('"', i));
+                        i = jSon.indexOf(':', i);
+                    }else {
+                        value = jSon.substring(i, jSon.indexOf('"', i));
+                        i = jSon.indexOf(',', i);
+                        applianceInfos.put(key, value);
+                        key = "";
+                    }
+                    break;
+                case '{':
+                    key = "";
+                    break;
+            }
+            if(i<0) {
+                break;
+            }
+            i++;
+        }
     }
 }
