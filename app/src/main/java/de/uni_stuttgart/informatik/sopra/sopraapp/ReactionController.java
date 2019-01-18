@@ -36,15 +36,13 @@ class ReactionController {
             new WifiConnect().tryConnect(qrCode, activity);
 
             // SNMPv3 QR COde
-        } else if (!new ApplianceQrDecode(qrCode).getUsername().equals("public")) {
-            RequestDbHelper database = new RequestDbHelper(activity);
-            ApplianceManager applianceManager = ApplianceManager.getInstance(database);
+        } else if (new ApplianceQrDecode(qrCode).getSnmpVersion().equals("3")) {
+            ApplianceManager applianceManager = ApplianceManager.getInstance(activity);
             applianceManager.addClient(new SimpleSNMPClientv3(qrCode));
 
             //SNMPv1v2c QR Code.
-        } else if (new ApplianceQrDecode(qrCode).getUsername().equals("public")) {
-            RequestDbHelper database = new RequestDbHelper(activity);
-            ApplianceManager applianceManager = ApplianceManager.getInstance(database);
+        } else if (new ApplianceQrDecode(qrCode).getSnmpVersion().equals("1") || new ApplianceQrDecode(qrCode).getSnmpVersion().equals("2c")) {
+            ApplianceManager applianceManager = ApplianceManager.getInstance(activity);
             applianceManager.addClient(new SimpleSNMPClientV1AndV2c(qrCode));
 
         }

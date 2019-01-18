@@ -13,6 +13,7 @@ import java.util.List;
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
+import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
 
 /**
  * Diese Klasse ist für den Device Manager.
@@ -25,6 +26,11 @@ public class MonitoringMainActivity extends AppCompatActivity {
     private RequestDbHelper dbHelper;
     private RecyclerView recyclerView;
 
+    private static String qrCode = "{\"snmpVersion\":\"3\"," + "\"user\": \"root\"," + "\"target\": \"private\","
+            + "\"pw\": \"asdf212!\"," + "\"enc\": {" + "  \"auth\": \"SHA\"," + "  \"priv\": \"AES-256\","
+            + "  \"privKey\": \"asdf121!\"" + "}," + "\"naddr\": {" + " \"IPv4\": \"192.168.0.25\","
+            + " \"IPv6\": \"2a56:0:1\"" + "}" + "}";
+
 
     @SuppressLint("WrongConstant")
     @Override
@@ -35,7 +41,8 @@ public class MonitoringMainActivity extends AppCompatActivity {
 
         ListView allApplianceView = findViewById(R.id.all_appl_list);
         dbHelper = new RequestDbHelper(this);
-        manager = ApplianceManager.getInstance(dbHelper);
+        manager = ApplianceManager.getInstance(this);
+        manager.addClient(new SimpleSNMPClientv3(qrCode));
         appliances = new HashMap<>();
         ArrayList<SimpleSNMPClientV1AndV2c> clients = manager.getClientList();
 
@@ -48,7 +55,9 @@ public class MonitoringMainActivity extends AppCompatActivity {
         applianceNames.addAll(appliances.values());
         List<SimpleSNMPClientV1AndV2c> list = new ArrayList<>();
         list.addAll(appliances.keySet());
-        SnmpAdapter snmpAdapter = new SnmpAdapter(this, list, dbHelper);
+        SnmpAdapter snmpAdapter = new SnmpAdapter(this);
         allApplianceView.setAdapter(snmpAdapter);
+
+
     }
 }

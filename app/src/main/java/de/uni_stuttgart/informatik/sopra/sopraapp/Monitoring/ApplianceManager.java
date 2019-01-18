@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
@@ -19,15 +20,16 @@ public class ApplianceManager {
     /**
      * Konstruktor
      *
-     * @param context Context der Klasse.
-     * @return Returned die gebrauchte Instanz aus der Datenbank.
+     * @param context
+     * @return Returned die gebrauchte Instanz des ApplianceManager.
      */
     public static ApplianceManager getInstance(Context context) {
         if (ourInstance == null) {
             ourInstance = new ApplianceManager();
             ourInstance.clientV1AndV2List = new ArrayList<>();
             ourInstance.requestTable = new HashMap<>();
-            ourInstance.requestDbHelper = dbHelper;
+            ourInstance.requestDbHelper = new RequestDbHelper(context);
+            ourInstance.taskTable = new HashMap<>();
         }
         return ourInstance;
     }
@@ -75,10 +77,6 @@ public class ApplianceManager {
      * @param client client to send the requests
      */
     public void startRequestFor(SimpleSNMPClientV1AndV2c client) {
-        if (taskTable == null) {
-            taskTable = new HashMap<>();
-        }
-
         String request = requestTable.get(client);
         ArrayList<String> oids = requestDbHelper.getOIDsFrom(request);
         SnmpTask[] tasks = new SnmpTask[oids.size()];
@@ -87,6 +85,29 @@ public class ApplianceManager {
             tasks[i].execute(oids.get(i));
         }
         taskTable.put(client, tasks);
+    }
+
+    public ArrayList<String> getResults(SimpleSNMPClientV1AndV2c client){
+        ArrayList<String> results = new ArrayList<>();
+        if(taskTable.get(client) == null){
+            return results;
+        }
+        for (SnmpTask task : taskTable.get(client)){
+            try {
+                results.add(task.get());
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        startRequestFor(client);
+
+        return results;
+    }
+
+    public String getRequestMaskFrom(SimpleSNMPClientV1AndV2c client){
+        return requestTable.get(client);
     }
 
 }
