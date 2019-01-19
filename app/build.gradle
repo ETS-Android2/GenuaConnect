@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply from: './jacoco.gradle'
 
 android {
-    buildToolsVersion '28.0.3'
     compileSdkVersion 27
     defaultConfig {
         applicationId "de.uni_stuttgart.informatik.sopra.sopraapp"
