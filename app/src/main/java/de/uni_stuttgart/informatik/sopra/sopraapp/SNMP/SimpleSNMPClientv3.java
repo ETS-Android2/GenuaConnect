@@ -1,7 +1,6 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import org.snmp4j.ScopedPDU;
 import org.snmp4j.Target;
@@ -47,6 +46,10 @@ public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
         decode = new ApplianceQrDecode(qrCode);
         this.address = decode.getAddress();
         Log.d("StartAusfuehren", "Ausgefueht");
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     /**

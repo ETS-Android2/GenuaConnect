@@ -1,6 +1,8 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
@@ -55,7 +56,11 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
         req_switch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                notifyDataSetChanged();
+                if(req_switch.isChecked()){
+                    manager.startRequestFor(client);
+                    new ResultTask().execute(client);
+                    notifyDataSetChanged();
+                }
             }
         });
 
@@ -76,7 +81,6 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
             }
         });
         spinner.setSelection(dbHelper.getAllMasks().indexOf(manager.getRequestMaskFrom(client)));
-
         TextView textView = listItem.findViewById(R.id.appl_name_field);
         textView.setText("Gerät " + position);
 
@@ -89,11 +93,25 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
             infos.add("Community Target:\t" + client.getTarget().getSecurityName().toString());
         }
 
-        if(req_switch.isChecked()){
-            infos.addAll(manager.getResults(client));
-        }
+        infos.addAll(manager.getResults(client));
         listView.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, infos));
 
         return listItem;
+    }
+
+    private class ResultTask extends AsyncTask<SimpleSNMPClientV1AndV2c, Void, ArrayList<String>>{
+        SimpleSNMPClientV1AndV2c client;
+
+        @Override
+        protected ArrayList<String> doInBackground(SimpleSNMPClientV1AndV2c... simpleSNMPClientV1AndV2cs) {
+            client = simpleSNMPClientV1AndV2cs[0];
+            return manager.tryGetResults(simpleSNMPClientV1AndV2cs[0]);
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<String> strings) {
+            manager.setResultsFor(client, strings);
+            notifyDataSetChanged();
+        }
     }
 }
