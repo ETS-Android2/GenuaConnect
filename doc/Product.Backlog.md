@@ -238,7 +238,7 @@ Abfragemasken können gelölscht werden.
 
 
 #### Implementable Story 2 Einzlne OIDs verwalten
->
+> TODO
 
 - Aufwandsschätzung [] Storypoint
 - Akzeptanztest:
@@ -262,8 +262,6 @@ Einzelne OID kann gelöscht werden.
 
 > Als Admin will ich eine gut strukturierte Oberfläche haben, die auch einfach und intuitiv zu bedienen ist, um die Nutzung der App zu vereinfachen.
 
-Beschreibung:
-
 Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 ### Feature 1 *Start der App*
@@ -284,21 +282,14 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 ### Feature 2 *Sprachmenü*
 
-> Als Admin möchte ich, dass ich in einem separaten Menü die Sprache ändern kann.
+> Als Admin möchte ich, dass sich die Srache der Systemsprache anpasst.
 
 - Aufwandschätzung: S
 
 - Akzeptanztest:
 
-	- Man kann im Menü ein Menüpunkt Optionen auswählen.
-
-	- Der Button Sprachauswahl ist in den "Optionen".
-
-	- Es sollten die Sprachen Deutsch und Englisch auswählbar sein.
-
-	- Bei Auswahl der Sprache sollte die Richtige Sprache angezeigt werden.
-
-	- Es sollten zur Erleichterung nur die Beiden jeweiligen Flaggen angezeigt werden im Button 		(DE/EN).
+	- Die in-App Srpache soll der Systemsprache entsprechen.
+	- Ist die Systemsprache nicht Deutsch, so soll Standardgemäß die App in der Sprache Englisch angezeigt werden.
 
 ### Feature 3 *Statusbarfarbe*
 
@@ -308,7 +299,7 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 - Akzeptanztest:
 
-	- In den "Einstellungen" gibt es ein Menü für die Hintergrundfarbe. 
+	- In den "Einstellungen" gibt es ein Menü für die Hintergrundfarbe.
 
 	- Standartmäßig ist die Farbe RAL 4007 als Hintergrundfarbe eingestellt weiß als Text eingestellt.
 
@@ -326,3 +317,9 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 	- Im "Menü" gibt es den Button Für "Optionen", "verbundene Geräte", "WLAN-Verbindung", "Abfragenmenü" und "Hilfe".
 
+#### Implementable Story 1 *Hilfe*
+> Als Nutzer möchte ich, dass mir im Hilfemenü Informationen und eine Bedienungsanleitung zur Nutzung der App angezeigt wird.
+
+- Aufwandsschätzung: S
+- Akzeptanztest:
+	- TODO
