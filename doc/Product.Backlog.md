@@ -31,6 +31,20 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
     - falls WLAN-Netz nicht verschlüsselt ist, dann wird keine Verbindung hergestellt und es wird dem Nutzer eine Fehlermeldung angezeigt und es werden keine Daten übertragen.
 
+#### Implementable Story 1 WLAN-Parameter
+
+- Aufwandsschätzung [23] Storypoints
+- Akzeptanztest:
+	- Bei sich ändernden WLAN-Zugangsdaten (Änderung Passwort, aber Access-Point-Name und MAC gleich) sind keine weiteren Benutzer-Interaktionen (außer QR-Code scannen) nötig.
+	- Beim Wechsel in das gesicherte WLAN wird der Betrieb der Anwendung wieder im ursprünglichen Zustand aufgenommen.
+	- Die Netzwerkparameter des WLANs (IPv4-, IPv6-Adresse, Netzmaske, DNS-Server-IP, Gateway-IP) inkl. DHCP-Zuweisung werden dargestellt
+
+#### Implementable Story 2 Handykameranutzung
+- Aufwandsschätzung [3] Storypoints
+- Akzeptanztest:
+	- Funktionen der Kamera für die App freigeschalten
+	- Beim start der App wird dem Nutzer direkt ermöglicht einen QR-Code zu scannen
+
 ### Feature 2 *Geräteverbindung herstellen*
 
 > Als Admin möchte ich, dass die App in der Lage ist, mir die vordefinierten Informationen  anzuzeigen, indem ich einen QR-Code scanne.
@@ -196,6 +210,11 @@ Dot-Notation der OID kann hinzugefügt werden.
 
 > Als Admin möchte ich die Namen der Abfragemasken bearbeiten können, um auf einen Blick sehen zu können um welche Abfragemaske es sich handelt.
 
+- Aufwandsschätzung [23] Storypoints
+
+- Akzeptanztest:
+		- TODO
+
 ##### Task 1 Namen ändern
 Der Name kann nach belieben geändert und angepasst werden.
 
@@ -221,7 +240,7 @@ Der Name kann nach belieben geändert und angepasst werden.
 
 - Aufwandsschätzung [51] Storypoints
 - Akzeptanztest:
-	- 
+	- *TODO*
 
 ##### Task 1 Abfragemasken erstellen
 
@@ -238,7 +257,7 @@ Abfragemasken können gelölscht werden.
 
 
 #### Implementable Story 2 Einzlne OIDs verwalten
->
+> TODO
 
 - Aufwandsschätzung [] Storypoint
 - Akzeptanztest:
@@ -262,8 +281,6 @@ Einzelne OID kann gelöscht werden.
 
 > Als Admin will ich eine gut strukturierte Oberfläche haben, die auch einfach und intuitiv zu bedienen ist, um die Nutzung der App zu vereinfachen.
 
-Beschreibung:
-
 Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 ### Feature 1 *Start der App*
@@ -284,21 +301,21 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 ### Feature 2 *Sprachmenü*
 
-> Als Admin möchte ich, dass ich in einem separaten Menü die Sprache ändern kann.
+> Als Admin möchte ich, dass sich die Srache der Systemsprache anpasst.
 
 - Aufwandschätzung: S
 
 - Akzeptanztest:
 
-	- Man kann im Menü ein Menüpunkt Optionen auswählen.
+	- Die in-App Srpache soll der Systemsprache entsprechen.
+	- Ist die Systemsprache nicht Deutsch, so soll Standardgemäß die App in der Sprache Englisch angezeigt werden.
 
-	- Der Button Sprachauswahl ist in den "Optionen".
+#### Implementable Story 1 Erstellung der String/XML Datei
+> TODO
 
-	- Es sollten die Sprachen Deutsch und Englisch auswählbar sein.
-
-	- Bei Auswahl der Sprache sollte die Richtige Sprache angezeigt werden.
-
-	- Es sollten zur Erleichterung nur die Beiden jeweiligen Flaggen angezeigt werden im Button 		(DE/EN).
+- Aufwandsschätzung [11] Storypoints
+- Akzeptanztest
+	- TODO
 
 ### Feature 3 *Statusbarfarbe*
 
@@ -308,7 +325,7 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 - Akzeptanztest:
 
-	- In den "Einstellungen" gibt es ein Menü für die Hintergrundfarbe. 
+	- In den "Einstellungen" gibt es ein Menü für die Hintergrundfarbe.
 
 	- Standartmäßig ist die Farbe RAL 4007 als Hintergrundfarbe eingestellt weiß als Text eingestellt.
 
@@ -326,3 +343,9 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 	- Im "Menü" gibt es den Button Für "Optionen", "verbundene Geräte", "WLAN-Verbindung", "Abfragenmenü" und "Hilfe".
 
+#### Implementable Story 1 *Hilfe*
+> Als Nutzer möchte ich, dass mir im Hilfemenü Informationen und eine Bedienungsanleitung zur Nutzung der App angezeigt wird.
+
+- Aufwandsschätzung: S
+- Akzeptanztest:
+	- TODO
