@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
@@ -22,9 +23,10 @@ public class CustomizeRequestActivity extends AppCompatActivity {
     private RecyclerView listView;
     private RecyclerView.Adapter adapter;
 
-    private EditText requestName;
+    private EditText requestNameField;
 
     private int requestId;
+    private String requestName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customize_request);
         manager = new RequestDbHelper(this);
 
-        requestName = findViewById(R.id.et_requestName);
+        requestNameField = findViewById(R.id.et_requestName);
         listView = findViewById(R.id.oids_list);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(layoutManager);
@@ -41,9 +43,6 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         adapter = new CustomizeAdapter(manager, requestId);
         listView.setAdapter(adapter);
 
-        //ImageButton renameButton = new ImageButton(this);
-        //Drawable icon = getDrawable(android.support.fragment.R.drawable.ed);
-        //renameButton.setImageDrawable();
     }
 
     @Override
@@ -52,8 +51,9 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         SQLiteDatabase titleGetter = manager.getReadableDatabase();
         Cursor cursor = titleGetter.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_ID + " = " + requestId, null);
         cursor.moveToFirst();
-        String request = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
-        requestName.setText(request);
+        requestName = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
+        requestNameField.setText(requestName);
+
         cursor.close();
     }
 
@@ -70,10 +70,15 @@ public class CustomizeRequestActivity extends AppCompatActivity {
      * Diese Methode Speichert das zu speichernde Element in der Datenbank.
      */
     private void save() {
-        SQLiteDatabase database = manager.getWritableDatabase();
-        ContentValues posChangedName = new ContentValues();
-        posChangedName.put(RequestsContract.COLUMN_REQ_NAME, requestName.getText().toString());
-        database.update(RequestsContract.REQ_TABLE_NAME, posChangedName, RequestsContract.COLUMN_REQ_ID + " = " + requestId, null);
+        SQLiteDatabase writableDatabase = manager.getWritableDatabase();
+        String posNewName = requestNameField.getText().toString();
+        if(manager.getAllMasks().contains(posNewName) && !posNewName.equals(requestName)){
+            Toast.makeText(this, "The Request name already exists. Please change it to save your modification", Toast.LENGTH_LONG).show();
+        }else if(!manager.getAllMasks().contains(posNewName)){
+            ContentValues posChangedName = new ContentValues();
+            posChangedName.put(RequestsContract.COLUMN_REQ_NAME, requestNameField.getText().toString());
+            writableDatabase.update(RequestsContract.REQ_TABLE_NAME, posChangedName, RequestsContract.COLUMN_REQ_ID + " = " + requestId, null);
+        }
         ContentValues[] newRows = new ContentValues[adapter.getItemCount()];
 
         for (int pos = adapter.getItemCount() - 1; pos >= 0; pos--) {
@@ -88,12 +93,12 @@ public class CustomizeRequestActivity extends AppCompatActivity {
 
             newRows[pos] = contentValues;
         }
-        database.delete(RequestsContract.OID_TABLE_NAME, RequestsContract.COLUMN_OID_REQ + " = " + requestId, null);
+        writableDatabase.delete(RequestsContract.OID_TABLE_NAME, RequestsContract.COLUMN_OID_REQ + " = " + requestId, null);
 
         for (int pos = (newRows.length - 1); pos >= 0; pos--) {
-            database.insert(RequestsContract.OID_TABLE_NAME, null, newRows[pos]);
+            writableDatabase.insert(RequestsContract.OID_TABLE_NAME, null, newRows[pos]);
         }
-        database.close();
+        writableDatabase.close();
         adapter.notifyDataSetChanged();
     }
 

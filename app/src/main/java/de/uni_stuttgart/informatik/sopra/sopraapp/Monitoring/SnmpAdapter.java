@@ -12,8 +12,10 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
@@ -29,6 +31,7 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
     private Context context;
     private RequestDbHelper dbHelper;
     private ApplianceManager manager;
+    private Timer timer;
 
     /**
      * Konstruktor.
@@ -41,6 +44,7 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
         elements = manager.getClientList();
         this.context = context;
         dbHelper = new RequestDbHelper(context);
+        timer = new Timer();
     }
 
     @Override
@@ -65,22 +69,31 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
         });
 
         Spinner spinner = listItem.findViewById(R.id.request_spinner);
-        spinner.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1,dbHelper.getAllMasks()));
+        ArrayAdapter<String> adapter =new ArrayAdapter<>(context, android.R.layout.simple_list_item_1);
+        adapter.add("NONE");
+        adapter.addAll(dbHelper.getAllMasks());
+        spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0){
+                    req_switch.setChecked(false);
+                    req_switch.setEnabled(false);
+                    return;
+                }
                 req_switch.setEnabled(true);
                 String req = (String) parent.getSelectedItem();
                 manager.setRequestFor(client,req);
+
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                req_switch.setChecked(false);
-                req_switch.setEnabled(false);
+
             }
         });
-        spinner.setSelection(dbHelper.getAllMasks().indexOf(manager.getRequestMaskFrom(client)));
+
+        spinner.setSelection(manager.getRequestMaskFrom(client) != null ? dbHelper.getAllMasks().indexOf(manager.getRequestMaskFrom(client))+1:0);
         TextView textView = listItem.findViewById(R.id.appl_name_field);
         textView.setText("Gerät " + position);
 
