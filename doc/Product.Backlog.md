@@ -213,10 +213,17 @@ Dot-Notation der OID kann hinzugefügt werden.
 - Aufwandsschätzung [23] Storypoints
 
 - Akzeptanztest:
-		- TODO
+	- Name kann verändert werden
+	- geänderter Name wird beibehalten
+	- Name kann nicht zu einem Name geändert werden der bereits vorhanden ist
 
 ##### Task 1 Namen ändern
 Der Name kann nach belieben geändert und angepasst werden.
+
+- Aufwandsschätzung: *TODO*
+
+- Tatsächlich benötigte Zeit: *TODO*
+
 
 ### Feature 2 *Abfragenmenü*
 
@@ -240,21 +247,33 @@ Der Name kann nach belieben geändert und angepasst werden.
 
 - Aufwandsschätzung [51] Storypoints
 - Akzeptanztest:
-	- *TODO*
+	- die Abfragemasken können bearbeitet werden
+	- die Abfragemasken können gelöscht werden
+	- Abfragemasken können hinzugefügt werden
 
 ##### Task 1 Abfragemasken erstellen
 
 Abfragemasken können erstellt werden.
 
+- Aufwandsschätzung: *TODO*
+
+- Tatsächlich benötigte Zeit: *TODO*
+
 ##### Task 2 Abfragemasken hinzufügen
 
 Abfragemasken können hinzugefügt werden.
 
+- Aufwandsschätzung: *TODO*
+
+- Tatsächlich benötigte Zeit: *TODO*
 
 ##### Task 3 Abfragemasken löschen
 
 Abfragemasken können gelölscht werden.
 
+- Aufwandsschätzung: *TODO*
+
+- Tatsächlich benötigte Zeit: *TODO*
 
 #### Implementable Story 2 Einzlne OIDs verwalten
 > TODO
@@ -266,16 +285,25 @@ Abfragemasken können gelölscht werden.
 
 Einzelne OID kann bearbeitet werden.
 
+- Aufwandsschätzung: *TODO*
+
+- Tatsächlich benötigte Zeit: *TODO*
 
 ##### Task 2 OID hinzufügen
 
 Eine einzelne OID kann hinzugefügt werden.
 
+- Aufwandsschätzung: *TODO*
+
+- Tatsächlich benötigte Zeit: *TODO*
 
 ##### Task 3 OID löschen
 
 Einzelne OID kann gelöscht werden.
 
+- Aufwandsschätzung: *TODO*
+
+- Tatsächlich benötigte Zeit: *TODO*
 
 ## Epic 3: Oberfläche
 
@@ -311,11 +339,13 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 	- Ist die Systemsprache nicht Deutsch, so soll Standardgemäß die App in der Sprache Englisch angezeigt werden.
 
 #### Implementable Story 1 Erstellung der String/XML Datei
-> TODO
+> Als Admin möchgte ich, dass die Strings in eine XML Datei ausgelagert sind, um eine Übersetzung zu erleichtern.
 
 - Aufwandsschätzung [11] Storypoints
 - Akzeptanztest
-	- TODO
+	- XML Datei ist vorhanden
+	- in der XML Datei stehen die übersetzungen der einzelnen Strings
+	- Strings sind ausgelagert in der XML Datei
 
 ### Feature 3 *Statusbarfarbe*
 
@@ -348,4 +378,6 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 - Aufwandsschätzung: S
 - Akzeptanztest:
-	- TODO
+	- Im Hilfsmenü finden sich informationen zur App Nutzung
+	- Das Hilfsmenü ist aufrufbar
+	- Hilfsmenü passt sich der Systemsrpache an
