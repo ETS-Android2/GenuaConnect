@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.CameraQrCode;
+package de.uni_stuttgart.informatik.sopra.sopraapp.cameraQrCode;
 
 import java.util.HashMap;
 

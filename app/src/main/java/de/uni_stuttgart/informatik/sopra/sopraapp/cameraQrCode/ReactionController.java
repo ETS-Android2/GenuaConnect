@@ -1,12 +1,12 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.CameraQrCode;
+package de.uni_stuttgart.informatik.sopra.sopraapp.cameraQrCode;
 
 import android.app.Activity;
 import android.util.Log;
 
-import de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring.ApplianceManager;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
-import de.uni_stuttgart.informatik.sopra.sopraapp.Wifi.WifiConnect;
+import de.uni_stuttgart.informatik.sopra.sopraapp.monitoring.ApplianceManager;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientV1AndV2c;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientv3;
+import de.uni_stuttgart.informatik.sopra.sopraapp.wifi.WifiConnect;
 
 /**
  * In dieser Klasse wird definiert, wie auf die QR-Codes reagiert werden soll.

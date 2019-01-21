@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.Main;
+package de.uni_stuttgart.informatik.sopra.sopraapp.main;
 
 
 import android.content.Intent;
@@ -13,11 +13,11 @@ import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.util.Objects;
 
-import de.uni_stuttgart.informatik.sopra.sopraapp.CameraQrCode.RotatingCaptureActivity;
-import de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring.MonitoringMainActivity;
+import de.uni_stuttgart.informatik.sopra.sopraapp.cameraQrCode.RotatingCaptureActivity;
+import de.uni_stuttgart.informatik.sopra.sopraapp.monitoring.MonitoringMainActivity;
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
-import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestMngActivity;
-import de.uni_stuttgart.informatik.sopra.sopraapp.Wifi.WifiStateActivity;
+import de.uni_stuttgart.informatik.sopra.sopraapp.requests.RequestMngActivity;
+import de.uni_stuttgart.informatik.sopra.sopraapp.wifi.WifiStateActivity;
 
 /**
  * Die Mainmethode wo die 3 Btns gelistet sind.

@@ -8,7 +8,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import de.uni_stuttgart.informatik.sopra.sopraapp.Main.MainActivity;
+import de.uni_stuttgart.informatik.sopra.sopraapp.main.MainActivity;
 
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertEquals;

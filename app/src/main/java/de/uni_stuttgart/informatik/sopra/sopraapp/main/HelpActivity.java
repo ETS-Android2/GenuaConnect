@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.Main;
+package de.uni_stuttgart.informatik.sopra.sopraapp.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
