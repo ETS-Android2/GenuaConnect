@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp;
+package de.uni_stuttgart.informatik.sopra.sopraapp.CameraQrCode;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
@@ -21,6 +21,8 @@ import com.journeyapps.barcodescanner.DefaultDecoderFactory;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 /**
  * Diese Klasse ist für den QR-Code Scanner zuständig.
