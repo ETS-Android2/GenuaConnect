@@ -22,7 +22,7 @@ import org.snmp4j.smi.Variable;
 import org.snmp4j.smi.VariableBinding;
 import org.snmp4j.util.DefaultPDUFactory;
 
-import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
+import de.uni_stuttgart.informatik.sopra.sopraapp.CameraQrCode.ApplianceQrDecode;
 
 /**
  * Inspired by https://blog.jayway.com/2010/05/21/introduction-to-snmp4j
@@ -30,10 +30,8 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
  */
 public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
 
-    private String address;
     private static OctetString localEngineId;
     private UserTarget target;
-    private ApplianceQrDecode decode;
     private OID getAuthOID = null;
     private OID getPrivOID = null;
 

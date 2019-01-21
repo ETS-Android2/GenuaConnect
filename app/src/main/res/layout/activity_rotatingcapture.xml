@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="de.uni_stuttgart.informatik.sopra.sopraapp.RotatingCaptureActivity">
+    tools:context="de.uni_stuttgart.informatik.sopra.sopraapp.CameraQrCode.RotatingCaptureActivity">
 
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
         android:id="@+id/barcode_scanner"

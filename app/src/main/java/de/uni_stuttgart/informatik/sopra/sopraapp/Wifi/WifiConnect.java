@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp;
+package de.uni_stuttgart.informatik.sopra.sopraapp.Wifi;
 
 import android.content.Context;
 import android.net.wifi.WifiConfiguration;
@@ -9,7 +9,9 @@ import android.widget.Toast;
 
 import java.util.List;
 
-class WifiConnect {
+import de.uni_stuttgart.informatik.sopra.sopraapp.R;
+
+public class WifiConnect {
 
     /**
      * WIFI Parameters
@@ -25,7 +27,7 @@ class WifiConnect {
      * @param context  Context der Klasse
      */
 
-    void tryConnect(String qrString, Context context) {
+    public void tryConnect(String qrString, Context context) {
         //setting the WIFI Parameters from the qrString if its in correct Form
         if (!setWifiParamsFrom(qrString)) {
             Toast.makeText(context, context.getString(R.string.keinWifiQrCode), Toast.LENGTH_SHORT).show();

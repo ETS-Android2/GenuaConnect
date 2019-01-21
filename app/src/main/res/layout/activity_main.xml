@@ -6,7 +6,7 @@
     android:name="de.uni_stuttgart.informatik.sopra.sopraapp.QRFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Main.MainActivity">
 
     <Button
         android:id="@+id/buttonWifInf"
