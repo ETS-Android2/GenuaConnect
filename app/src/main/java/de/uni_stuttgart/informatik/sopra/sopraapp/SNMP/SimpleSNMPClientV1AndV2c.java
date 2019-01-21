@@ -32,11 +32,10 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.CameraQrCode.ApplianceQrDecode
  */
 public class SimpleSNMPClientV1AndV2c {
 
-    private String address;
-
+    String address;
     volatile Snmp snmp;
     private CommunityTarget target;
-    private ApplianceQrDecode decode;
+    ApplianceQrDecode decode;
     /**
      * Konstruktor
      *
@@ -72,7 +71,7 @@ public class SimpleSNMPClientV1AndV2c {
      *
      * @throws IOException If an IO operation exception occurs while starting the listener.
      */
-    protected void start() throws IOException, IllegalArgumentException {
+    void start() throws IOException, IllegalArgumentException {
         TransportMapping<UdpAddress> transportMapping = new DefaultUdpTransportMapping();
         Log.d("Snmp Connect", "asynchroner Nebenthread gestartet");
 

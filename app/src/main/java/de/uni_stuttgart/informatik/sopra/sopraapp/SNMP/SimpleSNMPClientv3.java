@@ -30,10 +30,8 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.CameraQrCode.ApplianceQrDecode
  */
 public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
 
-    private String address;
     private static OctetString localEngineId;
     private UserTarget target;
-    private ApplianceQrDecode decode;
     private OID getAuthOID = null;
     private OID getPrivOID = null;
 
