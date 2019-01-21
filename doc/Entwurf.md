@@ -10,9 +10,9 @@ Es wurden folgende Entwurfsmuster genutzt:
 
 # Komponentendiagramm
 
-![komponentendiagramm](images/Komponentendiagramm.png)
+![komponentendiagramm](images/Komponentendiagramm2.png)
 
-*Komponentendiagramm 1.0*
+*Komponentendiagramm 2.0*
 
 
 ## Komponente 1: Controller
