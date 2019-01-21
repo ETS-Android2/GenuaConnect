@@ -1,7 +1,9 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp;
+package de.uni_stuttgart.informatik.sopra.sopraapp.Main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 public class HelpActivity extends AppCompatActivity {
 

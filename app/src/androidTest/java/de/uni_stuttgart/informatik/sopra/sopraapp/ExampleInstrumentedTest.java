@@ -3,14 +3,13 @@ package de.uni_stuttgart.informatik.sopra.sopraapp;
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.widget.Button;
-import android.widget.TextView;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.hamcrest.Matchers.instanceOf;
+import de.uni_stuttgart.informatik.sopra.sopraapp.Main.MainActivity;
+
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;

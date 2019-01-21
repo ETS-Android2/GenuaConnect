@@ -24,7 +24,7 @@ import org.snmp4j.util.DefaultPDUFactory;
 
 import java.io.IOException;
 
-import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
+import de.uni_stuttgart.informatik.sopra.sopraapp.CameraQrCode.ApplianceQrDecode;
 
 /**
  * Inspired by https://blog.jayway.com/2010/05/21/introduction-to-snmp4j
