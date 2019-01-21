@@ -33,10 +33,10 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.ApplianceQrDecode;
 public class SimpleSNMPClientV1AndV2c {
 
     private String address;
+
     volatile Snmp snmp;
     private CommunityTarget target;
     private ApplianceQrDecode decode;
-
     /**
      * Konstruktor
      *
@@ -51,6 +51,10 @@ public class SimpleSNMPClientV1AndV2c {
     }
 
     SimpleSNMPClientV1AndV2c() {
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     /**
@@ -192,4 +196,6 @@ public class SimpleSNMPClientV1AndV2c {
         }
         return null;
     }
+
+
 }

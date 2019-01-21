@@ -63,9 +63,11 @@ public class RequestDbHelper extends SQLiteOpenHelper {
         ArrayList<String> masks = new ArrayList<>();
         Cursor cursor = reading.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME, null);
         String mask;
+        cursor.moveToFirst();
         for (int i = 1; i <= cursor.getCount(); i++) {
             mask = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
             masks.add(mask);
+            cursor.moveToNext();
         }
         cursor.close();
         return masks;

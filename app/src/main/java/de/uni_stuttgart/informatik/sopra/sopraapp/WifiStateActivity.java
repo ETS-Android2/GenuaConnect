@@ -1,11 +1,15 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.DhcpInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.ViewParent;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -15,6 +19,7 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Objects;
 
 /**
  * Durch diese Klasse wird in der Activity die WIFI/DHCP Infos angezeigt.

@@ -70,7 +70,7 @@ public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
                     getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
                     break;
                 case "MD5":
-                    getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);
+                    getAuthOID = new OID(SnmpConstants.usmHMACMD5AuthProtocol);
                     break;
                 default:
                     if (!getAuth.toString().isEmpty()) {
