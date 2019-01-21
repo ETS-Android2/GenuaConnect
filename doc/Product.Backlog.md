@@ -40,14 +40,14 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 	- Die Netzwerkparameter des WLANs (IPv4-, IPv6-Adresse, Netzmaske, DNS-Server-IP, Gateway-IP) inkl. DHCP-Zuweisung werden dargestellt
 
 ##### Task 1 Änderung der Zugangsdaten
-Sollten isch die Wlan-Zugangsdaten ändern, so wird keine weiter interaktion vom Benutzer benötigt außer einen erneuten scann des QR-Codes.
+Sollten sich die Wlan-Zugangsdaten ändern, so wird keine weiter interaktion vom Benutzer benötigt außer einen erneuten scann des QR-Codes.
 
 - Aufwandsschätzung:
 
 - Tatsächlich benötigte Zeit:
 
 #### Implementable Story 2 Handykameranutzung
-- Aufwandsschätzung [3] Storypoints
+- Aufwandsschätzung [4] Storypoints
 - Akzeptanztest:
 	- Funktionen der Kamera für die App freigeschalten
 	- Beim start der App wird dem Nutzer direkt ermöglicht einen QR-Code zu scannen
@@ -161,7 +161,7 @@ Der Nutzer der App kann einen Button bedienen um das Handyblitzlicht zu aktivier
 
 	- Man kann in einem Screen den QR-Code für das WIFI scannen, dessen Infos dann in dem Screen gezeigt werden und im selben Screen ohne Unterbrechung den QR-Code für mehrere Geräte des Rechenzentrum nacheinander scannen.
 
-#### Implementable Story 1 Durchlaufenden scann von QR-Codes
+#### Implementable Story 1 Durchlaufender scann von QR-Codes
 
 > Als Nutzer möchte ich ununterbrochen QR-Codes einscannen können, um einen optimalen Arbeitsfluss zu erreichen.
 
@@ -171,7 +171,7 @@ Der Nutzer der App kann einen Button bedienen um das Handyblitzlicht zu aktivier
 	- kein weiterer input wird benötigt um einen weitern QR-Code scannen zu können.
 
 ##### Task 1 Scannen
-Wird eine QR-Code von der App erkannt und gelesen, dann wird dies signalisiert, allerdings soll ein flow nicht verhindert werden und dem Nutzer zu ermöglicehn mehrere QR-Codes in Folge zu scannen.
+Wird eine QR-Code von der App erkannt und gelesen, dann wird dies signalisiert, allerdings soll ein flow nicht verhindert werden und dem Nutzer zu ermöglichen mehrere QR-Codes in Folge zu scannen.
 
 - Aufwandsschätzung:
 
@@ -344,7 +344,7 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 > Als Admin will ich, dass bei Start der App direkt die Kamera für die Scanfunktion an ist, um direkt die Hauptfunktion nutzen zu können.
 
-- Aufwandsschätzung: L
+- Aufwandsschätzung: M
 
 - Akzeptanztest:
 
@@ -390,7 +390,7 @@ Das Logo des Kunden wird als Startbildschrim angezeigt.
 	- Strings sind ausgelagert in der XML Datei
 
 ##### Task 1 Übersetzung
-Die zu übesetztenen Strings, welche der Nutzer beim bedienen der App zu lesen hat werden übersetzt.
+Die zu übesetzenden Strings, welche der Nutzer beim bedienen der App zu lesen hat werden übersetzt.
 
 - Aufwandsschätzung: 1h
 - Tatsächlich benötigte Zeit: 1h 20min
@@ -438,7 +438,7 @@ Der Nutzer bekommte eine gewisse Farbparlette zur auswahl von der er sich einen 
 #### Implementable Story 1 *Hilfe*
 > Als Nutzer möchte ich, dass mir im Hilfemenü Informationen und eine Bedienungsanleitung zur Nutzung der App angezeigt wird.
 
-- Aufwandsschätzung: S
+- Aufwandsschätzung [9] Storypoints
 - Akzeptanztest:
 	- Im Hilfsmenü finden sich informationen zur App Nutzung
 	- Das Hilfsmenü ist aufrufbar
