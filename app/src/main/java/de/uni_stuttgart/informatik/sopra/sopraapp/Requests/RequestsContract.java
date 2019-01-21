@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
+package de.uni_stuttgart.informatik.sopra.sopraapp.requests;
 
 /**
  * Hier sind die Stringdaten für die Datenbank gelistet.

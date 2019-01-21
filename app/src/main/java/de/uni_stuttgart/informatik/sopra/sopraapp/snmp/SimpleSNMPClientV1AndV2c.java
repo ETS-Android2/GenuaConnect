@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
+package de.uni_stuttgart.informatik.sopra.sopraapp.snmp;
 
 import android.util.Log;
 
@@ -24,7 +24,7 @@ import org.snmp4j.util.DefaultPDUFactory;
 
 import java.io.IOException;
 
-import de.uni_stuttgart.informatik.sopra.sopraapp.CameraQrCode.ApplianceQrDecode;
+import de.uni_stuttgart.informatik.sopra.sopraapp.cameraQrCode.ApplianceQrDecode;
 
 /**
  * Inspired by https://blog.jayway.com/2010/05/21/introduction-to-snmp4j
@@ -43,12 +43,14 @@ public class SimpleSNMPClientV1AndV2c {
      */
     public SimpleSNMPClientV1AndV2c(String qrCode) {
         SNMP4JSettings.setAllowSNMPv2InV1(true);
-        SNMP4JSettings.setSnmp4jStatistics(SNMP4JSettings.Snmp4jStatistics.extended);
         Log.d("allowSNMPv2InV1", "erfolgreich");
         decode = new ApplianceQrDecode(qrCode);
         this.address = decode.getAddress();
     }
 
+    /**
+     * Defaultkonstruktor für erbende Klasse.
+     */
     SimpleSNMPClientV1AndV2c() {
     }
 

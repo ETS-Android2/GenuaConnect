@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring;
+package de.uni_stuttgart.informatik.sopra.sopraapp.monitoring;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,12 +12,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.*;
-import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
+import de.uni_stuttgart.informatik.sopra.sopraapp.requests.RequestDbHelper;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientV1AndV2c;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientv3;
 
 /**
  * Dies ist der SNMP Manager. Hiermit können die beiden SNMP Klassen mit Ihrem Task gemanaged werden.

@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
+package de.uni_stuttgart.informatik.sopra.sopraapp.requests;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -30,43 +30,37 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
             requestText = view.findViewById(R.id.reqText);
             imageButton = view.findViewById(R.id.deleteReq_btn);
 
-            imageButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    SQLiteDatabase database = data.getWritableDatabase();
+            imageButton.setOnClickListener(v -> {
+                int pos = getAdapterPosition();
+                SQLiteDatabase database = data.getWritableDatabase();
 
-                    Cursor cursor = database.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME +
-                            " order by " + RequestsContract.COLUMN_REQ_ID + " desc limit 1 offset " + pos, null);
+                Cursor cursor = database.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME +
+                        " order by " + RequestsContract.COLUMN_REQ_ID + " desc limit 1 offset " + pos, null);
 
-                    cursor.moveToFirst();
-                    int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
-                    cursor.close();
+                cursor.moveToFirst();
+                int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
+                cursor.close();
 
-                    database.delete(RequestsContract.REQ_TABLE_NAME, RequestsContract.COLUMN_REQ_ID + " = " + id, null);
-                    notifyDataSetChanged();
-                }
+                database.delete(RequestsContract.REQ_TABLE_NAME, RequestsContract.COLUMN_REQ_ID + " = " + id, null);
+                notifyDataSetChanged();
             });
 
-            requestText.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    SQLiteDatabase database = data.getWritableDatabase();
+            requestText.setOnClickListener(v -> {
+                int pos = getAdapterPosition();
+                SQLiteDatabase database = data.getWritableDatabase();
 
-                    Cursor cursor = database.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME +
-                            " order by " + RequestsContract.COLUMN_REQ_ID + " desc limit 1 offset " + pos, null);
+                Cursor cursor = database.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME +
+                        " order by " + RequestsContract.COLUMN_REQ_ID + " desc limit 1 offset " + pos, null);
 
-                    cursor.moveToFirst();
-                    int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
-                    cursor.close();
+                cursor.moveToFirst();
+                int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
+                cursor.close();
 
-                    Intent intent = new Intent(activity, CustomizeRequestActivity.class);
-                    intent.putExtra("requestId", id);
-                    activity.startActivity(intent);
+                Intent intent = new Intent(activity, CustomizeRequestActivity.class);
+                intent.putExtra("requestId", id);
+                activity.startActivity(intent);
 
 
-                }
             });
         }
     }

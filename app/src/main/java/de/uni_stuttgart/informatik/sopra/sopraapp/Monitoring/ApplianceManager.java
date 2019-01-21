@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring;
+package de.uni_stuttgart.informatik.sopra.sopraapp.monitoring;
 
 import android.content.Context;
 
@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
-import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTask;
+import de.uni_stuttgart.informatik.sopra.sopraapp.requests.RequestDbHelper;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientV1AndV2c;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SnmpTask;
 
 /**
  * Manages all appliances that were scanned by the Main Activitys QR-Scanner

@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
+package de.uni_stuttgart.informatik.sopra.sopraapp.requests;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,22 +28,19 @@ public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.View
             editText = view.findViewById(R.id.oid_field);
             imageButton = view.findViewById(R.id.delete_btn);
 
-            imageButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    SQLiteDatabase database = data.getWritableDatabase();
+            imageButton.setOnClickListener(v -> {
+                int pos = getAdapterPosition();
+                SQLiteDatabase database = data.getWritableDatabase();
 
-                    Cursor cursor = database.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where " + RequestsContract.COLUMN_OID_REQ + " = " + requestId +
-                            " order by " + RequestsContract.COLUMN_REQ_ID + " desc limit 1 offset " + pos, null);
+                Cursor cursor = database.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where " + RequestsContract.COLUMN_OID_REQ + " = " + requestId +
+                        " order by " + RequestsContract.COLUMN_REQ_ID + " desc limit 1 offset " + pos, null);
 
-                    cursor.moveToFirst();
-                    int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
-                    cursor.close();
+                cursor.moveToFirst();
+                int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
+                cursor.close();
 
-                    database.delete(RequestsContract.OID_TABLE_NAME, RequestsContract.COLUMN_OID_ID + " = " + id, null);
-                    notifyDataSetChanged();
-                }
+                database.delete(RequestsContract.OID_TABLE_NAME, RequestsContract.COLUMN_OID_ID + " = " + id, null);
+                notifyDataSetChanged();
             });
         }
     }

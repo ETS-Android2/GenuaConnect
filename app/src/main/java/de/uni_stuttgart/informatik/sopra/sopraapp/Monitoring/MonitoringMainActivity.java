@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring;
+package de.uni_stuttgart.informatik.sopra.sopraapp.monitoring;
 
 import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
-import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
+import de.uni_stuttgart.informatik.sopra.sopraapp.requests.RequestDbHelper;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientV1AndV2c;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientv3;
 
 /**
  * Diese Klasse ist für den Device Manager.

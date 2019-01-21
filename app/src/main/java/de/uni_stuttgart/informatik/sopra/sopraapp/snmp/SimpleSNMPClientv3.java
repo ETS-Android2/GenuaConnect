@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
+package de.uni_stuttgart.informatik.sopra.sopraapp.snmp;
 
 import android.util.Log;
 
@@ -22,7 +22,7 @@ import org.snmp4j.smi.Variable;
 import org.snmp4j.smi.VariableBinding;
 import org.snmp4j.util.DefaultPDUFactory;
 
-import de.uni_stuttgart.informatik.sopra.sopraapp.CameraQrCode.ApplianceQrDecode;
+import de.uni_stuttgart.informatik.sopra.sopraapp.cameraQrCode.ApplianceQrDecode;
 
 /**
  * Inspired by https://blog.jayway.com/2010/05/21/introduction-to-snmp4j

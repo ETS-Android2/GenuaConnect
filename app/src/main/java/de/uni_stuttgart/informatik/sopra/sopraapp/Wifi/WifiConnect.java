@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.Wifi;
+package de.uni_stuttgart.informatik.sopra.sopraapp.wifi;
 
 import android.content.Context;
 import android.net.wifi.WifiConfiguration;

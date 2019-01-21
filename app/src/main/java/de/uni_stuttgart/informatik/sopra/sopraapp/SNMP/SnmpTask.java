@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.SNMP;
+package de.uni_stuttgart.informatik.sopra.sopraapp.snmp;
 
 import android.os.AsyncTask;
 import android.util.Log;

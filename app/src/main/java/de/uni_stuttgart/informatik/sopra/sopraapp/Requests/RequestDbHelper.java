@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
+package de.uni_stuttgart.informatik.sopra.sopraapp.requests;
 
 import android.content.Context;
 import android.database.Cursor;
