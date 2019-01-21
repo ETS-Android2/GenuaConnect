@@ -36,9 +36,7 @@
                 android:minWidth="80dp"
                 android:paddingLeft="8dp"
                 android:switchTextAppearance="@style/TextAppearance.AppCompat"
-                android:text="Requests"
-                android:textOff="Off"
-                android:textOn="On"
+                android:text="@string/switch_requests"
                 android:textSize="14sp"
                 android:thumbTint="@color/colorPrimary" />
         </LinearLayout>

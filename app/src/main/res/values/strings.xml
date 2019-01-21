@@ -22,9 +22,9 @@
     <string name="netzmaskeText">Netzmaske:</string>
     <string name="wlan_infosButton" translatable="false">WIFI Info</string>
     <string name="WIFI_DHCP_Informationen" translatable="false">WIFI/DHCP Info</string>
-    <string name="language_fragment">Languagemenu</string>
-    <string name="navy_blue_farbe">Change statusbarcolor to navyblue.</string>
     <string name="help">Help</string>
     <string name="helpText"><![CDATA[Please use this format to make your QR-Code for a WIFI QR-Code:\n\n"WIFI:S:<SSID>;T:<WPA|WEP|>;P:<password>;;"\nFor a SNMP QR-Code please use this as a format:\n\n{\n"snmpVersion":"3",\n"user":\n"root",\n"target": "private",\n"pw": "asdf212!",\n"enc": {\n  "auth": "SHA",\n  "priv": "AES-256",\n  "privKey": "asdf121!"\n},\n"naddr": {\n "IPv4": "192.168.0.25",\n "IPv6": "2a56:0:1"\n}\n}\n\n]]></string>
     <string name="helpTextTitle">How do i make a QR-Code?</string>
+    <string name="oid_description">Enter Description here</string>
+    <string name="switch_requests">Requests</string>
 </resources>

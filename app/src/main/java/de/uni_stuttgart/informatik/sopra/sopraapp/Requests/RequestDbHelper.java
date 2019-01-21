@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class RequestDbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
     private static final String DATABASE_NAME = "Requests.db";
 
     //sql command to destroy request table
@@ -23,8 +23,6 @@ public class RequestDbHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_OID =
             "DROP TABLE IF EXISTS " + RequestsContract.OID_TABLE_NAME;
 
-    private static final String SQL_DELETE_DES =
-            "DROP TABLE IF EXISTS " + RequestsContract.DESCR_TABLE_NAME;
 
     public RequestDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -43,15 +41,9 @@ public class RequestDbHelper extends SQLiteOpenHelper {
                 "CREATE TABLE " + RequestsContract.OID_TABLE_NAME + " (" +
                         RequestsContract.COLUMN_OID_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         RequestsContract.COLUMN_OID_STRING + " TEXT, " +
+                        RequestsContract.COLUMN_OID_DESCRIPT + " TEXT, " +
                         RequestsContract.COLUMN_OID_REQ + " INTEGER);";
 
-        final String SQL_CREATE_DECRIPTION =
-                "CREATE TABLE " + RequestsContract.DESCR_TABLE_NAME + " (" +
-                        RequestsContract.COLUMN_DES_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        RequestsContract.COLUMN_DES_OID + " TEXT, " +
-                        RequestsContract.COLUMN_DES_TEXT + " TEXT);";
-
-        db.execSQL(SQL_CREATE_DECRIPTION);
         db.execSQL(SQL_CREATE_REQUESTS);
         db.execSQL(SQL_CREATE_OIDS);
     }
@@ -60,7 +52,6 @@ public class RequestDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_REQUESTS);
         db.execSQL(SQL_DELETE_OID);
-        db.execSQL(SQL_DELETE_DES);
         onCreate(db);
     }
 
@@ -113,16 +104,4 @@ public class RequestDbHelper extends SQLiteOpenHelper {
         return oids;
     }
 
-    public String getDescriptionOf(String oid){
-        SQLiteDatabase database = getReadableDatabase();
-        Cursor cursor = database.rawQuery("select * from " + RequestsContract.DESCR_TABLE_NAME + " where " + RequestsContract.COLUMN_DES_OID + " = '" + oid + "'", null);
-        if(cursor.moveToFirst()){
-            String text = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_DES_TEXT));
-            cursor.close();
-            return text;
-        }
-
-        cursor.close();
-        return null;
-    }
 }

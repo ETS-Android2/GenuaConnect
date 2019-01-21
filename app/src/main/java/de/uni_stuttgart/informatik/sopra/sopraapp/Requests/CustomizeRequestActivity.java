@@ -84,11 +84,13 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         for (int pos = adapter.getItemCount() - 1; pos >= 0; pos--) {
             CustomizeAdapter.ViewHolder element = (CustomizeAdapter.ViewHolder) listView.findViewHolderForLayoutPosition(pos);
             assert element != null;
-            String oid = element.editText.getText().toString();
+            String oid = element.oidField.getText().toString();
+            String decript = element.descriptField.getText().toString();
             Log.d("saveOID String", "oid");
 
             ContentValues contentValues = new ContentValues();
             contentValues.put(RequestsContract.COLUMN_OID_REQ, requestId);
+            contentValues.put(RequestsContract.COLUMN_OID_DESCRIPT, decript);
             contentValues.put(RequestsContract.COLUMN_OID_STRING, oid);
 
             newRows[pos] = contentValues;

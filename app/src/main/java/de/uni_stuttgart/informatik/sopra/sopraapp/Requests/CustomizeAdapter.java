@@ -20,30 +20,30 @@ public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.View
     private int requestId;
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        EditText editText;
+        EditText oidField;
+        EditText descriptField;
         ImageButton imageButton;
 
         ViewHolder(View view) {
             super(view);
-            editText = view.findViewById(R.id.oid_field);
+            oidField = view.findViewById(R.id.oid_field);
+            descriptField = view.findViewById(R.id.description_field);
             imageButton = view.findViewById(R.id.delete_btn);
 
-            imageButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    SQLiteDatabase database = data.getWritableDatabase();
+            imageButton.setOnClickListener(v -> {
+                int pos = getAdapterPosition();
+                SQLiteDatabase database = data.getWritableDatabase();
 
-                    Cursor cursor = database.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where " + RequestsContract.COLUMN_OID_REQ + " = " + requestId +
-                            " order by " + RequestsContract.COLUMN_REQ_ID + " desc limit 1 offset " + pos, null);
+                Cursor cursor = database.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where " + RequestsContract.COLUMN_OID_REQ + " = " + requestId +
+                        " order by " + RequestsContract.COLUMN_REQ_ID + " desc limit 1 offset " + pos, null);
 
-                    cursor.moveToFirst();
-                    int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
-                    cursor.close();
+                cursor.moveToFirst();
 
-                    database.delete(RequestsContract.OID_TABLE_NAME, RequestsContract.COLUMN_OID_ID + " = " + id, null);
-                    notifyDataSetChanged();
-                }
+                int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
+                cursor.close();
+
+                database.delete(RequestsContract.OID_TABLE_NAME, RequestsContract.COLUMN_OID_ID + " = " + id, null);
+                notifyDataSetChanged();
             });
         }
     }
@@ -76,9 +76,11 @@ public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.View
 
         cursor.moveToFirst();
         String oid = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_OID_STRING));
+        String descript = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_OID_DESCRIPT));
         cursor.close();
 
-        holder.editText.setText(oid);
+        holder.oidField.setText(oid);
+        holder.descriptField.setText(descript);
     }
 
     @Override
