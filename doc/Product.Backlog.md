@@ -4,8 +4,6 @@
 
 > Als Admin möchte ich das Produkt nutzen um einen QR-Code scannen zu können, um eine Verbindung mit demn WLAN oder einem Gerät herzustellen.
 
-Beschreibung:
-
 Der Admin muss sich im Rechenzentrum mit dem bereitgestellten WLAN verbinden. Dies erledigt er, indem er ein QR-Code scannt. Außerdem kann der Admin mittels QR-Codes an den Geräten im Rechenzentrum Informationen dieser abfragen.
 
 ### Feature 1 *WLAN Verbindung herstellen*
@@ -33,6 +31,20 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
     - falls WLAN-Netz nicht verschlüsselt ist, dann wird keine Verbindung hergestellt und es wird dem Nutzer eine Fehlermeldung angezeigt und es werden keine Daten übertragen.
 
+#### Implementable Story 1 WLAN-Parameter
+
+- Aufwandsschätzung [23] Storypoints
+- Akzeptanztest:
+	- Bei sich ändernden WLAN-Zugangsdaten (Änderung Passwort, aber Access-Point-Name und MAC gleich) sind keine weiteren Benutzer-Interaktionen (außer QR-Code scannen) nötig.
+	- Beim Wechsel in das gesicherte WLAN wird der Betrieb der Anwendung wieder im ursprünglichen Zustand aufgenommen.
+	- Die Netzwerkparameter des WLANs (IPv4-, IPv6-Adresse, Netzmaske, DNS-Server-IP, Gateway-IP) inkl. DHCP-Zuweisung werden dargestellt
+
+#### Implementable Story 2 Handykameranutzung
+- Aufwandsschätzung [3] Storypoints
+- Akzeptanztest:
+	- Funktionen der Kamera für die App freigeschalten
+	- Beim start der App wird dem Nutzer direkt ermöglicht einen QR-Code zu scannen
+
 ### Feature 2 *Geräteverbindung herstellen*
 
 > Als Admin möchte ich, dass die App in der Lage ist, mir die vordefinierten Informationen  anzuzeigen, indem ich einen QR-Code scanne.
@@ -52,33 +64,40 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
 #### Implementable Story 1 Zugriff auf die Handykamera
 
-> Die App soll die Erlaubnis besitzen, auf die Kamerafunktionen zugreifen zu können. Danach wird beim erstmaligem öffnen gefragt.
+> Als Nutzer möchte ich, dass die App zugriff auf die Handykamera hat, damit man einen QR-Code scannen kann.
 
-- Aufwandsschätzung [] Storypoints
+
+- Aufwandsschätzung [3] Storypoints
 
 - Akzeptanztest:
-
-#### Task 1 //TODO google ob teask ohne IS machbar und IS ohne Task machbar//
 
 #### Implementable Story 2 Geräte QR-Code wird erkannt
 
 > Als Nutzer möchte ich, dass der Scanner erkennt ob es sich um ein Geräte QR-Code handelt.
 
-- Aufwandsschätzung [14] Storypoints
+- Aufwandsschätzung [46] Storypoints
 
 - Akzeptanztest:
 	- Zugriff auf die Handykamera
 	- QR-Codes können gescannt werden
 	- QR-Code wird analysiert
 
-#### Task 1 Kamerazugriff
+##### Task 1 Kamerazugriff
 
-> Die App soll die Erlaubnis erteilt bekommen, auf die Kamerafunktionen zugreifen zu können. Danach wird beim erstmaligem öffnen gefragt.
+Die App soll die Erlaubnis besitzen, auf die Kamerafunktionen zugreifen zu können. Danach wird beim erstmaligem öffnen gefragt.
 
-#### Task 2 QR-Code Analyse
+- Aufwandsschätzung: 30min
 
-> Der QR-Code wird eingelesen und dessen Inhalt wird auf die richtige Form geprüft.
+- Tatsächlich benötigte Zeit: 25min
 
+
+##### Task 2 QR-Code Analyse
+
+Der QR-Code wird eingelesen und dessen Inhalt wird auf die richtige Form geprüft.
+
+- Aufwandsschätzung: 3h
+
+- Tatsächlich benötigte Zeit: 4h
 
 ### Feature 3 *Blitzlicht*
 
@@ -94,7 +113,7 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
 #### Implementable Story 1 Zugriff auf Handyblitzlicht
 
-> TODO
+> Als Nutzer möchte ich, dass die App auf das Handyblitzlicht zufreifen kann, damit man bei schlechten Lichtverhältnissen das Handylicht einschalten kann, um das Scannen von QR-Codes zu erleichtern.
 
 - Aufwandsschätzung [4] Storypoints
 
@@ -103,11 +122,11 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 
 #### Task 1 Button aktiviert das Handyblitzlicht
 
-> Der Nutzer der App kann einen Button bedienen um das Handyblitzlicht zu aktivieren.
+Der Nutzer der App kann einen Button bedienen um das Handyblitzlicht zu aktivieren.
 
-- Aufwandsschätzung:
+- Aufwandsschätzung: 20min
 
-- Tatsächlich benötigte Zeit:
+- Tatsächlich benötigte Zeit: 15min
 
 
 ### Feature 4 *Multiscan*
@@ -121,6 +140,13 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
 	- Man kann in einem Screen den QR-Code für das WIFI scannen, dessen Infos dann in dem Screen gezeigt werden und im selben Screen ohne Unterbrechung den QR-Code für mehrere Geräte des Rechenzentrum nacheinander scannen.
 
 #### Implementable Story 1 Durchlaufenden scann von QR-Codes
+
+> Als Nutzer möchte ich ununterbrochen QR-Codes einscannen können, um einen optimalen Arbeitsfluss zu erreichen.
+
+- Aufwandsschätzung [69] Storypoints
+
+- Akzeptanztest:
+	- kein weiterer input wird benötigt um einen weitern QR-Code scannen zu können.
 
 ## Epic 2: Verwaltung von Abfragen
 
@@ -156,33 +182,48 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
     - Abfragen können verwaltet (neu angelegt, bearbeitet, angesehen und gelöscht) werden.
 
 
-#### Task 1 OIDs bearbeiten
+##### Task 1 OIDs bearbeiten
 
-> Als Nutzer möchte ich Abfragemasken erstellen können, um diese bei bedarf nutzen zu können.
+Dot-Notation der OID und die dazugehörigen Bezeichnung kann bearbeitet werden.
 
-- Aufwandsschätzung:
+- Aufwandsschätzung: 1h
 
-- Tatsächliche benötigte Zeit:
+- Tatsächliche benötigte Zeit: 35min
 
-#### Task 2 OIDs hinzufügen
+##### Task 2 OIDs hinzufügen
 
-> Als Nutzer möchte ich Abfragemasken bearbeiten könenn, um bei kleinen Änderung keine komplett neue Abfragemaske erstellen zu müssen.
+Dot-Notation der OID kann hinzugefügt werden.
 
-- Aufwandsschätzung:
+- Aufwandsschätzung: 1h
 
-- Tatsächliche benötigte Zeit:
+- Tatsächliche benötigte Zeit: 20min
 
-#### Task 3 OIDs löschen
+##### Task 3 OIDs löschen
 
 > Als Nutzer möchte ich Abfragemasken löschen können, um eine bessere Übersicht beibehalten zu können.
 
-- Aufwandsschätzung:
+- Aufwandsschätzung: 30min
 
-- Tatsächliche benötigte Zeit:
+- Tatsächliche benötigte Zeit: 15min
 
 #### Implementable Story 2 Namen der Abfragemasken bearbeiten
 
-#### Task 1 Namen ändern
+> Als Admin möchte ich die Namen der Abfragemasken bearbeiten können, um auf einen Blick sehen zu können um welche Abfragemaske es sich handelt.
+
+- Aufwandsschätzung [23] Storypoints
+
+- Akzeptanztest:
+	- Name kann verändert werden
+	- geänderter Name wird beibehalten
+	- Name kann nicht zu einem Name geändert werden der bereits vorhanden ist
+
+##### Task 1 Namen ändern
+Der Name kann nach belieben geändert und angepasst werden.
+
+- Aufwandsschätzung: *TODO*
+
+- Tatsächlich benötigte Zeit: *TODO*
+
 
 ### Feature 2 *Abfragenmenü*
 
@@ -200,50 +241,73 @@ Die Abfragen, die der Admin tätigen will, kann mit der App in ein Abfragemaske 
 
 	- Es gibt ein Menüpunkt zur Anzeige von Systemzuständen.
 
-### Implementable Story 1 Abfragemasken verwalten
+#### Implementable Story 1 Abfragemasken verwalten
 
 > Als Admin möchte ich Abfragemasken bearbeiten, hinzufügen und löschen können, um später Abfragen gebündelt an Geräte stellen zu können.
 
+- Aufwandsschätzung [51] Storypoints
+- Akzeptanztest:
+	- die Abfragemasken können bearbeitet werden
+	- die Abfragemasken können gelöscht werden
+	- Abfragemasken können hinzugefügt werden
 
-#### Task 1 Abfragemasken erstellen
+##### Task 1 Abfragemasken erstellen
 
+Abfragemasken können erstellt werden.
+
+- Aufwandsschätzung: *TODO*
+
+- Tatsächlich benötigte Zeit: *TODO*
+
+##### Task 2 Abfragemasken hinzufügen
+
+Abfragemasken können hinzugefügt werden.
+
+- Aufwandsschätzung: *TODO*
+
+- Tatsächlich benötigte Zeit: *TODO*
+
+##### Task 3 Abfragemasken löschen
+
+Abfragemasken können gelölscht werden.
+
+- Aufwandsschätzung: *TODO*
+
+- Tatsächlich benötigte Zeit: *TODO*
+
+#### Implementable Story 2 Einzlne OIDs verwalten
 > TODO
 
+- Aufwandsschätzung [] Storypoint
+- Akzeptanztest:
 
-#### Task 2 Abfragemasken hinzufügen
+##### Task 1 OID bearbeiten
 
-> TODO
+Einzelne OID kann bearbeitet werden.
 
+- Aufwandsschätzung: *TODO*
 
-#### Task 3 Abfragemasken löschen
+- Tatsächlich benötigte Zeit: *TODO*
 
-> TODO
+##### Task 2 OID hinzufügen
 
+Eine einzelne OID kann hinzugefügt werden.
 
-### Implementable Story 2 Einzlne OIDs verwalten
+- Aufwandsschätzung: *TODO*
 
-> TODO
+- Tatsächlich benötigte Zeit: *TODO*
 
-#### Task 1 OID bearbeiten
+##### Task 3 OID löschen
 
-> TODO
+Einzelne OID kann gelöscht werden.
 
+- Aufwandsschätzung: *TODO*
 
-#### Task 2 OID hinzufügen
-
-> TODO
-
-
-#### Task 3 OID löschen
-
-> TODO
-
+- Tatsächlich benötigte Zeit: *TODO*
 
 ## Epic 3: Oberfläche
 
 > Als Admin will ich eine gut strukturierte Oberfläche haben, die auch einfach und intuitiv zu bedienen ist, um die Nutzung der App zu vereinfachen.
-
-Beschreibung:
 
 Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
@@ -265,21 +329,23 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 ### Feature 2 *Sprachmenü*
 
-> Als Admin möchte ich, dass ich in einem separaten Menü die Sprache ändern kann.
+> Als Admin möchte ich, dass sich die Srache der Systemsprache anpasst.
 
 - Aufwandschätzung: S
 
 - Akzeptanztest:
 
-	- Man kann im Menü ein Menüpunkt Optionen auswählen.
+	- Die in-App Srpache soll der Systemsprache entsprechen.
+	- Ist die Systemsprache nicht Deutsch, so soll Standardgemäß die App in der Sprache Englisch angezeigt werden.
 
-	- Der Button Sprachauswahl ist in den "Optionen".
+#### Implementable Story 1 Erstellung der String/XML Datei
+> Als Admin möchgte ich, dass die Strings in eine XML Datei ausgelagert sind, um eine Übersetzung zu erleichtern.
 
-	- Es sollten die Sprachen Deutsch und Englisch auswählbar sein.
-
-	- Bei Auswahl der Sprache sollte die Richtige Sprache angezeigt werden.
-
-	- Es sollten zur Erleichterung nur die Beiden jeweiligen Flaggen angezeigt werden im Button 		(DE/EN).
+- Aufwandsschätzung [11] Storypoints
+- Akzeptanztest
+	- XML Datei ist vorhanden
+	- in der XML Datei stehen die übersetzungen der einzelnen Strings
+	- Strings sind ausgelagert in der XML Datei
 
 ### Feature 3 *Statusbarfarbe*
 
@@ -289,7 +355,7 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 - Akzeptanztest:
 
-	- In den "Einstellungen" gibt es ein Menü für die Hintergrundfarbe. 
+	- In den "Einstellungen" gibt es ein Menü für die Hintergrundfarbe.
 
 	- Standartmäßig ist die Farbe RAL 4007 als Hintergrundfarbe eingestellt weiß als Text eingestellt.
 
@@ -307,3 +373,11 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 
 	- Im "Menü" gibt es den Button Für "Optionen", "verbundene Geräte", "WLAN-Verbindung", "Abfragenmenü" und "Hilfe".
 
+#### Implementable Story 1 *Hilfe*
+> Als Nutzer möchte ich, dass mir im Hilfemenü Informationen und eine Bedienungsanleitung zur Nutzung der App angezeigt wird.
+
+- Aufwandsschätzung: S
+- Akzeptanztest:
+	- Im Hilfsmenü finden sich informationen zur App Nutzung
+	- Das Hilfsmenü ist aufrufbar
+	- Hilfsmenü passt sich der Systemsrpache an
