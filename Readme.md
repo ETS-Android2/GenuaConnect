@@ -65,7 +65,8 @@ QR-Code scanner, über vordefinierte Abfragemasken, sich die gewünschten Inform
 ### Additional Features
 
 - App kann auf das Handylicht zugreifen und dieses aktivieren.
-- Ein Sprachmenü indem man die Sprache einstellen kann.
+- In App Sprache passt sich der Systemsprache an.
+- snmpv3 wurde realisiert.
 
 ## Installation
 
