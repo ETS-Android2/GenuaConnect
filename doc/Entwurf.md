@@ -10,7 +10,7 @@ Es wurden folgende Entwurfsmuster genutzt:
 
 # Komponentendiagramm
 
-![komponentendiagramm](images/Komponentendiagramm2.png)
+![komponentendiagramm](images/Komponentendiagramm.png)
 
 *Komponentendiagramm 2.0*
 
