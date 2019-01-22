@@ -74,37 +74,37 @@ Die Klassen werden in das *Model-View-Controller* Prinzip eingefügt.
 > device mngr
 
 ## Klasse 7: CustomizeAdapter
-> 
+> Adapterklasse für die Customization
 
 ## Klasse 8: CustomizeRequestActivity
-> 
+> Diese Klasse ist für den Aufbau einer Abfragemaksen zuständig.
 
 ## Klasse 9: OverviewAdapter
-> 
+> Diese Klasse ist die Adapterklasse für die Oberfläche der Abfragemasken.
 
 ## Klasse 10: RequestDbHelper
-> 
+> Dies ist die Helper Klasse der Datenbank. Hier werden die Datenbanken initialisiert.
 
 ## Klasse 11: RequestMngActivity
-> 
+> Diese Klasse ist für die Activity des Abfragenmanagers zuständig.
 
 ## Klasse 12: ReqeustContract
-> 
+> Hier sind die Stringdaten für die Datenbank gelistet.
 
 ## Klasse 13: SimpleSNMPClientV1AndV2c
-> 
+> Verwaltet SNMP-Abfragen.
 
 ## Klasse 14: SimpleSNMPClienttv3
-> 
+> Verwaltet SNMP-Abfragen.
 
 ## Klasse 15: SnmpTask
-> 
+> Eigener Thread zur Vernetzung.
 
 ## Klasse 16: WifiConnect
-> 
+> WLAN-Parameter
 
 ## Klasse 17: WifiStateActivity
-> 
+> Durch diese Klasse wird in der Activity die WIFI/DHCP Infos angezeigt.
 
 
 # GUI-Skizze
