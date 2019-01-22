@@ -20,7 +20,7 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.requests.RequestMngActivity;
 import de.uni_stuttgart.informatik.sopra.sopraapp.wifi.WifiStateActivity;
 
 /**
- * Die Mainmethode wo die 3 Btns gelistet sind.
+ * The main-method where the 3 btns are listed.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Die onClick methode für den WIFI Btn.
+     * The onClick methode for the wifi btn.
      *
-     * @param view Die View für den Intend.
+     * @param view The View for the intent.
      */
     public void wifiInfReact(View view) {
         Intent intent = new Intent(this, WifiStateActivity.class);
@@ -58,9 +58,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Die onClick Methode für den Gerätemanager Btn.
      *
-     * @param view Die View für den Intend.
+     * The onClick methode for the device manager btn.
+     *
+     * @param view The View for the intent.
      */
     public void onClickDeviceManager(View view) {
         Intent intent = new Intent(this, MonitoringMainActivity.class);
@@ -101,9 +102,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Die onClick Methode für den Abfragenmanager Btn.
+     * The onClick methode for the query manager btn.
      *
-     * @param view Die View für den Intend.
+     * @param view The View for the intent.
      */
     public void requestManagement(View view) {
         Intent intent = new Intent(this, RequestMngActivity.class);

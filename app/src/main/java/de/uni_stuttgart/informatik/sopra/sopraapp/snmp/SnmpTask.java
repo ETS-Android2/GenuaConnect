@@ -16,7 +16,7 @@ public class SnmpTask extends AsyncTask<String, Void, String> {
     private SimpleSNMPClientV1AndV2c snmpClient;
 
     /**
-     * Konstruktor
+     * constructor
      *
      * @param snmpClient Der SNMPv1v2 Manager.
      */

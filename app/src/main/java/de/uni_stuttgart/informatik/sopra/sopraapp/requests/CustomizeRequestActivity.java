@@ -14,7 +14,7 @@ import android.widget.EditText;
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 /**
- * Diese Klasse ist für den Aufbau einer Abfragemaske zuständig.
+ * this class is used for the structure of the query mask.
  */
 public class CustomizeRequestActivity extends AppCompatActivity {
 
@@ -58,16 +58,16 @@ public class CustomizeRequestActivity extends AppCompatActivity {
     }
 
     /**
-     * Diese Methode ist für die Speicherfunktion zuständig.
+     * this method is used for storing.
      *
-     * @param view Die View für die Speicherfunktion.
+     * @param view the View for storing.
      */
     public void save(View view) {
         save();
     }
 
     /**
-     * Diese Methode Speichert das zu speichernde Element in der Datenbank.
+     * this method stores the element in the database.
      */
     private void save() {
         SQLiteDatabase database = manager.getWritableDatabase();
@@ -98,9 +98,9 @@ public class CustomizeRequestActivity extends AppCompatActivity {
     }
 
     /**
-     * Mit dieser Funktion kann man OIDs in die Datenbank hinzufügen.
+     * this function is used to add OIDs in the database.
      *
-     * @param view Die View für das hinzufügen.
+     * @param view the View used for adding.
      */
     public void addOID(View view) {
         save(view);

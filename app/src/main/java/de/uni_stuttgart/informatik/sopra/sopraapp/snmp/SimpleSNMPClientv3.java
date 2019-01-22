@@ -36,9 +36,9 @@ public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
     private OID getPrivOID = null;
 
     /**
-     * Konstruktor
+     * constructor
      *
-     * @param qrCode Der QR-Code decoder
+     * @param qrCode the QR-Code decoder
      */
     public SimpleSNMPClientv3(String qrCode) {
         decode = new ApplianceQrDecode(qrCode);
@@ -47,7 +47,7 @@ public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
     }
 
     /**
-     * Hier werden die Informationen wie authProtocoll, privProtocoll, privPasswort, authPasswort, userName initialisiert.
+     * authProtocoll, privProtocoll, privPasswort, authPasswort, userName information are initialized
      */
     @Override
     protected void userInformation() throws IllegalArgumentException {
@@ -180,10 +180,11 @@ public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
     }
 
     /**
-     * Die Getmethode fuer die Abfragen. Auch wird hier der PDU gesettet und geaddet.
+     * PDU is added and setted.
+     * get-method for the query.
      *
-     * @param stringOID Die OID.
-     * @return Returned den OID als String und returned null wenn PDU null ist.
+     * @param stringOID the OID.
+     * @return returns the OID as a String and returns null if PDU is null.
      */
     @Override
     protected String sendGet(String stringOID) {

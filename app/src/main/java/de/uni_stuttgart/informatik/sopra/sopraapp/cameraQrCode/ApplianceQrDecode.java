@@ -3,16 +3,16 @@ package de.uni_stuttgart.informatik.sopra.sopraapp.cameraQrCode;
 import java.util.HashMap;
 
 /**
- * Mit dieser Klasse werden die Infos aus dem QR Code gegettet.
+ * This class enables that the information from the QR-Code can be getted.
  */
 public class ApplianceQrDecode {
 
     private HashMap<String, String> applianceInfos;
 
     /**
-     * Konstruktor
+     * Constructor
      *
-     * @param qrCode Die Variable fuer die QR Code Infos.
+     * @param qrCode The variable for the QR-Code information.
      */
     public ApplianceQrDecode(String qrCode) {
         applianceInfos = new HashMap<>();

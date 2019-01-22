@@ -23,8 +23,8 @@ public class WifiConnect {
     /**
      * connects to WIFI that was coded in a QR-Code
      *
-     * @param qrString QR String fuer Wifi String
-     * @param context  Context der Klasse
+     * @param qrString QR String for Wifi String
+     * @param context  Context of the Klasse
      */
 
     public void tryConnect(String qrString, Context context) {

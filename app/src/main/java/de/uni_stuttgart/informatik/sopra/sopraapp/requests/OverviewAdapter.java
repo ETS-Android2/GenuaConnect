@@ -15,7 +15,7 @@ import android.widget.TextView;
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 /**
- * Diese Klasse ist die Adapterklasse für die Oberfläche der Abfragemasken.
+ * this class is the adapterclass for the GUI of the query mask.
  */
 public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHolder> {
     private RequestDbHelper data;
@@ -66,10 +66,10 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
     }
 
     /**
-     * Konstruktor.
+     * constructor.
      *
-     * @param requestDbHelper Objekt aus RequestDbHelper.
-     * @param activity        Die übergebene Activity.
+     * @param requestDbHelper Object from RequestDbHelper.
+     * @param activity        the transfered Activity.
      */
     OverviewAdapter(RequestDbHelper requestDbHelper, Activity activity) {
         this.data = requestDbHelper;

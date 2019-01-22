@@ -25,7 +25,7 @@ import java.util.List;
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 /**
- * Diese Klasse ist für den QR-Code Scanner zuständig.
+ * This class enables the QR-Code scanner
  */
 public class RotatingCaptureActivity extends Activity
         implements DecoratedBarcodeView.TorchListener {
@@ -80,7 +80,7 @@ public class RotatingCaptureActivity extends Activity
     /**
      * switching the Flashlight.
      *
-     * @param view View für onClick.
+     * @param view View for onClick.
      */
     public void switchFlashlight(View view) {
         if (getString(R.string.flashTurnOn).contentEquals(flashBtn.getText())) {

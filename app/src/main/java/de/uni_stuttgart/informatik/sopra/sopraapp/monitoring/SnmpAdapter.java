@@ -19,7 +19,7 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientV1AndV2c;
 import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientv3;
 
 /**
- * Dies ist der SNMP Manager. Hiermit können die beiden SNMP Klassen mit Ihrem Task gemanaged werden.
+ * This is the SNMP Manager. Both SNMP clases can be managed in their own task.
  */
 public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
 
@@ -29,7 +29,7 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
     private ApplianceManager manager;
 
     /**
-     * Konstruktor.
+     * Constructor.
      *
      * @param context Context der Klasse.
      */

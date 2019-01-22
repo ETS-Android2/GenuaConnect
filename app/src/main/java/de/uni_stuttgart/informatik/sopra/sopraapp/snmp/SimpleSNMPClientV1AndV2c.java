@@ -37,9 +37,9 @@ public class SimpleSNMPClientV1AndV2c {
     private CommunityTarget target;
     ApplianceQrDecode decode;
     /**
-     * Konstruktor
+     * constructor
      *
-     * @param qrCode Der QR Code decoder.
+     * @param qrCode the QR-Code decoder.
      */
     public SimpleSNMPClientV1AndV2c(String qrCode) {
         SNMP4JSettings.setAllowSNMPv2InV1(true);
@@ -49,7 +49,7 @@ public class SimpleSNMPClientV1AndV2c {
     }
 
     /**
-     * Defaultkonstruktor für erbende Klasse.
+     * defaultconstructor for inheriting classe.
      */
     SimpleSNMPClientV1AndV2c() {
     }
@@ -59,7 +59,7 @@ public class SimpleSNMPClientV1AndV2c {
     }
 
     /**
-     * Stoppt den SNMP Client.
+     * stoppt den SNMP Client.
      *
      * @throws IOException If a transport mapping cannot be closed successfully
      */

@@ -16,7 +16,7 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientV1AndV2c;
 import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientv3;
 
 /**
- * Diese Klasse ist für den Device Manager.
+ * This class is used for the Device Manager.
  */
 public class MonitoringMainActivity extends AppCompatActivity {
 

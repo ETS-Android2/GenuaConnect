@@ -18,10 +18,10 @@ public class ApplianceManager {
     private static ApplianceManager ourInstance;
 
     /**
-     * Konstruktor
+     * Constructor
      *
      * @param context
-     * @return Returned die gebrauchte Instanz des ApplianceManager.
+     * @return Returns the used instance of the ApplianceManager.
      */
     public static ApplianceManager getInstance(Context context) {
         if (ourInstance == null) {
@@ -44,28 +44,28 @@ public class ApplianceManager {
 
 
     /**
-     * Die Gettermethode für den SNMP Client.
+     * The getter-method for the SNMP Client.
      *
-     * @return Returned den Client.
+     * @return Returns the client.
      */
     public ArrayList<SimpleSNMPClientV1AndV2c> getClientList() {
         return clientV1AndV2List;
     }
 
     /**
-     * Hiermit können clients geaddet werden.
+     * The clients can be added with this method.
      *
-     * @param appliance Durch diese Variable werden die Clients geaddet.
+     * @param appliance With this variables, the clients can be added.
      */
     public void addClient(SimpleSNMPClientV1AndV2c appliance) {
         clientV1AndV2List.add(appliance);
     }
 
     /**
-     * Settet die Abfrage aus dem Client.
+     * Sets the query from the client
      *
-     * @param client  Der SNMP Client.
-     * @param request Die Abfrage.
+     * @param client  The SNMP Client.
+     * @param request The querys.
      */
     public void setRequestFor(SimpleSNMPClientV1AndV2c client, String request) {
         requestTable.put(client, request);

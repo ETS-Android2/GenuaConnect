@@ -12,7 +12,7 @@ import android.view.View;
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 /**
- * Diese Klasse ist für die Activity des Abfragenmanagers zuständig.
+ * This class is for the Activity of the Abfragenmanager.
  */
 public class RequestMngActivity extends AppCompatActivity {
 
@@ -41,7 +41,7 @@ public class RequestMngActivity extends AppCompatActivity {
     /**
      * Durch diese Methode werden Abfragemasken erstellt.
      *
-     * @param view Die View für die Abfragemasken.
+     * @param view The View for the query masks.
      */
     public void addMask(View view) {
         SQLiteDatabase database = manager.getWritableDatabase();
@@ -66,7 +66,7 @@ public class RequestMngActivity extends AppCompatActivity {
     }
 
     /**
-     * Checkt ob eine Abfragemaske schon existiert.
+     * Checks whether the query mask already exists or not.
      *
      * @param name Name der Abfragemaske.
      * @return Returnt die Anzahl zurück der schon existierenden Abfragemaske.

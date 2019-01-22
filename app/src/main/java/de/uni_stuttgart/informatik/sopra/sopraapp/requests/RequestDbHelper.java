@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 /**
+ * this is the Helper class in the database. The database is here initialized.
  * Dies ist die Helper Klasse der Datenbank. Hier werden die Datenbanken initialisiert.
  */
 public class RequestDbHelper extends SQLiteOpenHelper {
@@ -54,9 +55,9 @@ public class RequestDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Durch diese Methode können die Abfragemasken gegettet werden.
+     * Through this method the query masks can be getted.
      *
-     * @return Returned die Abfragemasken.
+     * @return Returns the query mask.
      */
     public ArrayList<String> getAllMasks() {
         SQLiteDatabase reading = getReadableDatabase();
@@ -74,10 +75,10 @@ public class RequestDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Getter für die OIDs aus einer bestimmten Abfragemaske.
+     * Getter for the OIDs for a certain query mask.
      *
-     * @param request Der Name der Maske.
-     * @return Returned die OIDs.
+     * @param request Name of the mask.
+     * @return Returns the OIDs.
      */
     public ArrayList<String> getOIDsFrom(String request) {
         SQLiteDatabase reading = getReadableDatabase();

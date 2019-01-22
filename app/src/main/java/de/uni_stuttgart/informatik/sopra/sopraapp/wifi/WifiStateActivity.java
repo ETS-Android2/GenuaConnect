@@ -19,7 +19,7 @@ import java.util.Enumeration;
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 /**
- * Durch diese Klasse wird in der Activity die WIFI/DHCP Infos angezeigt.
+ * This class shows the wifi/DHCP information in the activitiy.
  */
 public class WifiStateActivity extends AppCompatActivity {
     WifiManager mng;

@@ -9,15 +9,15 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientv3;
 import de.uni_stuttgart.informatik.sopra.sopraapp.wifi.WifiConnect;
 
 /**
- * In dieser Klasse wird definiert, wie auf die QR-Codes reagiert werden soll.
+ * This class defines how to react if a QR-Code is scanned.
  */
 class ReactionController {
 
     /**
-     * Konstruktor
+     * Constructor
      *
-     * @param activity Der uebergebene activity.
-     * @param qrCode   Ist der QR Code decoder.
+     * @param activity The transfered activity.
+     * @param qrCode   Decodes the scanned QR-Code.
      */
     ReactionController(Activity activity, String qrCode) {
         Log.d("Reacting To QR-Code", "QR-String = " + qrCode);

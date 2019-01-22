@@ -34,9 +34,11 @@ Diese Komponente ist dazu da, die in der aktuellen Sitzung erstellten Verbindung
 Diese Komponente bietet die Schnittstelle zum Benutzer. Sie versucht für den Benutzer die Daten und Informationen aus der Datenbank übersichtlich darzustellen und Benutzereingaben an den Controller weiter zu geben.
 
 
-## Externe Komponente 1
-
+## Externe Komponente
 **TODO:** Beschreibung der **externen** Komponente/Bibliothek und wie diese verwendet werden soll.
+
+### zxing-android-embedded
+### snmp4j
 
 # Klassendiagramm
 
@@ -46,37 +48,64 @@ Diese Komponente bietet die Schnittstelle zum Benutzer. Sie versucht für den Be
 ## Beschreibung der wichtigen Klassenhierarchie 1
 Die wichtigsten Klassen sind Startbildschrim, Scan, Menü, Optionen, AbragenMenü, AbfragenSchema, GeräteListe und die Geräte.
 
-- Im *Startbildschrim* findet sich die *Scan* Klasse und das *Menü*. 
+- Im *Startbildschrim* findet sich die *Scan* Klasse und das *Menü*.
 - Im *Menü* ist die *Optionen* Klasse, das *AbfrageMenü* und die *GeräteListe* vorzufinden.
 - Im *AbfrageMenü* findet man die *AbfragenSchema* Klasse vor.
 - In der *GeräteList* befindet sich die *Geräte* Klasse.
 
-Die Klassen werden in das *Model-View-Controller* 
-Prinzip eingefügt.
+Die Klassen werden in das *Model-View-Controller* Prinzip eingefügt.
 
-## 1° Startbildschirm
-Im Startbildschirm ist der QR-Code Scanner, sofort geöffnet. Zudem ist das Menü auswählbar.
+## Klasse 1: ReactionController
+> In dieser Klasse wird definiert, wie auf die QR-Code reagiert werden soll.
 
-## 2° Scan
-Durch die *Scan* Klasse kann man das Blitzlicht aktivieren. Außerdem ist es möglich einen QR-Code zu scannen (WLAN/GERÄT).
+## Klasse 2: ApplianceQrDecoder
+> Diese Klasse getttett die Informationen aus dem QR-Code.
 
-## 3° Menü
-Über die *Menü* Klasse sind die Untermenüs *AbfragenMenü*, *GeräteListe*, *Optionen* auswählbar. Auch kann man sich hier manuell in eine WLAN-Netz anmelden oder Hilfe erhalten.
+## Klasse 3: RotatingCaptureActivity
+> Diese Klasse ist für den QR-Code Scanner zuständig.
 
-## 4° AbfragenMenü
-Von hieraus ist die *AbfragenSchema* Klasse auswählbar. Hier können Abfragemasken hinzugefügt, bearbeitet oder gelöscht werden.
+## Klasse 4: ApplianceManger
+> Verwaltet die Geräte, welche gescannt wurden.
 
-## 5 AbfragenSchema
-Über die OID Strings entscheidet die Klasse welche Informationen des Geräts abgerufen werden.
+## Klasse 5: SnmpAdapter
+> Verwaltet die SNMP-Klassen mit den jeweiligen aufgaben.
 
-## 6° GeräteListe
-Hier kann man die eingescannte Geräte einsehen und auf die *Geräte* Klasse zugreifen.
+## Klasse 6: MonitoringMainActivity
+> device mngr
 
-## 7° Geräte
-Diese Klasse dient dazu den Zustand der Geräte zu erhalten.
+## Klasse 7: CustomizeAdapter
+> 
 
-## 8° Optionen
-Hier sind verschiedene Einstellungen möglich wie z.B. die Farb - & Sprachauswahl.
+## Klasse 8: CustomizeRequestActivity
+> 
+
+## Klasse 9: OverviewAdapter
+> 
+
+## Klasse 10: RequestDbHelper
+> 
+
+## Klasse 11: RequestMngActivity
+> 
+
+## Klasse 12: ReqeustContract
+> 
+
+## Klasse 13: SimpleSNMPClientV1AndV2c
+> 
+
+## Klasse 14: SimpleSNMPClienttv3
+> 
+
+## Klasse 15: SnmpTask
+> 
+
+## Klasse 16: WifiConnect
+> 
+
+## Klasse 17: WifiStateActivity
+> 
+
 
 # GUI-Skizze
 

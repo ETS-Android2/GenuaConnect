@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 /**
- * Die Adapterklasse für die Customization.
+ * The Adapterclasse for the Customization.
  */
 public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.ViewHolder> {
     private RequestDbHelper data;
@@ -46,10 +46,10 @@ public class CustomizeAdapter extends RecyclerView.Adapter<CustomizeAdapter.View
     }
 
     /**
-     * Konstruktor.
+     * constructor.
      *
-     * @param requestDbHelper Objekt aus der RequestDbHelper Klasse.
-     * @param id              Die ID der Abfrage.
+     * @param requestDbHelper Object aus der RequestDbHelper classe.
+     * @param id              The query ID
      */
     CustomizeAdapter(RequestDbHelper requestDbHelper, int id) {
         this.data = requestDbHelper;

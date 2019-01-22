@@ -1,7 +1,7 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.requests;
 
 /**
- * Hier sind die Stringdaten für die Datenbank gelistet.
+ * The Stings are listed for the databank.
  */
 class RequestsContract {
     static final String REQ_TABLE_NAME = "Requests";
