@@ -32,6 +32,7 @@ Die App scannt einen QR-Code. Erkennt er diesen als WLAN QR-Code, so soll er sic
     - falls WLAN-Netz nicht verschlüsselt ist, dann wird keine Verbindung hergestellt und es wird dem Nutzer eine Fehlermeldung angezeigt und es werden keine Daten übertragen.
 
 #### Implementable Story 1 WLAN-Parameter
+> Als Admin möchte ich, die WLAN Parameter erhalten können und mich dadurch mit dem Wlan Netz verbinden zu können.
 
 - Aufwandsschätzung [23] Storypoints
 - Akzeptanztest:
@@ -47,6 +48,8 @@ Sollten sich die Wlan-Zugangsdaten ändern, so wird keine weiter interaktion vom
 - Tatsächlich benötigte Zeit:
 
 #### Implementable Story 2 Handykameranutzung
+> Als Nutzer möchte ich, dass beim Starten der App die Kamera funktionsfähig ist um einen QR-Code scannen zu können.
+
 - Aufwandsschätzung [4] Storypoints
 - Akzeptanztest:
 	- Funktionen der Kamera für die App freigeschalten
@@ -239,7 +242,7 @@ Dot-Notation der OID kann hinzugefügt werden.
 
 > Als Admin möchte ich die Namen der Abfragemasken bearbeiten können, um auf einen Blick sehen zu können um welche Abfragemaske es sich handelt.
 
-- Aufwandsschätzung [23] Storypoints
+- Aufwandsschätzung [18] Storypoints
 
 - Akzeptanztest:
 	- Name kann verändert werden
@@ -249,9 +252,9 @@ Dot-Notation der OID kann hinzugefügt werden.
 ##### Task 1 Namen ändern
 Der Name kann nach belieben geändert und angepasst werden.
 
-- Aufwandsschätzung: *TODO*
+- Aufwandsschätzung: 2h
 
-- Tatsächlich benötigte Zeit: *TODO*
+- Tatsächlich benötigte Zeit: 1h
 
 
 ### Feature 2 *Abfragenmenü*
@@ -284,55 +287,55 @@ Der Name kann nach belieben geändert und angepasst werden.
 
 Abfragemasken können erstellt werden.
 
-- Aufwandsschätzung: *TODO*
+- Aufwandsschätzung: 2h
 
-- Tatsächlich benötigte Zeit: *TODO*
+- Tatsächlich benötigte Zeit: 1h20min
 
 ##### Task 2 Abfragemasken hinzufügen
 
 Abfragemasken können hinzugefügt werden.
 
-- Aufwandsschätzung: *TODO*
+- Aufwandsschätzung: 2h
 
-- Tatsächlich benötigte Zeit: *TODO*
+- Tatsächlich benötigte Zeit: 1h
 
 ##### Task 3 Abfragemasken löschen
 
 Abfragemasken können gelölscht werden.
 
-- Aufwandsschätzung: *TODO*
+- Aufwandsschätzung: 1h
 
-- Tatsächlich benötigte Zeit: *TODO*
+- Tatsächlich benötigte Zeit: 40min
 
 #### Implementable Story 2 Einzlne OIDs verwalten
-> TODO
+> Als Nutzer möchte ich einzelne OIDs verwalten können, um Nutzbarkeit des Programms zu erhöhen.
 
-- Aufwandsschätzung [] Storypoint
+- Aufwandsschätzung [42] Storypoint
 - Akzeptanztest:
 
 ##### Task 1 OID bearbeiten
 
 Einzelne OID kann bearbeitet werden.
 
-- Aufwandsschätzung: *TODO*
+- Aufwandsschätzung: 2h
 
-- Tatsächlich benötigte Zeit: *TODO*
+- Tatsächlich benötigte Zeit: 1h30min
 
 ##### Task 2 OID hinzufügen
 
 Eine einzelne OID kann hinzugefügt werden.
 
-- Aufwandsschätzung: *TODO*
+- Aufwandsschätzung: 1h30min
 
-- Tatsächlich benötigte Zeit: *TODO*
+- Tatsächlich benötigte Zeit: 1h
 
 ##### Task 3 OID löschen
 
 Einzelne OID kann gelöscht werden.
 
-- Aufwandsschätzung: *TODO*
+- Aufwandsschätzung: 30min
 
-- Tatsächlich benötigte Zeit: *TODO*
+- Tatsächlich benötigte Zeit: 20min
 
 ## Epic 3: Oberfläche
 
@@ -367,7 +370,7 @@ Die Oberfläche sollte so einfach und intuitiv wie möglich gestaltet werden.
 ##### Task 1 Logo einbettung
 Das Logo des Kunden wird als Startbildschrim angezeigt.
 
-- Aufwandsschätzung:
+- Aufwandsschätzung: 30min
 
 ### Feature 2 *Sprachmenü*
 
@@ -420,8 +423,7 @@ Die zu übesetzenden Strings, welche der Nutzer beim bedienen der App zu lesen h
 ##### Task 1 Vorausgewählte Farbparlette
 Der Nutzer bekommte eine gewisse Farbparlette zur auswahl von der er sich einen Farbe als Hintergrund legen kann.
 
-- Aufwandsschätzung:
-- Tatsächlich benötigte Zeit:
+- Aufwandsschätzung: 45min
 
 ### Feature 4 *Menü*
 
@@ -446,3 +448,6 @@ Der Nutzer bekommte eine gewisse Farbparlette zur auswahl von der er sich einen 
 
 ##### Task 1 Text erstellen
 Eine Text Datei soll erstellt werden inder dem Nutzer beschrieben wird wie man die richtig Nutzen kann. Dem Nutzer soll somit die Bedienung erklärt und erleichtert werden, damit er nicht vorher von einer anderen Person dazu belehrt werden muss.
+
+- Aufwandsschätzung: 1h30min
+- Tatsächlich benötigte Zeit: TODO
