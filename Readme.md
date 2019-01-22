@@ -109,4 +109,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-**TODO Lizenz nennen**. Genaue Bedingungen der Lizenz können in [LICENSE](LICENSE) nachgelesen werden.
+Also see [LICENSE](https://sopra.informatik.uni-stuttgart.de/sopra-ws1819/sopra-team-23/blob/master/LICENSE)
