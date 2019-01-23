@@ -16,7 +16,7 @@ Screenshot of Genua Connect (in use) / in app view by Samuel Gigliotti
 
 
 Administratoren (Admins) müssen operative Tätigkeiten an Rechnern/Firewalls in den Rechenzentren tätigen (Updates, Abstürze untersuchen, Hardware-Defekte).
-Bei solchen Arbeiten ist nebem dem Finden der richtigen Hardware der Zustand der Appliance wichtig: 
+Bei solchen Arbeiten ist nebem dem Finden der richtigen Hardware der Zustand der Appliance wichtig:
 Wurden für die Wartungsarbeiten bespielsweise die produktiven IP-Adressen an das High Availability (HA)-Pendant im anderen Rechenzentrum-Abschnitt abgegeben?
 Oftmals sind Wartungsfenster zeitlich sehr kurz bemessen oder zu Zeiten, bei denen eine zügige Bearbeitung erforderlich ist.
 Ein App, die den Status der Maschine ermittelt und anzeigt ist eine erhebliche Erleichterung für die Durchführung und Kontrolle von Wartungsarbeiten.
@@ -64,9 +64,10 @@ QR-Code scanner, über vordefinierte Abfragemasken, sich die gewünschten Inform
 
 ### Additional Features
 
-- App kann auf das Handylicht zugreifen und dieses aktivieren.
+- App kann auf das Handylicht zugreifen und dieses bei Bedarf aktivieren.
 - In App Sprache passt sich der Systemsprache an.
 - snmpv3 wurde realisiert.
+- App Icon wurde eingebettet.
 
 ## Installation
 
@@ -77,11 +78,17 @@ QR-Code scanner, über vordefinierte Abfragemasken, sich die gewünschten Inform
 
 ## Verwendung der App
 
-**TODO:** Beschreibung der wichtigsten Anwendungsfälle
+Administratoren (Admins) müssen operative Tätigkeiten an Rechnern/Firewalls in den Rechenzentren tätigen (Updates, Abstürze untersuchen, Hardware-Defekte).
+Dafür begibt sich diese Person in den Bereich der Rechnern. Falls diese noch nicht mit dem Intranet verbunden ist, so kann sich diese beim starten der App direkt mit diesem mittels des QR-Code scanners verbinden.
 
 ### Wichtiger Anwendungsfall 1
-
+ Nachdem sich nun der Admin zu dem gewünschtem Geräte begeben hat, kann er als nächstes den QR-Code des Gerätes einscannen. Jetzt kann er in der App Abfragemasken verwalten, indem er erst zurück geht und dann im Abfragemenü diese erstellt für das eingescannte Gerät. Nach der Abfrage erscheint das Ergebnis unter dem Block für das Gerät.
 ### Wichtiger Anwendungsfall 2
+Der Admin kann bevor er sich mit dem WLAN verbindet oder sich zum Gerät begibt eine Abfragemaske erstellen. Begibt er sich danach zum Gerät kann er diese direkt ausführen und erhält das Ergebnis in der App angezeigt.
+### Wichtiger Anwendungsfall 3
+Ist der Nutzer sich sicher, dass er eine gewisse Abfragemaske nicht mehr verwenden wird so kann er diese löschen, indem er auf das dafür vorgesehne Icon klickt.
+### Wichtiger Anwendungsfall 4
+Falls der Nutzer eine Abfragemaske nur leicht verädnern, so kann er dies indem er auf die Abfragemaske klickt und diese nach belieben bearbeitet.
 
 ## Changelog
 
