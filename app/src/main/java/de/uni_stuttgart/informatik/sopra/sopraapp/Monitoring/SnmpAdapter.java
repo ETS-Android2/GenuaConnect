@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Timer;
+import java.util.TimerTask;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.*;
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
@@ -32,6 +33,7 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
     private RequestDbHelper dbHelper;
     private ApplianceManager manager;
     private Timer timer;
+    private int period = 5000;
 
     /**
      * Konstruktor.
@@ -50,40 +52,35 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View listItem = convertView;
-        if(listItem == null){
+        if (listItem == null) {
             listItem = LayoutInflater.from(context).inflate(R.layout.snmp_appl_item, parent, false);
         }
 
         final SimpleSNMPClientV1AndV2c client = elements.get(position);
 
         final Switch req_switch = listItem.findViewById(R.id.switch1);
-        req_switch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(req_switch.isChecked()){
-                    manager.startRequestFor(client);
-                    new ResultTask().execute(client);
-                    notifyDataSetChanged();
-                }
-            }
+        req_switch.setOnClickListener(v -> {
+            timer.schedule(new PeriodTask(client, req_switch), period);
+            notifyDataSetChanged();
         });
 
+
         Spinner spinner = listItem.findViewById(R.id.request_spinner);
-        ArrayAdapter<String> adapter =new ArrayAdapter<>(context, android.R.layout.simple_list_item_1);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1);
         adapter.add("NONE");
         adapter.addAll(dbHelper.getAllMasks());
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0){
+                if (position == 0) {
                     req_switch.setChecked(false);
                     req_switch.setEnabled(false);
                     return;
                 }
                 req_switch.setEnabled(true);
                 String req = (String) parent.getSelectedItem();
-                manager.setRequestFor(client,req);
+                manager.setRequestFor(client, req);
 
             }
 
@@ -93,16 +90,16 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
             }
         });
 
-        spinner.setSelection(manager.getRequestMaskFrom(client) != null ? dbHelper.getAllMasks().indexOf(manager.getRequestMaskFrom(client))+1:0);
+        spinner.setSelection(manager.getRequestMaskFrom(client) != null ? dbHelper.getAllMasks().indexOf(manager.getRequestMaskFrom(client)) + 1 : 0);
         TextView textView = listItem.findViewById(R.id.appl_name_field);
         textView.setText("Gerät " + position);
 
         ListView listView = listItem.findViewById(R.id.appl_info_list);
         ArrayList<String> infos = new ArrayList<>();
-        infos.add("IPv4-Addresse:\t"+ client.getAddress());
-        if(client instanceof SimpleSNMPClientv3){
-            infos.add("Benutzer:\t"+ client.getTarget().getSecurityName().toString());
-        }else {
+        infos.add("IPv4-Addresse:\t" + client.getAddress());
+        if (client instanceof SimpleSNMPClientv3) {
+            infos.add("Benutzer:\t" + client.getTarget().getSecurityName().toString());
+        } else {
             infos.add("Community Target:\t" + client.getTarget().getSecurityName().toString());
         }
 
@@ -112,7 +109,7 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
         return listItem;
     }
 
-    private class ResultTask extends AsyncTask<SimpleSNMPClientV1AndV2c, Void, ArrayList<String>>{
+    private class ResultTask extends AsyncTask<SimpleSNMPClientV1AndV2c, Void, ArrayList<String>> {
         SimpleSNMPClientV1AndV2c client;
 
         @Override
@@ -124,6 +121,28 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
         @Override
         protected void onPostExecute(ArrayList<String> strings) {
             manager.setResultsFor(client, strings);
+            notifyDataSetChanged();
+        }
+    }
+
+    private class PeriodTask extends TimerTask {
+        private SimpleSNMPClientV1AndV2c client;
+        private Switch onSwitch;
+
+        private PeriodTask(SimpleSNMPClientV1AndV2c client, Switch onSwitch) {
+            this.client = client;
+            this.onSwitch = onSwitch;
+        }
+
+        @Override
+        public void run() {
+            if (!onSwitch.isChecked()) {
+                cancel();
+                timer.purge();
+                return;
+            }
+            manager.startRequestFor(client);
+            new ResultTask().execute(client);
             notifyDataSetChanged();
         }
     }
