@@ -78,7 +78,7 @@ public class RotatingCaptureActivity extends Activity
 
 
     /**
-     * switching the Flashlight.
+     * switching the flashlight.
      *
      * @param view View for onClick.
      */
