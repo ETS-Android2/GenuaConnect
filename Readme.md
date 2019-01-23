@@ -1,15 +1,19 @@
 # Genua Connect
 
 Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+
 ![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot4.jpg)
 
 Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+
 ![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot3.jpg)
 
 Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+
 ![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot2.jpg)
 
 Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+
 ![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot1.jpg)
 
 Screenshot of Genua Connect (in use) / in app view by Samuel Gigliotti
