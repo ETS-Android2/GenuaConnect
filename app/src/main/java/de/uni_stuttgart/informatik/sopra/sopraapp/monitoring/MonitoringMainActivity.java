@@ -27,13 +27,7 @@ public class MonitoringMainActivity extends AppCompatActivity {
 
 
         ListView allApplianceView = findViewById(R.id.all_appl_list);
-        RequestDbHelper dbHelper = new RequestDbHelper(this);
         ApplianceManager manager = ApplianceManager.getInstance(this);
-        String qrCode = "{\"snmpVersion\":\"3\"," + "\"user\": \"root\"," + "\"target\": \"private\","
-                + "\"pw\": \"asdf212!\"," + "\"enc\": {" + "  \"auth\": \"SHA\"," + "  \"priv\": \"AES-256\","
-                + "  \"privKey\": \"asdf121!\"" + "}," + "\"naddr\": {" + " \"IPv4\": \"192.168.0.25\","
-                + " \"IPv6\": \"2a56:0:1\"" + "}" + "}";
-        manager.addClient(new SimpleSNMPClientv3(qrCode));
         HashMap<SimpleSNMPClientV1AndV2c, String> appliances = new HashMap<>();
         ArrayList<SimpleSNMPClientV1AndV2c> clients = manager.getClientList();
 
