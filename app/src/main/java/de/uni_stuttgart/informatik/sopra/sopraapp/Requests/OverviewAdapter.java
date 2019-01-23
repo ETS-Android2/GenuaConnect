@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.R;
  * Diese Klasse ist die Adapterklasse für die Oberfläche der Abfragemasken.
  */
 public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHolder> {
+    private static final String TAG = "OverviewAdapter";
+    
     private RequestDbHelper data;
     private Activity activity;
 
@@ -63,6 +66,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
 
                     Intent intent = new Intent(activity, CustomizeRequestActivity.class);
                     intent.putExtra("requestId", id);
+                    Log.d(TAG, "onClick: starting " + id);
                     activity.startActivity(intent);
 
 

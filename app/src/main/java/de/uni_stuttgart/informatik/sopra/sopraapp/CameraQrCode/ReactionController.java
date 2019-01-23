@@ -2,6 +2,7 @@ package de.uni_stuttgart.informatik.sopra.sopraapp.CameraQrCode;
 
 import android.app.Activity;
 import android.util.Log;
+import android.widget.Toast;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring.ApplianceManager;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
@@ -21,21 +22,26 @@ class ReactionController {
      */
     ReactionController(Activity activity, String qrCode) {
         Log.d("Reacting To QR-Code", "QR-String = " + qrCode);
-        //WIFI QR Code
-        if (qrCode.contains("WIFI")) {
-            Log.d("Reacting To QR-Code", "detected a WIFI QR-String");
-            new WifiConnect().tryConnect(qrCode, activity);
+        try {
+            //WIFI QR Code
+            if (qrCode.contains("WIFI")) {
+                Log.d("Reacting To QR-Code", "detected a WIFI QR-String");
+                new WifiConnect().tryConnect(qrCode, activity);
 
-            // SNMPv3 QR COde
-        } else if (new ApplianceQrDecode(qrCode).getSnmpVersion().equals("3")) {
-            ApplianceManager applianceManager = ApplianceManager.getInstance(activity);
-            applianceManager.addClient(new SimpleSNMPClientv3(qrCode));
+                // SNMPv3 QR COde
+            } else if (new ApplianceQrDecode(qrCode).getSnmpVersion().equals("3")) {
+                ApplianceManager applianceManager = ApplianceManager.getInstance(activity);
+                applianceManager.addClient(new SimpleSNMPClientv3(qrCode));
 
-            //SNMPv1v2c QR Code.
-        } else if (new ApplianceQrDecode(qrCode).getSnmpVersion().equals("1") || new ApplianceQrDecode(qrCode).getSnmpVersion().equals("2c")) {
-            ApplianceManager applianceManager = ApplianceManager.getInstance(activity);
-            applianceManager.addClient(new SimpleSNMPClientV1AndV2c(qrCode));
+                //SNMPv1v2c QR Code.
+            } else if (new ApplianceQrDecode(qrCode).getSnmpVersion().equals("1") || new ApplianceQrDecode(qrCode).getSnmpVersion().equals("2c")) {
+                ApplianceManager applianceManager = ApplianceManager.getInstance(activity);
+                applianceManager.addClient(new SimpleSNMPClientV1AndV2c(qrCode));
 
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            Toast.makeText(activity, "Something went wrong. Check QR-Code format.", Toast.LENGTH_LONG).show();
         }
     }
 }

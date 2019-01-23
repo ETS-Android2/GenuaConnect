@@ -44,10 +44,12 @@
         <activity
             android:name=".Requests.RequestMngActivity"
             android:label="@string/abfragenVerwaltungButton"
+            android:windowSoftInputMode="stateHidden"
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".Requests.CustomizeRequestActivity"
             android:label="@string/abfragenVerwaltungButton"
+            android:windowSoftInputMode="stateHidden"
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".Monitoring.MonitoringMainActivity"

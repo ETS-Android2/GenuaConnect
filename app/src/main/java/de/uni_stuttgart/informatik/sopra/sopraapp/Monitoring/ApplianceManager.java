@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
+import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.OidElement;
 import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
 import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTask;
@@ -81,7 +82,11 @@ public class ApplianceManager {
      */
     public void startRequestFor(SimpleSNMPClientV1AndV2c client) {
         String request = requestTable.get(client);
-        ArrayList<String> oids = requestDbHelper.getOIDsFrom(request);
+        ArrayList<OidElement> oidElements = requestDbHelper.getOIDsFrom(request);
+        ArrayList<String> oids = new ArrayList<>();
+        for (OidElement element: oidElements) {
+            oids.add(element.getOidString());
+        }
         SnmpTask[] tasks = new SnmpTask[oids.size()];
         for (int i = 0; i < tasks.length; i++) {
             tasks[i] = new SnmpTask(client);
@@ -114,7 +119,7 @@ public class ApplianceManager {
     }
 
     public ArrayList<String> getResults(SimpleSNMPClientV1AndV2c client){
-        return resultTable.get(client) == null ? new ArrayList<String>(): resultTable.get(client);
+        return resultTable.get(client) == null ? new ArrayList<>(): resultTable.get(client);
     }
 
     public void setResultsFor(SimpleSNMPClientV1AndV2c client, ArrayList<String> results){
