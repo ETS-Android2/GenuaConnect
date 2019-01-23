@@ -27,3 +27,7 @@ Die verlangten 75% Testabdeckung waren für uns nicht möglich zu erreichen. Die
 - SNMP testen ist nicht möglicht, da wir dies nicht in junit simulieren können
 - der obige Punkt gilt ebenso für WiFi-Funktionalitäten
 - Zudem wurde durch eines Piplinefehlers, welcher vom Betreuer verschuldet wurde, dem wir leider zu viel Zeit gewitmept haben, unsere Arbeit und unser Zeitplan stark beeinflusst.
+- Einen Test der Datenbanken konnten wir nicht in junit realisieren
+
+## Begründung 6 (Testabdeckungsprotokoll fehlt)
+Da die Pipline von uns manuell gefixt werden musste, konnten wir keine Protokolle erstellen, weil jedesmal die folgende Fehlermeldung erschien *"Job's log exceeded limit of 4194304 bytes."*
