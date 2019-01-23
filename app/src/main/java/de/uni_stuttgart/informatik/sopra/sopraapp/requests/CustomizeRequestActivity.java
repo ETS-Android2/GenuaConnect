@@ -1,24 +1,17 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
+package de.uni_stuttgart.informatik.sopra.sopraapp.requests;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
-import android.widget.CursorAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -28,10 +21,8 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.R;
  * Diese Klasse ist für den Aufbau einer Abfragemaske zuständig.
  */
 public class CustomizeRequestActivity extends AppCompatActivity {
-    private static final String TAG = "CustomizeRequestActivit";
 
     private RequestDbHelper manager;
-    private ListView listView;
     private OidAdapter adapter;
 
     private EditText requestNameField;
@@ -55,7 +46,7 @@ public class CustomizeRequestActivity extends AppCompatActivity {
 
         cursor.close();
 
-        listView = findViewById(R.id.oids_list);
+        ListView listView = findViewById(R.id.oids_list);
         Log.d("CustomizeRequestActivit", "Id : " + requestId);
         adapter = new OidAdapter(this, manager, requestId, requestName);
         listView.setAdapter(adapter);
@@ -87,7 +78,7 @@ public class CustomizeRequestActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    private void saving(){
+    private void saving() {
         SQLiteDatabase writableDatabase = manager.getWritableDatabase();
         String posNewName = requestNameField.getText().toString();
         if (manager.getAllMasks().contains(posNewName) && !posNewName.equals(requestName)) {
@@ -104,7 +95,7 @@ public class CustomizeRequestActivity extends AppCompatActivity {
 
     private void edit(Context context) {
         LayoutInflater li = LayoutInflater.from(context);
-        View promptsView = li.inflate(R.layout.recycler_edit_layout, null);
+        @SuppressLint("InflateParams") View promptsView = li.inflate(R.layout.recycler_edit_layout, null);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Comments");

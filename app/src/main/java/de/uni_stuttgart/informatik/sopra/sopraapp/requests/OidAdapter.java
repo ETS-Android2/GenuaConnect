@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
+package de.uni_stuttgart.informatik.sopra.sopraapp.requests;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -10,10 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Set;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
@@ -37,9 +33,9 @@ public class OidAdapter extends ArrayAdapter<OidElement> {
 
 
     @Override
-    public View getView(int position, View convertView,  ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         View oidView = convertView;
-        if(oidView == null){
+        if (oidView == null) {
             oidView = LayoutInflater.from(context).inflate(R.layout.recycler_edit_layout, parent, false);
         }
 
@@ -56,16 +52,16 @@ public class OidAdapter extends ArrayAdapter<OidElement> {
         deleteImBtn.setOnClickListener(v -> {
             SQLiteDatabase readableDatabase = requestDbHelper.getReadableDatabase();
             Cursor cursor = readableDatabase.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME + " where " +
-                    RequestsContract.COLUMN_OID_REQ + " = " + requestId + " order by " + RequestsContract.COLUMN_OID_ID , null);
+                    RequestsContract.COLUMN_OID_REQ + " = " + requestId + " order by " + RequestsContract.COLUMN_OID_ID, null);
             cursor.moveToPosition(position);
             int idToDel = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_OID_ID));
-            readableDatabase.delete(RequestsContract.OID_TABLE_NAME, RequestsContract.COLUMN_OID_ID+ " = " +idToDel , null);
+            readableDatabase.delete(RequestsContract.OID_TABLE_NAME, RequestsContract.COLUMN_OID_ID + " = " + idToDel, null);
             super.remove(element);
+            cursor.close();
         });
 
         descText.setEnabled(false);
         oidField.setEnabled(false);
-
         return oidView;
     }
 

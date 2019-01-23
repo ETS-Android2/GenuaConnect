@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring;
+package de.uni_stuttgart.informatik.sopra.sopraapp.monitoring;
 
 import android.content.Context;
 
@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
-import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.OidElement;
-import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
-import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTask;
+import de.uni_stuttgart.informatik.sopra.sopraapp.requests.OidElement;
+import de.uni_stuttgart.informatik.sopra.sopraapp.requests.RequestDbHelper;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientV1AndV2c;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SnmpTask;
 
 /**
  * Manages all appliances that were scanned by the Main Activitys QR-Scanner
@@ -78,13 +78,14 @@ public class ApplianceManager {
 
     /**
      * Starts request for all oids in requestmask that was specified for this client
+     *
      * @param client client to send the requests
      */
-    public void startRequestFor(SimpleSNMPClientV1AndV2c client) {
+    void startRequestFor(SimpleSNMPClientV1AndV2c client) {
         String request = requestTable.get(client);
         ArrayList<OidElement> oidElements = requestDbHelper.getOIDsFrom(request);
         ArrayList<String> oids = new ArrayList<>();
-        for (OidElement element: oidElements) {
+        for (OidElement element : oidElements) {
             oids.add(element.getOidString());
         }
         SnmpTask[] tasks = new SnmpTask[oids.size()];
@@ -95,12 +96,12 @@ public class ApplianceManager {
         taskTable.put(client, tasks);
     }
 
-    public ArrayList<String> tryGetResults(SimpleSNMPClientV1AndV2c client){
+    ArrayList<String> tryGetResults(SimpleSNMPClientV1AndV2c client) {
         ArrayList<String> results = new ArrayList<>();
-        if(taskTable.get(client) == null){
+        if (taskTable.get(client) == null) {
             return results;
         }
-        for (SnmpTask task : Objects.requireNonNull(taskTable.get(client))){
+        for (SnmpTask task : Objects.requireNonNull(taskTable.get(client))) {
             try {
                 results.add(task.get());
             } catch (ExecutionException e) {
@@ -114,15 +115,15 @@ public class ApplianceManager {
         return results;
     }
 
-    public String getRequestMaskFrom(SimpleSNMPClientV1AndV2c client){
+    String getRequestMaskFrom(SimpleSNMPClientV1AndV2c client) {
         return requestTable.get(client);
     }
 
-    public ArrayList<String> getResults(SimpleSNMPClientV1AndV2c client){
-        return resultTable.get(client) == null ? new ArrayList<>(): resultTable.get(client);
+    ArrayList<String> getResults(SimpleSNMPClientV1AndV2c client) {
+        return resultTable.get(client) == null ? new ArrayList<>() : resultTable.get(client);
     }
 
-    public void setResultsFor(SimpleSNMPClientV1AndV2c client, ArrayList<String> results){
+    void setResultsFor(SimpleSNMPClientV1AndV2c client, ArrayList<String> results) {
         resultTable.put(client, results);
     }
 

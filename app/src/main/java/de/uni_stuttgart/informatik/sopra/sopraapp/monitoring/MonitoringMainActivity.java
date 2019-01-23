@@ -1,9 +1,8 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.monitoring;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -20,18 +19,6 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientv3;
  */
 public class MonitoringMainActivity extends AppCompatActivity {
 
-    private ApplianceManager manager;
-    private HashMap<SimpleSNMPClientV1AndV2c, String> appliances;
-    private ArrayList<String> applianceNames;
-    private RequestDbHelper dbHelper;
-    private RecyclerView recyclerView;
-
-    private static String qrCode = "{\"snmpVersion\":\"3\"," + "\"user\": \"root\"," + "\"target\": \"private\","
-            + "\"pw\": \"asdf212!\"," + "\"enc\": {" + "  \"auth\": \"SHA\"," + "  \"priv\": \"AES-256\","
-            + "  \"privKey\": \"asdf121!\"" + "}," + "\"naddr\": {" + " \"IPv4\": \"192.168.0.25\","
-            + " \"IPv6\": \"2a56:0:1\"" + "}" + "}";
-
-
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +27,14 @@ public class MonitoringMainActivity extends AppCompatActivity {
 
 
         ListView allApplianceView = findViewById(R.id.all_appl_list);
-        dbHelper = new RequestDbHelper(this);
-        manager = ApplianceManager.getInstance(this);
+        RequestDbHelper dbHelper = new RequestDbHelper(this);
+        ApplianceManager manager = ApplianceManager.getInstance(this);
+        String qrCode = "{\"snmpVersion\":\"3\"," + "\"user\": \"root\"," + "\"target\": \"private\","
+                + "\"pw\": \"asdf212!\"," + "\"enc\": {" + "  \"auth\": \"SHA\"," + "  \"priv\": \"AES-256\","
+                + "  \"privKey\": \"asdf121!\"" + "}," + "\"naddr\": {" + " \"IPv4\": \"192.168.0.25\","
+                + " \"IPv6\": \"2a56:0:1\"" + "}" + "}";
         manager.addClient(new SimpleSNMPClientv3(qrCode));
-        appliances = new HashMap<>();
+        HashMap<SimpleSNMPClientV1AndV2c, String> appliances = new HashMap<>();
         ArrayList<SimpleSNMPClientV1AndV2c> clients = manager.getClientList();
 
         int count = 0;
@@ -51,7 +42,7 @@ public class MonitoringMainActivity extends AppCompatActivity {
             appliances.put(client, "Gerät " + count);
         }
 
-        applianceNames = new ArrayList<>();
+        ArrayList<String> applianceNames = new ArrayList<>();
         applianceNames.addAll(appliances.values());
         List<SimpleSNMPClientV1AndV2c> list = new ArrayList<>();
         list.addAll(appliances.keySet());
