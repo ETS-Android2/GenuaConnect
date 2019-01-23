@@ -14,6 +14,7 @@ public class SnmpTask extends AsyncTask<String, Void, String> {
 
     private static final String TAG = SnmpTask.class.getName();
     private SimpleSNMPClientV1AndV2c snmpClient;
+    private String oid;
 
     /**
      * constructor
@@ -35,6 +36,7 @@ public class SnmpTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... oids) {
+        oid = oids[0];
         try {
             snmpClient.start();
         } catch (IOException e) {
@@ -42,5 +44,9 @@ public class SnmpTask extends AsyncTask<String, Void, String> {
         }
         Log.d(TAG, "initialisiert");
         return snmpClient.getAsString(new OID(oids[0]));
+    }
+
+    public String getOid() {
+        return oid;
     }
 }

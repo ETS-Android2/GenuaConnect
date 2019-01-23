@@ -1,4 +1,4 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.requests;
+package de.uni_stuttgart.informatik.sopra.sopraapp.Requests;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,11 @@ import android.widget.TextView;
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 
 /**
- * this class is the adapterclass for the GUI of the query mask.
+ * Diese Klasse ist die Adapterklasse für die Oberfläche der Abfragemasken.
  */
 public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHolder> {
+    private static final String TAG = "OverviewAdapter";
+    
     private RequestDbHelper data;
     private Activity activity;
 
@@ -30,46 +33,53 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHo
             requestText = view.findViewById(R.id.reqText);
             imageButton = view.findViewById(R.id.deleteReq_btn);
 
-            imageButton.setOnClickListener(v -> {
-                int pos = getAdapterPosition();
-                SQLiteDatabase database = data.getWritableDatabase();
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    SQLiteDatabase database = data.getWritableDatabase();
 
-                Cursor cursor = database.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME +
-                        " order by " + RequestsContract.COLUMN_REQ_ID + " desc limit 1 offset " + pos, null);
+                    Cursor cursor = database.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME +
+                            " order by " + RequestsContract.COLUMN_REQ_ID + " desc limit 1 offset " + pos, null);
 
-                cursor.moveToFirst();
-                int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
-                cursor.close();
+                    cursor.moveToFirst();
+                    int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
+                    cursor.close();
 
-                database.delete(RequestsContract.REQ_TABLE_NAME, RequestsContract.COLUMN_REQ_ID + " = " + id, null);
-                notifyDataSetChanged();
+                    database.delete(RequestsContract.REQ_TABLE_NAME, RequestsContract.COLUMN_REQ_ID + " = " + id, null);
+                    notifyDataSetChanged();
+                }
             });
 
-            requestText.setOnClickListener(v -> {
-                int pos = getAdapterPosition();
-                SQLiteDatabase database = data.getWritableDatabase();
+            requestText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    SQLiteDatabase database = data.getWritableDatabase();
 
-                Cursor cursor = database.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME +
-                        " order by " + RequestsContract.COLUMN_REQ_ID + " desc limit 1 offset " + pos, null);
+                    Cursor cursor = database.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME +
+                            " order by " + RequestsContract.COLUMN_REQ_ID + " desc limit 1 offset " + pos, null);
 
-                cursor.moveToFirst();
-                int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
-                cursor.close();
+                    cursor.moveToFirst();
+                    int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
+                    cursor.close();
 
-                Intent intent = new Intent(activity, CustomizeRequestActivity.class);
-                intent.putExtra("requestId", id);
-                activity.startActivity(intent);
+                    Intent intent = new Intent(activity, CustomizeRequestActivity.class);
+                    intent.putExtra("requestId", id);
+                    Log.d(TAG, "onClick: starting " + id);
+                    activity.startActivity(intent);
 
 
+                }
             });
         }
     }
 
     /**
-     * constructor.
+     * Konstruktor.
      *
-     * @param requestDbHelper Object from RequestDbHelper.
-     * @param activity        the transfered Activity.
+     * @param requestDbHelper Objekt aus RequestDbHelper.
+     * @param activity        Die übergebene Activity.
      */
     OverviewAdapter(RequestDbHelper requestDbHelper, Activity activity) {
         this.data = requestDbHelper;

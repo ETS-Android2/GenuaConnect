@@ -46,6 +46,10 @@ public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
         Log.d("StartAusfuehren", "Ausgefueht");
     }
 
+    public String getAddress() {
+        return address;
+    }
+
     /**
      * authProtocoll, privProtocoll, privPasswort, authPasswort, userName information are initialized
      */

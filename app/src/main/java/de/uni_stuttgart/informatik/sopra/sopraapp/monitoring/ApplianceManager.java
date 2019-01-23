@@ -1,14 +1,16 @@
-package de.uni_stuttgart.informatik.sopra.sopraapp.monitoring;
+package de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring;
 
 import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
-import de.uni_stuttgart.informatik.sopra.sopraapp.requests.RequestDbHelper;
-import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientV1AndV2c;
-import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SnmpTask;
+import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.OidElement;
+import de.uni_stuttgart.informatik.sopra.sopraapp.Requests.RequestDbHelper;
+import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientV1AndV2c;
+import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SnmpTask;
 
 /**
  * Manages all appliances that were scanned by the Main Activitys QR-Scanner
@@ -18,10 +20,10 @@ public class ApplianceManager {
     private static ApplianceManager ourInstance;
 
     /**
-     * Constructor
+     * Konstruktor
      *
      * @param context
-     * @return Returns the used instance of the ApplianceManager.
+     * @return Returned die gebrauchte Instanz des ApplianceManager.
      */
     public static ApplianceManager getInstance(Context context) {
         if (ourInstance == null) {
@@ -30,6 +32,7 @@ public class ApplianceManager {
             ourInstance.requestTable = new HashMap<>();
             ourInstance.requestDbHelper = new RequestDbHelper(context);
             ourInstance.taskTable = new HashMap<>();
+            ourInstance.resultTable = new HashMap<>();
         }
         return ourInstance;
     }
@@ -41,31 +44,32 @@ public class ApplianceManager {
     private RequestDbHelper requestDbHelper;
     private HashMap<SimpleSNMPClientV1AndV2c, String> requestTable;
     private HashMap<SimpleSNMPClientV1AndV2c, SnmpTask[]> taskTable;
+    private HashMap<SimpleSNMPClientV1AndV2c, ArrayList<String>> resultTable;
 
 
     /**
-     * The getter-method for the SNMP Client.
+     * Die Gettermethode für den SNMP Client.
      *
-     * @return Returns the client.
+     * @return Returned den Client.
      */
     public ArrayList<SimpleSNMPClientV1AndV2c> getClientList() {
         return clientV1AndV2List;
     }
 
     /**
-     * The clients can be added with this method.
+     * Hiermit können clients geaddet werden.
      *
-     * @param appliance With this variables, the clients can be added.
+     * @param appliance Durch diese Variable werden die Clients geaddet.
      */
     public void addClient(SimpleSNMPClientV1AndV2c appliance) {
         clientV1AndV2List.add(appliance);
     }
 
     /**
-     * Sets the query from the client
+     * Settet die Abfrage aus dem Client.
      *
-     * @param client  The SNMP Client.
-     * @param request The querys.
+     * @param client  Der SNMP Client.
+     * @param request Die Abfrage.
      */
     public void setRequestFor(SimpleSNMPClientV1AndV2c client, String request) {
         requestTable.put(client, request);
@@ -78,7 +82,11 @@ public class ApplianceManager {
      */
     public void startRequestFor(SimpleSNMPClientV1AndV2c client) {
         String request = requestTable.get(client);
-        ArrayList<String> oids = requestDbHelper.getOIDsFrom(request);
+        ArrayList<OidElement> oidElements = requestDbHelper.getOIDsFrom(request);
+        ArrayList<String> oids = new ArrayList<>();
+        for (OidElement element: oidElements) {
+            oids.add(element.getOidString());
+        }
         SnmpTask[] tasks = new SnmpTask[oids.size()];
         for (int i = 0; i < tasks.length; i++) {
             tasks[i] = new SnmpTask(client);
@@ -87,12 +95,12 @@ public class ApplianceManager {
         taskTable.put(client, tasks);
     }
 
-    public ArrayList<String> getResults(SimpleSNMPClientV1AndV2c client){
+    public ArrayList<String> tryGetResults(SimpleSNMPClientV1AndV2c client){
         ArrayList<String> results = new ArrayList<>();
         if(taskTable.get(client) == null){
             return results;
         }
-        for (SnmpTask task : taskTable.get(client)){
+        for (SnmpTask task : Objects.requireNonNull(taskTable.get(client))){
             try {
                 results.add(task.get());
             } catch (ExecutionException e) {
@@ -108,6 +116,14 @@ public class ApplianceManager {
 
     public String getRequestMaskFrom(SimpleSNMPClientV1AndV2c client){
         return requestTable.get(client);
+    }
+
+    public ArrayList<String> getResults(SimpleSNMPClientV1AndV2c client){
+        return resultTable.get(client) == null ? new ArrayList<>(): resultTable.get(client);
+    }
+
+    public void setResultsFor(SimpleSNMPClientV1AndV2c client, ArrayList<String> results){
+        resultTable.put(client, results);
     }
 
 }

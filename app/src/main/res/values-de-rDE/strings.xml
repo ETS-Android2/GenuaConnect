@@ -19,9 +19,9 @@
     <string name="geraeteverwaltungBtnText">Geräteverwaltung</string>
     <string name="keine_OIDs">Keine OID\'s verfügbar. Bitte fügen Sie mindestens eine OID hinzu.</string>
     <string name="netzmaskeText">"Netmask: "</string>
-    <string name="navy_blue_farbe">Statusbar auf die Farbe navy einstellen.</string>
-    <string name="language_fragment">Sprachmenü</string>
     <string name="help">Hilfe</string>
     <string name="helpTextTitle">Wie erstelle ich einen QR-Code?</string>
     <string name="helpText"><![CDATA[Für einen WLAN QR-Code nutzen sie dieses Format:\n\n"WIFI:S:<SSID>;T:<WPA|WEP|>;P:<password>;;"\n\nFür einen SNMP QR-Code nutzen Sie bitte dieses Format:\n\n{\n"snmpVersion":"3",\n"user":\n"root",\n"target": "private",\n"pw": "asdf212!",\n"enc": {\n  "auth": "SHA",\n  "priv": "AES-256",\n  "privKey": "asdf121!"\n},\n"naddr": {\n "IPv4": "192.168.0.25",\n "IPv6": "2a56:0:1"\n}\n}\n\n]]></string>
+    <string name="oid_description">Bezeichnung hier eingeben</string>
+    <string name="switch_requests">Abfragen</string>
 </resources>
