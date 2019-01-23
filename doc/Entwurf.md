@@ -45,6 +45,7 @@ Ermöglicht alle Abfragen zu starten und Geräte zu spezifizieren.
 ![klassendiagramm](images/Klassendiagramm.png)
 
 *Klassendiagramm 2.0*
+
 ## Beschreibung der wichtigen Klassenhierarchie 1
 Die wichtigsten Klassen sind Startbildschrim, Scan, Menü, Optionen, AbragenMenü, AbfragenSchema, GeräteListe und die Geräte.
 
@@ -86,7 +87,7 @@ Die Klassen werden in das *Model-View-Controller* Prinzip eingefügt.
 > Führt einen Neuen Thread aus der nicht auf der ui läuft. Dies dient der Vernetzung.
 
 ## Klasse 12: WifiConnect
-> Verbindet sich mit dem WLAN.
+> Erhalt von ReactionController den QR-Code als String, falls dieser "wifi" enthält. Diese Verbindet sich dann mit dem WLAN.
 
 # GUI-Skizze
 > Skizzen entsprechen lediglich dem Entwurf. Sie zeigen nicht zwingend das endgültige Aussehen der fertigen App.
