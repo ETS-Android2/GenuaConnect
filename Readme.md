@@ -1,18 +1,35 @@
 # Genua Connect
 
 Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
-![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot4.jpg)
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Screenshot_0.png)
 
 Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
-![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot3.jpg)
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Screenshot_1.png)
 
 Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
-![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot2.jpg)
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Screenshot_2.png)
 
 Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
-![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Appscreenshot1.jpg)
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Screenshot_3.png)
 
-Screenshot of Genua Connect (in use) / in app view by Samuel Gigliotti
+Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Screenshot_4.png)
+
+Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Screenshot_5.png)
+
+Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Screenshot_6.png)
+
+Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Screenshot_7.png)
+
+Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Screenshot_8.png)
+
+Screenshot of Genua Connect (in use) / in app view by Arton Kastrati
+![Screenshot of Genua Connect / in app view by Samuel Gigliotti](doc/images/Screenshot_9.png)
+
 
 
 Administratoren (Admins) müssen operative Tätigkeiten an Rechnern/Firewalls in den Rechenzentren tätigen (Updates, Abstürze untersuchen, Hardware-Defekte).
