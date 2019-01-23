@@ -35,7 +35,6 @@ Diese Komponente bietet die Schnittstelle zum Benutzer. Sie versucht für den Be
 
 
 ## Externe Komponente
-**TODO:** Beschreibung der **externen** Komponente/Bibliothek und wie diese verwendet werden soll.
 
 ### zxing-android-embedded
 Ermöglicht es den QR-Code zu sacnnen und Informationen als einen String wiederzugeben.
@@ -57,58 +56,40 @@ Die wichtigsten Klassen sind Startbildschrim, Scan, Menü, Optionen, AbragenMen�
 Die Klassen werden in das *Model-View-Controller* Prinzip eingefügt.
 
 ## Klasse 1: ReactionController
-> In dieser Klasse wird definiert, wie auf die QR-Code reagiert werden soll.
+>  Erhält die Informationen als String dur *RotatingCaptureActivity* Bestimmt wie auf einen eingescannten QR-Code reagiert wird. Unterschieden wird zwischen 2 wesentlich verschiedenen Fällen:
+> - Ein WLAN QR-Code wird gescannt: Dann werden in der WifiConnect Klasse die einzelnen Komponenten identifiziert.
+> - Ein Geräte QR-Code wird gescannt: Hier wird auch unterschieden ob es sich in dem QR-Code um die implementierte snmp v1,v2 oder um die v3 handelt und dann an die jeweilige Klasse weitergeleitet.
 
-## Klasse 2: ApplianceQrDecoder
-> Diese Klasse getttett die Informationen aus dem QR-Code.
+## Klasse 2: RotatingCaptureActivity
+> Diese Klasse ist der eigentlicher "Scanner" der App. Sie erkennt den QR-Code und gibt den Inhalt als String wieder.
 
-## Klasse 3: RotatingCaptureActivity
-> Diese Klasse ist für den QR-Code Scanner zuständig.
+## Klasse 3: ApplianceManger
+> Verwaltet alle SNMP Geräte welche vorher gescannt wurden, sowie deren Abfragen und die Ergebnisse.
 
-## Klasse 4: ApplianceManger
-> Verwaltet die Geräte, welche gescannt wurden.
+## Klasse 4: MonitoringMainActivity
+> Stellt die Geräte dar und deren Ergebnisse.
 
-## Klasse 5: SnmpAdapter
-> Verwaltet die SNMP-Klassen mit den jeweiligen aufgaben.
+## Klasse 5: CustomizeRequestActivity
+> Diese Klasse ist für den Aufbau bzw. der Bearbeitung einer Abfragemasken zuständig.
 
-## Klasse 6: MonitoringMainActivity
-> device mngr
+## Klasse 6: RequestMngActivity
+> Liefert eine Übersicht über alle Abfragemasken.
 
-## Klasse 7: CustomizeAdapter
-> Adapterklasse für die Customization
 
-## Klasse 8: CustomizeRequestActivity
-> Diese Klasse ist für den Aufbau einer Abfragemaksen zuständig.
+## Klasse 8: SimpleSNMPClientV1AndV2c
+> Verwaltet SNMP-Abfragen. Die Klasse settet die pdu, community target, retrys und timeouts.
 
-## Klasse 9: OverviewAdapter
-> Diese Klasse ist die Adapterklasse für die Oberfläche der Abfragemasken.
+## Klasse 10: SimpleSNMPClienttv3
+> Verwaltet SNMP-Abfragen. Diese Klasse settet das Sicherheitslevel, den Username und beide passwörter, welche für das Protokoll benötigt werden.
 
-## Klasse 10: RequestDbHelper
-> Dies ist die Helper Klasse der Datenbank. Hier werden die Datenbanken initialisiert.
+## Klasse 11: SnmpTask
+> Führt einen Neuen Thread aus der nicht auf der ui läuft. Dies dient der Vernetzung.
 
-## Klasse 11: RequestMngActivity
-> Diese Klasse ist für die Activity des Abfragenmanagers zuständig.
-
-## Klasse 12: ReqeustContract
-> Hier sind die Stringdaten für die Datenbank gelistet.
-
-## Klasse 13: SimpleSNMPClientV1AndV2c
-> Verwaltet SNMP-Abfragen.
-
-## Klasse 14: SimpleSNMPClienttv3
-> Verwaltet SNMP-Abfragen.
-
-## Klasse 15: SnmpTask
-> Eigener Thread zur Vernetzung.
-
-## Klasse 16: WifiConnect
-> WLAN-Parameter
-
-## Klasse 17: WifiStateActivity
-> Durch diese Klasse wird in der Activity die WIFI/DHCP Infos angezeigt.
-
+## Klasse 12: WifiConnect
+> Verbindet sich mit dem WLAN.
 
 # GUI-Skizze
+> Skizzen entsprechen lediglich dem Entwurf. Sie zeigen nicht zwingend das endgültige Aussehen der fertigen App.
 
 ![GUI-Skizze von Arton Kastrati](sketches/Skizze.start.png)
 ![GUI-Skizze von Arton Kastrati](sketches/Skizze.popup.png)
