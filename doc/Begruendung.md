@@ -21,3 +21,9 @@ Der Befund wurde nicht beachtet, da dieser im nächsten Feature berücksichtigt 
 
 Einige Vorschläge/Kommentare des Tutors waren nicht richtig, daher wurden diese von uns ignoriert.
 Dies betrifft den *Entwurf* sowie den *Product Backlog*.
+
+## Begründung 5 (Testabdeckung)
+Die verlangten 75% Testabdeckung waren für uns nicht möglich zu erreichen. Dies lag an mehreren Gründen, welche im Folgenden aufgelistet werden:
+- SNMP testen ist nicht möglicht, da wir dies nicht in junit simulieren können
+- der obige Punkt gilt ebenso für WiFi-Funktionalitäten
+- Zudem wurde durch eines Piplinefehlers, welcher vom Betreuer verschuldet wurde, dem wir leider zu viel Zeit gewitmept haben, unsere Arbeit und unser Zeitplan stark beeinflusst.
