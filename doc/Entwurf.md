@@ -62,20 +62,19 @@ Die Klassen werden in das *Model-View-Controller* Prinzip eingefügt.
 > - Ein Geräte QR-Code wird gescannt: Hier wird auch unterschieden ob es sich in dem QR-Code um die implementierte snmp v1,v2 oder um die v3 handelt und dann an die jeweilige Klasse weitergeleitet.
 
 ## Klasse 2: RotatingCaptureActivity
-> Diese Klasse ist der eigentlicher "Scanner" der App. Sie erkennt den QR-Code und gibt den Inhalt als String wieder.
+> Diese Klasse ist der eigentlicher "Scanner" der App. Sie erkennt den QR-Code und gibt den Inhalt als String wieder. Enthält ebenfalls den Button für das Handylicht.
 
 ## Klasse 3: ApplianceManger
 > Verwaltet alle SNMP Geräte welche vorher gescannt wurden, sowie deren Abfragen und die Ergebnisse.
 
 ## Klasse 4: MonitoringMainActivity
-> Stellt die Geräte dar und deren Ergebnisse.
+> Stellt die Geräte und deren Ergebnisse als Listenelemente dar. Zudem wird mit einer switch ermöglicht, dass Abfragen ein und ausgeschaltet werrden können. Ein spinner ermöglicht außerdem die Auwahl einer Abfragemaske.
 
 ## Klasse 5: CustomizeRequestActivity
-> Diese Klasse ist für den Aufbau bzw. der Bearbeitung einer Abfragemasken zuständig.
+> Diese Klasse ist für den Aufbau bzw. der Bearbeitung einer Abfragemasken zuständig. Durch den "+" - Button kann der Nutzer innerhalb eines Popups eine neue OID für die ausgewählte Abfragemaske festlegen. Außerdem ist der Name der Abfragemaske änderbar.
 
 ## Klasse 6: RequestMngActivity
-> Liefert eine Übersicht über alle Abfragemasken.
-
+> Liefert eine Übersicht über alle Abfragemasken. Mithilfe eines Buttons können neue Abfragen mit einem Default-Namen hinzugefügt werden.
 
 ## Klasse 8: SimpleSNMPClientV1AndV2c
 > Verwaltet SNMP-Abfragen. Die Klasse settet die pdu, community target, retrys und timeouts.
@@ -87,7 +86,7 @@ Die Klassen werden in das *Model-View-Controller* Prinzip eingefügt.
 > Führt einen Neuen Thread aus der nicht auf der ui läuft. Dies dient der Vernetzung.
 
 ## Klasse 12: WifiConnect
-> Erhalt von ReactionController den QR-Code als String, falls dieser "wifi" enthält. Diese Verbindet sich dann mit dem WLAN.
+> Erhalt von ReactionController den QR-Code als String, falls dieser "WIFI" enthält. Die WLAN cretantials werden dann aus dem String extrahiert und ausgewertet. Das Handy verbindet sich dann mit dem WLAN.
 
 # GUI-Skizze
 > Skizzen entsprechen lediglich dem Entwurf. Sie zeigen nicht zwingend das endgültige Aussehen der fertigen App.
