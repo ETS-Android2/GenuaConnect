@@ -3,6 +3,7 @@ package de.uni_stuttgart.informatik.sopra.sopraapp.Monitoring;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.SNMP.SimpleSNMPClientv3;
  * Dies ist der SNMP Manager. Hiermit können die beiden SNMP Klassen mit Ihrem Task gemanaged werden.
  */
 public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
+    private static final String TAG = "SnmpAdapter";
 
     private ArrayList<SimpleSNMPClientV1AndV2c> elements;
     private Context context;
@@ -60,7 +62,7 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
 
         final Switch req_switch = listItem.findViewById(R.id.switch1);
         req_switch.setOnClickListener(v -> {
-            timer.schedule(new PeriodTask(client, req_switch), period);
+            timer.schedule(new PeriodTask(client, req_switch), 0, period);
             notifyDataSetChanged();
         });
 
@@ -143,7 +145,7 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
             }
             manager.startRequestFor(client);
             new ResultTask().execute(client);
-            notifyDataSetChanged();
+            Log.d(TAG, "run: Timer Task");
         }
     }
 }
