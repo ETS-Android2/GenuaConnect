@@ -89,7 +89,7 @@ public class CustomizeRequestActivity extends AppCompatActivity {
             writableDatabase.update(RequestsContract.REQ_TABLE_NAME, posChangedName, RequestsContract.COLUMN_REQ_ID + " = " + requestId, null);
             requestName = posNewName;
         }
-
+        adapter.notifyDataSetChanged();
     }
 
 
