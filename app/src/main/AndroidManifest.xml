@@ -19,6 +19,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".main.HelpActivity"
+            android:screenOrientation="portrait"
             android:label="@string/help"/>
         <activity
             android:name=".cameraQrCode.RotatingCaptureActivity"
@@ -29,7 +30,7 @@
         <activity
             android:name=".main.MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             tools:ignore="ExtraText"
             tools:replace="screenOrientation">
             <intent-filter>

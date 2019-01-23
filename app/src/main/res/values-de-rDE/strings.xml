@@ -20,8 +20,9 @@
     <string name="keine_OIDs">Keine OID\'s verfügbar. Bitte fügen Sie mindestens eine OID hinzu.</string>
     <string name="netzmaskeText">"Netmask: "</string>
     <string name="help">Hilfe</string>
-    <string name="helpTextTitle">Wie erstelle ich einen QR-Code?</string>
-    <string name="helpText"><![CDATA[Für einen WLAN QR-Code nutzen sie dieses Format:\n\n"WIFI:S:<SSID>;T:<WPA|WEP|>;P:<password>;;"\n\nFür einen SNMP QR-Code nutzen Sie bitte dieses Format:\n\n{\n"snmpVersion":"3",\n"user":\n"root",\n"target": "private",\n"pw": "asdf212!",\n"enc": {\n  "auth": "SHA",\n  "priv": "AES-256",\n  "privKey": "asdf121!"\n},\n"naddr": {\n "IPv4": "192.168.0.25",\n "IPv6": "2a56:0:1"\n}\n}\n\n]]></string>
+    <string name="helpTextTitle">Wie nutze ich die App?</string>
+    <string name="helpText"><![CDATA[Für einen WLAN QR-Code nutzen sie dieses Format:\n\n"WIFI:S:<SSID>;T:<WPA|WEP|>;P:<password>;;"\n\nFür einen SNMP QR-Code nutzen Sie bitte dieses Format:\n\n{\n"snmpVersion":"3",\n"user":\n"root",\n"target": "private",\n"pw": "asdf212!",\n"enc": {\n  "auth": "SHA",\n  "priv": "AES-256",\n  "privKey": "asdf121!"\n},\n"naddr": {\n "IPv4": "192.168.0.25",\n "IPv6": "2a56:0:1"\n}\n}\n\nUm sich dann mit dem WIFI zu verbinden,\nscannen Sie einfach den WIFI-QR-Code.\nIhr gerät verbindet sich dann automatisch mit dem gewünschten WIFI.\n\nUm sich mit einem SNMP-Gerät zu verbinden,\nscannen Sie den SNMP-QR-Code.\nDas Gerät wird dann mit den Infos in Geräteverwaltung gespeichert.]]></string>
     <string name="oid_description">Bezeichnung hier eingeben</string>
     <string name="switch_requests">Abfragen</string>
+    <string name="geraetText">Device</string>
 </resources>

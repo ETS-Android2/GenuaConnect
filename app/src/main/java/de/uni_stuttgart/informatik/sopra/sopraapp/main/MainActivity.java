@@ -25,10 +25,11 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.wifi.WifiStateActivity;
 public class MainActivity extends AppCompatActivity {
 
     //Intent that can start the scan of qr codes
-    IntentIntegrator intentIntegrator;
+    public IntentIntegrator intentIntegrator;
+    public boolean test;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Locale.getDefault();
         //Locale.setDefault();
@@ -38,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         //initialising the IntentIntegrator and setting a few options
         intentIntegrator = new IntentIntegrator(this);
         intentIntegrator.setBeepEnabled(false);
         intentIntegrator.setOrientationLocked(false);
         intentIntegrator.setCaptureActivity(RotatingCaptureActivity.class);
         intentIntegrator.initiateScan();
+        test = true;
     }
 
     /**
