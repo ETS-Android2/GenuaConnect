@@ -24,7 +24,6 @@ public class RequestDbHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_OID =
             "DROP TABLE IF EXISTS " + RequestsContract.OID_TABLE_NAME;
 
-
     public RequestDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }

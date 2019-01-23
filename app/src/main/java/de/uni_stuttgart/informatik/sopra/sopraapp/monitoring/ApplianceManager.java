@@ -22,7 +22,7 @@ public class ApplianceManager {
     /**
      * Konstruktor
      *
-     * @param context
+     * @param context Context of class.
      * @return Returned die gebrauchte Instanz des ApplianceManager.
      */
     public static ApplianceManager getInstance(Context context) {
@@ -52,7 +52,7 @@ public class ApplianceManager {
      *
      * @return Returned den Client.
      */
-    public ArrayList<SimpleSNMPClientV1AndV2c> getClientList() {
+    ArrayList<SimpleSNMPClientV1AndV2c> getClientList() {
         return clientV1AndV2List;
     }
 
@@ -71,7 +71,7 @@ public class ApplianceManager {
      * @param client  Der SNMP Client.
      * @param request Die Abfrage.
      */
-    public void setRequestFor(SimpleSNMPClientV1AndV2c client, String request) {
+    void setRequestFor(SimpleSNMPClientV1AndV2c client, String request) {
         requestTable.put(client, request);
     }
 

@@ -5,7 +5,7 @@ public class OidElement {
     private String oidString;
     private String description;
 
-    public OidElement(String oidString, String description) {
+    OidElement(String oidString, String description) {
         this.oidString = oidString;
         this.description = description;
     }
@@ -18,7 +18,7 @@ public class OidElement {
         this.oidString = oidString;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 

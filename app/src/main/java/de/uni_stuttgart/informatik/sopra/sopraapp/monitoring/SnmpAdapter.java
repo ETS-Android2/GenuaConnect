@@ -1,5 +1,6 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp.monitoring;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
@@ -13,7 +14,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Timer;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
 import de.uni_stuttgart.informatik.sopra.sopraapp.requests.RequestDbHelper;
@@ -41,9 +41,9 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
         elements = manager.getClientList();
         this.context = context;
         dbHelper = new RequestDbHelper(context);
-        Timer timer = new Timer();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View listItem = convertView;
@@ -54,14 +54,11 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
         final SimpleSNMPClientV1AndV2c client = elements.get(position);
 
         final Switch req_switch = listItem.findViewById(R.id.switch1);
-        req_switch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (req_switch.isChecked()) {
-                    manager.startRequestFor(client);
-                    new ResultTask().execute(client);
-                    notifyDataSetChanged();
-                }
+        req_switch.setOnClickListener(v -> {
+            if (req_switch.isChecked()) {
+                manager.startRequestFor(client);
+                new ResultTask().execute(client);
+                notifyDataSetChanged();
             }
         });
 
@@ -92,7 +89,7 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
 
         spinner.setSelection(manager.getRequestMaskFrom(client) != null ? dbHelper.getAllMasks().indexOf(manager.getRequestMaskFrom(client)) + 1 : 0);
         TextView textView = listItem.findViewById(R.id.appl_name_field);
-        textView.setText("Gerät " + position);
+        textView.setText(context.getString(R.string.geraetText) + " " + position);
 
         ListView listView = listItem.findViewById(R.id.appl_info_list);
         ArrayList<String> infos = new ArrayList<>();

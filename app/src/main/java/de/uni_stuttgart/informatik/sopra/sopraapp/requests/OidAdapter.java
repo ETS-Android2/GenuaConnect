@@ -21,7 +21,7 @@ public class OidAdapter extends ArrayAdapter<OidElement> {
     private String requestName;
     private Context context;
 
-    public OidAdapter(Context context, RequestDbHelper dbHelper, int requestId, String requestName) {
+    OidAdapter(Context context, RequestDbHelper dbHelper, int requestId, String requestName) {
         super(context, 0);
 
         this.context = context;
