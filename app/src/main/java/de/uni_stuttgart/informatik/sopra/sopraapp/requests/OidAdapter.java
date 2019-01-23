@@ -41,6 +41,7 @@ public class OidAdapter extends ArrayAdapter<OidElement> {
 
         final OidElement element = getItem(position);
         EditText oidField = oidView.findViewById(R.id.oid_field);
+        Log.d(TAG, "getView: requestName: " +requestName);
         String oid = requestDbHelper.getOIDsFrom(requestName).get(position).getOidString();
         oidField.setText(oid);
 
@@ -69,6 +70,10 @@ public class OidAdapter extends ArrayAdapter<OidElement> {
     @Override
     public void notifyDataSetChanged() {
         setNotifyOnChange(false);
+        SQLiteDatabase titleGetter = requestDbHelper.getReadableDatabase();
+        Cursor cursor = titleGetter.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME + " where " + RequestsContract.COLUMN_REQ_ID + " = " + requestId, null);
+        cursor.moveToFirst();
+        requestName = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
         clear();
         Log.d(TAG, "notifyDataSetChanged: oids from " + requestDbHelper.getOIDsFrom(requestName).size());
         addAll(requestDbHelper.getOIDsFrom(requestName));
