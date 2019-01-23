@@ -38,13 +38,14 @@ Diese Komponente bietet die Schnittstelle zum Benutzer. Sie versucht für den Be
 **TODO:** Beschreibung der **externen** Komponente/Bibliothek und wie diese verwendet werden soll.
 
 ### zxing-android-embedded
+Ermöglicht es den QR-Code zu sacnnen und Informationen als einen String wiederzugeben.
 ### snmp4j
-
+Ermöglicht alle Abfragen zu starten und Geräte zu spezifizieren.
 # Klassendiagramm
 
 ![klassendiagramm](images/Klassendiagramm.png)
 
-*Klassendiagramm 1.0*
+*Klassendiagramm 2.0*
 ## Beschreibung der wichtigen Klassenhierarchie 1
 Die wichtigsten Klassen sind Startbildschrim, Scan, Menü, Optionen, AbragenMenü, AbfragenSchema, GeräteListe und die Geräte.
 
