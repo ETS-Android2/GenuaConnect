@@ -57,7 +57,7 @@ test:unit:
   tags:
     - docker
   script:
-    - ./gradlew test jacocoTestReport
+    - ./gradlew clean createDebugCoverageReport jacocoTestReport
     - cat "app/build/reports/jacoco/jacocoTestReport/html/index.html"
   coverage: '/Total.+?([0-9]{1,3})\%/'
   artifacts:
