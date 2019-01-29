@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class RequestDbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
     private static final String DATABASE_NAME = "Requests.db";
 
     //sql command to destroy request table
@@ -56,7 +56,7 @@ public class RequestDbHelper extends SQLiteOpenHelper {
     }
 
     public void truncateDatabase(){
-        onUpgrade(getWritableDatabase(), 12, 12);
+        onUpgrade(getWritableDatabase(), 13, 13);
     }
 
     /**

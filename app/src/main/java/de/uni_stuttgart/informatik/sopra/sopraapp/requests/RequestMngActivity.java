@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.R;
@@ -32,9 +33,47 @@ public class RequestMngActivity extends AppCompatActivity {
         listView.setAdapter(itemsAdapter);
 
         if (!alreadyExists(getString(R.string.standardAbfrage))) {
+            SQLiteDatabase writer = manager.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
             contentValues.put(RequestsContract.COLUMN_REQ_NAME, getString(R.string.standardAbfrage));
-            manager.getWritableDatabase().insert(RequestsContract.REQ_TABLE_NAME, null, contentValues);
+            int row = (int)writer.insert(RequestsContract.REQ_TABLE_NAME, null, contentValues);
+
+            ContentValues [] contentValuesStd = new ContentValues[7];
+            for (int i = 0 ; i<contentValuesStd.length; i++){
+                contentValuesStd[i] = new ContentValues();
+            }
+            contentValuesStd[0].put(RequestsContract.COLUMN_OID_REQ, row);
+            contentValuesStd[0].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysDescr");
+            contentValuesStd[0].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.1");
+
+            contentValuesStd[1].put(RequestsContract.COLUMN_OID_REQ, row);
+            contentValuesStd[1].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysObjectID");
+            contentValuesStd[1].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.2");
+
+            contentValuesStd[2].put(RequestsContract.COLUMN_OID_REQ, row);
+            contentValuesStd[2].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysUpTime");
+            contentValuesStd[2].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.3");
+
+            contentValuesStd[3].put(RequestsContract.COLUMN_OID_REQ, row);
+            contentValuesStd[3].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysContact");
+            contentValuesStd[3].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.4");
+
+            contentValuesStd[4].put(RequestsContract.COLUMN_OID_REQ, row);
+            contentValuesStd[4].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysName");
+            contentValuesStd[4].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.5");
+
+            contentValuesStd[5].put(RequestsContract.COLUMN_OID_REQ, row);
+            contentValuesStd[5].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysLocation");
+            contentValuesStd[5].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.6");
+
+            contentValuesStd[6].put(RequestsContract.COLUMN_OID_REQ, row);
+            contentValuesStd[6].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysServices");
+            contentValuesStd[6].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.7");
+
+            for (int i = 0 ;i< contentValuesStd.length; i++) {
+                writer.insert(RequestsContract.OID_TABLE_NAME, null, contentValuesStd[i]);
+            }
+            Log.d("RequestMng", "onCreate: added all Std OIDs");
         }
     }
 
