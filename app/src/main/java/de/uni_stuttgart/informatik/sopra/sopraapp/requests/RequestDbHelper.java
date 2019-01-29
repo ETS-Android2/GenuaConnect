@@ -55,6 +55,10 @@ public class RequestDbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public void truncateDatabase(){
+        onUpgrade(getWritableDatabase(), 12, 12);
+    }
+
     /**
      * Through this method the query masks can be getted.
      *
