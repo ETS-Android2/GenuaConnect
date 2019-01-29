@@ -10,6 +10,7 @@ import net.bytebuddy.implementation.bind.annotation.Super;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.Request;
 
 import static org.junit.Assert.*;
 
@@ -42,6 +43,18 @@ public class RequestDbHelperTest {
 
         assertTrue(requestDbHelper.getAllMasks().contains("newMask"));
 
+    }
+
+    @Test
+    public void deleteNewMask(){
+        SQLiteDatabase database = requestDbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(RequestsContract.COLUMN_REQ_NAME, "newMask");
+        database.insert(RequestsContract.REQ_TABLE_NAME, null, contentValues);
+
+        assertTrue(requestDbHelper.getAllMasks().contains("newMask"));
+
+        assertEquals(1,database.delete(RequestsContract.REQ_TABLE_NAME, RequestsContract.COLUMN_REQ_NAME + " = 'newMask'", null));
     }
 
 }
