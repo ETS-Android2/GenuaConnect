@@ -25,4 +25,5 @@
     <string name="oid_description">Bezeichnung hier eingeben</string>
     <string name="switch_requests">Abfragen</string>
     <string name="geraetText">Device</string>
+    <string name="detected_apliance">Ein SNMP-Gerät wurde erkannt mit Version</string>
 </resources>
