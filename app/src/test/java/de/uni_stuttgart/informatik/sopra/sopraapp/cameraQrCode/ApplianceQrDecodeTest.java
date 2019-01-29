@@ -8,6 +8,9 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.cameraQrCode.ApplianceQrDecode
 
 import static org.junit.Assert.*;
 
+/**
+ * tests the ApplianceQrDecoder class and the methods by using a QR-Code String
+ */
 @RunWith(JUnit4.class)
 public class ApplianceQrDecodeTest {
     ApplianceQrDecode applianceQrDecode = new ApplianceQrDecode("{\n" +
