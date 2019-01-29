@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomizeRequestActivity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=0;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debugAndroidTest</a> &gt; <a href="index.source.html" class="el_package">de.uni_stuttgart.informatik.sopra.sopraapp.requests</a> &gt; <span class="el_source">CustomizeRequestActivity.java</span></div><h1>CustomizeRequestActivity.java</h1><pre class="source lang-java linenums">package de.uni_stuttgart.informatik.sopra.sopraapp.requests;
+
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import de.uni_stuttgart.informatik.sopra.sopraapp.R;
+
+/**
+ * Diese Klasse ist für den Aufbau einer Abfragemaske zuständig.
+ */
+<span class="nc" id="L23">public class CustomizeRequestActivity extends AppCompatActivity {</span>
+
+    private RequestDbHelper manager;
+    private OidAdapter adapter;
+
+    private EditText requestNameField;
+
+    private int requestId;
+    private String requestName;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+<span class="nc" id="L35">        super.onCreate(savedInstanceState);</span>
+<span class="nc" id="L36">        setContentView(R.layout.activity_customize_request);</span>
+<span class="nc" id="L37">        manager = new RequestDbHelper(this);</span>
+<span class="nc" id="L38">        requestId = getIntent().getIntExtra(&quot;requestId&quot;, 0);</span>
+
+<span class="nc" id="L40">        SQLiteDatabase titleGetter = manager.getReadableDatabase();</span>
+<span class="nc" id="L41">        Cursor cursor = titleGetter.rawQuery(&quot;select * from &quot; + RequestsContract.REQ_TABLE_NAME + &quot; where &quot; + RequestsContract.COLUMN_REQ_ID + &quot; = &quot; + requestId, null);</span>
+<span class="nc" id="L42">        cursor.moveToFirst();</span>
+<span class="nc" id="L43">        requestName = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));</span>
+<span class="nc" id="L44">        requestNameField = findViewById(R.id.et_requestName);</span>
+<span class="nc" id="L45">        requestNameField.setText(requestName);</span>
+
+<span class="nc" id="L47">        cursor.close();</span>
+
+<span class="nc" id="L49">        ListView listView = findViewById(R.id.oids_list);</span>
+<span class="nc" id="L50">        Log.d(&quot;CustomizeRequestActivit&quot;, &quot;Id : &quot; + requestId);</span>
+<span class="nc" id="L51">        adapter = new OidAdapter(this, manager, requestId, requestName);</span>
+<span class="nc" id="L52">        listView.setAdapter(adapter);</span>
+
+<span class="nc" id="L54">    }</span>
+
+
+    /**
+     * Mit dieser Funktion kann man OIDs in die Datenbank hinzufügen.
+     *
+     * @param view Die View für das hinzufügen.
+     */
+    public void addOID(View view) {
+<span class="nc" id="L63">        edit(this);</span>
+<span class="nc" id="L64">    }</span>
+
+    /**
+     * Diese Methode ist für die Speicherfunktion zuständig.
+     *
+     * @param view Die View für die Speicherfunktion.
+     */
+    public void save(View view) {
+<span class="nc" id="L72">        saving();</span>
+<span class="nc" id="L73">    }</span>
+
+    @Override
+    protected void onPause() {
+<span class="nc" id="L77">        saving();</span>
+<span class="nc" id="L78">        super.onPause();</span>
+<span class="nc" id="L79">    }</span>
+
+    private void saving() {
+<span class="nc" id="L82">        SQLiteDatabase writableDatabase = manager.getWritableDatabase();</span>
+<span class="nc" id="L83">        String posNewName = requestNameField.getText().toString();</span>
+<span class="nc bnc" id="L84" title="All 4 branches missed.">        if (manager.getAllMasks().contains(posNewName) &amp;&amp; !posNewName.equals(requestName)) {</span>
+<span class="nc" id="L85">            Toast.makeText(this, &quot;The Request name already exists. Please change it to save your modification&quot;, Toast.LENGTH_LONG).show();</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        } else if (!manager.getAllMasks().contains(posNewName)) {</span>
+<span class="nc" id="L87">            ContentValues posChangedName = new ContentValues();</span>
+<span class="nc" id="L88">            posChangedName.put(RequestsContract.COLUMN_REQ_NAME, requestNameField.getText().toString());</span>
+<span class="nc" id="L89">            writableDatabase.update(RequestsContract.REQ_TABLE_NAME, posChangedName, RequestsContract.COLUMN_REQ_ID + &quot; = &quot; + requestId, null);</span>
+<span class="nc" id="L90">            requestName = posNewName;</span>
+        }
+<span class="nc" id="L92">        adapter.notifyDataSetChanged();</span>
+<span class="nc" id="L93">    }</span>
+
+
+    private void edit(Context context) {
+<span class="nc" id="L97">        LayoutInflater li = LayoutInflater.from(context);</span>
+<span class="nc" id="L98">        @SuppressLint(&quot;InflateParams&quot;) View promptsView = li.inflate(R.layout.recycler_edit_layout, null);</span>
+
+<span class="nc" id="L100">        AlertDialog.Builder builder = new AlertDialog.Builder(context);</span>
+<span class="nc" id="L101">        builder.setTitle(&quot;Comments&quot;);</span>
+
+<span class="nc" id="L103">        builder.setView(promptsView);</span>
+
+<span class="nc" id="L105">        final EditText oidField = promptsView.findViewById(R.id.oid_field);</span>
+<span class="nc" id="L106">        final EditText descriptField = promptsView.findViewById(R.id.description_field);</span>
+
+        // Set up the buttons
+<span class="nc" id="L109">        builder.setPositiveButton(&quot;OK&quot;, (dialog, which) -&gt; {</span>
+            // do something here on OK
+<span class="nc" id="L111">            String oid = oidField.getText().toString();</span>
+<span class="nc" id="L112">            String desc = descriptField.getText().toString();</span>
+
+<span class="nc" id="L114">            ContentValues contentValues = new ContentValues();</span>
+<span class="nc" id="L115">            contentValues.put(RequestsContract.COLUMN_OID_REQ, requestId);</span>
+<span class="nc" id="L116">            contentValues.put(RequestsContract.COLUMN_OID_DESCRIPT, desc);</span>
+<span class="nc" id="L117">            contentValues.put(RequestsContract.COLUMN_OID_STRING, oid);</span>
+
+<span class="nc" id="L119">            manager.getWritableDatabase().insert(RequestsContract.OID_TABLE_NAME, null, contentValues);</span>
+<span class="nc" id="L120">            adapter.notifyDataSetChanged();</span>
+
+<span class="nc" id="L122">        });</span>
+<span class="nc" id="L123">        builder.setNegativeButton(&quot;Cancel&quot;, (dialog, which) -&gt; dialog.cancel());</span>
+<span class="nc" id="L124">        builder.show();</span>
+<span class="nc" id="L125">    }</span>
+
+    @Override
+    protected void onStop() {
+        //saving();
+<span class="nc" id="L130">        super.onStop();</span>
+<span class="nc" id="L131">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>Generated by the Android Gradle plugin 3.3.0</div></body></html>

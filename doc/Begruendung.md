@@ -29,5 +29,5 @@ Die verlangten 75% Testabdeckung waren für uns nicht möglich zu erreichen. Die
 - Zudem wurde durch eines Piplinefehlers, welcher vom Betreuer verschuldet wurde, dem wir leider zu viel Zeit gewitmept haben, unsere Arbeit und unser Zeitplan stark beeinflusst.
 - Einen Test der Datenbanken konnten wir nicht in junit realisieren
 
-## Begründung 6 (Testabdeckungsprotokoll fehlt)
-Da die Pipline von uns manuell gefixt werden musste, konnten wir keine Protokolle erstellen, weil jedesmal die folgende Fehlermeldung erschien *"Job's log exceeded limit of 4194304 bytes."*
+## Begründung 6 (Testabdeckung unter 75%)
+Die 75% Testabdeckung waren nicht möglich für uns zu erreichen, da uns es nicht möglich ist WLAN oder SNMP zu testen.

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WifiConnect.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=0;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debugAndroidTest</a> &gt; <a href="index.source.html" class="el_package">de.uni_stuttgart.informatik.sopra.sopraapp.wifi</a> &gt; <span class="el_source">WifiConnect.java</span></div><h1>WifiConnect.java</h1><pre class="source lang-java linenums">package de.uni_stuttgart.informatik.sopra.sopraapp.wifi;
+
+import android.content.Context;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.util.Log;
+import android.widget.Toast;
+
+import java.util.List;
+
+import de.uni_stuttgart.informatik.sopra.sopraapp.R;
+
+<span class="nc" id="L14">public class WifiConnect {</span>
+
+    /**
+     * WIFI Parameters
+     */
+    private String ssid;
+    private String authentification;
+    private String password;
+
+    /**
+     * connects to WIFI that was coded in a QR-Code
+     *
+     * @param qrString QR String for Wifi String
+     * @param context  Context of the class
+     */
+
+    public void tryConnect(String qrString, Context context) {
+        //setting the WIFI Parameters from the qrString if its in correct Form
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (!setWifiParamsFrom(qrString)) {</span>
+<span class="nc" id="L33">            Toast.makeText(context, context.getString(R.string.keinWifiQrCode), Toast.LENGTH_SHORT).show();</span>
+<span class="nc" id="L34">            return;</span>
+        }
+<span class="nc" id="L36">        Log.d(&quot;WIFI Params setted&quot;, context.getClass() + &quot;\nauthentification: &quot; + authentification + &quot;\nssid: &quot; + ssid + &quot;\npass: &quot; + password);</span>
+
+        //enable WIFI
+<span class="nc" id="L39">        WifiManager wifi = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (!wifi.isWifiEnabled()) {</span>
+<span class="nc" id="L41">            Toast.makeText(context, context.getString(R.string.wifiNichtAnText), Toast.LENGTH_LONG).show();</span>
+<span class="nc" id="L42">            wifi.setWifiEnabled(true);</span>
+        }
+
+<span class="nc" id="L45">        WifiConfiguration conf = new WifiConfiguration();</span>
+<span class="nc" id="L46">        conf.SSID = &quot;\&quot;&quot; + ssid + &quot;\&quot;&quot;;   // Please note the quotes. String should contain ssid in quotes</span>
+
+
+        //switching between the different authentification and if there is a security
+<span class="nc bnc" id="L50" title="All 14 branches missed.">        switch (authentification) {</span>
+            case &quot;WEP&quot;:
+<span class="nc" id="L52">                conf.wepKeys[0] = &quot;\&quot;&quot; + password + &quot;\&quot;&quot;;</span>
+<span class="nc" id="L53">                conf.wepTxKeyIndex = 0;</span>
+<span class="nc" id="L54">                conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);</span>
+<span class="nc" id="L55">                conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);</span>
+<span class="nc" id="L56">                break;</span>
+            case &quot;WPA&quot;:
+<span class="nc" id="L58">                conf.preSharedKey = &quot;\&quot;&quot; + password + &quot;\&quot;&quot;;</span>
+<span class="nc" id="L59">                break;</span>
+            case &quot;WPA2&quot;:
+<span class="nc" id="L61">                conf.preSharedKey = &quot;\&quot;&quot; + password + &quot;\&quot;&quot;;</span>
+<span class="nc" id="L62">                break;</span>
+            default:
+<span class="nc" id="L64">                Toast.makeText(context, context.getString(R.string.keineSichereWlanVerbindungText), Toast.LENGTH_SHORT).show();</span>
+<span class="nc" id="L65">                return;</span>
+        }
+
+        //connecting to WIFI
+<span class="nc" id="L69">        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);</span>
+<span class="nc" id="L70">        WifiInfo wifiInfo = wifiManager.getConnectionInfo();</span>
+<span class="nc" id="L71">        wifiManager.disconnect();</span>
+<span class="nc" id="L72">        wifiManager.enableNetwork(conf.networkId, true);</span>
+<span class="nc" id="L73">        List&lt;WifiConfiguration&gt; list = wifiManager.getConfiguredNetworks();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        for (WifiConfiguration i : list) {</span>
+<span class="nc" id="L75">            wifiManager.removeNetwork(i.networkId);</span>
+<span class="nc" id="L76">        }</span>
+<span class="nc" id="L77">        wifiManager.addNetwork(conf);</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        if (wifiInfo.getNetworkId() == -1) {</span>
+<span class="nc" id="L79">            wifiManager.reconnect();</span>
+<span class="nc" id="L80">            wifiManager.reassociate();</span>
+        } else {
+<span class="nc" id="L82">            wifiManager.reconnect();</span>
+<span class="nc" id="L83">            wifiManager.reassociate();</span>
+        }
+<span class="nc" id="L85">        Toast.makeText(context, context.getString(R.string.verbindungZuText) + &quot; &quot; + ssid + &quot; &quot; + context.getString(R.string.wirdAufgebautText), Toast.LENGTH_SHORT).show();</span>
+<span class="nc" id="L86">    }</span>
+
+    /**
+     * extracting ssid, authentification and password from a qrString for WIFI
+     * and setting them to the local variables
+     *
+     * @param qrString String that was scanned
+     * @return true if qrString represented a correct WIFI QR Code
+     */
+    private boolean setWifiParamsFrom(String qrString) {
+
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (!qrString.substring(0, 4).equals(&quot;WIFI&quot;)) {</span>
+<span class="nc" id="L98">            return false;</span>
+        }
+
+<span class="nc" id="L101">        qrString = qrString.substring(5);</span>
+<span class="nc" id="L102">        StringBuilder builder = new StringBuilder();</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        if (qrString.matches(&quot;S:.*;T:.*;P:.*;;&quot;)) {</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            for (int i = 2; !qrString.substring(i).matches(&quot;;T:.*;P:.*;;&quot;); i++) {</span>
+<span class="nc" id="L105">                builder.append(qrString.charAt(i));</span>
+            }
+<span class="nc" id="L107">            ssid = builder.toString();</span>
+<span class="nc" id="L108">            qrString = qrString.substring(builder.length() + 3);</span>
+<span class="nc" id="L109">            builder.delete(0, builder.length());</span>
+
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            for (int i = 2; !qrString.substring(i).matches(&quot;;P:.*;;&quot;); i++) {</span>
+<span class="nc" id="L112">                builder.append(qrString.charAt(i));</span>
+            }
+<span class="nc" id="L114">            authentification = builder.toString();</span>
+<span class="nc" id="L115">            qrString = qrString.substring(builder.length() + 3);</span>
+<span class="nc" id="L116">            builder.delete(0, builder.length());</span>
+
+<span class="nc bnc" id="L118" title="All 2 branches missed.">        } else if (qrString.matches(&quot;T:.*;S:.*;P:.*;;&quot;)) {</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            for (int i = 2; !qrString.substring(i).matches(&quot;;S:.*;P:.*;;&quot;); i++) {</span>
+<span class="nc" id="L120">                builder.append(qrString.charAt(i));</span>
+            }
+<span class="nc" id="L122">            authentification = builder.toString();</span>
+<span class="nc" id="L123">            qrString = qrString.substring(builder.length() + 3);</span>
+<span class="nc" id="L124">            builder.delete(0, builder.length());</span>
+
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            for (int i = 2; !qrString.substring(i).matches(&quot;;P:.*;;&quot;); i++) {</span>
+<span class="nc" id="L127">                builder.append(qrString.charAt(i));</span>
+            }
+<span class="nc" id="L129">            ssid = builder.toString();</span>
+<span class="nc" id="L130">            qrString = qrString.substring(builder.length() + 3);</span>
+<span class="nc" id="L131">            builder.delete(0, builder.length());</span>
+
+        } else {
+<span class="nc" id="L134">            return false;</span>
+        }
+
+<span class="nc bnc" id="L137" title="All 2 branches missed.">        for (int i = 2; i &lt; qrString.length() - 2; i++)</span>
+<span class="nc" id="L138">            builder.append(qrString.charAt(i));</span>
+<span class="nc" id="L139">        password = builder.toString();</span>
+
+<span class="nc" id="L141">        return true;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>Generated by the Android Gradle plugin 3.3.0</div></body></html>

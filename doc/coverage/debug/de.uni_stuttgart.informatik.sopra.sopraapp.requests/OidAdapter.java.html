@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OidAdapter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=0;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debugAndroidTest</a> &gt; <a href="index.source.html" class="el_package">de.uni_stuttgart.informatik.sopra.sopraapp.requests</a> &gt; <span class="el_source">OidAdapter.java</span></div><h1>OidAdapter.java</h1><pre class="source lang-java linenums">package de.uni_stuttgart.informatik.sopra.sopraapp.requests;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageButton;
+
+import de.uni_stuttgart.informatik.sopra.sopraapp.R;
+
+public class OidAdapter extends ArrayAdapter&lt;OidElement&gt; {
+    private static final String TAG = &quot;OidAdapter&quot;;
+
+    private RequestDbHelper requestDbHelper;
+    private int requestId;
+    private String requestName;
+    private Context context;
+
+    OidAdapter(Context context, RequestDbHelper dbHelper, int requestId, String requestName) {
+<span class="nc" id="L25">        super(context, 0);</span>
+
+<span class="nc" id="L27">        this.context = context;</span>
+<span class="nc" id="L28">        requestDbHelper = dbHelper;</span>
+<span class="nc" id="L29">        this.requestName = requestName;</span>
+<span class="nc" id="L30">        this.requestId = requestId;</span>
+<span class="nc" id="L31">        addAll(requestDbHelper.getOIDsFrom(requestName));</span>
+<span class="nc" id="L32">    }</span>
+
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+<span class="nc" id="L37">        View oidView = convertView;</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (oidView == null) {</span>
+<span class="nc" id="L39">            oidView = LayoutInflater.from(context).inflate(R.layout.recycler_edit_layout, parent, false);</span>
+        }
+
+<span class="nc" id="L42">        final OidElement element = getItem(position);</span>
+<span class="nc" id="L43">        EditText oidField = oidView.findViewById(R.id.oid_field);</span>
+<span class="nc" id="L44">        Log.d(TAG, &quot;getView: requestName: &quot; +requestName);</span>
+<span class="nc" id="L45">        String oid = requestDbHelper.getOIDsFrom(requestName).get(position).getOidString();</span>
+<span class="nc" id="L46">        oidField.setText(oid);</span>
+
+<span class="nc" id="L48">        EditText descText = oidView.findViewById(R.id.description_field);</span>
+<span class="nc" id="L49">        String des = requestDbHelper.getOIDsFrom(requestName).get(position).getDescription();</span>
+<span class="nc" id="L50">        descText.setText(des);</span>
+
+<span class="nc" id="L52">        ImageButton deleteImBtn = oidView.findViewById(R.id.delete_btn);</span>
+<span class="nc" id="L53">        deleteImBtn.setOnClickListener(v -&gt; {</span>
+<span class="nc" id="L54">            SQLiteDatabase readableDatabase = requestDbHelper.getReadableDatabase();</span>
+<span class="nc" id="L55">            Cursor cursor = readableDatabase.rawQuery(&quot;select * from &quot; + RequestsContract.OID_TABLE_NAME + &quot; where &quot; +</span>
+                    RequestsContract.COLUMN_OID_REQ + &quot; = &quot; + requestId + &quot; order by &quot; + RequestsContract.COLUMN_OID_ID, null);
+<span class="nc" id="L57">            cursor.moveToPosition(position);</span>
+<span class="nc" id="L58">            int idToDel = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_OID_ID));</span>
+<span class="nc" id="L59">            readableDatabase.delete(RequestsContract.OID_TABLE_NAME, RequestsContract.COLUMN_OID_ID + &quot; = &quot; + idToDel, null);</span>
+<span class="nc" id="L60">            super.remove(element);</span>
+<span class="nc" id="L61">            cursor.close();</span>
+<span class="nc" id="L62">        });</span>
+
+<span class="nc" id="L64">        descText.setEnabled(false);</span>
+<span class="nc" id="L65">        oidField.setEnabled(false);</span>
+<span class="nc" id="L66">        return oidView;</span>
+    }
+
+
+    @Override
+    public void notifyDataSetChanged() {
+<span class="nc" id="L72">        setNotifyOnChange(false);</span>
+<span class="nc" id="L73">        SQLiteDatabase titleGetter = requestDbHelper.getReadableDatabase();</span>
+<span class="nc" id="L74">        Cursor cursor = titleGetter.rawQuery(&quot;select * from &quot; + RequestsContract.REQ_TABLE_NAME + &quot; where &quot; + RequestsContract.COLUMN_REQ_ID + &quot; = &quot; + requestId, null);</span>
+<span class="nc" id="L75">        cursor.moveToFirst();</span>
+<span class="nc" id="L76">        requestName = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));</span>
+<span class="nc" id="L77">        clear();</span>
+<span class="nc" id="L78">        Log.d(TAG, &quot;notifyDataSetChanged: oids from &quot; + requestDbHelper.getOIDsFrom(requestName).size());</span>
+<span class="nc" id="L79">        addAll(requestDbHelper.getOIDsFrom(requestName));</span>
+<span class="nc" id="L80">        Log.d(TAG, &quot;notifyDataSetChanged: elementsList &quot; + getCount());</span>
+<span class="nc" id="L81">        super.notifyDataSetChanged();</span>
+<span class="nc" id="L82">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>Generated by the Android Gradle plugin 3.3.0</div></body></html>

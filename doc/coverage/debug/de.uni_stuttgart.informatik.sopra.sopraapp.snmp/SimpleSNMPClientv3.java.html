@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SimpleSNMPClientv3.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=0;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debugAndroidTest</a> &gt; <a href="index.source.html" class="el_package">de.uni_stuttgart.informatik.sopra.sopraapp.snmp</a> &gt; <span class="el_source">SimpleSNMPClientv3.java</span></div><h1>SimpleSNMPClientv3.java</h1><pre class="source lang-java linenums">package de.uni_stuttgart.informatik.sopra.sopraapp.snmp;
+
+import android.util.Log;
+
+import org.snmp4j.ScopedPDU;
+import org.snmp4j.Target;
+import org.snmp4j.UserTarget;
+import org.snmp4j.event.ResponseEvent;
+import org.snmp4j.mp.MPv3;
+import org.snmp4j.mp.SnmpConstants;
+import org.snmp4j.security.SecurityLevel;
+import org.snmp4j.security.SecurityModels;
+import org.snmp4j.security.SecurityProtocols;
+import org.snmp4j.security.TSM;
+import org.snmp4j.security.USM;
+import org.snmp4j.security.UsmUser;
+import org.snmp4j.smi.Address;
+import org.snmp4j.smi.GenericAddress;
+import org.snmp4j.smi.OID;
+import org.snmp4j.smi.OctetString;
+import org.snmp4j.smi.Variable;
+import org.snmp4j.smi.VariableBinding;
+import org.snmp4j.util.DefaultPDUFactory;
+
+import de.uni_stuttgart.informatik.sopra.sopraapp.cameraQrCode.ApplianceQrDecode;
+
+/**
+ * Inspired by https://blog.jayway.com/2010/05/21/introduction-to-snmp4j
+ * A client for the SNMP management.
+ */
+public class SimpleSNMPClientv3 extends SimpleSNMPClientV1AndV2c {
+
+    private static OctetString localEngineId;
+    private UserTarget target;
+<span class="nc" id="L35">    private OID getAuthOID = null;</span>
+<span class="nc" id="L36">    private OID getPrivOID = null;</span>
+
+    /**
+     * constructor
+     *
+     * @param qrCode the QR-Code decoder
+     */
+<span class="nc" id="L43">    public SimpleSNMPClientv3(String qrCode) {</span>
+<span class="nc" id="L44">        decode = new ApplianceQrDecode(qrCode);</span>
+<span class="nc" id="L45">        this.address = decode.getAddress();</span>
+<span class="nc" id="L46">        Log.d(&quot;StartAusfuehren&quot;, &quot;Ausgefueht&quot;);</span>
+<span class="nc" id="L47">    }</span>
+
+    public String getAddress() {
+<span class="nc" id="L50">        return address;</span>
+    }
+
+    /**
+     * authProtocoll, privProtocoll, privPasswort, authPasswort, userName information are initialized
+     */
+    @Override
+    protected void userInformation() throws IllegalArgumentException {
+<span class="nc" id="L58">        snmp.getMessageDispatcher().addMessageProcessingModel(new MPv3());</span>
+<span class="nc" id="L59">        USM usm = new USM(SecurityProtocols.getInstance(), new OctetString(snmp.getLocalEngineID()), 0);</span>
+<span class="nc" id="L60">        SecurityModels.getInstance().addSecurityModel(usm);</span>
+<span class="nc" id="L61">        OctetString getAuthPasswort = new OctetString(decode.getPassword());</span>
+<span class="nc" id="L62">        OctetString getAuth = new OctetString(decode.getAuthProtocol());</span>
+<span class="nc" id="L63">        OctetString getPriv = new OctetString(decode.getPrivProtocol());</span>
+<span class="nc" id="L64">        OctetString getPrivPasswort = new OctetString(decode.getPrivKey());</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (getAuth.toString().isEmpty()) {</span>
+<span class="nc" id="L66">            getAuthOID = null;</span>
+<span class="nc" id="L67">            getAuthPasswort = null;</span>
+        } else {
+<span class="nc bnc" id="L69" title="All 10 branches missed.">            switch (getAuth.toString()) {</span>
+                case &quot;SHA&quot;:
+<span class="nc" id="L71">                    getAuthOID = new OID(SnmpConstants.usmHMACSHAAuthProtocol);</span>
+<span class="nc" id="L72">                    break;</span>
+                case &quot;MD5&quot;:
+<span class="nc" id="L74">                    getAuthOID = new OID(SnmpConstants.usmHMACMD5AuthProtocol);</span>
+<span class="nc" id="L75">                    break;</span>
+                default:
+<span class="nc bnc" id="L77" title="All 2 branches missed.">                    if (!getAuth.toString().isEmpty()) {</span>
+<span class="nc" id="L78">                        throw new IllegalArgumentException();</span>
+                    }
+            }
+        }
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if (getPriv.toString().isEmpty()) {</span>
+<span class="nc" id="L83">            getPrivOID = null;</span>
+<span class="nc" id="L84">            getPrivPasswort = null;</span>
+        } else {
+<span class="nc bnc" id="L86" title="All 22 branches missed.">            switch (getPriv.toString()) {</span>
+                case &quot;DES&quot;:
+<span class="nc" id="L88">                    getPrivOID = new OID(SnmpConstants.usmDESPrivProtocol);</span>
+<span class="nc" id="L89">                    break;</span>
+                case &quot;AES-128&quot;:
+<span class="nc" id="L91">                    getPrivOID = new OID(SnmpConstants.usmAesCfb128Protocol);</span>
+<span class="nc" id="L92">                    break;</span>
+                case &quot;AES-192&quot;:
+<span class="nc" id="L94">                    getPrivOID = new OID(SnmpConstants.oosnmpUsmAesCfb192Protocol);</span>
+<span class="nc" id="L95">                    break;</span>
+                case &quot;AES-256&quot;:
+<span class="nc" id="L97">                    getPrivOID = new OID(SnmpConstants.oosnmpUsmAesCfb256Protocol);</span>
+                case &quot;3DES&quot;:
+<span class="nc" id="L99">                    getPrivOID = new OID(SnmpConstants.usm3DESEDEPrivProtocol);</span>
+<span class="nc" id="L100">                    break;</span>
+                default:
+<span class="nc bnc" id="L102" title="All 2 branches missed.">                    if (!getPriv.toString().isEmpty()) {</span>
+<span class="nc" id="L103">                        Log.d(&quot;privProtocol&quot;, getPriv.toString());</span>
+<span class="nc" id="L104">                        throw new IllegalArgumentException();</span>
+                    }
+            }
+        }
+<span class="nc" id="L108">        OctetString userName = new OctetString(decode.getUsername());</span>
+<span class="nc" id="L109">        Log.d(&quot;userName: &quot;, decode.getUsername());</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        if (getAuthPasswort != null) {</span>
+<span class="nc" id="L111">            Log.d(&quot;getAuthPasswort: &quot;, getAuthPasswort.toString());</span>
+        } else {
+<span class="nc" id="L113">            Log.d(&quot;getAuthPasswort&quot;, &quot;null&quot;);</span>
+        }
+<span class="nc" id="L115">        Log.d(&quot;getAuth: &quot;, getAuth.toString());</span>
+<span class="nc" id="L116">        Log.d(&quot;priv: &quot;, getPriv.toString());</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        if (getPrivPasswort != null) {</span>
+<span class="nc" id="L118">            Log.d(&quot;getPrivPasswort: &quot;, getPrivPasswort.toString());</span>
+        } else {
+<span class="nc" id="L120">            Log.d(&quot;getPrivPasswort&quot;, &quot;null&quot;);</span>
+        }
+<span class="nc" id="L122">        Log.d(&quot;addUser: &quot;, &quot;Starten&quot;);</span>
+<span class="nc" id="L123">        snmp.getUSM().addUser(userName, new UsmUser(userName, getAuthOID, getAuthPasswort, getPrivOID, getPrivPasswort));</span>
+<span class="nc" id="L124">        Log.d(&quot;addUser: &quot;, &quot;Erfolgreich&quot;);</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        if (localEngineId == null) {</span>
+<span class="nc" id="L126">            localEngineId = new OctetString(MPv3.createLocalEngineID());</span>
+        }
+<span class="nc" id="L128">        SecurityModels.getInstance().addSecurityModel(new TSM(new OctetString(snmp.getLocalEngineID()), false));</span>
+<span class="nc" id="L129">        Log.d(&quot;SecurityModel: &quot;, &quot;Erfolgreich ausgefuehrt&quot;);</span>
+<span class="nc" id="L130">    }</span>
+
+    /**
+     * Returns a target, which contains the information about to where and how the data should be fetched.
+     *
+     * @return Returns the given target.
+     */
+    @Override
+    public Target getTarget() {
+<span class="nc bnc" id="L139" title="All 2 branches missed.">        if (target != null) {</span>
+<span class="nc" id="L140">            return target;</span>
+        }
+<span class="nc" id="L142">        String addrToUse = address;</span>
+<span class="nc" id="L143">        String port = null;</span>
+<span class="nc" id="L144">        Log.d(&quot;address&quot;, &quot;received address: &quot; + addrToUse);</span>
+<span class="nc" id="L145">        Address targetAdress = null;</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        if (decode.getAddress().contains(&quot;/&quot;)) {</span>
+<span class="nc" id="L147">            Log.d(&quot;port&quot;, &quot;port nicht null&quot;);</span>
+<span class="nc" id="L148">            Log.d(&quot;port '/' oder ':'?&quot;, &quot;port '/' erkannt&quot;);</span>
+<span class="nc" id="L149">            addrToUse = address.substring(0, address.lastIndexOf('/'));</span>
+<span class="nc" id="L150">            port = address.substring(address.lastIndexOf(&quot;/&quot;) + 1);</span>
+<span class="nc" id="L151">            Log.d(&quot;port&quot;, port);</span>
+<span class="nc" id="L152">            targetAdress = GenericAddress.parse(&quot;udp:&quot; + addrToUse + &quot;/&quot; + port);</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">        } else if (decode.getAddress().contains(&quot;:&quot;)) {</span>
+<span class="nc" id="L154">            Log.d(&quot;port&quot;, &quot;port nicht null&quot;);</span>
+<span class="nc" id="L155">            Log.d(&quot;port '/' oder ':'?&quot;, &quot;port ':' erkannt&quot;);</span>
+<span class="nc" id="L156">            addrToUse = address.substring(0, address.lastIndexOf(':'));</span>
+<span class="nc" id="L157">            port = address.substring(address.lastIndexOf(&quot;:&quot;) + 1);</span>
+<span class="nc" id="L158">            Log.d(&quot;port&quot;, port);</span>
+<span class="nc" id="L159">            targetAdress = GenericAddress.parse(&quot;udp:&quot; + addrToUse + &quot;/&quot; + port);</span>
+        }
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        if (port == null) {</span>
+<span class="nc" id="L162">            Log.d(&quot;port&quot;, &quot;port null&quot;);</span>
+<span class="nc" id="L163">            targetAdress = GenericAddress.parse(&quot;udp:&quot; + addrToUse + &quot;/&quot; + &quot;161&quot;);</span>
+        }
+<span class="nc" id="L165">        System.out.println(targetAdress);</span>
+<span class="nc" id="L166">        target = new UserTarget();</span>
+<span class="nc" id="L167">        target.setAddress(targetAdress);</span>
+<span class="nc" id="L168">        target.setSecurityName(new OctetString(decode.getUsername()));</span>
+<span class="nc" id="L169">        target.setRetries(3);</span>
+<span class="nc" id="L170">        target.setTimeout(10000);</span>
+<span class="nc" id="L171">        target.setVersion(SnmpConstants.version3);</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">        if (getAuthOID == null) {</span>
+<span class="nc" id="L173">            Log.d(&quot;Welches SecurityLevel ?&quot;, &quot;NOAUTH_NOPRIV erkannt.&quot;);</span>
+<span class="nc" id="L174">            target.setSecurityLevel(SecurityLevel.NOAUTH_NOPRIV);</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">        } else if (getPrivOID == null) {</span>
+<span class="nc" id="L176">            Log.d(&quot;Welches SecurityLevel ?&quot;, &quot;AUTH_NOPRIV erkannt.&quot;);</span>
+<span class="nc" id="L177">            target.setSecurityLevel(SecurityLevel.AUTH_NOPRIV);</span>
+        } else {
+<span class="nc" id="L179">            Log.d(&quot;Welches SecurityLevel ?&quot;, &quot;AUTH_PRIV erkannt.&quot;);</span>
+<span class="nc" id="L180">            target.setSecurityLevel(SecurityLevel.AUTH_PRIV);</span>
+        }
+<span class="nc" id="L182">        Log.d(&quot;getTarget&quot;, &quot;gesettet&quot;);</span>
+<span class="nc" id="L183">        return target;</span>
+    }
+
+    /**
+     * PDU is added and setted.
+     * get-method for the query.
+     *
+     * @param stringOID the OID.
+     * @return returns the OID as a String and returns null if PDU is null.
+     */
+    @Override
+    protected String sendGet(String stringOID) {
+<span class="nc" id="L195">        ScopedPDU scopedPDU = (ScopedPDU) DefaultPDUFactory.createPDU(3);</span>
+
+        //add OID to PDU
+<span class="nc" id="L198">        scopedPDU.add(new VariableBinding(new OID(stringOID)));</span>
+
+        //setting type when sending request to the SNMP server
+<span class="nc" id="L201">        scopedPDU.setType(ScopedPDU.GETBULK);</span>
+
+        ResponseEvent responseEvent;
+        try {
+            //sending the request
+<span class="nc" id="L206">            responseEvent = snmp.get(scopedPDU, getTarget());</span>
+
+<span class="nc bnc" id="L208" title="All 2 branches missed.">            if (responseEvent != null) {</span>
+<span class="nc" id="L209">                System.out.println(responseEvent);</span>
+                //get the PDU response
+<span class="nc" id="L211">                ScopedPDU pduResult = (ScopedPDU) responseEvent.getResponse();</span>
+<span class="nc" id="L212">                System.out.println(pduResult);</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">                if (pduResult == null) {</span>
+<span class="nc" id="L214">                    return null;</span>
+                }
+
+<span class="nc bnc" id="L217" title="All 2 branches missed.">                for (VariableBinding varBind : pduResult.getVariableBindings()) {</span>
+<span class="nc" id="L218">                    return varBind.toValueString();</span>
+                }
+
+                //checking if response throws an error
+<span class="nc bnc" id="L222" title="All 2 branches missed.">                if (pduResult.getErrorStatus() == ScopedPDU.noError) {</span>
+
+                    //gets the variable when there's no error
+<span class="nc" id="L225">                    Variable variable = pduResult.getVariable(new OID(stringOID));</span>
+
+<span class="nc bnc" id="L227" title="All 2 branches missed.">                    if (variable != null) {</span>
+                        //result
+<span class="nc" id="L229">                        return variable.toString();</span>
+                    }
+                }
+            }
+<span class="nc" id="L233">        } catch (Exception e) {</span>
+<span class="nc" id="L234">            e.printStackTrace();</span>
+<span class="nc" id="L235">        }</span>
+<span class="nc" id="L236">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>Generated by the Android Gradle plugin 3.3.0</div></body></html>
