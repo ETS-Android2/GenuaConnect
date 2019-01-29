@@ -4,6 +4,7 @@ package de.uni_stuttgart.informatik.sopra.sopraapp.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,14 +32,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Locale.getDefault();
-        //Locale.setDefault();
         setContentView(R.layout.activity_main);
-        //Intent intent = new Intent(this, RotatingCaptureActivity.class);
-        //startActivity(intent);
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
+        //setting back-button on actionbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         //initialising the IntentIntegrator and setting a few options
         intentIntegrator = new IntentIntegrator(this);
         intentIntegrator.setBeepEnabled(false);
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * The onClick methode for the wifi btn.
      *
-     * @param view The View for the intent.
+     * @param view The View of the clicked Button (buttonWifiInf)
      */
     public void wifiInfReact(View view) {
         Intent intent = new Intent(this, WifiStateActivity.class);
@@ -62,16 +60,11 @@ public class MainActivity extends AppCompatActivity {
      *
      * The onClick methode for the device manager btn.
      *
-     * @param view The View for the intent.
+     * @param view The View of the clicked Button (device_management).
      */
     public void onClickDeviceManager(View view) {
         Intent intent = new Intent(this, MonitoringMainActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
     }
 
     @Override
@@ -96,16 +89,15 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, HelpActivity.class);
             this.startActivity(intent);
             return true;
-        } else {
-            return super.onOptionsItemSelected(item);
         }
+
         return super.onOptionsItemSelected(item);
     }
 
     /**
      * The onClick methode for the query manager btn.
      *
-     * @param view The View for the intent.
+     * @param view The View of the clicked Button (request_management).
      */
     public void requestManagement(View view) {
         Intent intent = new Intent(this, RequestMngActivity.class);
