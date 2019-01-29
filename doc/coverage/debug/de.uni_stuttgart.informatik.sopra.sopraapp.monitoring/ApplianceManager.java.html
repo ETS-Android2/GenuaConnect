@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ApplianceManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=0;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debugAndroidTest</a> &gt; <a href="index.source.html" class="el_package">de.uni_stuttgart.informatik.sopra.sopraapp.monitoring</a> &gt; <span class="el_source">ApplianceManager.java</span></div><h1>ApplianceManager.java</h1><pre class="source lang-java linenums">package de.uni_stuttgart.informatik.sopra.sopraapp.monitoring;
+
+import android.content.Context;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
+import java.util.concurrent.ExecutionException;
+
+import de.uni_stuttgart.informatik.sopra.sopraapp.requests.OidElement;
+import de.uni_stuttgart.informatik.sopra.sopraapp.requests.RequestDbHelper;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientV1AndV2c;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SnmpTask;
+
+/**
+ * Manages all appliances that were scanned by the Main Activitys QR-Scanner
+ */
+public class ApplianceManager {
+
+    private static ApplianceManager ourInstance;
+
+    /**
+     * Konstruktor
+     *
+     * @param context Context of class.
+     * @return Returned die gebrauchte Instanz des ApplianceManager.
+     */
+    public static ApplianceManager getInstance(Context context) {
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (ourInstance == null) {</span>
+<span class="fc" id="L30">            ourInstance = new ApplianceManager();</span>
+<span class="fc" id="L31">            ourInstance.clientV1AndV2List = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L32">            ourInstance.requestTable = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L33">            ourInstance.requestDbHelper = new RequestDbHelper(context);</span>
+<span class="fc" id="L34">            ourInstance.taskTable = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L35">            ourInstance.resultTable = new HashMap&lt;&gt;();</span>
+        }
+<span class="fc" id="L37">        return ourInstance;</span>
+    }
+
+<span class="fc" id="L40">    private ApplianceManager() {</span>
+<span class="fc" id="L41">    }</span>
+
+    private ArrayList&lt;SimpleSNMPClientV1AndV2c&gt; clientV1AndV2List;
+    private RequestDbHelper requestDbHelper;
+    private HashMap&lt;SimpleSNMPClientV1AndV2c, String&gt; requestTable;
+    private HashMap&lt;SimpleSNMPClientV1AndV2c, SnmpTask[]&gt; taskTable;
+    private HashMap&lt;SimpleSNMPClientV1AndV2c, ArrayList&lt;String&gt;&gt; resultTable;
+
+
+    /**
+     * Die Gettermethode für den SNMP Client.
+     *
+     * @return Returned den Client.
+     */
+    ArrayList&lt;SimpleSNMPClientV1AndV2c&gt; getClientList() {
+<span class="fc" id="L56">        return clientV1AndV2List;</span>
+    }
+
+    /**
+     * Hiermit können clients geaddet werden.
+     *
+     * @param appliance Durch diese Variable werden die Clients geaddet.
+     */
+    public void addClient(SimpleSNMPClientV1AndV2c appliance) {
+<span class="nc" id="L65">        clientV1AndV2List.add(appliance);</span>
+<span class="nc" id="L66">    }</span>
+
+    /**
+     * Settet die Abfrage aus dem Client.
+     *
+     * @param client  Der SNMP Client.
+     * @param request Die Abfrage.
+     */
+    void setRequestFor(SimpleSNMPClientV1AndV2c client, String request) {
+<span class="nc" id="L75">        requestTable.put(client, request);</span>
+<span class="nc" id="L76">    }</span>
+
+
+    /**
+     * Starts request for all oids in requestmask that was specified for this client
+     *
+     * @param client client to send the requests
+     */
+    void startRequestFor(SimpleSNMPClientV1AndV2c client) {
+<span class="nc" id="L85">        String request = requestTable.get(client);</span>
+<span class="nc" id="L86">        ArrayList&lt;OidElement&gt; oidElements = requestDbHelper.getOIDsFrom(request);</span>
+<span class="nc" id="L87">        ArrayList&lt;String&gt; oids = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        for (OidElement element : oidElements) {</span>
+<span class="nc" id="L89">            oids.add(element.getOidString());</span>
+<span class="nc" id="L90">        }</span>
+<span class="nc" id="L91">        SnmpTask[] tasks = new SnmpTask[oids.size()];</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        for (int i = 0; i &lt; tasks.length; i++) {</span>
+<span class="nc" id="L93">            tasks[i] = new SnmpTask(client);</span>
+<span class="nc" id="L94">            tasks[i].execute(oids.get(i));</span>
+        }
+<span class="nc" id="L96">        taskTable.put(client, tasks);</span>
+<span class="nc" id="L97">    }</span>
+
+    ArrayList&lt;String&gt; tryGetResults(SimpleSNMPClientV1AndV2c client) {
+<span class="nc" id="L100">        ArrayList&lt;String&gt; results = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        if (taskTable.get(client) == null) {</span>
+<span class="nc" id="L102">            return results;</span>
+        }
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        for (SnmpTask task : Objects.requireNonNull(taskTable.get(client))) {</span>
+            try {
+<span class="nc" id="L106">                results.add(task.get());</span>
+<span class="nc" id="L107">            } catch (ExecutionException e) {</span>
+<span class="nc" id="L108">                e.printStackTrace();</span>
+<span class="nc" id="L109">            } catch (InterruptedException e) {</span>
+<span class="nc" id="L110">                e.printStackTrace();</span>
+<span class="nc" id="L111">            }</span>
+        }
+<span class="nc" id="L113">        startRequestFor(client);</span>
+
+<span class="nc" id="L115">        return results;</span>
+    }
+
+    String getRequestMaskFrom(SimpleSNMPClientV1AndV2c client) {
+<span class="nc" id="L119">        return requestTable.get(client);</span>
+    }
+
+    ArrayList&lt;String&gt; getResults(SimpleSNMPClientV1AndV2c client) {
+<span class="nc bnc" id="L123" title="All 2 branches missed.">        return resultTable.get(client) == null ? new ArrayList&lt;&gt;() : resultTable.get(client);</span>
+    }
+
+    void setResultsFor(SimpleSNMPClientV1AndV2c client, ArrayList&lt;String&gt; results) {
+<span class="nc" id="L127">        resultTable.put(client, results);</span>
+<span class="nc" id="L128">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>Generated by the Android Gradle plugin 3.3.0</div></body></html>

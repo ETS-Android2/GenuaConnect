@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RequestDbHelper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=0;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debugAndroidTest</a> &gt; <a href="index.source.html" class="el_package">de.uni_stuttgart.informatik.sopra.sopraapp.requests</a> &gt; <span class="el_source">RequestDbHelper.java</span></div><h1>RequestDbHelper.java</h1><pre class="source lang-java linenums">package de.uni_stuttgart.informatik.sopra.sopraapp.requests;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+
+/**
+ * this is the Helper class in the database. The database is here initialized.
+ * Dies ist die Helper Klasse der Datenbank. Hier werden die Datenbanken initialisiert.
+ */
+public class RequestDbHelper extends SQLiteOpenHelper {
+
+    private static final int DATABASE_VERSION = 12;
+    private static final String DATABASE_NAME = &quot;Requests.db&quot;;
+
+    //sql command to destroy request table
+    private static final String SQL_DELETE_REQUESTS =
+            &quot;DROP TABLE IF EXISTS &quot; + RequestsContract.REQ_TABLE_NAME;
+
+    //sql command to destroy oid table
+    private static final String SQL_DELETE_OID =
+            &quot;DROP TABLE IF EXISTS &quot; + RequestsContract.OID_TABLE_NAME;
+
+    public RequestDbHelper(Context context) {
+<span class="fc" id="L28">        super(context, DATABASE_NAME, null, DATABASE_VERSION);</span>
+<span class="fc" id="L29">    }</span>
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        //sql command to create requestmask table(for the mask not oids)
+<span class="fc" id="L34">        final String SQL_CREATE_REQUESTS =</span>
+                &quot;CREATE TABLE &quot; + RequestsContract.REQ_TABLE_NAME + &quot; (&quot; +
+                        RequestsContract.COLUMN_REQ_ID + &quot; INTEGER PRIMARY KEY AUTOINCREMENT, &quot; +
+                        RequestsContract.COLUMN_REQ_NAME + &quot; TEXT);&quot;;
+
+
+<span class="fc" id="L40">        final String SQL_CREATE_OIDS =</span>
+                &quot;CREATE TABLE &quot; + RequestsContract.OID_TABLE_NAME + &quot; (&quot; +
+                        RequestsContract.COLUMN_OID_ID + &quot; INTEGER PRIMARY KEY AUTOINCREMENT, &quot; +
+                        RequestsContract.COLUMN_OID_STRING + &quot; TEXT, &quot; +
+                        RequestsContract.COLUMN_OID_DESCRIPT + &quot; TEXT, &quot; +
+                        RequestsContract.COLUMN_OID_REQ + &quot; INTEGER);&quot;;
+
+<span class="fc" id="L47">        db.execSQL(SQL_CREATE_REQUESTS);</span>
+<span class="fc" id="L48">        db.execSQL(SQL_CREATE_OIDS);</span>
+<span class="fc" id="L49">    }</span>
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+<span class="nc" id="L53">        db.execSQL(SQL_DELETE_REQUESTS);</span>
+<span class="nc" id="L54">        db.execSQL(SQL_DELETE_OID);</span>
+<span class="nc" id="L55">        onCreate(db);</span>
+<span class="nc" id="L56">    }</span>
+
+    /**
+     * Through this method the query masks can be getted.
+     *
+     * @return Returns the query mask.
+     */
+    public ArrayList&lt;String&gt; getAllMasks() {
+<span class="nc" id="L64">        SQLiteDatabase reading = getReadableDatabase();</span>
+<span class="nc" id="L65">        ArrayList&lt;String&gt; masks = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L66">        Cursor cursor = reading.rawQuery(&quot;select * from &quot; + RequestsContract.REQ_TABLE_NAME, null);</span>
+        String mask;
+<span class="nc" id="L68">        cursor.moveToFirst();</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        for (int i = 1; i &lt;= cursor.getCount(); i++) {</span>
+<span class="nc" id="L70">            mask = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));</span>
+<span class="nc" id="L71">            masks.add(mask);</span>
+<span class="nc" id="L72">            cursor.moveToNext();</span>
+        }
+<span class="nc" id="L74">        cursor.close();</span>
+<span class="nc" id="L75">        return masks;</span>
+    }
+
+    /**
+     * Getter for the OIDs for a certain query mask.
+     *
+     * @param request Name of the mask.
+     * @return Returns the OIDs.
+     */
+    public ArrayList&lt;OidElement&gt; getOIDsFrom(String request) {
+<span class="nc" id="L85">        SQLiteDatabase reading = getReadableDatabase();</span>
+<span class="nc" id="L86">        Cursor cursor = reading.rawQuery(&quot;select * from &quot; + RequestsContract.REQ_TABLE_NAME +</span>
+                &quot; where &quot; + RequestsContract.COLUMN_REQ_NAME + &quot; = '&quot; + request + &quot;' &quot;, null);
+<span class="nc" id="L88">        cursor.moveToFirst();</span>
+<span class="nc" id="L89">        int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));</span>
+<span class="nc" id="L90">        cursor.close();</span>
+
+<span class="nc" id="L92">        ArrayList&lt;OidElement&gt; oids = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L93">        Cursor cursorOid = reading.rawQuery(&quot;select * from &quot; + RequestsContract.OID_TABLE_NAME +</span>
+                &quot; where &quot; + RequestsContract.COLUMN_OID_REQ + &quot; = &quot; + id, null);
+
+<span class="nc" id="L96">        cursorOid.moveToFirst();</span>
+<span class="nc" id="L97">        int columnIndexOid = cursorOid.getColumnIndex(RequestsContract.COLUMN_OID_STRING);</span>
+<span class="nc" id="L98">        int columnIndexDescr = cursorOid.getColumnIndex(RequestsContract.COLUMN_OID_DESCRIPT);</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        for (int i = 1; i &lt;= cursorOid.getCount(); i++) {</span>
+<span class="nc" id="L100">            String oid = cursorOid.getString(columnIndexOid);</span>
+<span class="nc" id="L101">            String des = cursorOid.getString(columnIndexDescr);</span>
+<span class="nc" id="L102">            oids.add(new OidElement(oid, des));</span>
+<span class="nc" id="L103">            cursorOid.moveToNext();</span>
+        }
+<span class="nc" id="L105">        cursorOid.close();</span>
+<span class="nc" id="L106">        return oids;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>Generated by the Android Gradle plugin 3.3.0</div></body></html>

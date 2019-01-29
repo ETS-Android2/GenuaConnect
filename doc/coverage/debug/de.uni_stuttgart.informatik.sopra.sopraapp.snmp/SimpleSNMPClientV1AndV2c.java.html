@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SimpleSNMPClientV1AndV2c.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=0;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debugAndroidTest</a> &gt; <a href="index.source.html" class="el_package">de.uni_stuttgart.informatik.sopra.sopraapp.snmp</a> &gt; <span class="el_source">SimpleSNMPClientV1AndV2c.java</span></div><h1>SimpleSNMPClientV1AndV2c.java</h1><pre class="source lang-java linenums">package de.uni_stuttgart.informatik.sopra.sopraapp.snmp;
+
+import android.util.Log;
+
+import org.snmp4j.CommunityTarget;
+import org.snmp4j.PDU;
+import org.snmp4j.SNMP4JSettings;
+import org.snmp4j.Snmp;
+import org.snmp4j.Target;
+import org.snmp4j.TransportMapping;
+import org.snmp4j.event.ResponseEvent;
+import org.snmp4j.mp.MPv1;
+import org.snmp4j.mp.SnmpConstants;
+import org.snmp4j.security.SecurityLevel;
+import org.snmp4j.smi.Address;
+import org.snmp4j.smi.GenericAddress;
+import org.snmp4j.smi.OID;
+import org.snmp4j.smi.OctetString;
+import org.snmp4j.smi.UdpAddress;
+import org.snmp4j.smi.Variable;
+import org.snmp4j.smi.VariableBinding;
+import org.snmp4j.transport.DefaultUdpTransportMapping;
+import org.snmp4j.util.DefaultPDUFactory;
+
+import java.io.IOException;
+
+import de.uni_stuttgart.informatik.sopra.sopraapp.cameraQrCode.ApplianceQrDecode;
+
+/**
+ * Inspired by https://blog.jayway.com/2010/05/21/introduction-to-snmp4j
+ * A client for the SNMP management.
+ */
+public class SimpleSNMPClientV1AndV2c {
+
+    String address;
+    volatile Snmp snmp;
+    private CommunityTarget target;
+    ApplianceQrDecode decode;
+    /**
+     * constructor
+     *
+     * @param qrCode the QR-Code decoder.
+     */
+<span class="nc" id="L44">    public SimpleSNMPClientV1AndV2c(String qrCode) {</span>
+<span class="nc" id="L45">        SNMP4JSettings.setAllowSNMPv2InV1(true);</span>
+<span class="nc" id="L46">        Log.d(&quot;allowSNMPv2InV1&quot;, &quot;erfolgreich&quot;);</span>
+<span class="nc" id="L47">        decode = new ApplianceQrDecode(qrCode);</span>
+<span class="nc" id="L48">        this.address = decode.getAddress();</span>
+<span class="nc" id="L49">    }</span>
+
+    /**
+     * defaultconstructor for inheriting classe.
+     */
+<span class="nc" id="L54">    SimpleSNMPClientV1AndV2c() {</span>
+<span class="nc" id="L55">    }</span>
+
+    public String getAddress() {
+<span class="nc" id="L58">        return address;</span>
+    }
+
+    /**
+     * stoppt den SNMP Client.
+     *
+     * @throws IOException If a transport mapping cannot be closed successfully
+     */
+    public void stop() throws IOException {
+<span class="nc" id="L67">        snmp.close();</span>
+<span class="nc" id="L68">        Log.d(&quot;SNMP&quot;, &quot;Interface for SNMP closed&quot;);</span>
+<span class="nc" id="L69">    }</span>
+
+    /**
+     * Starts the SNMP Interface.
+     *
+     * @throws IOException If an IO operation exception occurs while starting the listener.
+     */
+    void start() throws IOException, IllegalArgumentException {
+<span class="nc" id="L77">        TransportMapping&lt;UdpAddress&gt; transportMapping = new DefaultUdpTransportMapping();</span>
+<span class="nc" id="L78">        Log.d(&quot;Snmp Connect&quot;, &quot;asynchroner Nebenthread gestartet&quot;);</span>
+
+<span class="nc" id="L80">        snmp = new Snmp(transportMapping);</span>
+<span class="nc" id="L81">        userInformation();</span>
+        try {
+<span class="nc" id="L83">            transportMapping.listen();</span>
+<span class="nc" id="L84">        } catch (IOException e) {</span>
+<span class="nc" id="L85">            Log.e(&quot;connect&quot;, e.getMessage());</span>
+<span class="nc" id="L86">        }</span>
+<span class="nc" id="L87">        Log.d(&quot;Snmp Connect&quot;, &quot;isListening: &quot; + transportMapping.isListening());</span>
+<span class="nc" id="L88">    }</span>
+
+    protected void userInformation() {
+<span class="nc" id="L91">        snmp.getMessageDispatcher().addMessageProcessingModel(new MPv1());</span>
+<span class="nc" id="L92">    }</span>
+
+    /**
+     * Returns a target, which contains the information about to where and how the data should be fetched.
+     *
+     * @return Returns the given target.
+     */
+    public Target getTarget() {
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (target != null) {</span>
+<span class="nc" id="L101">            return target;</span>
+        }
+<span class="nc" id="L103">        String addrToUse = address;</span>
+<span class="nc" id="L104">        String port = null;</span>
+<span class="nc" id="L105">        Log.d(&quot;address&quot;, &quot;received address: &quot; + addrToUse);</span>
+<span class="nc" id="L106">        Address targetAdress = null;</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        if (decode.getAddress().contains(&quot;/&quot;)) {</span>
+<span class="nc" id="L108">            Log.d(&quot;port&quot;, &quot;port nicht null&quot;);</span>
+<span class="nc" id="L109">            Log.d(&quot;port '/' oder ':'?&quot;, &quot;port '/' erkannt&quot;);</span>
+<span class="nc" id="L110">            addrToUse = address.substring(0, address.lastIndexOf('/'));</span>
+<span class="nc" id="L111">            port = address.substring(address.lastIndexOf(&quot;/&quot;) + 1);</span>
+<span class="nc" id="L112">            Log.d(&quot;port&quot;, port);</span>
+<span class="nc" id="L113">            targetAdress = GenericAddress.parse(&quot;udp:&quot; + addrToUse + &quot;/&quot; + port);</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        } else if (decode.getAddress().contains(&quot;:&quot;)) {</span>
+<span class="nc" id="L115">            Log.d(&quot;port&quot;, &quot;port nicht null&quot;);</span>
+<span class="nc" id="L116">            Log.d(&quot;port '/' oder ':'?&quot;, &quot;port ':' erkannt&quot;);</span>
+<span class="nc" id="L117">            addrToUse = address.substring(0, address.lastIndexOf(':'));</span>
+<span class="nc" id="L118">            port = address.substring(address.lastIndexOf(&quot;:&quot;) + 1);</span>
+<span class="nc" id="L119">            Log.d(&quot;port&quot;, port);</span>
+<span class="nc" id="L120">            targetAdress = GenericAddress.parse(&quot;udp:&quot; + addrToUse + &quot;/&quot; + port);</span>
+        }
+<span class="nc bnc" id="L122" title="All 2 branches missed.">        if (port == null) {</span>
+<span class="nc" id="L123">            Log.d(&quot;port&quot;, &quot;port null&quot;);</span>
+<span class="nc" id="L124">            targetAdress = GenericAddress.parse(&quot;udp:&quot; + addrToUse + &quot;/&quot; + &quot;161&quot;);</span>
+        }
+<span class="nc" id="L126">        System.out.println(targetAdress);</span>
+<span class="nc" id="L127">        target = new CommunityTarget();</span>
+<span class="nc" id="L128">        target.setCommunity(new OctetString(decode.getTarget()));</span>
+<span class="nc" id="L129">        target.setSecurityLevel(SecurityLevel.NOAUTH_NOPRIV);</span>
+<span class="nc" id="L130">        target.setAddress(targetAdress);</span>
+<span class="nc" id="L131">        target.setRetries(3);</span>
+<span class="nc" id="L132">        target.setTimeout(10000);</span>
+<span class="nc" id="L133">        target.setVersion(SnmpConstants.version1);</span>
+<span class="nc" id="L134">        Log.d(&quot;getTarget&quot;, &quot;getTarget erfolgreich&quot;);</span>
+<span class="nc" id="L135">        return target;</span>
+    }
+
+    /**
+     * Returns the response of the OID as a string.
+     *
+     * @param oid Is the OID.
+     * @return Returns the response.
+     */
+    String getAsString(OID oid) {
+<span class="nc" id="L145">        Log.d(&quot;getAsString&quot;, &quot;String bekommen: &quot; + oid.toDottedString());</span>
+<span class="nc" id="L146">        return sendGet(oid.toString());</span>
+    }
+
+    /**
+     * Die Getmethode fuer die Abfragen. Auch wird hier der PDU gesettet und geaddet.
+     *
+     * @param stringOID Die OID.
+     * @return Returned den OID als String und returned null wenn PDU null ist.
+     */
+    protected String sendGet(String stringOID) {
+<span class="nc" id="L156">        PDU pdu = DefaultPDUFactory.createPDU(1);</span>
+
+        //add OID to PDU
+<span class="nc" id="L159">        pdu.add(new VariableBinding(new OID(stringOID)));</span>
+
+        //setting type when sending request to the SNMP server
+<span class="nc" id="L162">        pdu.setType(PDU.GETNEXT);</span>
+
+        ResponseEvent responseEvent;
+        try {
+            //sending the request
+<span class="nc" id="L167">            responseEvent = snmp.get(pdu, getTarget());</span>
+
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (responseEvent != null) {</span>
+<span class="nc" id="L170">                System.out.println(responseEvent);</span>
+                //get the PDU response
+<span class="nc" id="L172">                PDU pduResult = responseEvent.getResponse();</span>
+<span class="nc" id="L173">                System.out.println(pduResult);</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">                if (pduResult == null) {</span>
+<span class="nc" id="L175">                    return null;</span>
+                }
+
+
+<span class="nc bnc" id="L179" title="All 2 branches missed.">                for (VariableBinding varBind : pduResult.getVariableBindings()) {</span>
+<span class="nc" id="L180">                    return varBind.toValueString();</span>
+                }
+
+                //checking if response throws an error
+<span class="nc bnc" id="L184" title="All 2 branches missed.">                if (pduResult.getErrorStatus() == PDU.noError) {</span>
+
+                    //gets the variable when there's no error
+<span class="nc" id="L187">                    Variable variable = pduResult.getVariable(new OID(stringOID));</span>
+
+<span class="nc bnc" id="L189" title="All 2 branches missed.">                    if (variable != null) {</span>
+                        //result
+<span class="nc" id="L191">                        return variable.toString();</span>
+                    }
+                }
+            }
+<span class="nc" id="L195">        } catch (Exception e) {</span>
+<span class="nc" id="L196">            e.printStackTrace();</span>
+<span class="nc" id="L197">        }</span>
+<span class="nc" id="L198">        return null;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>Generated by the Android Gradle plugin 3.3.0</div></body></html>
