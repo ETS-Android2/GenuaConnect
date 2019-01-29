@@ -1,12 +1,8 @@
 package de.uni_stuttgart.informatik.sopra.sopraapp;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import de.uni_stuttgart.informatik.sopra.sopraapp.cameraQrCode.ApplianceQrDecode;
 
@@ -80,21 +76,41 @@ public class ApplianceQrDecodeTest {
 
     @Test
     public void getPrivProtocol() {
+        String privP = applianceQrDecode.getPrivProtocol();
+        String fakePrivP = wrongApplianceQrDecode.getPrivProtocol();
+        assertEquals("SHA", privP);
+        assertNotEquals(privP,fakePrivP);
     }
 
     @Test
     public void getPrivKey() {
+        String privK = applianceQrDecode.getPrivKey();
+        String fakePrivK = wrongApplianceQrDecode.getPrivKey();
+        assertEquals("SHA", privK);
+        assertNotEquals(privK,fakePrivK);
     }
 
     @Test
     public void getTarget() {
+        String target = applianceQrDecode.getTarget();
+        String fakeTarget = wrongApplianceQrDecode.getTarget();
+        assertEquals("SHA", target);
+        assertNotEquals(target,fakeTarget);
     }
 
     @Test
     public void getUsername() {
+        String user = applianceQrDecode.getUsername();
+        String fakeUser = wrongApplianceQrDecode.getUsername();
+        assertEquals("SHA", user);
+        assertNotEquals(user,fakeUser);
     }
 
     @Test
     public void getPassword() {
+        String pw = applianceQrDecode.getPassword();
+        String fakePw = wrongApplianceQrDecode.getPassword();
+        assertEquals("SHA", pw);
+        assertNotEquals(pw,fakePw);
     }
 }
