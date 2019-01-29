@@ -1,7 +1,7 @@
 image: kmindi/android-ci:platforms-25-26-27
 
 variables:
-  GRADLE_OPTS: "-Dorg.gradle.daemon=true"
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 before_script:
   # Define cache-folders withing the build-folder to make it available for GitLab CI caching
