@@ -80,7 +80,7 @@ public class RotatingCaptureActivity extends Activity
     /**
      * switching the flashlight.
      *
-     * @param view View for onClick.
+     * @param view View of flashButton.
      */
     public void switchFlashlight(View view) {
         if (getString(R.string.flashTurnOn).contentEquals(flashBtn.getText())) {
@@ -136,18 +136,4 @@ public class RotatingCaptureActivity extends Activity
         flashBtn.setText(getString(R.string.flashTurnOn));
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case 2:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    new ReactionController(getParent(), lastText);
-                    Log.d("PermissionsGranted", "Permissions wurden gegeben");
-                } else {
-                    Toast toast = Toast.makeText(this, getString(R.string.noPermissionsInternet), Toast.LENGTH_LONG);
-                    toast.show();
-                    Log.d("PermissionsNotGranted", "No permission to use internet");
-                }
-        }
-    }
 }

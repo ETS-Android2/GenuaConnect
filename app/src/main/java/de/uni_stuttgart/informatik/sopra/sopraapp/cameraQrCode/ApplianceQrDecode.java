@@ -67,7 +67,7 @@ public class ApplianceQrDecode {
                 case '"':
                     i++;
                     if (key.isEmpty()) {
-                        key = jSon.substring(i, jSon.indexOf('"', i));
+                        key = jSon.substring(i, jSon.indexOf('"',i));
                         i = jSon.indexOf(':', i);
                     }else {
                         value = jSon.substring(i, jSon.indexOf('"', i));

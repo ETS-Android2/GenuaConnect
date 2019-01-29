@@ -28,4 +28,5 @@
     <string name="oid_description">Enter Description here</string>
     <string name="switch_requests">Requests</string>
     <string name="geraetText">Gerät</string>
+    <string name="detected_apliance">Detected a SNMP-Client with SNMP-Version</string>
 </resources>

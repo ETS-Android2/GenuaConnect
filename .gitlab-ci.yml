@@ -13,6 +13,7 @@ before_script:
   - echo 'y' | sdkmanager 'build-tools;28.0.3' 1> /dev/null
   - echo 'y' | sdkmanager 'platforms;android-28' 1> /dev/null
 
+
 stages:
   - build
   - test
@@ -57,7 +58,12 @@ test:unit:
   tags:
     - docker
   script:
-    - ./gradlew clean createDebugCoverageReport jacocoTestReport
+    - ./gradlew test jacocoTestReport
+    - ls "app/build/reports/"
+    - ls "app/build/reports/jacoco/"
+    - ls "app/build/reports/jacoco/jacocoTestReport/"
+    - ls "app/build/reports/jacoco/jacocoTestReport/html/"
+    - ls "app/build/reports/jacoco/jacocoTestReport/html/index.html"
     - cat "app/build/reports/jacoco/jacocoTestReport/html/index.html"
   coverage: '/Total.+?([0-9]{1,3})\%/'
   artifacts:
