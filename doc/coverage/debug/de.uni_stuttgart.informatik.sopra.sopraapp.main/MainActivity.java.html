@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MainActivity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=0;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debugAndroidTest</a> &gt; <a href="index.source.html" class="el_package">de.uni_stuttgart.informatik.sopra.sopraapp.main</a> &gt; <span class="el_source">MainActivity.java</span></div><h1>MainActivity.java</h1><pre class="source lang-java linenums">package de.uni_stuttgart.informatik.sopra.sopraapp.main;
+
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+
+import java.util.Objects;
+
+import de.uni_stuttgart.informatik.sopra.sopraapp.cameraQrCode.RotatingCaptureActivity;
+import de.uni_stuttgart.informatik.sopra.sopraapp.monitoring.MonitoringMainActivity;
+import de.uni_stuttgart.informatik.sopra.sopraapp.R;
+import de.uni_stuttgart.informatik.sopra.sopraapp.requests.RequestMngActivity;
+import de.uni_stuttgart.informatik.sopra.sopraapp.wifi.WifiStateActivity;
+
+/**
+ * The main-method where the 3 btns are listed.
+ */
+<span class="fc" id="L25">public class MainActivity extends AppCompatActivity {</span>
+
+    //Intent that can start the scan of qr codes
+    public IntentIntegrator intentIntegrator;
+    public boolean test;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+<span class="fc" id="L33">        super.onCreate(savedInstanceState);</span>
+        //Locale.getDefault();
+        //Locale.setDefault();
+<span class="fc" id="L36">        setContentView(R.layout.activity_main);</span>
+        //Intent intent = new Intent(this, RotatingCaptureActivity.class);
+        //startActivity(intent);
+
+<span class="fc" id="L40">        Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);</span>
+<span class="fc" id="L41">        getSupportActionBar().setDisplayHomeAsUpEnabled(true);</span>
+        //initialising the IntentIntegrator and setting a few options
+<span class="fc" id="L43">        intentIntegrator = new IntentIntegrator(this);</span>
+<span class="fc" id="L44">        intentIntegrator.setBeepEnabled(false);</span>
+<span class="fc" id="L45">        intentIntegrator.setOrientationLocked(false);</span>
+<span class="fc" id="L46">        intentIntegrator.setCaptureActivity(RotatingCaptureActivity.class);</span>
+<span class="fc" id="L47">        intentIntegrator.initiateScan();</span>
+<span class="fc" id="L48">        test = true;</span>
+<span class="fc" id="L49">    }</span>
+
+    /**
+     * The onClick methode for the wifi btn.
+     *
+     * @param view The View for the intent.
+     */
+    public void wifiInfReact(View view) {
+<span class="fc" id="L57">        Intent intent = new Intent(this, WifiStateActivity.class);</span>
+<span class="fc" id="L58">        startActivity(intent);</span>
+<span class="fc" id="L59">    }</span>
+
+    /**
+     *
+     * The onClick methode for the device manager btn.
+     *
+     * @param view The View for the intent.
+     */
+    public void onClickDeviceManager(View view) {
+<span class="fc" id="L68">        Intent intent = new Intent(this, MonitoringMainActivity.class);</span>
+<span class="fc" id="L69">        startActivity(intent);</span>
+<span class="fc" id="L70">    }</span>
+
+    @Override
+    protected void onStart() {
+<span class="fc" id="L74">        super.onStart();</span>
+<span class="fc" id="L75">    }</span>
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+<span class="fc" id="L79">        MenuInflater inflater = getMenuInflater();</span>
+<span class="fc" id="L80">        inflater.inflate(R.menu.main_menu, menu);</span>
+<span class="fc" id="L81">        return true;</span>
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+<span class="fc" id="L86">        int id = item.getItemId();</span>
+
+        //back button functions as a button that re-initialises the IntentIntegrator
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if (id == android.R.id.home) {</span>
+<span class="fc" id="L90">            intentIntegrator = new IntentIntegrator(this);</span>
+<span class="fc" id="L91">            intentIntegrator.setBeepEnabled(false);</span>
+<span class="fc" id="L92">            intentIntegrator.setOrientationLocked(false);</span>
+<span class="fc" id="L93">            intentIntegrator.setCaptureActivity(RotatingCaptureActivity.class);</span>
+<span class="fc" id="L94">            intentIntegrator.initiateScan();</span>
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">        }else if(id ==R.id.preference) {</span>
+<span class="fc" id="L96">            Intent intent = new Intent(this, HelpActivity.class);</span>
+<span class="fc" id="L97">            this.startActivity(intent);</span>
+<span class="fc" id="L98">            return true;</span>
+        } else {
+<span class="nc" id="L100">            return super.onOptionsItemSelected(item);</span>
+        }
+<span class="fc" id="L102">        return super.onOptionsItemSelected(item);</span>
+    }
+
+    /**
+     * The onClick methode for the query manager btn.
+     *
+     * @param view The View for the intent.
+     */
+    public void requestManagement(View view) {
+<span class="fc" id="L111">        Intent intent = new Intent(this, RequestMngActivity.class);</span>
+<span class="fc" id="L112">        startActivity(intent);</span>
+<span class="fc" id="L113">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>Generated by the Android Gradle plugin 3.3.0</div></body></html>

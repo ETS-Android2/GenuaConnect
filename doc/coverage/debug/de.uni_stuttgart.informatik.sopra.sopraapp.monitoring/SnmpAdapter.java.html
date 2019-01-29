@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SnmpAdapter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=0;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debugAndroidTest</a> &gt; <a href="index.source.html" class="el_package">de.uni_stuttgart.informatik.sopra.sopraapp.monitoring</a> &gt; <span class="el_source">SnmpAdapter.java</span></div><h1>SnmpAdapter.java</h1><pre class="source lang-java linenums">package de.uni_stuttgart.informatik.sopra.sopraapp.monitoring;
+
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import de.uni_stuttgart.informatik.sopra.sopraapp.*;
+import de.uni_stuttgart.informatik.sopra.sopraapp.requests.RequestDbHelper;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientV1AndV2c;
+import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientv3;
+
+import static android.support.constraint.Constraints.TAG;
+
+/**
+ * Dies ist der SNMP Manager. Hiermit können die beiden SNMP Klassen mit Ihrem Task gemanaged werden.
+ */
+public class SnmpAdapter extends ArrayAdapter&lt;SimpleSNMPClientV1AndV2c&gt; {
+    private static final String TAG = &quot;SnmpAdapter&quot;;
+
+    private ArrayList&lt;SimpleSNMPClientV1AndV2c&gt; elements;
+    private Context context;
+    private RequestDbHelper dbHelper;
+    private ApplianceManager manager;
+    private Timer timer;
+<span class="fc" id="L38">    private int period = 5000;</span>
+
+    /**
+     * Konstruktor.
+     *
+     * @param context Context der Klasse.
+     */
+    public SnmpAdapter(Context context) {
+<span class="fc" id="L46">        super(context, 0, ApplianceManager.getInstance(context).getClientList());</span>
+<span class="fc" id="L47">        manager = ApplianceManager.getInstance(context);</span>
+<span class="fc" id="L48">        elements = manager.getClientList();</span>
+<span class="fc" id="L49">        this.context = context;</span>
+<span class="fc" id="L50">        dbHelper = new RequestDbHelper(context);</span>
+<span class="fc" id="L51">        timer = new Timer();</span>
+<span class="fc" id="L52">    }</span>
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+<span class="nc" id="L56">        View listItem = convertView;</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if (listItem == null) {</span>
+<span class="nc" id="L58">            listItem = LayoutInflater.from(context).inflate(R.layout.snmp_appl_item, parent, false);</span>
+        }
+
+<span class="nc" id="L61">        final SimpleSNMPClientV1AndV2c client = elements.get(position);</span>
+
+<span class="nc" id="L63">        final Switch req_switch = listItem.findViewById(R.id.switch1);</span>
+<span class="nc" id="L64">        req_switch.setOnClickListener(v -&gt; {</span>
+<span class="nc" id="L65">            timer.schedule(new PeriodTask(client, req_switch), 0, period);</span>
+<span class="nc" id="L66">            notifyDataSetChanged();</span>
+<span class="nc" id="L67">        });</span>
+
+
+<span class="nc" id="L70">        Spinner spinner = listItem.findViewById(R.id.request_spinner);</span>
+<span class="nc" id="L71">        ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;&gt;(context, android.R.layout.simple_list_item_1);</span>
+<span class="nc" id="L72">        adapter.add(&quot;NONE&quot;);</span>
+<span class="nc" id="L73">        adapter.addAll(dbHelper.getAllMasks());</span>
+<span class="nc" id="L74">        spinner.setAdapter(adapter);</span>
+<span class="nc" id="L75">        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {</span>
+            @Override
+            public void onItemSelected(AdapterView&lt;?&gt; parent, View view, int position, long id) {
+<span class="nc bnc" id="L78" title="All 2 branches missed.">                if (position == 0) {</span>
+<span class="nc" id="L79">                    req_switch.setChecked(false);</span>
+<span class="nc" id="L80">                    req_switch.setEnabled(false);</span>
+<span class="nc" id="L81">                    return;</span>
+                }
+<span class="nc" id="L83">                req_switch.setEnabled(true);</span>
+<span class="nc" id="L84">                String req = (String) parent.getSelectedItem();</span>
+<span class="nc" id="L85">                manager.setRequestFor(client, req);</span>
+
+<span class="nc" id="L87">            }</span>
+
+            @Override
+            public void onNothingSelected(AdapterView&lt;?&gt; parent) {
+
+<span class="nc" id="L92">            }</span>
+        });
+
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        spinner.setSelection(manager.getRequestMaskFrom(client) != null ? dbHelper.getAllMasks().indexOf(manager.getRequestMaskFrom(client)) + 1 : 0);</span>
+<span class="nc" id="L96">        TextView textView = listItem.findViewById(R.id.appl_name_field);</span>
+<span class="nc" id="L97">        textView.setText(&quot;Gerät &quot; + position);</span>
+
+<span class="nc" id="L99">        ListView listView = listItem.findViewById(R.id.appl_info_list);</span>
+<span class="nc" id="L100">        ArrayList&lt;String&gt; infos = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L101">        infos.add(&quot;IPv4-Addresse:\t&quot; + client.getAddress());</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        if (client instanceof SimpleSNMPClientv3) {</span>
+<span class="nc" id="L103">            infos.add(&quot;Benutzer:\t&quot; + client.getTarget().getSecurityName().toString());</span>
+        } else {
+<span class="nc" id="L105">            infos.add(&quot;Community Target:\t&quot; + client.getTarget().getSecurityName().toString());</span>
+        }
+
+<span class="nc" id="L108">        infos.addAll(manager.getResults(client));</span>
+<span class="nc" id="L109">        listView.setAdapter(new ArrayAdapter&lt;&gt;(context, android.R.layout.simple_list_item_1, infos));</span>
+
+<span class="nc" id="L111">        return listItem;</span>
+    }
+
+<span class="nc" id="L114">    private class ResultTask extends AsyncTask&lt;SimpleSNMPClientV1AndV2c, Void, ArrayList&lt;String&gt;&gt; {</span>
+        SimpleSNMPClientV1AndV2c client;
+
+        @Override
+        protected ArrayList&lt;String&gt; doInBackground(SimpleSNMPClientV1AndV2c... simpleSNMPClientV1AndV2cs) {
+<span class="nc" id="L119">            client = simpleSNMPClientV1AndV2cs[0];</span>
+<span class="nc" id="L120">            return manager.tryGetResults(simpleSNMPClientV1AndV2cs[0]);</span>
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList&lt;String&gt; strings) {
+<span class="nc" id="L125">            manager.setResultsFor(client, strings);</span>
+<span class="nc" id="L126">            notifyDataSetChanged();</span>
+<span class="nc" id="L127">        }</span>
+    }
+
+    private class PeriodTask extends TimerTask {
+        private SimpleSNMPClientV1AndV2c client;
+        private Switch onSwitch;
+
+<span class="nc" id="L134">        private PeriodTask(SimpleSNMPClientV1AndV2c client, Switch onSwitch) {</span>
+<span class="nc" id="L135">            this.client = client;</span>
+<span class="nc" id="L136">            this.onSwitch = onSwitch;</span>
+<span class="nc" id="L137">        }</span>
+
+        @Override
+        public void run() {
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            if (!onSwitch.isChecked()) {</span>
+<span class="nc" id="L142">                cancel();</span>
+<span class="nc" id="L143">                timer.purge();</span>
+<span class="nc" id="L144">                return;</span>
+            }
+<span class="nc" id="L146">            manager.startRequestFor(client);</span>
+<span class="nc" id="L147">            new ResultTask().execute(client);</span>
+<span class="nc" id="L148">            Log.d(TAG, &quot;run: Timer Task&quot;);</span>
+<span class="nc" id="L149">        }</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>Generated by the Android Gradle plugin 3.3.0</div></body></html>

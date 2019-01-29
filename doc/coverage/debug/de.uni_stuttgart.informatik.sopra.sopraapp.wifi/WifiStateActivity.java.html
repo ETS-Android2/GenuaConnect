@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WifiStateActivity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=0;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">debugAndroidTest</a> &gt; <a href="index.source.html" class="el_package">de.uni_stuttgart.informatik.sopra.sopraapp.wifi</a> &gt; <span class="el_source">WifiStateActivity.java</span></div><h1>WifiStateActivity.java</h1><pre class="source lang-java linenums">package de.uni_stuttgart.informatik.sopra.sopraapp.wifi;
+
+import android.annotation.SuppressLint;
+import android.net.DhcpInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.net.Inet6Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+
+import de.uni_stuttgart.informatik.sopra.sopraapp.R;
+
+/**
+ * This class shows the wifi/DHCP information in the activitiy.
+ */
+<span class="fc" id="L24">public class WifiStateActivity extends AppCompatActivity {</span>
+    WifiManager mng;
+    DhcpInfo dhcpInfo;
+    WifiInfo wifiInfo;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+<span class="fc" id="L31">        super.onCreate(savedInstanceState);</span>
+<span class="fc" id="L32">        setContentView(R.layout.activity_wifi_state);</span>
+
+<span class="fc" id="L34">        mng = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);</span>
+<span class="fc" id="L35">        dhcpInfo = mng.getDhcpInfo();</span>
+<span class="fc" id="L36">        wifiInfo = mng.getConnectionInfo();</span>
+
+
+        //creating the entries 1 to the
+<span class="fc" id="L40">        ArrayList&lt;String&gt; entrys = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L41">        int ip = dhcpInfo.ipAddress;</span>
+<span class="fc" id="L42">        @SuppressLint(&quot;DefaultLocale&quot;) String ipString = String.format(&quot;%d.%d.%d.%d&quot;, (ip &amp; 0xff), (ip &gt;&gt; 8 &amp; 0xff), (ip &gt;&gt; 16 &amp; 0xff), (ip &gt;&gt; 24 &amp; 0xff));</span>
+<span class="fc" id="L43">        entrys.add(&quot;IPv4: &quot; + ipString);</span>
+        InetAddress inetAddress;
+        try {
+<span class="fc" id="L46">            int i = 0;</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">            for (Enumeration&lt;NetworkInterface&gt; en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {</span>
+<span class="fc" id="L48">                NetworkInterface intf = en.nextElement();</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">                for (Enumeration&lt;InetAddress&gt; enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {</span>
+<span class="fc" id="L50">                    inetAddress = enumIpAddr.nextElement();</span>
+<span class="fc bfc" id="L51" title="All 4 branches covered.">                    if (inetAddress instanceof Inet6Address &amp;&amp; i == 5) {</span>
+<span class="fc" id="L52">                        entrys.add(&quot;IPv6: &quot; + inetAddress.getHostAddress());</span>
+                    }
+<span class="fc" id="L54">                    i++;</span>
+                }
+<span class="fc" id="L56">            }</span>
+<span class="nc" id="L57">        } catch (SocketException e) {</span>
+<span class="nc" id="L58">            e.printStackTrace();</span>
+<span class="fc" id="L59">        }</span>
+
+<span class="fc" id="L61">        int dns1 = dhcpInfo.dns1;</span>
+<span class="fc" id="L62">        int dns2 = dhcpInfo.dns2;</span>
+<span class="fc" id="L63">        int gateway = dhcpInfo.gateway;</span>
+<span class="fc" id="L64">        int mask = dhcpInfo.netmask;</span>
+
+<span class="fc" id="L66">        @SuppressLint(&quot;DefaultLocale&quot;) String maskString = String.format(&quot;%d.%d.%d.%d&quot;, (mask &amp; 0xff), (mask &gt;&gt; 8 &amp; 0xff), (mask &gt;&gt; 16 &amp; 0xff), (mask &gt;&gt; 24 &amp; 0xff));</span>
+<span class="fc" id="L67">        entrys.add(getString(R.string.netzmaskeText) + maskString);</span>
+<span class="fc" id="L68">        @SuppressLint(&quot;DefaultLocale&quot;) String dns1String = String.format(&quot;%d.%d.%d.%d&quot;, (dns1 &amp; 0xff), (dns1 &gt;&gt; 8 &amp; 0xff), (dns1 &gt;&gt; 16 &amp; 0xff), (dns1 &gt;&gt; 24 &amp; 0xff));</span>
+<span class="fc" id="L69">        entrys.add(&quot;DNS1: &quot; + dns1String);</span>
+<span class="fc" id="L70">        @SuppressLint(&quot;DefaultLocale&quot;) String dns2String = String.format(&quot;%d.%d.%d.%d&quot;, (dns2 &amp; 0xff), (dns2 &gt;&gt; 8 &amp; 0xff), (dns2 &gt;&gt; 16 &amp; 0xff), (dns2 &gt;&gt; 24 &amp; 0xff));</span>
+<span class="fc" id="L71">        entrys.add(&quot;DNS2: &quot; + dns2String);</span>
+<span class="fc" id="L72">        @SuppressLint(&quot;DefaultLocale&quot;) String gatewayString = String.format(&quot;%d.%d.%d.%d&quot;, (gateway &amp; 0xff), (gateway &gt;&gt; 8 &amp; 0xff), (gateway &gt;&gt; 16 &amp; 0xff), (gateway &gt;&gt; 24 &amp; 0xff));</span>
+<span class="fc" id="L73">        entrys.add(&quot;Gateway IP: &quot; + gatewayString);</span>
+
+<span class="fc" id="L75">        ArrayAdapter&lt;String&gt; itemsAdapter = new ArrayAdapter&lt;&gt;(this, android.R.layout.simple_list_item_1, entrys);</span>
+<span class="fc" id="L76">        ListView listView = findViewById(R.id.content_list);</span>
+<span class="fc" id="L77">        listView.setAdapter(itemsAdapter);</span>
+<span class="fc" id="L78">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>Generated by the Android Gradle plugin 3.3.0</div></body></html>
