@@ -34,6 +34,7 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
     private Context context;
     private RequestDbHelper dbHelper;
     private ApplianceManager manager;
+
     private Timer timer;
     private int period = 5000;
 

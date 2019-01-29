@@ -67,9 +67,13 @@ public class RequestDbHelper extends SQLiteOpenHelper {
     public ArrayList<String> getAllMasks() {
         SQLiteDatabase reading = getReadableDatabase();
         ArrayList<String> masks = new ArrayList<>();
+
+        //query for the request table
         Cursor cursor = reading.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME, null);
         String mask;
         cursor.moveToFirst();
+
+        //iterate over all elements of query and get the request name
         for (int i = 1; i <= cursor.getCount(); i++) {
             mask = cursor.getString(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_NAME));
             masks.add(mask);
@@ -87,19 +91,29 @@ public class RequestDbHelper extends SQLiteOpenHelper {
      */
     public ArrayList<OidElement> getOIDsFrom(String request) {
         SQLiteDatabase reading = getReadableDatabase();
+
+        //finding the request parameter in the table
         Cursor cursor = reading.rawQuery("select * from " + RequestsContract.REQ_TABLE_NAME +
                 " where " + RequestsContract.COLUMN_REQ_NAME + " = '" + request + "' ", null);
         cursor.moveToFirst();
+
+        //getting the id of this request
         int id = cursor.getInt(cursor.getColumnIndex(RequestsContract.COLUMN_REQ_ID));
         cursor.close();
 
         ArrayList<OidElement> oids = new ArrayList<>();
+
+        //finding the oid's with the matching request id
         Cursor cursorOid = reading.rawQuery("select * from " + RequestsContract.OID_TABLE_NAME +
                 " where " + RequestsContract.COLUMN_OID_REQ + " = " + id, null);
 
         cursorOid.moveToFirst();
+
+        //saving the column index of oid-string and description
         int columnIndexOid = cursorOid.getColumnIndex(RequestsContract.COLUMN_OID_STRING);
         int columnIndexDescr = cursorOid.getColumnIndex(RequestsContract.COLUMN_OID_DESCRIPT);
+
+        //iterate over all elements of oid rows and get the oid string and the description
         for (int i = 1; i <= cursorOid.getCount(); i++) {
             String oid = cursorOid.getString(columnIndexOid);
             String des = cursorOid.getString(columnIndexDescr);
