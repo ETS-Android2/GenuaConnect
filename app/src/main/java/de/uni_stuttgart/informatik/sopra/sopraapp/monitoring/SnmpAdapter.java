@@ -35,7 +35,7 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
     private RequestDbHelper dbHelper;
     private ApplianceManager manager;
 
-    private Timer timer;
+    private ArrayList<Timer> timer;
     private int period = 5000;
 
     /**
@@ -49,7 +49,7 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
         elements = manager.getClientList();
         this.context = context;
         dbHelper = new RequestDbHelper(context);
-        timer = new Timer();
+        timer = new ArrayList<>();
     }
 
     @Override
@@ -63,7 +63,9 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
 
         final Switch req_switch = listItem.findViewById(R.id.switch1);
         req_switch.setOnClickListener(v -> {
-            timer.schedule(new PeriodTask(client, req_switch), 0, period);
+            Timer timers = new Timer();
+            timers.schedule(new PeriodTask(client, req_switch), 0, period);
+            timer.add(timers);
             notifyDataSetChanged();
         });
 
@@ -128,6 +130,16 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
         }
     }
 
+    public void cancelAll(){
+        for (Timer timers: timer) {
+            timers.cancel();
+        }
+    }
+
+    public void restartTimer(){
+        timer = new ArrayList<>();
+    }
+
     private class PeriodTask extends TimerTask {
         private SimpleSNMPClientV1AndV2c client;
         private Switch onSwitch;
@@ -141,7 +153,9 @@ public class SnmpAdapter extends ArrayAdapter<SimpleSNMPClientV1AndV2c> {
         public void run() {
             if (!onSwitch.isChecked()) {
                 cancel();
-                timer.purge();
+                for (Timer timers: timer) {
+                    timers.purge();
+                }
                 return;
             }
             manager.startRequestFor(client);
