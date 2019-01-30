@@ -1,0 +1,17 @@
+SNMP manuelles Testprotokoll;;
+SNMPv1;;
+;;
+;;
+Eingabe (OID);Erwarteter Wert (String);Resultat
+;;
+1.3.6.1.2.1.1.1.0;snmpd Daemon fuer Android-AufgabePowered by OpenBSD;Funktioniert
+1.3.6.1.2.1.1.2.0;.1.3.6.1.4.1.30155.23.1;Funktioniert
+1.3.6.1.2.1.1.3.0;Auktuelle sysUpTime;Funktioniert
+1.3.6.1.2.1.1.4.0;"kai.mindermann@informatik.uni-stuttgart.de""";Funktioniert
+1.3.6.1.2.1.1.5.0;stuttgart1;Funktioniert
+1.3.6.1.2.1.1.6.0;Buero KM;Funktioniert
+1.3.6.1.2.1.1.7.0;74;Funktioniert
+;;
+SNMPv3;;
+;;
+1.3.6.1.2.1.1.3.0;Auktuelle sysUpTime;Funktioniert
