@@ -19,6 +19,8 @@ import de.uni_stuttgart.informatik.sopra.sopraapp.snmp.SimpleSNMPClientv3;
  */
 public class MonitoringMainActivity extends AppCompatActivity {
 
+    SnmpAdapter snmpAdapter;
+
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +42,19 @@ public class MonitoringMainActivity extends AppCompatActivity {
         applianceNames.addAll(appliances.values());
         List<SimpleSNMPClientV1AndV2c> list = new ArrayList<>();
         list.addAll(appliances.keySet());
-        SnmpAdapter snmpAdapter = new SnmpAdapter(this);
+        snmpAdapter = new SnmpAdapter(this);
         allApplianceView.setAdapter(snmpAdapter);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        snmpAdapter.cancelAll();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        snmpAdapter.restartTimer();
     }
 }

@@ -103,7 +103,7 @@ public class ApplianceManager {
         }
         for (SnmpTask task : Objects.requireNonNull(taskTable.get(client))) {
             try {
-                results.add(task.getOid()+": "+task.get());
+                results.add(task.get());
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {

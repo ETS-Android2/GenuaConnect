@@ -44,31 +44,31 @@ public class RequestMngActivity extends AppCompatActivity {
             }
             contentValuesStd[0].put(RequestsContract.COLUMN_OID_REQ, row);
             contentValuesStd[0].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysDescr");
-            contentValuesStd[0].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.1");
+            contentValuesStd[0].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.1.0");
 
             contentValuesStd[1].put(RequestsContract.COLUMN_OID_REQ, row);
             contentValuesStd[1].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysObjectID");
-            contentValuesStd[1].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.2");
+            contentValuesStd[1].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.2.0");
 
             contentValuesStd[2].put(RequestsContract.COLUMN_OID_REQ, row);
             contentValuesStd[2].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysUpTime");
-            contentValuesStd[2].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.3");
+            contentValuesStd[2].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.3.0");
 
             contentValuesStd[3].put(RequestsContract.COLUMN_OID_REQ, row);
             contentValuesStd[3].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysContact");
-            contentValuesStd[3].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.4");
+            contentValuesStd[3].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.4.0");
 
             contentValuesStd[4].put(RequestsContract.COLUMN_OID_REQ, row);
             contentValuesStd[4].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysName");
-            contentValuesStd[4].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.5");
+            contentValuesStd[4].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.5.0");
 
             contentValuesStd[5].put(RequestsContract.COLUMN_OID_REQ, row);
             contentValuesStd[5].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysLocation");
-            contentValuesStd[5].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.6");
+            contentValuesStd[5].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.6.0");
 
             contentValuesStd[6].put(RequestsContract.COLUMN_OID_REQ, row);
             contentValuesStd[6].put(RequestsContract.COLUMN_OID_DESCRIPT, "sysServices");
-            contentValuesStd[6].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.7");
+            contentValuesStd[6].put(RequestsContract.COLUMN_OID_STRING, "1.3.6.1.2.1.1.7.0");
 
             for (int i = 0 ;i< contentValuesStd.length; i++) {
                 writer.insert(RequestsContract.OID_TABLE_NAME, null, contentValuesStd[i]);
