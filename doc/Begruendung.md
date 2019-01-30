@@ -30,4 +30,4 @@ Die verlangten 75% Testabdeckung waren für uns nicht möglich zu erreichen. Die
 - Einen Test der Datenbanken konnten wir nicht in junit realisieren
 
 ## Begründung 6 (Testabdeckung unter 75%)
-Uns war es leider nicht möglicht eine 75% Testabdeckung zu erreichen, da wir nicht SNMP oder WLAN Tests erstellen bzw. ausführen konnten.
+Uns war es leider nicht möglicht eine 75% Testabdeckung zu erreichen, da wir nicht SNMP oder WLAN Tests erstellen bzw. ausführen konnten. Für SNMP haben wir daher ein manuelles Testprotokoll erstellt.
